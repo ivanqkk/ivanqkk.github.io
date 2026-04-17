@@ -40,6 +40,11 @@
 
         {% if post.collection == 'teaching' %}
           <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+        {% elsif post.thesis_type %}
+          <p>{{ post.thesis_type }}{% if post.venue %} <i>{{ post.venue }}</i>{% endif %}, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+          {% if post.supervisor %}
+            <p>Supervisor: {{ post.supervisor }}</p>
+          {% endif %}
         {% elsif post.collection == 'publications' %}
           <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif post.date %}
