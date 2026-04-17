@@ -2,9 +2,6 @@
 permalink: /
 title: "Ivan Cucchi – AI for Life Sciences"
 author_profile: true
-redirect_from: 
-  - /about/
-  - /about.html
 ---
 
 ## 🔬 About Me
