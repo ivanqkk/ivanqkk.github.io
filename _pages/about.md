@@ -2,6 +2,7 @@
 permalink: /
 title: "Ivan Cucchi – AI for Life Sciences"
 author_profile: true
+description: "Personal website of Ivan Cucchi"
 ---
 
 ## 🔬 About Me
