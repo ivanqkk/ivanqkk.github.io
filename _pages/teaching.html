@@ -7,6 +7,289 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+<style>
+  /* Modern Teaching Grid View - Clickable Cards */
+  .teaching-intro {
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin-bottom: 2.5em;
+    color: #444;
+  }
+  
+  .courses-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.8em;
+  }
+  
+  .course-card-link {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: block;
+  }
+  
+  .course-card-modern {
+    display: flex;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 12px;
+    padding: 1.5em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01), 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Hover animations applied to the card */
+  .course-card-link:hover .course-card-modern {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(46, 125, 50, 0.04), 0 3px 8px rgba(0, 0, 0, 0.02);
+    border-color: rgba(46, 125, 50, 0.25);
+  }
+  
+  .course-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #2e7d32;
+    opacity: 0.8;
+    transition: width 0.2s ease;
+  }
+  
+  .course-card-link:hover .course-card-modern::before {
+    width: 6px;
+  }
+  
+  .course-badge-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .badge-date {
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.8em;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .badge-level {
+    background: #f5f5f5;
+    color: #444;
+    font-size: 0.8em;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  
+  .course-code-modern {
+    font-family: ui-monospace, SFMono-Regular, SF Pro Text, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.8em;
+    color: #777;
+    margin-left: auto;
+  }
+  
+  .course-main {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .course-main h3 {
+    margin: 0 0 6px 0 !important;
+    font-size: 1.25em !important;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #111;
+    transition: color 0.2s ease;
+  }
+  
+  /* Underline animation on card hover */
+  .course-title-text {
+    background-image: linear-gradient(#2e7d32, #2e7d32);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size 0.3s ease, color 0.2s ease;
+  }
+  
+  .course-card-link:hover .course-title-text {
+    color: #2e7d32;
+    background-size: 100% 2px;
+  }
+  
+  .course-inst-text {
+    font-size: 0.88em;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .course-desc {
+    font-size: 0.93em;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+  }
+  
+  .course-right-logo {
+    width: 60px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .course-right-logo img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    background: transparent;
+  }
+  
+  @media (max-width: 600px) {
+    .course-card-modern { flex-direction: column-reverse; }
+    .course-right-logo { width: 45px; margin-bottom: 15px; align-self: flex-start; }
+    .course-code-modern { margin-left: 0; margin-top: 4px; width: 100%; }
+  }
+</style>
+
+<div class="teaching-intro">
+  Alongside my research, I have been actively involved in academic teaching and student mentoring. Below is an overview of the university courses and instructional activities I have contributed to as a teaching assistant and instructor.
+</div>
+
+<div class="courses-grid">
+
+  <!-- COURSE 1 -->
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/17222/2024/9999?schemaid=16894" target="_blank" class="course-card-link">
+    <div class="course-card-modern">
+      <div class="course-main">
+        <div class="course-badge-container">
+          <span class="badge-date">2024 – 2025</span>
+          <span class="badge-level">BSc in Mathematics</span>
+          <span class="course-code-modern">ID: 507290</span>
+        </div>
+        <h3><span class="course-title-text">Programming 2</span></h3>
+        <div class="course-inst-text">University of Pavia</div>
+        <p class="course-desc">
+          Assisted students in mastering intermediate programming concepts, software design, and practical implementation frameworks tailored for mathematical computation.
+        </p>
+      </div>
+      <div class="course-right-logo">
+        <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia">
+      </div>
+    </div>
+  </a>
+
+  <!-- COURSE 2 -->
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/13139/2024/9999?schemaid=16894" target="_blank" class="course-card-link">
+    <div class="course-card-modern">
+      <div class="course-main">
+        <div class="course-badge-container">
+          <span class="badge-date">2024 – 2025</span>
+          <span class="badge-level">BSc in Mathematics</span>
+          <span class="course-code-modern">ID: 507289</span>
+        </div>
+        <h3><span class="course-title-text">Programming 1</span></h3>
+        <div class="course-inst-text">University of Pavia</div>
+        <p class="course-desc">
+          Conducted practical lab sessions and grading for introductory computer science, focusing on foundational algorithms, problem-solving, and clean coding practices.
+        </p>
+      </div>
+      <div class="course-right-logo">
+        <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia">
+      </div>
+    </div>
+  </a>
+
+  <!-- COURSE 3 -->
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10017/insegnamenti/2024/7561/2024/9999?schemaid=16505" target="_blank" class="course-card-link">
+    <div class="course-card-modern">
+      <div class="course-main">
+        <div class="course-badge-container">
+          <span class="badge-date">2024 – 2025</span>
+          <span class="badge-level">BSc in Economics</span>
+          <span class="course-code-modern">ID: 500142</span>
+        </div>
+        <h3><span class="course-title-text">Mathematics</span></h3>
+        <div class="course-inst-text">University of Pavia</div>
+        <p class="course-desc">
+          Provided instructional support and tutorial sessions covering calculus, linear algebra, and optimization problems applied to economic models.
+        </p>
+      </div>
+      <div class="course-right-logo">
+        <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia">
+      </div>
+    </div>
+  </a>
+
+  <!-- COURSE 4 (DYNAMICAL SYSTEMS ANNO 2) -->
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10063/insegnamenti/2024/9502/2024/1?schemaid=16900" target="_blank" class="course-card-link">
+    <div class="course-card-modern">
+      <div class="course-main">
+        <div class="course-badge-container">
+          <span class="badge-date">2024 – 2025</span>
+          <span class="badge-level">MSc in Mathematics & Bioengineering</span>
+          <span class="course-code-modern">ID: 502886</span>
+        </div>
+        <h3><span class="course-title-text">Dynamical Systems: Theory and Numerical Methods</span></h3>
+        <div class="course-inst-text">University of Pavia</div>
+        <p class="course-desc">
+          Supported data science and engineering students with the analysis of continuous and discrete systems, biological modeling, and numerical implementations.
+        </p>
+      </div>
+      <div class="course-right-logo">
+        <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia">
+      </div>
+    </div>
+  </a>
+
+  <!-- COURSE 5 (DYNAMICAL SYSTEMS ANNO 1) -->
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2023/10063/insegnamenti/2023/9502/2009/10004?schemaid=16006" target="_blank" class="course-card-link">
+    <div class="course-card-modern">
+      <div class="course-main">
+        <div class="course-badge-container">
+          <span class="badge-date">2023 – 2024</span>
+          <span class="badge-level">MSc in Mathematics & Bioengineering</span>
+          <span class="course-code-modern">ID: 502886</span>
+        </div>
+        <h3><span class="course-title-text">Dynamical Systems: Theory and Numerical Methods</span></h3>
+        <div class="course-inst-text">University of Pavia</div>
+        <p class="course-desc">
+          Supported data science and engineering students with the analysis of continuous and discrete systems, biological modeling, and numerical implementations.
+        </p>
+      </div>
+      <div class="course-right-logo">
+        <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia">
+      </div>
+    </div>
+  </a>
+
+  <!-- COURSE 6 (SCHOOL INSTRUCTION) -->
+  <div class="course-card-modern">
+    <div class="course-main">
+      <div class="course-badge-container">
+        <span class="badge-date">2025</span>
+        <span class="badge-level">Skill Reinforcement</span>
+        <span class="course-code-modern">Instructor</span>
+      </div>
+      <h3><span style="color: #111; font-weight: 600;">Targeted Mathematics Course</span></h3>
+      <div class="course-inst-text">IIS Simone Weil (Treviglio)</div>
+      <p class="course-desc">
+        Designed and delivered an intensive 10-hour module focusing on enhancing fundamental mathematics proficiencies and foundational mathematical concepts.
+      </p>
+    </div>
+    <div class="course-right-logo">
+      <img src="{{ base_path }}/images/weil.png" alt="IIS Simone Weil">
+    </div>
+  </div>
+
+</div>
