@@ -227,41 +227,53 @@ author_profile: true
 <div class="cv-grid">
 
   <!-- ROLE 1 -->
-  <div class="cv-card">
-    <div class="cv-card-main">
+  <div class="cv-card" style="position: relative;">
+    <!-- Pseudo-link invisibile che rende tutta la carta cliccabile per MIMER AI -->
+    <a href="https://mimer-ai.eu/" target="_blank" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; text-decoration: none;"></a>
+
+    <div class="cv-card-main" style="position: relative; z-index: 2; pointer-events: none;">
       <div class="cv-meta-container">
         <span class="badge-cv-date">2026 – Present</span>
         <span class="badge-cv-location">Stockholm, Sweden</span>
       </div>
       <h3>Application Specialist in AI for Life Science</h3>
-      <div class="cv-org-text">
+      
+      <!-- L'elemento contenitore riabilita i click interni per il link dell'università -->
+      <div class="cv-org-text" style="pointer-events: auto; position: relative; z-index: 3;">
         <a href="https://www.su.se/english" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           Stockholm University
         </a>
       </div>
+      
       <p class="cv-desc-text">As an Application Specialist in AI for Life Science, I work at the interface of SciLifeLab, NAISS, and the MIMER AI competence center, supporting life science researchers in the development and deployment of advanced AI and machine-learning solutions on national high-performance computing infrastructures. My responsibilities include curating and managing large, heterogeneous biological datasets; assisting with applications for computational resources; and designing end-to-end machine learning pipelines for applications such as microscopy image analysis, biomolecular structure prediction, genomics, and precision medicine. I also contribute to user support, training activities, and workshops, and collaborate with national and international research infrastructures to promote the effective adoption of AI methodologies in life science research.</p>
     </div>
-    <div class="cv-card-logo">
+    <div class="cv-card-logo" style="position: relative; z-index: 2; pointer-events: none;">
       <img src="{{ base_path }}/images/su.png" alt="SU">
     </div>
   </div>
 
   <!-- ROLE 2 -->
-  <div class="cv-card">
-    <div class="cv-card-main">
+  <div class="cv-card" style="position: relative;">
+    <!-- Pseudo-link invisibile che rende tutta la carta cliccabile per COMPMAT -->
+    <a href="https://compmat.unipv.it/" target="_blank" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; text-decoration: none;"></a>
+
+    <div class="cv-card-main" style="position: relative; z-index: 2; pointer-events: none;">
       <div class="cv-meta-container">
         <span class="badge-cv-date">2023 – 2026</span>
         <span class="badge-cv-location">Pavia, Italy</span>
       </div>
       <h3>PhD Student</h3>
-      <div class="cv-org-text">
+      
+      <!-- L'elemento contenitore riabilita i click interni per il link dell'università -->
+      <div class="cv-org-text" style="pointer-events: auto; position: relative; z-index: 3;">
         <a href="https://portale.unipv.it/it" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           University of Pavia
         </a>
       </div>
+      
       <p class="cv-desc-text">PhD student in Computational Mathematics, Learning, and Data Science, enrolled in the thematic program titled <em>High Performance Computing and Deep Learning Methods for Protein Evolution and Design</em>. Research involves the analysis and prediction of protein stability, folding, and function, using data from molecular dynamics simulations and structural bioinformatics. Work includes designing hybrid AI models that combine sequence-based and structural features, with the goal of supporting drug discovery and therapeutic protein engineering. The project is carried out in collaboration with the University of Pavia and Università della Svizzera italiana (USI) in Lugano, with results published in peer-reviewed scientific journals.</p>
     </div>
-    <div class="cv-card-logo">
+    <div class="cv-card-logo" style="position: relative; z-index: 2; pointer-events: none;">
       <img src="{{ base_path }}/images/unipv.png" alt="UniPv">
     </div>
   </div>
@@ -448,16 +460,19 @@ author_profile: true
 <h2 class="cv-section-title">📚 Publications</h2>
 <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; padding: 0 1.5em; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
   <div class="pub-item">
+    <span style="background: #e8f5e9; color: #2e7d32; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; text-transform: uppercase;">JCTC</span>
     📅 <strong>2025</strong> | <strong>Cucchi, I.</strong>, Frasnetti, E., Frigerio, F., Cinquini, F., Pavoni, S., Pavarino, L. F., & Colombo, G. (2025). 
     <a href="{{ base_path }}/publication/2025-09-11-Molecule" class="pub-title-link">MOLECULE: Molecular-dynamics and Optimized deep Learning for Entropy-regularized Classification and Uncertainty-aware Ligand Evaluation</a>. 
     <em>Journal of Chemical Theory and Computation</em>, 21(18), 9186–9199. <a href="https://doi.org/10.1021/acs.jctc.5c01140" target="_blank" style="font-size: 0.85em; color: #666; text-decoration: none;">[DOI]</a>
   </div>
   <div class="pub-item">
+    <span style="background: #e8f5e9; color: #2e7d32; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; text-transform: uppercase;">Cell Stress</span>
     📅 <strong>2025</strong> | Mansoor, S., Frasnetti, E., <strong>Cucchi, I.</strong>, Magni, A., Bonollo, G., Serapian, S. A., Pavarino, L. F., & Colombo, G. (2025). 
     <a href="{{ base_path }}/publication/2025-02-01-Large-scale-energy-decomposition" class="pub-title-link">LARGE SCALE ENERGY DECOMPOSITION FOR THE ANALYSIS OF PROTEIN STABILITY</a>. 
     <em>Cell Stress and Chaperones</em>, 30(1), 57–68. <a href="https://doi.org/10.1016/j.cstres.2025.01.001" target="_blank" style="font-size: 0.85em; color: #666; text-decoration: none;">[DOI]</a>
   </div>
   <div class="pub-item">
+    <span style="background: #e8f5e9; color: #2e7d32; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; text-transform: uppercase;">JCTC</span>
     📅 <strong>2024</strong> | Frasnetti, E., <strong>Cucchi, I.</strong>, Pavoni, S., Frigerio, F., Cinquini, F., Serapian, S. A., Pavarino, L. F., & Colombo, G. (2024). 
     <a href="{{ base_path }}/publication/2024-10-10-Integrating-Molecular-Dynamics" class="pub-title-link">Integrating Molecular Dynamics and Machine Learning Algorithms to Predict the Functional Profile of Kinase Ligands</a>. 
     <em>Journal of Chemical Theory and Computation</em>, 20(20), 9209–9229. <a href="https://doi.org/10.1021/acs.jctc.4c01097" target="_blank" style="font-size: 0.85em; color: #666; text-decoration: none;">[DOI]</a>
@@ -482,14 +497,55 @@ author_profile: true
 
 <h2 class="cv-section-title">📢 Talks & Presentations</h2>
 <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; padding: 0.5em 1.5em; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-  <div class="pub-item">🎤 <strong style="color:#2e7d32;">Sep 2025</strong> | <strong>[Talk]</strong> <a href="{{ base_path }}/talks/2025-09-26-yamc" class="pub-title-link">5th Edition of Young Applied Mathematicians Conference</a>. University of Padua.</div>
-  <div class="pub-item">🎤 <strong style="color:#2e7d32;">May 2025</strong> | <strong>[Seminar]</strong> <a href="{{ base_path }}/talks/2025-05-26-beltrami" class="pub-title-link">Caffè Beltrami</a>. University of Pavia.</div>
-  <div class="pub-item">🖼️ <strong style="color:#2e7d32;">May 2025</strong> | <strong>[Poster]</strong> <a href="{{ base_path }}/talks/2025-05-23-compmat2" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.</div>
-  <div class="pub-item">🖼️ <strong style="color:#2e7d32;">May 2025</strong> | <strong>[Poster]</strong> <a href="{{ base_path }}/talks/2025-05-22-icam" class="pub-title-link">ICAM Workshop</a>. University of Pavia.</div>
-  <div class="pub-item">🖼️ <strong style="color:#2e7d32;">Apr 2025</strong> | <strong>[Poster]</strong> <a href="{{ base_path }}/talks/2025-04-07-human-technopole" class="pub-title-link">1st Workshop on Data Science for Health and Biology</a>. HT & PoliMi.</div>
-  <div class="pub-item">🎤 <strong style="color:#2e7d32;">Jan 2025</strong> | <strong>[Talk]</strong> <a href="{{ base_path }}/talks/2025-01-31-bari" class="pub-title-link">3rd Workshop of UMI Group — Mathematics for Artificial Intelligence and Machine Learning</a>. University of Bari.</div>
-  <div class="pub-item">🖼️ <strong style="color:#2e7d32;">Jun 2024</strong> | <strong>[Poster]</strong> <a href="{{ base_path }}/talks/2024-06-21-sissa" class="pub-title-link">Scientific Machine Learning, emerging topics</a>. SISSA.</div>
-  <div class="pub-item">🎤 <strong style="color:#2e7d32;">May 2024</strong> | <strong>[Talk + Poster]</strong> <a href="{{ base_path }}/talks/2024-05-08-compmat1" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.</div>
+  
+  <div class="pub-item">
+    <span style="background: #e3f2fd; color: #0d47a1; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">TALK</span>
+    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">Sep 2025</strong> | 
+    <a href="{{ base_path }}/talks/2025-09-26-yamc" class="pub-title-link">5th Edition of Young Applied Mathematicians Conference</a>. University of Padua.
+  </div>
+  
+  <div class="pub-item">
+    <span style="background: #e8eaf6; color: #1a237e; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">SEMINAR</span>
+    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">May 2025</strong> | 
+    <a href="{{ base_path }}/talks/2025-05-26-beltrami" class="pub-title-link">Caffè Beltrami</a>. University of Pavia.
+  </div>
+  
+  <div class="pub-item">
+    <span style="background: #fff3e0; color: #e65100; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
+    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">May 2025</strong> | 
+    <a href="{{ base_path }}/talks/2025-05-23-compmat2" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.
+  </div>
+  
+  <div class="pub-item">
+    <span style="background: #fff3e0; color: #e65100; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
+    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">May 2025</strong> | 
+    <a href="{{ base_path }}/talks/2025-05-22-icam" class="pub-title-link">ICAM Workshop</a>. University of Pavia.
+  </div>
+  
+  <div class="pub-item">
+    <span style="background: #fff3e0; color: #e65100; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
+    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">Apr 2025</strong> | 
+    <a href="{{ base_path }}/talks/2025-04-07-human-technopole" class="pub-title-link">1st Workshop on Data Science for Health and Biology</a>. HT & PoliMi.
+  </div>
+  
+  <div class="pub-item">
+    <span style="background: #e3f2fd; color: #0d47a1; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">TALK</span>
+    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">Jan 2025</strong> | 
+    <a href="{{ base_path }}/talks/2025-01-31-bari" class="pub-title-link">3rd Workshop of UMI Group — Mathematics for Artificial Intelligence and Machine Learning</a>. University of Bari.
+  </div>
+  
+  <div class="pub-item">
+    <span style="background: #fff3e0; color: #e65100; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
+    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">Jun 2024</strong> | 
+    <a href="{{ base_path }}/talks/2024-06-21-sissa" class="pub-title-link">Scientific Machine Learning, emerging topics</a>. SISSA.
+  </div>
+  
+  <div class="pub-item">
+    <span style="background: #efebe9; color: #4e342e; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">TALK+POST</span>
+    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">May 2024</strong> | 
+    <a href="{{ base_path }}/talks/2024-05-08-compmat1" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.
+  </div>
+
 </div>
 
 <h2 class="cv-section-title">🏫 Teaching Assistance</h2>

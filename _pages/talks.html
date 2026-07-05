@@ -1,16 +1,444 @@
 ---
 layout: archive
-title: "Talks, posters and seminars"
+title: "Talks, Seminars and Posters"
 permalink: /talks/
 author_profile: true
 ---
 
-{% if site.talkmap_link == true %}
+{% include base_path %}
 
-<p style="text-decoration:underline;"><a href="/talkmap.html">See a map of all the places I've given a talk!</a></p>
+<style>
+  /* Modern Presentations Grid View - Clickable Cards with Downloads & Logos */
+  .talks-intro {
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin-bottom: 2.5em;
+    color: #444;
+  }
+  
+  .talks-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.8em;
+  }
+  
+  .talk-card-modern {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 12px;
+    padding: 1.5em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01), 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Hover effects on the main card */
+  .talk-card-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(46, 125, 50, 0.04), 0 3px 8px rgba(0, 0, 0, 0.02);
+    border-color: rgba(46, 125, 50, 0.25);
+  }
+  
+  .talk-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #2e7d32;
+    opacity: 0.8;
+    transition: width 0.2s ease;
+  }
+  
+  .talk-card-modern:hover::before {
+    width: 6px;
+  }
 
-{% endif %}
+  /* Invisible details link covering the card */
+  .card-details-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    text-decoration: none;
+  }
 
-{% for post in site.talks reversed %}
-  {% include archive-single-talk.html %}
-{% endfor %}
+  /* Horizontal content wrapper to hold text left and logo right */
+  .talk-body-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .talk-card-content {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .talk-badge-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Chromatic Badge Types */
+  .badge-type-talk {
+    background: #e3f2fd;
+    color: #0d47a1;
+    font-size: 0.75em;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  
+  .badge-type-seminar {
+    background: #e8eaf6;
+    color: #1a237e;
+    font-size: 0.75em;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  
+  .badge-type-poster {
+    background: #fff3e0;
+    color: #e65100;
+    font-size: 0.75em;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  
+  .badge-type-hybrid {
+    background: #efebe9;
+    color: #4e342e;
+    font-size: 0.75em;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  
+  .talk-date-text {
+    font-size: 0.82em;
+    font-weight: 700;
+    color: #2e7d32;
+    text-transform: uppercase;
+    margin-left: 6px;
+  }
+  
+  .talk-location-tag {
+    background: #f5f5f5;
+    color: #666;
+    font-size: 0.78em;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+  
+  .talk-card-modern h3 {
+    margin: 0 0 6px 0 !important;
+    font-size: 1.22em !important;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #111;
+  }
+  
+  .talk-title-text {
+    background-image: linear-gradient(#2e7d32, #2e7d32);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size 0.3s ease, color 0.2s ease;
+  }
+  
+  .talk-card-modern:hover .talk-title-text {
+    color: #2e7d32;
+    background-size: 100% 2px;
+  }
+  
+  .talk-venue-text {
+    font-size: 0.9em;
+    color: #555;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Right Sidebar Logo Style */
+  .talk-right-logo {
+    width: 55px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .talk-right-logo img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+
+  /* Interactive Footer */
+  .talk-card-footer {
+    position: relative;
+    z-index: 3; /* Lifted above overlay link */
+    pointer-events: auto; /* Re-enable clicks exclusively for footer items */
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* Interactive Download Buttons */
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid rgba(46, 125, 50, 0.15);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.82em;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+  }
+  
+  .download-btn:hover {
+    background: #2e7d32;
+    color: #ffffff;
+    border-color: #2e7d32;
+    transform: translateY(-1px);
+  }
+  
+  .download-icon {
+    margin-right: 6px;
+    font-size: 1.1em;
+  }
+  
+  @media (max-width: 600px) {
+    .talk-body-wrapper { flex-direction: column-reverse; }
+    .talk-right-logo { width: 45px; margin-bottom: 12px; align-self: flex-start; }
+    .talk-location-tag { margin-left: 0; width: 100%; margin-top: 4px; }
+  }
+</style>
+
+<div class="talks-intro">
+  An overview of scientific talks, invited seminars, and poster presentations delivered at international conferences, workshops, and academic institutions. Click on any card to view detailed information, or use the buttons below to download the corresponding slides and posters.
+</div>
+
+<div class="talks-grid">
+
+  <!-- PRESENTATION 1 -->
+  <div class="talk-card-modern">
+    <a href="https://sites.google.com/view/yamc2025/home" target="_blank" class="card-details-overlay"></a>
+    
+    <div class="talk-body-wrapper">
+      <div class="talk-card-content" style="pointer-events: none; z-index: 2;">
+        <div class="talk-badge-container">
+          <span class="badge-type-talk">TALK</span>
+          <span class="talk-date-text">26 Sep 2025</span>
+          <span class="talk-location-tag">Padua, Italy</span>
+        </div>
+        <h3><span class="talk-title-text">5th Edition of Young Applied Mathematicians Conference</span></h3>
+        <p class="talk-venue-text">University of Padua</p>
+      </div>
+      <div class="talk-right-logo">
+        <img src="{{ base_path }}/images/unipd.png" alt="University of Padua">
+      </div>
+    </div>
+    
+    <div class="talk-card-footer">
+      <a href="{{ base_path }}/files/slides_yamc.pptx" download="Ivan_Cucchi_YAMC_Slides.pptx" class="download-btn">
+        <i class="fa-solid fa-file-powerpoint download-icon"></i> Download Slides
+      </a>
+    </div>
+  </div>
+
+  <!-- PRESENTATION 2 -->
+  <div class="talk-card-modern">
+    <a href="https://sites.google.com/view/caffebeltrami/past-talks?authuser=0#h.axvo357wtpgw" target="_blank" class="card-details-overlay"></a>
+    
+    <div class="talk-body-wrapper">
+      <div class="talk-card-content" style="pointer-events: none; z-index: 2;">
+        <div class="talk-badge-container">
+          <span class="badge-type-seminar">SEMINAR</span>
+          <span class="talk-date-text">26 May 2025</span>
+          <span class="talk-location-tag">Pavia, Italy</span>
+        </div>
+        <h3><span class="talk-title-text">Caffè Beltrami</span></h3>
+        <p class="talk-venue-text">University of Pavia</p>
+      </div>
+      <div class="talk-right-logo">
+        <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia">
+      </div>
+    </div>
+    
+    <div class="talk-card-footer">
+      <a href="{{ base_path }}/files/slides_beltrami.pdf" download="Ivan_Cucchi_Beltrami_Slides.pdf" class="download-btn">
+        <i class="fa-solid fa-file-pdf download-icon"></i> Download Slides
+      </a>
+    </div>
+  </div>
+
+  <!-- PRESENTATION 3 -->
+  <div class="talk-card-modern">
+    <a href="https://sites.google.com/universitadipavia.it/icam-compmat2025/compmat?authuser=0" target="_blank" class="card-details-overlay"></a>
+    
+    <div class="talk-body-wrapper">
+      <div class="talk-card-content" style="pointer-events: none; z-index: 2;">
+        <div class="talk-badge-container">
+          <span class="badge-type-poster">POSTER</span>
+          <span class="talk-date-text">23 May 2025</span>
+          <span class="talk-location-tag">Pavia, Italy</span>
+        </div>
+        <h3><span class="talk-title-text">Spring Workshop COMPMAT</span></h3>
+        <p class="talk-venue-text">University of Pavia</p>
+      </div>
+      <div class="talk-right-logo">
+        <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia">
+      </div>
+    </div>
+    
+    <div class="talk-card-footer">
+      <a href="{{ base_path }}/files/poster_compmat.pdf" download="Ivan_Cucchi_COMPMAT_Poster.pdf" class="download-btn">
+        <i class="fa-solid fa-image download-icon"></i> Download Poster
+      </a>
+    </div>
+  </div>
+
+  <!-- PRESENTATION 4 -->
+  <div class="talk-card-modern">
+    <a href="https://sites.google.com/universitadipavia.it/icam-compmat2025/icam?authuser=0" target="_blank" class="card-details-overlay"></a>
+    
+    <div class="talk-body-wrapper">
+      <div class="talk-card-content" style="pointer-events: none; z-index: 2;">
+        <div class="talk-badge-container">
+          <span class="badge-type-poster">POSTER</span>
+          <span class="talk-date-text">22 May 2025</span>
+          <span class="talk-location-tag">Pavia, Italy</span>
+        </div>
+        <h3><span class="talk-title-text">ICAM Workshop</span></h3>
+        <p class="talk-venue-text">University of Pavia</p>
+      </div>
+      <div class="talk-right-logo">
+        <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia">
+      </div>
+    </div>
+    
+    <div class="talk-card-footer">
+      <a href="{{ base_path }}/files/poster_ICAM.pdf" download="Ivan_Cucchi_ICAM_Poster.pdf" class="download-btn">
+        <i class="fa-solid fa-image download-icon"></i> Download Poster
+      </a>
+    </div>
+  </div>
+
+  <!-- PRESENTATION 5 -->
+  <div class="talk-card-modern">
+    <a href="https://www.ds4hb.polimi.it/index.html" target="_blank" class="card-details-overlay"></a>
+    
+    <div class="talk-body-wrapper">
+      <div class="talk-card-content" style="pointer-events: none; z-index: 2;">
+        <div class="talk-badge-container">
+          <span class="badge-type-poster">POSTER</span>
+          <span class="talk-date-text">07 Apr 2025</span>
+          <span class="talk-location-tag">Milan, Italy</span>
+        </div>
+        <h3><span class="talk-title-text">1st Workshop on Data Science for Health and Biology</span></h3>
+        <p class="talk-venue-text">Health Data Science Centre at Human Technopole & Politecnico di Milano.</p>
+      </div>
+      <div class="talk-right-logo">
+        <img src="{{ base_path }}/images/polimi.png" alt="Politecnico di Milano">
+      </div>
+    </div>
+    
+    <div class="talk-card-footer">
+      <a href="{{ base_path }}/files/poster_DS4HB.pdf" download="Ivan_Cucchi_DS4HB_Poster.pdf" class="download-btn">
+        <i class="fa-solid fa-image download-icon"></i> Download Poster
+      </a>
+    </div>
+  </div>
+
+  <!-- PRESENTATION 6 -->
+  <div class="talk-card-modern">
+    <a href="https://umi-math4aiml2025.uniba.it/" target="_blank" class="card-details-overlay"></a>
+    
+    <div class="talk-body-wrapper">
+      <div class="talk-card-content" style="pointer-events: none; z-index: 2;">
+        <div class="talk-badge-container">
+          <span class="badge-type-talk">TALK</span>
+          <span class="talk-date-text">31 Jan 2025</span>
+          <span class="talk-location-tag">Bari, Italy</span>
+        </div>
+        <h3><span class="talk-title-text">3rd Workshop of UMI Group — Mathematics for Artificial Intelligence and Machine Learning</span></h3>
+        <p class="talk-venue-text">University of Bari</p>
+      </div>
+      <div class="talk-right-logo">
+        <img src="{{ base_path }}/images/uniba.svg" alt="University of Bari">
+      </div>
+    </div>
+    
+    <div class="talk-card-footer">
+      <a href="{{ base_path }}/files/slides_bari.pptx" download="Ivan_Cucchi_UMI_Bari_Slides.pptx" class="download-btn">
+        <i class="fa-solid fa-file-powerpoint download-icon"></i> Download Slides
+      </a>
+    </div>
+  </div>
+
+  <!-- PRESENTATION 7 -->
+  <div class="talk-card-modern">
+    <a href="https://indico.sissa.it/event/107/" target="_blank" class="card-details-overlay"></a>
+    
+    <div class="talk-body-wrapper">
+      <div class="talk-card-content" style="pointer-events: none; z-index: 2;">
+        <div class="talk-badge-container">
+          <span class="badge-type-poster">POSTER</span>
+          <span class="talk-date-text">19 Jun 2024</span>
+          <span class="talk-location-tag">Trieste, Italy</span>
+        </div>
+        <h3><span class="talk-title-text">Scientific Machine Learning, emerging topics</span></h3>
+        <p class="talk-venue-text">SISSA (International School for Advanced Studies)</p>
+      </div>
+      <div class="talk-right-logo">
+        <img src="{{ base_path }}/images/sissa.png" alt="SISSA">
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESENTATION 8 -->
+  <div class="talk-card-modern">
+    <a href="https://sites.google.com/universitadipavia.it/compmat-spring-workshop/" target="_blank" class="card-details-overlay"></a>
+    
+    <div class="talk-body-wrapper">
+      <div class="talk-card-content" style="pointer-events: none; z-index: 2;">
+        <div class="talk-badge-container">
+          <span class="badge-type-hybrid">TALK + POSTER</span>
+          <span class="talk-date-text">08 May 2024</span>
+          <span class="talk-location-tag">Pavia, Italy</span>
+        </div>
+        <h3><span class="talk-title-text">Spring Workshop COMPMAT</span></h3>
+        <p class="talk-venue-text">University of Pavia</p>
+      </div>
+      <div class="talk-right-logo">
+        <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia">
+      </div>
+    </div>
+  </div>
+
+</div>
