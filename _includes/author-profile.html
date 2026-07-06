@@ -238,16 +238,18 @@
       {% endif %}
     </ul>
 
-    <!-- Altri Link / Posizione Geografica Perfettamente Centrata -->
-    <ul class="author__urls social-icons" style="margin-top: 20px; font-size: 0.82em; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0; list-style: none; width: 100%; text-align: center;">
+    <!-- Altri Link / Posizione Geografica Perfettamente Centrata (Mobile & Desktop Adaptive) -->
+    <div style="margin-top: 20px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+      
       {% if author.location %}
-        <li class="author__desktop" style="color: inherit; opacity: 0.85; font-weight: 600; margin-bottom: 4px; width: 100%; display: flex; justify-content: center; align-items: center;">
-          <i class="fas fa-fw fa-location-dot" aria-hidden="true" style="color: #666; margin-right: 5px;"></i>{{ author.location }}
-        </li>
+        <!-- Rimossa la classe 'author__desktop' che rompeva il layout su mobile -->
+        <div style="color: var(--primary-color, inherit); opacity: 0.85; font-size: 0.82em; font-weight: 600; display: flex; justify-content: center; align-items: center; margin-bottom: 4px; width: 100%;">
+          <i class="fas fa-fw fa-location-dot" aria-hidden="true" style="color: #666; margin-right: 6px;"></i>{{ author.location }}
+        </div>
       {% endif %}
       
-      <!-- Riga orizzontale per i link testuali residui, anch'essi centrati -->
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; opacity: 0.75;">
+      <!-- Cluster dei link testuali residui con padding di sicurezza -->
+      <ul style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 0; padding: 0; list-style: none; font-size: 0.8em; opacity: 0.75; width: 100%;">
         {% if author.uri %}
           <li><a href="{{ author.uri }}" style="color: inherit; text-decoration: none; font-weight: 500;"><i class="fas fa-fw fa-link" style="margin-right: 3px;"></i>Website</a></li>
         {% endif %}
@@ -255,13 +257,14 @@
           <li><a href="https://twitter.com/{{ author.twitter }}" style="color: inherit; text-decoration: none; font-weight: 500;"><i class="fab fa-fw fa-x-twitter" style="margin-right: 3px;"></i>X</a></li>
         {% endif %}
         
-        {% if author.academia %} <li><a href="{{ author.academia }}"><i class="ai ai-academia ai-fw"></i>Academia</a></li> {% endif %}
-        {% if author.arxiv %} <li><a href="{{ author.arxiv }}"><i class="ai ai-arxiv ai-fw"></i>arXiv</a></li> {% endif %}      
-        {% if author.inspire-hep %} <li><a href="{{ author.inspire-hep }}"><i class="ai ai-inspire ai-fw"></i>INSPIRE</a></li> {% endif %}      
-        {% if author.pubmed %} <li><a href="{{ author.pubmed }}"><i class="ai ai-pubmed ai-fw"></i>PubMed</a></li> {% endif %}                        
-        {% if author.scopus %} <li><a href="{{ author.scopus }}"><i class="ai ai-scopus ai-fw"></i>Scopus</a></li> {% endif %}
-        {% if author.semantic %} <li><a href="{{ author.semantic }}"><i class="ai ai-semantic-scholar ai-fw"></i>Semantic</a></li> {% endif %}
-      </div>
-    </ul>
+        {% if author.academia %} <li style="margin:0;"><a href="{{ author.academia }}" style="color:inherit; text-decoration:none;"><i class="ai ai-academia ai-fw" style="margin-right:2px;"></i>Academia</a></li> {% endif %}
+        {% if author.arxiv %} <li style="margin:0;"><a href="{{ author.arxiv }}" style="color:inherit; text-decoration:none;"><i class="ai ai-arxiv ai-fw" style="margin-right:2px;"></i>arXiv</a></li> {% endif %}      
+        {% if author.inspire-hep %} <li style="margin:0;"><a href="{{ author.inspire-hep }}" style="color:inherit; text-decoration:none;"><i class="ai ai-inspire ai-fw" style="margin-right:2px;"></i>INSPIRE</a></li> {% endif %}      
+        {% if author.pubmed %} <li style="margin:0;"><a href="{{ author.pubmed }}" style="color:inherit; text-decoration:none;"><i class="ai ai-pubmed ai-fw" style="margin-right:2px;"></i>PubMed</a></li> {% endif %}                        
+        {% if author.scopus %} <li style="margin:0;"><a href="{{ author.scopus }}" style="color:inherit; text-decoration:none;"><i class="ai ai-scopus ai-fw" style="margin-right:2px;"></i>Scopus</a></li> {% endif %}
+        {% if author.semantic %} <li style="margin:0;"><a href="{{ author.semantic }}" style="color:inherit; text-decoration:none;"><i class="ai ai-semantic-scholar ai-fw" style="margin-right:2px;"></i>Semantic</a></li> {% endif %}
+      </ul>
+
+    </div>
   </div>
 </div>
