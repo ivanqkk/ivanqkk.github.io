@@ -6,6 +6,7 @@
 
 <div itemscope itemtype="http://schema.org/Person">
 
+  <!-- Stile di forzatura per centrare l'immagine dell'avatar -->
   <style>
     .author__avatar {
       display: flex !important;
@@ -13,18 +14,18 @@
       align-items: center !important;
       width: 100% !important;
       text-align: center !important;
-      margin-bottom: 20px !important; /* Aumentato un po' lo spazio sotto la foto */
+      margin-bottom: 20px !important;
     }
     .author__avatar img {
       float: none !important;
       margin: 0 auto !important;
-      width: 180px !important;      /* Dimensione fissa per schermi desktop */
-      max-width: 180px !important;  /* Forza l'ingrandimento */
+      width: 180px !important;      
+      max-width: 180px !important;  
       height: auto !important;
     }
     @media (max-width: 64em) {
       .author__avatar img {
-        width: 160px !important;    /* Leggermente più contenuta su tablet/mobile per bilanciare il layout */
+        width: 160px !important;    
         max-width: 160px !important;
       }
     }
@@ -60,30 +61,24 @@
             width: 100%;
             max-width: 100%;
             box-sizing: border-box;
-            text-align: center; /* Centra il testo all'interno del biglietto */
+            text-align: center;
           ">
-            <!-- Micro chip geometrico/estetico in alto a destra -->
             <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: radial-gradient(circle, rgba(46,125,50,0.08) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
 
-            <!-- Ruolo Principale -->
             <span style="display: block; font-weight: 800; color: #2e7d32; font-size: 0.88em; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; line-height: 1.3; overflow-wrap: break-word;">
-              Application Specialist <br>in AI
+              Application Specialist in AI
             </span>
             
-            <!-- Team Focus Badge Minimal (Centrato orizzontalmente) -->
             <span style="display: inline-block; background: rgba(46, 125, 50, 0.1); color: #4ea852; font-size: 0.76em; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-bottom: 12px; border: 1px solid rgba(46, 125, 50, 0.15); white-space: nowrap;">
               🔬 Life Science Team
             </span>
             
-            <!-- Divisore minimale interno alla carta -->
             <div style="height: 1px; background: var(--border-color, rgba(0,0,0,0.06)); margin-bottom: 12px; width: 100%;"></div>
 
-            <!-- Organizzazione & Fabbrica -->
             <div style="font-size: 0.92em; color: var(--primary-color, #222); font-weight: 700; line-height: 1.35; margin-bottom: 4px;">
               MIMER AI Factory
             </div>
             
-            <!-- Sede e Affiliazione Principale (Allineamento centrale armonioso) -->
             <div style="font-size: 0.84em; color: inherit; opacity: 0.85; font-weight: 500; line-height: 1.45; display: inline-block; text-align: center;">
               <div><i class="fas fa-fw fa-building-columns" style="opacity: 0.7; font-size: 0.95em; margin-right: 4px;"></i> Stockholm University</div>
               <div style="opacity: 0.8; font-weight: 400; margin-top: 2px;">📍 Office: SciLifeLab</div>
@@ -91,42 +86,49 @@
           </div>
 
         {% else %}
-          <!-- Fallback standard del template -->
           <div style="width: 100%;">{{ author.bio }}</div>
         {% endif %}
       </div>
     {% endif %}
   </div>
 
-  <div class="author__urls-wrapper" style="margin-top: 20px;">
+  <div class="author__urls-wrapper" style="margin-top: 25px; display: flex; flex-direction: column; align-items: center; width: 100%;">
     <button class="btn btn--inverse" style="display: none;">Follow</button>
     
     <style>
-      /* Griglia Moderna per Contatti e Social */
+      /* Griglia dei Social ad Allineamento Centrale Rigoroso */
       .modern-social-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
         padding: 0;
-        margin: 0;
+        margin: 0 auto !important;
         list-style: none !important;
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
       }
       
       .modern-social-grid li {
         margin: 0 !important;
         padding: 0 !important;
         list-style-type: none !important;
+        display: flex;
+        justify-content: center;
       }
       
       .social-card-link {
         display: flex;
         align-items: center;
+        justify-content: center; /* Centra il contenuto dentro la singola pillola */
         padding: 8px 10px;
         background: var(--background-color, #fafafa);
         border: 1px solid var(--border-color, rgba(0, 0, 0, 0.06));
         border-radius: 8px;
         text-decoration: none !important;
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%; /* Occupa tutto lo spazio della sua cella */
+        box-sizing: border-box;
       }
       
       .social-card-text {
@@ -138,13 +140,13 @@
       
       .social-card-link i, .social-card-link svg {
         font-size: 1.05em;
-        margin-right: 8px;
+        margin-right: 6px;
         width: 16px;
         text-align: center;
         transition: transform 0.2s ease;
       }
       
-      /* Effetti Hover personalizzati per Brand */
+      /* Effetti Hover */
       .link-email:hover { background: rgba(46, 125, 50, 0.1); border-color: rgba(46, 125, 50, 0.3); }
       .link-email:hover i, .link-email:hover .social-card-text { color: #4ea852; }
       
@@ -203,11 +205,11 @@
         </li>
       {% endif %}
 
-      <!-- Google Scholar (Nuovo Logo Ufficiale Geometrico Inline) -->
+      <!-- Google Scholar -->
       {% if author.googlescholar %}
         <li>
           <a href="{{ author.googlescholar }}" target="_blank" class="social-card-link link-scholar">
-            <svg class="scholar-svg-icon" viewBox="0 0 24 24" style="width: 14px; height: 14px; margin-right: 8px; fill: #4285f4; display: inline-block; vertical-align: middle; flex-shrink: 0; transition: transform 0.2s ease;">
+            <svg class="scholar-svg-icon" viewBox="0 0 24 24" style="width: 14px; height: 14px; margin-right: 6px; fill: #4285f4; display: inline-block; vertical-align: middle; flex-shrink: 0; transition: transform 0.2s ease;">
               <path d="M5.242 13.769L0.5 9.5 12 1l11.5 8.5-4.742 4.269C17.402 12.724 14.832 12 12 12s-5.402 0.724-6.758 1.769zM12 13.5c-3.314 0-6 2.463-6 5.5v4l6-3.5 6 3.5v-4c0-3.037-2.686-5.5-6-5.5z"/>
             </svg>
             <span class="social-card-text">Scholar</span>
@@ -236,27 +238,30 @@
       {% endif %}
     </ul>
 
-    <!-- Altri Link / Dettagli Secondari -->
-    <ul class="author__urls social-icons" style="margin-top: 15px; font-size: 0.8em; display: flex; flex-wrap: wrap; gap: 10px; padding: 0; list-style: none; justify-content: center;">
+    <!-- Altri Link / Posizione Geografica Perfettamente Centrata -->
+    <ul class="author__urls social-icons" style="margin-top: 20px; font-size: 0.82em; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0; list-style: none; width: 100%; text-align: center;">
       {% if author.location %}
-        <li class="author__desktop" style="color: inherit; opacity: 0.8; font-weight: 500; margin-bottom: 2px; width: 100%; text-align: center;">
-          <i class="fas fa-fw fa-location-dot" aria-hidden="true" style="margin-right: 4px;"></i>{{ author.location }}
+        <li class="author__desktop" style="color: inherit; opacity: 0.85; font-weight: 600; margin-bottom: 4px; width: 100%; display: flex; justify-content: center; align-items: center;">
+          <i class="fas fa-fw fa-location-dot" aria-hidden="true" style="color: #666; margin-right: 5px;"></i>{{ author.location }}
         </li>
       {% endif %}
       
-      {% if author.uri %}
-        <li><a href="{{ author.uri }}" style="color: inherit; opacity: 0.8; text-decoration: none;"><i class="fas fa-fw fa-link" style="margin-right: 3px;"></i>Website</a></li>
-      {% endif %}
-      {% if author.twitter %}
-        <li><a href="https://twitter.com/{{ author.twitter }}" style="color: inherit; opacity: 0.8; text-decoration: none;"><i class="fab fa-fw fa-x-twitter" style="margin-right: 3px;"></i>X</a></li>
-      {% endif %}
-      
-      {% if author.academia %} <li><a href="{{ author.academia }}"><i class="ai ai-academia ai-fw"></i>Academia</a></li> {% endif %}
-      {% if author.arxiv %} <li><a href="{{ author.arxiv }}"><i class="ai ai-arxiv ai-fw"></i>arXiv</a></li> {% endif %}      
-      {% if author.inspire-hep %} <li><a href="{{ author.inspire-hep }}"><i class="ai ai-inspire ai-fw"></i>INSPIRE</a></li> {% endif %}      
-      {% if author.pubmed %} <li><a href="{{ author.pubmed }}"><i class="ai ai-pubmed ai-fw"></i>PubMed</a></li> {% endif %}                        
-      {% if author.scopus %} <li><a href="{{ author.scopus }}"><i class="ai ai-scopus ai-fw"></i>Scopus</a></li> {% endif %}
-      {% if author.semantic %} <li><a href="{{ author.semantic }}"><i class="ai ai-semantic-scholar ai-fw"></i>Semantic</a></li> {% endif %}
+      <!-- Riga orizzontale per i link testuali residui, anch'essi centrati -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; opacity: 0.75;">
+        {% if author.uri %}
+          <li><a href="{{ author.uri }}" style="color: inherit; text-decoration: none; font-weight: 500;"><i class="fas fa-fw fa-link" style="margin-right: 3px;"></i>Website</a></li>
+        {% endif %}
+        {% if author.twitter %}
+          <li><a href="https://twitter.com/{{ author.twitter }}" style="color: inherit; text-decoration: none; font-weight: 500;"><i class="fab fa-fw fa-x-twitter" style="margin-right: 3px;"></i>X</a></li>
+        {% endif %}
+        
+        {% if author.academia %} <li><a href="{{ author.academia }}"><i class="ai ai-academia ai-fw"></i>Academia</a></li> {% endif %}
+        {% if author.arxiv %} <li><a href="{{ author.arxiv }}"><i class="ai ai-arxiv ai-fw"></i>arXiv</a></li> {% endif %}      
+        {% if author.inspire-hep %} <li><a href="{{ author.inspire-hep }}"><i class="ai ai-inspire ai-fw"></i>INSPIRE</a></li> {% endif %}      
+        {% if author.pubmed %} <li><a href="{{ author.pubmed }}"><i class="ai ai-pubmed ai-fw"></i>PubMed</a></li> {% endif %}                        
+        {% if author.scopus %} <li><a href="{{ author.scopus }}"><i class="ai ai-scopus ai-fw"></i>Scopus</a></li> {% endif %}
+        {% if author.semantic %} <li><a href="{{ author.semantic }}"><i class="ai ai-semantic-scholar ai-fw"></i>Semantic</a></li> {% endif %}
+      </div>
     </ul>
   </div>
 </div>
