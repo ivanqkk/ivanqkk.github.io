@@ -12,7 +12,7 @@ name                     : &name "Ivan Cucchi"
 description              : &description "Personal website of Ivan Cucchi – Application Specialist in AI for Life Sciences"
 url                      : "https://ivanqkk.github.io"
 baseurl                  : "" 
-repository               : "ivanqkk.github.io"
+repository               : "ivanqkk/ivanqkk.github.io"
 
 # Site Author - Controls the automated sidebar links and metadata structures
 author:
