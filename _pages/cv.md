@@ -8,7 +8,7 @@ author_profile: true
 {% include base_path %}
 
 <style>
-  /* Modern Professional CV Theme */
+  /* Modern Professional CV Theme - Dark Mode Adaptive */
   .cv-section-title {
     border-bottom: 2px solid #2e7d32;
     padding-bottom: 8px;
@@ -18,7 +18,7 @@ author_profile: true
     text-transform: uppercase;
     letter-spacing: 0.8px;
     font-size: 1.4em;
-    color: #111;
+    color: inherit;
   }
   
   .cv-grid {
@@ -29,8 +29,8 @@ author_profile: true
   
   .cv-card {
     display: flex;
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.07);
+    background: var(--background-color, #ffffff);
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.07));
     border-radius: 12px;
     padding: 1.5em;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01), 0 1px 3px rgba(0, 0, 0, 0.02);
@@ -41,8 +41,8 @@ author_profile: true
   
   .cv-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 20px rgba(46, 125, 50, 0.04), 0 3px 8px rgba(0, 0, 0, 0.02);
-    border-color: rgba(46, 125, 50, 0.15);
+    box-shadow: 0 12px 20px rgba(46, 125, 50, 0.05);
+    border-color: rgba(46, 125, 50, 0.25);
   }
   
   .cv-card::before {
@@ -64,9 +64,10 @@ author_profile: true
     flex-wrap: wrap;
   }
   
+  /* Badge Traslucidi Coerenti */
   .badge-cv-date {
-    background: #e8f5e9;
-    color: #2e7d32;
+    background: rgba(46, 125, 50, 0.12);
+    color: #4ea852;
     font-size: 0.8em;
     font-weight: 700;
     padding: 3px 10px;
@@ -76,12 +77,13 @@ author_profile: true
   }
   
   .badge-cv-location {
-    background: #f5f5f5;
-    color: #666;
+    background: rgba(128, 128, 128, 0.1);
+    color: inherit;
     font-size: 0.8em;
     font-weight: 600;
     padding: 3px 10px;
     border-radius: 20px;
+    opacity: 0.9;
   }
   
   .cv-card-main {
@@ -94,11 +96,11 @@ author_profile: true
     font-size: 1.25em !important;
     font-weight: 600;
     line-height: 1.3;
-    color: #111;
+    color: inherit !important;
   }
   
   .cv-card-main h3 a {
-    color: #2e7d32;
+    color: #4ea852;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-color 0.2s ease;
@@ -110,7 +112,8 @@ author_profile: true
   
   .cv-org-text {
     font-size: 0.92em;
-    color: #444;
+    color: inherit;
+    opacity: 0.8;
     font-style: italic;
     margin-bottom: 12px;
   }
@@ -118,7 +121,8 @@ author_profile: true
   .cv-desc-text {
     font-size: 0.93em;
     line-height: 1.5;
-    color: #555;
+    color: inherit;
+    opacity: 0.85;
     margin: 0;
   }
   
@@ -135,18 +139,29 @@ author_profile: true
     height: auto;
     object-fit: contain;
     border-radius: 4px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.04));
   }
   
-  /* Publications & Theses List styling */
+  /* Contenitori per Elenchi Piatti (Pubblicazioni / Didattica) */
+  .cv-flat-list-box {
+    background: var(--background-color, #ffffff);
+    border: 1px solid var(--border-color, rgba(0,0,0,0.07));
+    border-radius: 12px;
+    padding: 0 1.5em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+  }
+
   .pub-item {
     padding: 1.2em 0;
-    border-bottom: 1px dashed rgba(0,0,0,0.12);
+    border-bottom: 1px dashed var(--border-color, rgba(0,0,0,0.12));
     line-height: 1.6;
     font-size: 0.95em;
+    color: inherit;
   }
   .pub-item:last-child { border-bottom: none; }
+  
   .pub-title-link {
-    color: #2e7d32;
+    color: #4ea852;
     text-decoration: none;
     font-weight: 600;
     border-bottom: 1px solid transparent;
@@ -154,7 +169,6 @@ author_profile: true
   }
   .pub-title-link:hover { border-bottom: 1px solid #2e7d32; }
   
-  /* Grid Badges for Skills */
   .grid-badges {
     display: flex;
     flex-wrap: wrap;
@@ -173,16 +187,16 @@ author_profile: true
   .cert-card-modern {
     display: flex;
     align-items: center;
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.07);
+    background: var(--background-color, #ffffff);
+    border: 1px solid var(--border-color, rgba(0,0,0,0.07));
     border-radius: 8px;
     padding: 14px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.01);
     transition: all 0.2s ease;
   }
   .cert-card-modern:hover {
-    background: rgba(46, 125, 50, 0.02);
-    border-color: rgba(46, 125, 50, 0.15);
+    background: rgba(46, 125, 50, 0.03);
+    border-color: rgba(46, 125, 50, 0.25);
     transform: translateY(-1px);
   }
   .cert-logo-box {
@@ -199,10 +213,10 @@ author_profile: true
   .cert-info-box {
     font-size: 0.91em;
     line-height: 1.4;
-    color: #444;
+    color: inherit;
   }
   .cert-info-box a {
-    color: #2e7d32;
+    color: #4ea852;
     text-decoration: none;
     font-weight: 600;
   }
@@ -223,28 +237,24 @@ author_profile: true
   </a>
 </div>
 
+<!-- ==================== PROFESSIONAL EXPERIENCE ==================== -->
 <h2 class="cv-section-title" style="margin-top: 1.5em;">💼 Professional Experience</h2>
 <div class="cv-grid">
 
-  <!-- ROLE 1 -->
+  <!-- ROLE 1: SU -->
   <div class="cv-card" style="position: relative;">
-    <!-- Pseudo-link invisibile che rende tutta la carta cliccabile per MIMER AI -->
     <a href="https://mimer-ai.eu/" target="_blank" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; text-decoration: none;"></a>
-
     <div class="cv-card-main" style="position: relative; z-index: 2; pointer-events: none;">
       <div class="cv-meta-container">
         <span class="badge-cv-date">2026 – Present</span>
         <span class="badge-cv-location">Stockholm, Sweden</span>
       </div>
       <h3>Application Specialist in AI for Life Science</h3>
-      
-      <!-- L'elemento contenitore riabilita i click interni per il link dell'università -->
       <div class="cv-org-text" style="pointer-events: auto; position: relative; z-index: 3;">
-        <a href="https://www.su.se/english" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
+        <a href="https://www.su.se/english" target="_blank" style="color: #4ea852; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           Stockholm University
         </a>
       </div>
-      
       <p class="cv-desc-text">As an Application Specialist in AI for Life Science, I work at the interface of SciLifeLab, NAISS, and the MIMER AI competence center, supporting life science researchers in the development and deployment of advanced AI and machine-learning solutions on national high-performance computing infrastructures. My responsibilities include curating and managing large, heterogeneous biological datasets; assisting with applications for computational resources; and designing end-to-end machine learning pipelines for applications such as microscopy image analysis, biomolecular structure prediction, genomics, and precision medicine. I also contribute to user support, training activities, and workshops, and collaborate with national and international research infrastructures to promote the effective adoption of AI methodologies in life science research.</p>
     </div>
     <div class="cv-card-logo" style="position: relative; z-index: 2; pointer-events: none;">
@@ -252,25 +262,20 @@ author_profile: true
     </div>
   </div>
 
-  <!-- ROLE 2 -->
+  <!-- ROLE 2: PhD UniPv -->
   <div class="cv-card" style="position: relative;">
-    <!-- Pseudo-link invisibile che rende tutta la carta cliccabile per COMPMAT -->
     <a href="https://compmat.unipv.it/" target="_blank" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; text-decoration: none;"></a>
-
     <div class="cv-card-main" style="position: relative; z-index: 2; pointer-events: none;">
       <div class="cv-meta-container">
         <span class="badge-cv-date">2023 – 2026</span>
         <span class="badge-cv-location">Pavia, Italy</span>
       </div>
       <h3>PhD Student</h3>
-      
-      <!-- L'elemento contenitore riabilita i click interni per il link dell'università -->
       <div class="cv-org-text" style="pointer-events: auto; position: relative; z-index: 3;">
-        <a href="https://portale.unipv.it/it" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
+        <a href="https://portale.unipv.it/it" target="_blank" style="color: #4ea852; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           University of Pavia
         </a>
       </div>
-      
       <p class="cv-desc-text">PhD student in Computational Mathematics, Learning, and Data Science, enrolled in the thematic program titled <em>High Performance Computing and Deep Learning Methods for Protein Evolution and Design</em>. Research involves the analysis and prediction of protein stability, folding, and function, using data from molecular dynamics simulations and structural bioinformatics. Work includes designing hybrid AI models that combine sequence-based and structural features, with the goal of supporting drug discovery and therapeutic protein engineering. The project is carried out in collaboration with the University of Pavia and Università della Svizzera italiana (USI) in Lugano, with results published in peer-reviewed scientific journals.</p>
     </div>
     <div class="cv-card-logo" style="position: relative; z-index: 2; pointer-events: none;">
@@ -278,7 +283,7 @@ author_profile: true
     </div>
   </div>
 
-  <!-- ROLE 3 -->
+  <!-- ROLE 3: SciLifeLab -->
   <div class="cv-card">
     <div class="cv-card-main">
       <div class="cv-meta-container">
@@ -287,7 +292,7 @@ author_profile: true
       </div>
       <h3>PhD Visiting Student</h3>
       <div class="cv-org-text">
-        <a href="https://www.scilifelab.se/" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
+        <a href="https://www.scilifelab.se/" target="_blank" style="color: #4ea852; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           SciLifeLab
         </a>
       </div>
@@ -298,7 +303,7 @@ author_profile: true
     </div>
   </div>
 
-  <!-- ROLE 4 -->
+  <!-- ROLE 4: Weil -->
   <div class="cv-card">
     <div class="cv-card-main">
       <div class="cv-meta-container">
@@ -307,7 +312,7 @@ author_profile: true
       </div>
       <h3>Mathematics Instructor</h3>
       <div class="cv-org-text">
-        <a href="https://isweil.edu.it/" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
+        <a href="https://isweil.edu.it/" target="_blank" style="color: #4ea852; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           Istituto d'Istruzione Superiore Simone Weil
         </a>
       </div>
@@ -318,7 +323,7 @@ author_profile: true
     </div>
   </div>
 
-  <!-- ROLE 5 -->
+  <!-- ROLE 5: USI -->
   <div class="cv-card">
     <div class="cv-card-main">
       <div class="cv-meta-container">
@@ -327,7 +332,7 @@ author_profile: true
       </div>
       <h3>PhD Visiting Student</h3>
       <div class="cv-org-text">
-        <a href="https://www.usi.ch/it" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
+        <a href="https://www.usi.ch/it" target="_blank" style="color: #4ea852; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           Università della Svizzera Italiana
         </a>
       </div>
@@ -338,7 +343,7 @@ author_profile: true
     </div>
   </div>
 
-  <!-- ROLE 6 -->
+  <!-- ROLE 6: Sync Lab -->
   <div class="cv-card">
     <div class="cv-card-main">
       <div class="cv-meta-container">
@@ -347,7 +352,7 @@ author_profile: true
       </div>
       <h3>Intern</h3>
       <div class="cv-org-text">
-        <a href="https://synclab.it/home" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
+        <a href="https://synclab.it/home" target="_blank" style="color: #4ea852; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           Sync Lab S.r.l.
         </a>
       </div>
@@ -358,7 +363,7 @@ author_profile: true
     </div>
   </div>
 
-  <!-- ROLE 7 -->
+  <!-- ROLE 7: Ver Italia -->
   <div class="cv-card">
     <div class="cv-card-main">
       <div class="cv-meta-container">
@@ -367,7 +372,7 @@ author_profile: true
       </div>
       <h3>Trainer</h3>
       <div class="cv-org-text">
-        <a href="https://ver-italia.it/" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
+        <a href="https://ver-italia.it/" target="_blank" style="color: #4ea852; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           Ver Italia — Tutoring & Education
         </a>
       </div>
@@ -379,106 +384,313 @@ author_profile: true
   </div>
 </div>
 
+<!-- ==================== EDUCATION ==================== -->
 <h2 class="cv-section-title">🎓 Education</h2>
-<div class="cv-grid">
-  <div class="cv-card">
-    <div class="cv-card-main">
-      <div class="cv-meta-container">
-        <span class="badge-cv-date">2019 – 2022</span>
-        <span class="badge-cv-location">Pavia, Italy</span>
+
+<style>
+  /* Griglia specifica a 3 colonne per i titoli di studio */
+  .education-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2em;
+    width: 100%;
+  }
+
+  .edu-card-modern {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--background-color, #ffffff);
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+    border-radius: 12px;
+    padding: 1.2em;
+    min-height: 140px; /* Altezza compatta e bilanciata */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01), 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .edu-card-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(46, 125, 50, 0.06);
+    border-color: rgba(46, 125, 50, 0.25);
+  }
+
+  /* Barra verticale verde asimmetrica */
+  .edu-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #2e7d32;
+    opacity: 0.8;
+    z-index: 3;
+  }
+
+  /* Watermark del logo sullo sfondo della card */
+  .edu-bg-watermark {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    width: 110px;
+    height: 110px;
+    opacity: 0.04;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+  }
+
+  .edu-card-modern:hover .edu-bg-watermark {
+    opacity: 0.08;
+    transform: scale(1.05) rotate(-5deg);
+  }
+
+  .edu-main-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .edu-card-modern h3 {
+    margin: 4px 0 2px 0 !important;
+    font-size: 1.1em !important;
+    font-weight: 600;
+    line-height: 1.35;
+    color: inherit !important;
+  }
+
+  /* Responsive: si rompe su una colonna unica su schermi piccoli */
+  @media (max-width: 768px) {
+    .education-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="education-grid">
+
+  <!-- DEGREE 1: Master -->
+  <div class="edu-card-modern">
+    <img src="{{ base_path }}/images/unipv.png" class="edu-bg-watermark" alt="">
+    <div class="edu-main-content">
+      <div class="cv-meta-container" style="margin-bottom: 6px;">
+        <span class="badge-cv-date" style="padding: 1px 8px; font-size: 0.72em;">2019 – 2022</span>
+        <span class="badge-cv-location" style="padding: 1px 8px; font-size: 0.72em;">Pavia, Italy</span>
       </div>
       <h3>Master in Mathematics</h3>
-      <div class="cv-org-text">
-        <a href="https://portale.unipv.it/it" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
-          University of Pavia
-        </a>
+      <div class="cv-org-text" style="margin-bottom: 0; font-size: 0.85em; opacity: 0.75;">
+        <a href="https://portale.unipv.it/it" target="_blank" style="color: inherit; text-decoration: none;">University of Pavia</a>
       </div>
     </div>
-    <div class="cv-card-logo"><img src="{{ base_path }}/images/unipv.png" alt="UniPv"></div>
   </div>
 
-  <div class="cv-card">
-    <div class="cv-card-main">
-      <div class="cv-meta-container">
-        <span class="badge-cv-date">2011 – 2019</span>
-        <span class="badge-cv-location">Pavia, Italy</span>
+  <!-- DEGREE 2: Bachelor -->
+  <div class="edu-card-modern">
+    <img src="{{ base_path }}/images/unipv.png" class="edu-bg-watermark" alt="">
+    <div class="edu-main-content">
+      <div class="cv-meta-container" style="margin-bottom: 6px;">
+        <span class="badge-cv-date" style="padding: 1px 8px; font-size: 0.72em;">2011 – 2019</span>
+        <span class="badge-cv-location" style="padding: 1px 8px; font-size: 0.72em;">Pavia, Italy</span>
       </div>
       <h3>Bachelor in Mathematics</h3>
-      <div class="cv-org-text">
-        <a href="https://portale.unipv.it/it" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
-          University of Pavia
-        </a>
+      <div class="cv-org-text" style="margin-bottom: 0; font-size: 0.85em; opacity: 0.75;">
+        <a href="https://portale.unipv.it/it" target="_blank" style="color: inherit; text-decoration: none;">University of Pavia</a>
       </div>
     </div>
-    <div class="cv-card-logo"><img src="{{ base_path }}/images/unipv.png" alt="UniPv"></div>
   </div>
 
-  <div class="cv-card">
-    <div class="cv-card-main">
-      <div class="cv-meta-container">
-        <span class="badge-cv-date">2007 – 2011</span>
-        <span class="badge-cv-location">Pavia, Italy</span>
+  <!-- DEGREE 3: High School -->
+  <div class="edu-card-modern">
+    <img src="{{ base_path }}/images/copernico.png" class="edu-bg-watermark" alt="">
+    <div class="edu-main-content">
+      <div class="cv-meta-container" style="margin-bottom: 6px;">
+        <span class="badge-cv-date" style="padding: 1px 8px; font-size: 0.72em;">2007 – 2011</span>
+        <span class="badge-cv-location" style="padding: 1px 8px; font-size: 0.72em;">Pavia, Italy</span>
       </div>
       <h3>Scientific High School Graduation</h3>
-      <div class="cv-org-text">
-        <a href="https://copernico.edu.it/" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
-          Niccolò Copernico
-        </a>
+      <div class="cv-org-text" style="margin-bottom: 0; font-size: 0.85em; opacity: 0.75;">
+        <a href="https://copernico.edu.it/" target="_blank" style="color: inherit; text-decoration: none;">Niccolò Copernico</a>
       </div>
     </div>
-    <div class="cv-card-logo"><img src="{{ base_path }}/images/copernico.png" alt="Copernico"></div>
   </div>
+
 </div>
 
+<!-- ==================== THESES ==================== -->
 <h2 class="cv-section-title">📝 Theses</h2>
-<div class="cv-grid">
-  <div class="cv-card">
-    <div class="cv-card-main">
-      <div class="cv-meta-container">
-        <span class="badge-cv-date">2022</span>
-        <span class="badge-cv-location">Master's Thesis</span>
+
+<style>
+  /* Griglia specifica a 2 colonne per le Tesi */
+  .theses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5em;
+    width: 100%;
+  }
+
+  .thesis-card-modern {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--background-color, #ffffff);
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+    border-radius: 12px;
+    padding: 1.3em;
+    min-height: 220px; /* Altezza ottimale per contenere l'abstract (excerpt) */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01), 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .thesis-card-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(46, 125, 50, 0.06);
+    border-color: rgba(46, 125, 50, 0.25);
+  }
+
+  /* Barra verticale verde asimmetrica */
+  .thesis-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #2e7d32;
+    opacity: 0.8;
+    z-index: 3;
+  }
+
+  /* Logo UniPv in Filigrana sullo sfondo */
+  .thesis-bg-watermark {
+    position: absolute;
+    right: -15px;
+    bottom: -15px;
+    width: 140px;
+    height: 140px;
+    opacity: 0.03; /* Molto leggero per non disturbare la lettura dell'abstract */
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+  }
+
+  .thesis-card-modern:hover .thesis-bg-watermark {
+    opacity: 0.07;
+    transform: scale(1.05) rotate(-5deg);
+  }
+
+  .thesis-main-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .thesis-card-modern h3 {
+    margin: 4px 0 3px 0 !important;
+    font-size: 1.15em !important;
+    font-weight: 600;
+    line-height: 1.35;
+    color: inherit !important;
+  }
+
+  .thesis-card-modern h3 a {
+    color: inherit;
+    text-decoration: none;
+    background-image: linear-gradient(#2e7d32, #2e7d32);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size 0.3s ease, color 0.2s ease;
+  }
+
+  .thesis-card-modern:hover h3 a {
+    color: #4ea852;
+    background-size: 100% 2px;
+  }
+
+  /* Responsive: collassa a 1 colonna su smartphone */
+  @media (max-width: 768px) {
+    .theses-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="theses-grid">
+
+  <!-- MASTER'S THESIS -->
+  <div class="thesis-card-modern">
+    <img src="{{ base_path }}/images/unipv.png" class="thesis-bg-watermark" alt="">
+    <div class="thesis-main-content">
+      <div class="cv-meta-container" style="margin-bottom: 8px;">
+        <span class="badge-cv-date" style="padding: 1px 8px; font-size: 0.72em;">2022</span>
+        <span class="badge-cv-location" style="padding: 1px 8px; font-size: 0.72em;">Master's Thesis</span>
       </div>
+      
       <h3><a href="{{ base_path }}/publication/2022-master-thesis">Machine Learning Methods for Identifying Atrial Fibrillation in 12-lead ECGs</a></h3>
-      <div class="cv-org-text">Supervisor: Luca F. Pavarino | University of Pavia</div>
-      <p class="cv-desc-text">The work focused on identifying atrial fibrillation through the analysis of 12-lead ECG signals using supervised Machine Learning techniques. Explored and compared the performance of k-Nearest Neighbors, Random Forest, and Multilayer Perceptron classifiers. The study involved preprocessing clinical data, implementing classification models, and evaluating their accuracy in detecting cardiac arrhythmias. Integrated concepts from physiology, signal processing, and computational modeling to enhance understanding and support preventive diagnostics in cardiology.</p>
+      <div class="cv-org-text" style="margin-bottom: 10px; font-size: 0.84em; opacity: 0.75;">
+        Supervisor: Luca F. Pavarino | University of Pavia
+      </div>
+      
+      <p class="cv-desc-text" style="font-size: 0.85em; opacity: 0.8; line-height: 1.45;">
+        The work focused on identifying atrial fibrillation through the analysis of 12-lead ECG signals using supervised Machine Learning techniques. Explored and compared the performance of k-Nearest Neighbors, Random Forest, and Multilayer Perceptron classifiers. The study involved preprocessing clinical data, implementing classification models, and evaluating their accuracy in detecting cardiac arrhythmias. Integrated concepts from physiology, signal processing, and computational modeling to enhance understanding and support preventive diagnostics in cardiology.
+      </p>
     </div>
   </div>
 
-  <div class="cv-card">
-    <div class="cv-card-main">
-      <div class="cv-meta-container">
-        <span class="badge-cv-date">2019</span>
-        <span class="badge-cv-location">Bachelor's Thesis</span>
+  <!-- BACHELOR'S THESIS -->
+  <div class="thesis-card-modern">
+    <img src="{{ base_path }}/images/unipv.png" class="thesis-bg-watermark" alt="">
+    <div class="thesis-main-content">
+      <div class="cv-meta-container" style="margin-bottom: 8px;">
+        <span class="badge-cv-date" style="padding: 1px 8px; font-size: 0.72em;">2019</span>
+        <span class="badge-cv-location" style="padding: 1px 8px; font-size: 0.72em;">Bachelor's Thesis</span>
       </div>
+      
       <h3><a href="{{ base_path }}/publication/2019-bachelor-thesis">Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome</a></h3>
-      <div class="cv-org-text">Supervisor: Luca F. Pavarino | University of Pavia</div>
-      <p class="cv-desc-text">The work focused on modeling and simulating Long QT Syndrome (LQTS) through numerical representations of cardiac electrophysiology. Explored and implemented biophysical models such as Hodgkin-Huxley, Luo-Rudy, and O’Hara-Rudy to reproduce action potentials and ion current dynamics. Simulations were conducted to study the electrical behavior of cardiac cells under normal and pathological conditions. The study integrated concepts from cardiac physiology, mathematical modeling, and computational simulation to deepen the understanding of arrhythmogenic mechanisms and support research in cardiology.</p>
+      <div class="cv-org-text" style="margin-bottom: 10px; font-size: 0.84em; opacity: 0.75;">
+        Supervisor: Luca F. Pavarino | University of Pavia
+      </div>
+      
+      <p class="cv-desc-text" style="font-size: 0.85em; opacity: 0.8; line-height: 1.45;">
+        The work focused on modeling and simulating Long QT Syndrome (LQTS) through numerical representations of cardiac electrophysiology. Explored and implemented biophysical models such as Hodgkin-Huxley, Luo-Rudy, and O’Hara-Rudy to reproduce action potentials and ion current dynamics. Simulations were conducted to study the electrical behavior of cardiac cells under normal and pathological conditions. The study integrated concepts from cardiac physiology, mathematical modeling, and computational simulation to deepen the understanding of arrhythmogenic mechanisms and support research in cardiology.
+      </p>
     </div>
   </div>
+
 </div>
 
+<!-- ==================== PUBLICATIONS ==================== -->
 <h2 class="cv-section-title">📚 Publications</h2>
-<div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; padding: 0 1.5em; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+<div class="cv-flat-list-box">
   <div class="pub-item">
-    <span style="background: #e8f5e9; color: #2e7d32; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; text-transform: uppercase;">JCTC</span>
+    <span style="background: rgba(46, 125, 50, 0.12); color: #4ea852; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; text-transform: uppercase;">JCTC</span>
     📅 <strong>2025</strong> | <strong>Cucchi, I.</strong>, Frasnetti, E., Frigerio, F., Cinquini, F., Pavoni, S., Pavarino, L. F., & Colombo, G. (2025). 
     <a href="{{ base_path }}/publication/2025-09-11-Molecule" class="pub-title-link">MOLECULE: Molecular-dynamics and Optimized deep Learning for Entropy-regularized Classification and Uncertainty-aware Ligand Evaluation</a>. 
-    <em>Journal of Chemical Theory and Computation</em>, 21(18), 9186–9199. <a href="https://doi.org/10.1021/acs.jctc.5c01140" target="_blank" style="font-size: 0.85em; color: #666; text-decoration: none;">[DOI]</a>
+    <em>Journal of Chemical Theory and Computation</em>, 21(18), 9186–9199. <a href="https://doi.org/10.1021/acs.jctc.5c01140" target="_blank" style="font-size: 0.85em; opacity: 0.7; text-decoration: none; color: inherit;">[DOI]</a>
   </div>
   <div class="pub-item">
-    <span style="background: #e8f5e9; color: #2e7d32; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; text-transform: uppercase;">Cell Stress</span>
+    <span style="background: rgba(46, 125, 50, 0.12); color: #4ea852; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; text-transform: uppercase;">Cell Stress</span>
     📅 <strong>2025</strong> | Mansoor, S., Frasnetti, E., <strong>Cucchi, I.</strong>, Magni, A., Bonollo, G., Serapian, S. A., Pavarino, L. F., & Colombo, G. (2025). 
     <a href="{{ base_path }}/publication/2025-02-01-Large-scale-energy-decomposition" class="pub-title-link">LARGE SCALE ENERGY DECOMPOSITION FOR THE ANALYSIS OF PROTEIN STABILITY</a>. 
-    <em>Cell Stress and Chaperones</em>, 30(1), 57–68. <a href="https://doi.org/10.1016/j.cstres.2025.01.001" target="_blank" style="font-size: 0.85em; color: #666; text-decoration: none;">[DOI]</a>
+    <em>Cell Stress and Chaperones</em>, 30(1), 57–68. <a href="https://doi.org/10.1016/j.cstres.2025.01.001" target="_blank" style="font-size: 0.85em; opacity: 0.7; text-decoration: none; color: inherit;">[DOI]</a>
   </div>
   <div class="pub-item">
-    <span style="background: #e8f5e9; color: #2e7d32; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; text-transform: uppercase;">JCTC</span>
+    <span style="background: rgba(46, 125, 50, 0.12); color: #4ea852; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; text-transform: uppercase;">JCTC</span>
     📅 <strong>2024</strong> | Frasnetti, E., <strong>Cucchi, I.</strong>, Pavoni, S., Frigerio, F., Cinquini, F., Serapian, S. A., Pavarino, L. F., & Colombo, G. (2024). 
     <a href="{{ base_path }}/publication/2024-10-10-Integrating-Molecular-Dynamics" class="pub-title-link">Integrating Molecular Dynamics and Machine Learning Algorithms to Predict the Functional Profile of Kinase Ligands</a>. 
-    <em>Journal of Chemical Theory and Computation</em>, 20(20), 9209–9229. <a href="https://doi.org/10.1021/acs.jctc.4c01097" target="_blank" style="font-size: 0.85em; color: #666; text-decoration: none;">[DOI]</a>
+    <em>Journal of Chemical Theory and Computation</em>, 20(20), 9209–9229. <a href="https://doi.org/10.1021/acs.jctc.4c01097" target="_blank" style="font-size: 0.85em; opacity: 0.7; text-decoration: none; color: inherit;">[DOI]</a>
   </div>
 </div>
 
+<!-- ==================== ACADEMIC SUPERVISION ==================== -->
 <h2 class="cv-section-title">👥 Academic Supervision</h2>
 <div class="cv-card">
   <div class="cv-card-main">
@@ -487,7 +699,7 @@ author_profile: true
       <span class="badge-cv-location">Master Thesis Co-supervision</span>
     </div>
     <h3>Integrating Molecular Dynamics Simulations with Machine Learning and Deep Learning to Predict Nanobody Binding Modes</h3>
-    <div style="font-size: 0.88em; margin: 4px 0 12px 0; color: #555; line-height: 1.4;">
+    <div style="font-size: 0.88em; margin: 4px 0 12px 0; opacity: 0.8; color: inherit; line-height: 1.4;">
       <strong>Student:</strong> Mattia Lai | <strong>University:</strong> University of Pavia <br>
       <strong>Supervisors:</strong> Luca F. Pavarino, Giorgio Colombo | <strong>Co-supervisors:</strong> Gauthier Trèves, Ivan Cucchi
     </div>
@@ -495,68 +707,71 @@ author_profile: true
   </div>
 </div>
 
+<!-- ==================== TALKS & PRESENTATIONS ==================== -->
 <h2 class="cv-section-title">📢 Talks & Presentations</h2>
-<div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; padding: 0.5em 1.5em; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+<div class="cv-flat-list-box">
   
   <div class="pub-item">
-    <span style="background: #e3f2fd; color: #0d47a1; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">TALK</span>
-    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">Sep 2025</strong> | 
+    <span style="background: rgba(13, 71, 161, 0.12); color: #42a5f5; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">TALK</span>
+    <strong style="color:#4ea852; font-size: 0.9em; margin-right: 5px;">Sep 2025</strong> | 
     <a href="{{ base_path }}/talks/2025-09-26-yamc" class="pub-title-link">5th Edition of Young Applied Mathematicians Conference</a>. University of Padua.
   </div>
   
   <div class="pub-item">
-    <span style="background: #e8eaf6; color: #1a237e; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">SEMINAR</span>
-    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">May 2025</strong> | 
+    <span style="background: rgba(26, 35, 126, 0.12); color: #7986cb; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">SEMINAR</span>
+    <strong style="color:#4ea852; font-size: 0.9em; margin-right: 5px;">May 2025</strong> | 
     <a href="{{ base_path }}/talks/2025-05-26-beltrami" class="pub-title-link">Caffè Beltrami</a>. University of Pavia.
   </div>
   
   <div class="pub-item">
-    <span style="background: #fff3e0; color: #e65100; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
-    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">May 2025</strong> | 
+    <span style="background: rgba(230, 81, 0, 0.12); color: #ffb74d; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
+    <strong style="color:#4ea852; font-size: 0.9em; margin-right: 5px;">May 2025</strong> | 
     <a href="{{ base_path }}/talks/2025-05-23-compmat2" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.
   </div>
   
   <div class="pub-item">
-    <span style="background: #fff3e0; color: #e65100; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
-    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">May 2025</strong> | 
+    <span style="background: rgba(230, 81, 0, 0.12); color: #ffb74d; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
+    <strong style="color:#4ea852; font-size: 0.9em; margin-right: 5px;">May 2025</strong> | 
     <a href="{{ base_path }}/talks/2025-05-22-icam" class="pub-title-link">ICAM Workshop</a>. University of Pavia.
   </div>
   
   <div class="pub-item">
-    <span style="background: #fff3e0; color: #e65100; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
-    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">Apr 2025</strong> | 
+    <span style="background: rgba(230, 81, 0, 0.12); color: #ffb74d; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
+    <strong style="color:#4ea852; font-size: 0.9em; margin-right: 5px;">Apr 2025</strong> | 
     <a href="{{ base_path }}/talks/2025-04-07-human-technopole" class="pub-title-link">1st Workshop on Data Science for Health and Biology</a>. HT & PoliMi.
   </div>
   
   <div class="pub-item">
-    <span style="background: #e3f2fd; color: #0d47a1; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">TALK</span>
-    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">Jan 2025</strong> | 
+    <span style="background: rgba(13, 71, 161, 0.12); color: #42a5f5; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">TALK</span>
+    <strong style="color:#4ea852; font-size: 0.9em; margin-right: 5px;">Jan 2025</strong> | 
     <a href="{{ base_path }}/talks/2025-01-31-bari" class="pub-title-link">3rd Workshop of UMI Group — Mathematics for Artificial Intelligence and Machine Learning</a>. University of Bari.
   </div>
   
   <div class="pub-item">
-    <span style="background: #fff3e0; color: #e65100; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
-    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">Jun 2024</strong> | 
+    <span style="background: rgba(230, 81, 0, 0.12); color: #ffb74d; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">POSTER</span>
+    <strong style="color:#4ea852; font-size: 0.9em; margin-right: 5px;">Jun 2024</strong> | 
     <a href="{{ base_path }}/talks/2024-06-21-sissa" class="pub-title-link">Scientific Machine Learning, emerging topics</a>. SISSA.
   </div>
   
   <div class="pub-item">
-    <span style="background: #efebe9; color: #4e342e; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">TALK+POST</span>
-    <strong style="color:#2e7d32; font-size: 0.9em; margin-right: 5px;">May 2024</strong> | 
+    <span style="background: rgba(78, 52, 46, 0.12); color: #bcaaa4; font-size: 0.75em; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 8px; display: inline-block; min-width: 65px; text-align: center;">TALK+POST</span>
+    <strong style="color:#4ea852; font-size: 0.9em; margin-right: 5px;">May 2024</strong> | 
     <a href="{{ base_path }}/talks/2024-05-08-compmat1" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.
   </div>
 
 </div>
 
+<!-- ==================== TEACHING ASSISTANCE ==================== -->
 <h2 class="cv-section-title">🏫 Teaching Assistance</h2>
-<div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; padding: 0.5em 1.5em; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-  <div class="pub-item">📅 <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/17222/2024/9999?schemaid=16894" class="pub-title-link">507290 — Programming 2</a> <span style="color: #666;">(BSc in Mathematics, University of Pavia)</span></div>
-  <div class="pub-item">📅 <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/13139/2024/9999?schemaid=16894" class="pub-title-link">507289 — Programming 1</a> <span style="color: #666;">(BSc in Mathematics, University of Pavia)</span></div>
-  <div class="pub-item">📅 <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10017/insegnamenti/2024/7561/2024/9999?schemaid=16505" class="pub-title-link">500142 — Mathematics</a> <span style="color: #666;">(BSc in Economics, University of Pavia)</span></div>
-  <div class="pub-item">📅 <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10063/insegnamenti/2024/9502/2024/1?schemaid=16900" target="_blank" class="pub-title-link">502886 — Dynamical systems: theory and numerical methods (Year 2)</a> <span style="color: #666;">(MSc in Mathematics and Bioengineering, University of Pavia)</span></div>
-  <div class="pub-item">📅 <strong>2023 – 2024</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2023/10063/insegnamenti/2023/9502/2009/10004?schemaid=16006" target="_blank" class="pub-title-link">502886 — Dynamical systems: theory and numerical methods (Year 1)</a> <span style="color: #666;">(MSc in Mathematics and Bioengineering, University of Pavia)</span></div>
+<div class="cv-flat-list-box">
+  <div class="pub-item">📅 <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/17222/2024/9999?schemaid=16894" class="pub-title-link">507290 — Programming 2</a> <span style="opacity: 0.7;">(BSc in Mathematics, University of Pavia)</span></div>
+  <div class="pub-item">📅 <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/13139/2024/9999?schemaid=16894" class="pub-title-link">507289 — Programming 1</a> <span style="opacity: 0.7;">(BSc in Mathematics, University of Pavia)</span></div>
+  <div class="pub-item">📅 <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10017/insegnamenti/2024/7561/2024/9999?schemaid=16505" class="pub-title-link">500142 — Mathematics</a> <span style="opacity: 0.7;">(BSc in Economics, University of Pavia)</span></div>
+  <div class="pub-item">📅 <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10063/insegnamenti/2024/9502/2024/1?schemaid=16900" target="_blank" class="pub-title-link">502886 — Dynamical systems: theory and numerical methods (Year 2)</a> <span style="opacity: 0.7;">(MSc in Mathematics and Bioengineering, University of Pavia)</span></div>
+  <div class="pub-item">📅 <strong>2023 – 2024</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2023/10063/insegnamenti/2023/9502/2009/10004?schemaid=16006" target="_blank" class="pub-title-link">502886 — Dynamical systems: theory and numerical methods (Year 1)</a> <span style="opacity: 0.7;">(MSc in Mathematics and Bioengineering, University of Pavia)</span></div>
 </div>
 
+<!-- ==================== TECHNICAL SKILLS ==================== -->
 <h2 class="cv-section-title">🛠 Technical Skills</h2>
 
 ### **Programming Languages**
@@ -573,6 +788,7 @@ author_profile: true
 ### **Core Libraries & Modules**
 `NumPy` • `pandas` • `PyTorch` • `scikit-learn` • `SciPy` • `RDKit`
 
+<!-- ==================== CERTIFICATES & GRANTS ==================== -->
 <h2 class="cv-section-title">🎖 Certificates & Grants</h2>
 <div class="cert-grid">
   <div class="cert-card-modern">
@@ -601,6 +817,7 @@ author_profile: true
   </div>
 </div>
 
+<!-- ==================== VOLUNTEERING ==================== -->
 <h2 class="cv-section-title">🤝 Volunteering</h2>
 <div class="cv-grid">
   <div class="cv-card">
@@ -611,7 +828,7 @@ author_profile: true
       </div>
       <h3>Rescuer</h3>
       <div class="cv-org-text">
-        <a href="https://www.crocebianca.org/" target="_blank" style="color: #2e7d32; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
+        <a href="https://www.crocebianca.org/" target="_blank" style="color: #4ea852; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #2e7d32'" onmouseout="this.style.borderBottom='transparent'">
           Croce Bianca Milano
         </a>
       </div>

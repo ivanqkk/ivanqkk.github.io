@@ -5,32 +5,350 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
-
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
+<style>
+  /* Modern Publications Grid - Year Grouped & Logo Watermarks */
+  .pub-intro-box {
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin-bottom: 2.5em;
+    opacity: 0.95;
+  }
+  
+  .pub-intro-box a {
+    color: #4ea852;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .pub-intro-box a:hover {
+    text-decoration: underline;
+  }
+
+  /* Sezioni e Divisori di Categoria */
+  .pub-category-section {
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+  }
+
+  .pub-category-title {
+    font-size: 1.4em !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px !important;
+    color: #2e7d32;
+  }
+
+  .pub-category-hr {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, #2e7d32 120px, var(--border-color, rgba(0,0,0,0.08)) 120px);
+    margin-top: 0;
+    margin-bottom: 1.5em;
+  }
+
+  /* Griglia a due colonne simmetriche */
+  .pub-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5em;
+  }
+
+  /* Card Rimpicciolite e Ottimizzate */
+  .pub-card-modern {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--background-color, #ffffff);
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+    border-radius: 12px;
+    padding: 1.3em;
+    min-height: 190px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01), 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pub-card-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(46, 125, 50, 0.06);
+    border-color: rgba(46, 125, 50, 0.3);
+  }
+
+  /* Linea verticale asimmetrica a sinistra */
+  .pub-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #2e7d32;
+    opacity: 0.8;
+    transition: width 0.2s ease;
+    z-index: 3;
+  }
+
+  .pub-card-modern:hover::before {
+    width: 5px;
+  }
+
+  /* Collegamento totale invisibile che copre la card */
+  .card-details-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    text-decoration: none;
+  }
+
+  /* Effetto Watermark dei Loghi sullo Sfondo */
+  .pub-bg-watermark {
+    position: absolute;
+    right: -15px;
+    bottom: -15px;
+    width: 130px;
+    height: 130px;
+    opacity: 0.03;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+  }
+
+  .pub-card-modern:hover .pub-bg-watermark {
+    opacity: 0.07;
+    transform: scale(1.05) rotate(-5deg);
+  }
+
+  .pub-main-content {
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .pub-meta-top {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* Badge Traslucidi Adattivi */
+  .pub-badge-year {
+    background: rgba(46, 125, 50, 0.12);
+    color: #4ea852;
+    font-size: 0.72em;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .pub-badge-venue {
+    background: rgba(128, 128, 128, 0.1);
+    color: inherit;
+    font-size: 0.72em;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    opacity: 0.85;
+  }
+
+  .pub-card-modern h3 {
+    margin: 0 0 6px 0 !important;
+    font-size: 1.12em !important;
+    font-weight: 600;
+    line-height: 1.35;
+    color: inherit !important;
+  }
+
+  .pub-title-text {
+    background-image: linear-gradient(#2e7d32, #2e7d32);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size 0.3s ease;
+  }
+
+  .pub-card-modern:hover .pub-title-text {
+    background-size: 100% 2px;
+  }
+
+  .pub-authors {
+    font-size: 0.84em;
+    color: inherit;
+    opacity: 0.75;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  /* Pulsanti di azione inferiori */
+  .pub-card-footer {
+    position: relative;
+    z-index: 4;
+    pointer-events: auto;
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pub-btn {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(128, 128, 128, 0.08);
+    color: inherit;
+    border: 1px solid var(--border-color, rgba(128, 128, 128, 0.15));
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.76em;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+  }
+
+  .pub-btn:hover {
+    background: #2e7d32;
+    color: #ffffff;
+    border-color: #2e7d32;
+  }
+
+  .pub-btn i {
+    margin-right: 4px;
+    font-size: 1em;
+  }
+
+  .pub-btn-primary {
+    background: rgba(46, 125, 50, 0.1);
+    color: #4ea852;
+    border-color: rgba(46, 125, 50, 0.2);
+  }
+
+  /* Mobile Responsive Collapse */
+  @media (max-width: 768px) {
+    .pub-grid { grid-template-columns: 1fr; }
+    .pub-bg-watermark { width: 100px; height: 100px; }
+  }
+</style>
+
+{% if site.author.googlescholar %}
+  <div class="pub-intro-box">
+    You can also find my articles on <a href="{{ site.author.googlescholar }}" target="_blank">my Google Scholar profile</a>.
+  </div>
 {% endif %}
 
+<!-- ==================== MANUSCRIPTS SECTION ==================== -->
+<div class="pub-category-section">
+  <h2 class="pub-category-title">Journal Articles & Manuscripts</h2>
+  <div class="pub-category-hr"></div>
+</div>
 
+<div class="pub-grid">
 
+  <!-- MANUSCRIPT 1: MOLECULE -->
+  <div class="pub-card-modern">
+    <a href="{{ base_path }}/publication/2025-09-11-Molecule" class="card-details-overlay"></a>
+    <img src="{{ base_path }}/images/jctc-logo.png" class="pub-bg-watermark" alt="">
+    <div class="pub-main-content">
+      <div class="pub-meta-top">
+        <span class="pub-badge-year">2025</span>
+        <span class="pub-badge-venue">J. Chem. Theory Comput.</span>
+      </div>
+      <h3><span class="pub-title-text">MOLECULE: Molecular-dynamics and Optimized deep Learning for Entropy-regularized Classification and Uncertainty-aware Ligand Evaluation</span></h3>
+      <div class="pub-authors"><strong>I. Cucchi</strong>, E. Frasnetti, F. Frigerio, F. Cinquini, S. Pavoni, L. F. Pavarino, G. Colombo</div>
+    </div>
+    <div class="pub-card-footer">
+      <a href="https://doi.org/10.1021/acs.jctc.5c01140" target="_blank" class="pub-btn pub-btn-primary"><i class="fas fa-link"></i> Publisher Link</a>
+      <a href="https://ivanqkk.github.io/files/bibtex_molecule.bib" target="_blank" class="pub-btn"><i class="fas fa-quote-right"></i> BibTeX</a>
+    </div>
+  </div>
+
+  <!-- MANUSCRIPT 2: Protein Stability -->
+  <div class="pub-card-modern">
+    <a href="{{ base_path }}/publication/2025-02-01-Large-scale-energy-decomposition" class="card-details-overlay"></a>
+    <img src="{{ base_path }}/images/springer-logo.png" class="pub-bg-watermark" alt="">
+    <div class="pub-main-content">
+      <div class="pub-meta-top">
+        <span class="pub-badge-year">2025</span>
+        <span class="pub-badge-venue">Cell Stress and Chaperones</span>
+      </div>
+      <h3><span class="pub-title-text">Large-scale energy decomposition for the analysis of protein stability</span></h3>
+      <div class="pub-authors">S. Mansoor, E. Frasnetti, <strong>I. Cucchi</strong>, A. Magni, G. Bonollo, S. A. Serapian, L. F. Pavarino, G. Colombo</div>
+    </div>
+    <div class="pub-card-footer">
+      <a href="https://doi.org/10.1016/j.cstres.2025.01.001" target="_blank" class="pub-btn pub-btn-primary"><i class="fas fa-link"></i> Publisher Link</a>
+      <a href="https://ivanqkk.github.io/files/bibtex_integrating.bib" target="_blank" class="pub-btn"><i class="fas fa-quote-right"></i> BibTeX</a>
+    </div>
+  </div>
+
+  <!-- MANUSCRIPT 3: Kinase Ligands -->
+  <div class="pub-card-modern">
+    <a href="{{ base_path }}/publication/2024-10-10-Integrating-Molecular-Dynamics" class="card-details-overlay"></a>
+    <img src="{{ base_path }}/images/jctc-logo.png" class="pub-bg-watermark" alt="">
+    <div class="pub-main-content">
+      <div class="pub-meta-top">
+        <span class="pub-badge-year">2024</span>
+        <span class="pub-badge-venue">J. Chem. Theory Comput.</span>
+      </div>
+      <h3><span class="pub-title-text">Integrating Molecular Dynamics and Machine Learning Algorithms to Predict the Functional Profile of Kinase Ligands</span></h3>
+      <div class="pub-authors">E. Frasnetti, <strong>I. Cucchi</strong>, S. Pavoni, F. Frigerio, F. Cinquini, S. A. Serapian, L. F. Pavarino, G. Colombo</div>
+    </div>
+    <div class="pub-card-footer">
+      <a href="https://doi.org/10.1021/acs.jctc.4c01097" target="_blank" class="pub-btn pub-btn-primary"><i class="fas fa-link"></i> Publisher Link</a>
+      <a href="https://ivanqkk.github.io/files/bibtex_integrating.bib" target="_blank" class="pub-btn"><i class="fas fa-quote-right"></i> BibTeX</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== ACADEMIC THESES SECTION ==================== -->
+<div class="pub-category-section">
+  <h2 class="pub-category-title">Academic Theses</h2>
+  <div class="pub-category-hr"></div>
+</div>
+
+<div class="pub-grid">
+
+  <!-- THESIS 1: Master Thesis -->
+  <div class="pub-card-modern">
+    <a href="{{ base_path }}/publication/2022-master-thesis" class="card-details-overlay"></a>
+    <img src="{{ base_path }}/images/unipv.png" class="pub-bg-watermark" alt="">
+    <div class="pub-main-content">
+      <div class="pub-meta-top">
+        <span class="pub-badge-year">2022</span>
+        <span class="pub-badge-venue">Master Thesis</span>
+      </div>
+      <h3><span class="pub-title-text">Machine Learning Methods for Identifying Atrial Fibrillation in 12-lead ECGs</span></h3>
+      <div class="pub-authors"><strong>Ivan Cucchi</strong></div>
+      <div class="pub-venue" style="font-size: 0.82em; opacity: 0.7; font-style: italic; margin-top: 2px;">Supervisor: Luca Franco Pavarino — University of Pavia</div>
+    </div>
+    <div class="pub-card-footer">
+      <a href="{{ base_path }}/publication/2022-master-thesis" class="pub-btn pub-btn-primary"><i class="fas fa-file-alt"></i> View Details</a>
+    </div>
+  </div>
+
+  <!-- THESIS 2: Bachelor Thesis -->
+  <div class="pub-card-modern">
+    <a href="{{ base_path }}/publication/2019-bachelor-thesis" class="card-details-overlay"></a>
+    <img src="{{ base_path }}/images/unipv.png" class="pub-bg-watermark" alt="">
+    <div class="pub-main-content">
+      <div class="pub-meta-top">
+        <span class="pub-badge-year">2019</span>
+        <span class="pub-badge-venue">Bachelor Thesis</span>
+      </div>
+      <h3><span class="pub-title-text">Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome</span></h3>
+      <div class="pub-authors"><strong>Ivan Cucchi</strong></div>
+      <div class="pub-venue" style="font-size: 0.82em; opacity: 0.7; font-style: italic; margin-top: 2px;">Supervisor: Luca Franco Pavarino — University of Pavia</div>
+    </div>
+    <div class="pub-card-footer">
+      <a href="{{ base_path }}/publication/2019-bachelor-thesis" class="pub-btn pub-btn-primary"><i class="fas fa-file-alt"></i> View Details</a>
+    </div>
+  </div>
+
+</div>
