@@ -7,200 +7,6 @@ author_profile: true
 
 {% include base_path %}
 
-<style>
-  /* Modern Compact Teaching Grid - Year Grouped & Logo Backgrounds */
-  .teaching-intro {
-    font-size: 1.05em;
-    line-height: 1.6;
-    margin-bottom: 2em;
-    color: inherit;
-    opacity: 0.9;
-  }
-
-  /* Sezioni e Divisori degli Anni Accademici */
-  .teaching-year-section {
-    margin-top: 2.5em;
-    margin-bottom: 1em;
-  }
-  
-  .teaching-year-title {
-    font-size: 1.5em !important;
-    font-weight: 800;
-    color: #2e7d32;
-    letter-spacing: 1px;
-    margin-bottom: 6px !important;
-  }
-  
-  .teaching-year-hr {
-    border: 0;
-    height: 2px;
-    background: linear-gradient(to right, #2e7d32 100px, var(--border-color, rgba(0,0,0,0.08)) 100px);
-    margin-top: 0;
-    margin-bottom: 1.5em;
-  }
-
-  /* Griglia a due colonne simmetriche */
-  .courses-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5em;
-  }
-  
-  .course-card-link {
-    text-decoration: none !important;
-    color: inherit !important;
-    display: block;
-  }
-  
-  /* Card Rimpicciolite e Ottimizzate */
-  .course-card-modern {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: var(--background-color, #ffffff);
-    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
-    border-radius: 12px;
-    padding: 1.2em;
-    min-height: 180px; /* Compattezza verticale bilanciata per i testi dei corsi */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01), 0 1px 3px rgba(0, 0, 0, 0.02);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .course-card-link:hover .course-card-modern, .course-card-modern:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(46, 125, 50, 0.06);
-    border-color: rgba(46, 125, 50, 0.3);
-  }
-  
-  /* Linea asimmetrica dinamica a sinistra */
-  .course-card-modern::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background-color: #2e7d32;
-    opacity: 0.8;
-    transition: width 0.2s ease;
-    z-index: 3;
-  }
-  
-  .course-card-link:hover .course-card-modern::before, .course-card-modern:hover::before {
-    width: 5px;
-  }
-
-  /* Logo Sfondo Filigrana (Watermark Effect) */
-  .course-bg-watermark {
-    position: absolute;
-    right: -15px;
-    bottom: -15px;
-    width: 130px;
-    height: 130px;
-    opacity: 0.04; /* Discreto */
-    z-index: 1;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    filter: grayscale(100%);
-  }
-  
-  .course-card-link:hover .course-bg-watermark, .course-card-modern:hover .course-bg-watermark {
-    opacity: 0.08;
-    transform: scale(1.05) rotate(-5deg);
-  }
-  
-  .course-main {
-    position: relative;
-    z-index: 3;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .course-badge-container {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 10px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  /* Badge Traslucidi Adattivi a Light & Dark Mode */
-  .badge-date { 
-    background: rgba(46, 125, 50, 0.12); 
-    color: #4ea852; 
-    font-size: 0.72em; 
-    font-weight: 700; 
-    padding: 2px 8px; 
-    border-radius: 4px; 
-    text-transform: uppercase;
-  }
-  
-  .badge-level { 
-    background: rgba(128, 128, 128, 0.1); 
-    color: inherit; 
-    font-size: 0.72em; 
-    font-weight: 600; 
-    padding: 2px 8px; 
-    border-radius: 4px;
-    opacity: 0.9;
-  }
-  
-  .course-code-modern {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.72em;
-    color: inherit;
-    opacity: 0.55;
-    margin-left: auto;
-  }
-  
-  .course-main h3 {
-    margin: 0 0 3px 0 !important;
-    font-size: 1.12em !important;
-    font-weight: 600;
-    line-height: 1.35;
-    color: inherit !important;
-  }
-  
-  .course-title-text {
-    background-image: linear-gradient(#2e7d32, #2e7d32);
-    background-position: 0% 100%;
-    background-repeat: no-repeat;
-    background-size: 0% 2px;
-    transition: background-size 0.3s ease;
-  }
-  
-  .course-card-link:hover .course-title-text {
-    background-size: 100% 2px;
-  }
-  
-  .course-inst-text {
-    font-size: 0.82em;
-    color: inherit;
-    opacity: 0.7;
-    font-style: italic;
-    margin-bottom: 8px;
-  }
-  
-  .course-desc {
-    font-size: 0.85em;
-    line-height: 1.45;
-    color: inherit;
-    opacity: 0.78;
-    margin: 0;
-  }
-  
-  /* Mobile Responsive Multi-column Collapse */
-  @media (max-width: 768px) {
-    .courses-grid { grid-template-columns: 1fr; }
-    .course-bg-watermark { width: 100px; height: 100px; }
-    .course-code-modern { margin-left: 0; width: 100%; margin-top: 2px; }
-  }
-</style>
-
 <div class="teaching-intro">
   Alongside my research, I have been actively involved in academic teaching and student mentoring. Below is an overview of the university courses and instructional activities I have contributed to as a teaching assistant and instructor.
 </div>
@@ -214,7 +20,7 @@ author_profile: true
 <div class="courses-grid">
 
   <!-- COURSE 1: Programming 2 -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/17222/2024/9999?schemaid=16894" target="_blank" class="course-card-link">
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/17222/2024/9999?schemaid=16894" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Programming 2, University of Pavia (opens in new tab)">
     <div class="course-card-modern">
       <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
       <div class="course-main">
@@ -233,7 +39,7 @@ author_profile: true
   </a>
 
   <!-- COURSE 2: Programming 1 -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/13139/2024/9999?schemaid=16894" target="_blank" class="course-card-link">
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/13139/2024/9999?schemaid=16894" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Programming 1, University of Pavia (opens in new tab)">
     <div class="course-card-modern">
       <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
       <div class="course-main">
@@ -252,7 +58,7 @@ author_profile: true
   </a>
 
   <!-- COURSE 3: Mathematics for Economics -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10017/insegnamenti/2024/7561/2024/9999?schemaid=16505" target="_blank" class="course-card-link">
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10017/insegnamenti/2024/7561/2024/9999?schemaid=16505" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Mathematics for Economics, University of Pavia (opens in new tab)">
     <div class="course-card-modern">
       <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
       <div class="course-main">
@@ -271,16 +77,16 @@ author_profile: true
   </a>
 
   <!-- COURSE 4: Dynamical Systems 2024/2025 -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10063/insegnamenti/2024/9502/2024/1?schemaid=16900" target="_blank" class="course-card-link">
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10063/insegnamenti/2024/9502/2024/1?schemaid=16900" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Dynamical Systems Theory and Numerical Methods, University of Pavia (opens in new tab)">
     <div class="course-card-modern">
       <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
       <div class="course-main">
         <div class="course-badge-container">
           <span class="badge-date">Tutor</span>
-          <span class="badge-level">MSc in Math & Bioeng</span>
+          <span class="badge-level">MSc in Math &amp; Bioeng</span>
           <span class="course-code-modern">ID: 502886</span>
         </div>
-        <h3><span class="course-title-text">Dynamical Systems: Theory & Numerical Methods</span></h3>
+        <h3><span class="course-title-text">Dynamical Systems: Theory &amp; Numerical Methods</span></h3>
         <div class="course-inst-text">University of Pavia</div>
         <p class="course-desc">
           Supported data science and engineering students with the analysis of continuous and discrete systems, biological modeling, and numerical implementations.
@@ -289,16 +95,16 @@ author_profile: true
     </div>
   </a>
 
-  <!-- COURSE 5: IIS Simone Weil Module -->
+  <!-- COURSE 5: IIS Simone Weil Module (no external link) -->
   <div class="course-card-modern">
     <img src="{{ base_path }}/images/weil.png" class="course-bg-watermark" alt="" style="border-radius: 0;">
     <div class="course-main">
       <div class="course-badge-container">
-        <span class="badge-date" style="background: rgba(13, 71, 161, 0.12); color: #42a5f5;">Instructor</span>
+        <span class="badge-date badge-instructor">Instructor</span>
         <span class="badge-level">Skill Reinforcement</span>
         <span class="course-code-modern">2025</span>
       </div>
-      <h3><span style="font-weight: 600;">Targeted Mathematics Course</span></h3>
+      <h3>Targeted Mathematics Course</h3>
       <div class="course-inst-text">IIS Simone Weil (Treviglio)</div>
       <p class="course-desc">
         Designed and delivered an intensive 10-hour module focusing on enhancing fundamental mathematics proficiencies and foundational mathematical concepts.
@@ -317,16 +123,16 @@ author_profile: true
 <div class="courses-grid">
 
   <!-- COURSE 6: Dynamical Systems 2023/2024 -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2023/10063/insegnamenti/2023/9502/2009/10004?schemaid=16006" target="_blank" class="course-card-link">
+  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2023/10063/insegnamenti/2023/9502/2009/10004?schemaid=16006" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Dynamical Systems Theory and Numerical Methods 2023/2024, University of Pavia (opens in new tab)">
     <div class="course-card-modern">
       <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
       <div class="course-main">
         <div class="course-badge-container">
           <span class="badge-date">Tutor</span>
-          <span class="badge-level">MSc in Math & Bioeng</span>
+          <span class="badge-level">MSc in Math &amp; Bioeng</span>
           <span class="course-code-modern">ID: 502886</span>
         </div>
-        <h3><span class="course-title-text">Dynamical Systems: Theory & Numerical Methods</span></h3>
+        <h3><span class="course-title-text">Dynamical Systems: Theory &amp; Numerical Methods</span></h3>
         <div class="course-inst-text">University of Pavia</div>
         <p class="course-desc">
           Supported data science and engineering students with the analysis of continuous and discrete systems, biological modeling, and numerical implementations.

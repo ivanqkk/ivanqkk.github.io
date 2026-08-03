@@ -1,0 +1,449 @@
+/* ==========================================================================
+   CV PAGE
+   Styling for the Curriculum Vitae page (_pages/cv.md).
+   Reuses the tokens (--home-*, --badge-*) and card placeholders
+   (%home-card-base, %home-card-bar, %home-title-underline) defined in
+   layout/_home.scss and layout/_archive-cards.scss, so this file must be
+   imported AFTER both. Everything adapts to light / dark / system.
+   ========================================================================== */
+
+/* Download CV button */
+.cv-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 1.5em 0 0.5em 0;
+  background: var(--home-accent);
+  color: var(--card-on-accent);
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 0.95em;
+  text-decoration: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  svg { width: 18px; height: 18px; fill: currentColor; }
+
+  &:hover { background: var(--home-accent-strong); transform: translateY(-1px); }
+  &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 3px; }
+}
+
+/* Section headings */
+.cv-section-title {
+  border-bottom: 2px solid var(--home-accent);
+  padding-bottom: 8px;
+  margin-top: 2.5em;
+  margin-bottom: 1.2em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-size: 1.4em;
+  color: var(--global-text-color);
+
+  &--first { margin-top: 1.5em; }
+}
+
+/* --------------------------------------------------------------------------
+   Experience / volunteering cards
+   -------------------------------------------------------------------------- */
+.cv-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5em;
+}
+
+.cv-card {
+  @extend %home-card-base;
+  @extend %home-card-bar;
+  display: flex;
+  padding: 1.5em;
+
+  &:hover { @extend %home-card-lift; }
+}
+
+.cv-meta-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &--sm { margin-bottom: 6px; }
+}
+
+.badge-cv-date {
+  background: var(--home-accent-soft-bg);
+  color: var(--home-accent-soft-text);
+  font-size: 0.8em;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-cv-location {
+  background: var(--badge-neutral-bg);
+  color: var(--global-text-color);
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  opacity: 0.9;
+}
+
+.badge-sm { padding: 1px 8px !important; font-size: 0.72em !important; }
+
+.cv-card-main {
+  flex: 1;
+  padding-right: 20px;
+
+  h3 {
+    margin: 0 0 4px 0 !important;
+    font-size: 1.25em !important;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--global-text-color) !important;
+  }
+}
+
+.cv-org-text {
+  font-size: 0.92em;
+  color: var(--global-text-color);
+  opacity: 0.85;
+  font-style: italic;
+  margin-bottom: 12px;
+
+  a {
+    color: var(--home-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+
+    &:hover { border-bottom-color: var(--home-accent); }
+    &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 2px; }
+  }
+
+  &--sub { margin-bottom: 0; font-size: 0.85em; opacity: 0.75; }
+  &--thesis { margin-bottom: 10px; font-size: 0.84em; opacity: 0.75; }
+}
+
+.cv-desc-text {
+  font-size: 0.93em;
+  line-height: 1.5;
+  color: var(--global-text-color);
+  opacity: 0.85;
+  margin: 0;
+
+  &--sm { font-size: 0.85em; line-height: 1.45; opacity: 0.8; }
+}
+
+.cv-sup-detail {
+  font-size: 0.88em;
+  margin: 4px 0 12px 0;
+  opacity: 0.8;
+  color: var(--global-text-color);
+  line-height: 1.4;
+}
+
+.cv-card-logo {
+  width: 55px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+  }
+}
+
+@media (max-width: 600px) {
+  .cv-card { flex-direction: column-reverse; }
+  .cv-card-logo { width: 45px; margin-bottom: 12px; align-self: flex-start; }
+}
+
+/* --------------------------------------------------------------------------
+   Flat lists (publications, talks, teaching)
+   -------------------------------------------------------------------------- */
+.cv-flat-list-box {
+  background: var(--home-surface);
+  border: 1px solid var(--global-border-color);
+  border-radius: 12px;
+  padding: 0 1.5em;
+  box-shadow: var(--home-card-shadow);
+}
+
+.pub-item {
+  padding: 1.2em 0;
+  border-bottom: 1px dashed var(--global-border-color);
+  line-height: 1.6;
+  font-size: 0.95em;
+  color: var(--global-text-color);
+
+  &:last-child { border-bottom: none; }
+}
+
+.pub-title-link {
+  color: var(--home-accent);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+
+  &:hover { border-bottom-color: var(--home-accent); }
+  &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 2px; }
+}
+
+.pub-doi-link {
+  font-size: 0.85em;
+  opacity: 0.7;
+  text-decoration: none;
+  color: var(--global-text-color);
+
+  &:hover { text-decoration: underline; opacity: 1; }
+  &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 2px; }
+}
+
+/* Green venue tag in the publications list (JCTC, Cell Stress …) */
+.pub-venue-tag {
+  background: var(--home-accent-soft-bg);
+  color: var(--home-accent-soft-text);
+  font-size: 0.75em;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+
+/* Talk-type label in the talks list; pair with .badge-type-* for the color */
+.cv-list-badge {
+  margin-right: 8px;
+  display: inline-block;
+  min-width: 65px;
+  text-align: center;
+}
+
+.cv-date-inline {
+  color: var(--home-accent);
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+
+.cv-muted { opacity: 0.7; }
+
+/* --------------------------------------------------------------------------
+   Skills badges
+   -------------------------------------------------------------------------- */
+.grid-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+
+  img { height: 20px; }
+}
+
+.skill-badge-matlab {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ED8B00;
+  color: #ffffff;
+  font-family: $sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 0 8px;
+  height: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  img {
+    height: 14px;
+    width: 14px;
+    object-fit: contain;
+    margin-right: 6px;
+    border-radius: 2px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Certificates
+   -------------------------------------------------------------------------- */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.cert-card-modern {
+  display: flex;
+  align-items: center;
+  background: var(--home-surface);
+  border: 1px solid var(--global-border-color);
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: var(--home-card-border-hover);
+    transform: translateY(-1px);
+  }
+}
+
+.cert-logo-box {
+  width: 42px;
+  margin-right: 14px;
+  flex-shrink: 0;
+  text-align: center;
+
+  img { max-width: 100%; max-height: 38px; height: auto; }
+}
+
+.cert-info-box {
+  font-size: 0.91em;
+  line-height: 1.4;
+  color: var(--global-text-color);
+
+  a {
+    color: var(--home-accent);
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover { text-decoration: underline; }
+    &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 2px; }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Education grid
+   -------------------------------------------------------------------------- */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2em;
+  width: 100%;
+}
+
+.edu-card-modern {
+  @extend %home-card-base;
+  @extend %home-card-bar;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.2em;
+  min-height: 140px;
+
+  &:hover { @extend %home-card-lift; }
+
+  h3 {
+    margin: 4px 0 2px 0 !important;
+    font-size: 1.1em !important;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--global-text-color) !important;
+  }
+}
+
+.edu-bg-watermark,
+.thesis-bg-watermark {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.edu-bg-watermark { right: -10px; bottom: -10px; width: 110px; height: 110px; opacity: 0.04; }
+.thesis-bg-watermark { right: -15px; bottom: -15px; width: 140px; height: 140px; opacity: 0.03; }
+
+.edu-card-modern:hover .edu-bg-watermark,
+.thesis-card-modern:hover .thesis-bg-watermark {
+  opacity: 0.08;
+  transform: scale(1.05) rotate(-5deg);
+}
+
+.edu-main-content { position: relative; z-index: 2; }
+
+@media (max-width: 768px) {
+  .education-grid { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   Theses grid
+   -------------------------------------------------------------------------- */
+.theses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5em;
+  width: 100%;
+}
+
+.thesis-card-modern {
+  @extend %home-card-base;
+  @extend %home-card-bar;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.3em;
+  min-height: 220px;
+
+  &:hover { @extend %home-card-lift; }
+
+  h3 {
+    margin: 4px 0 3px 0 !important;
+    font-size: 1.15em !important;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--global-text-color) !important;
+
+    a {
+      @extend %home-title-underline;
+      color: var(--global-text-color);
+      text-decoration: none;
+
+      &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 2px; }
+    }
+  }
+
+  &:hover h3 a { color: var(--home-accent); background-size: 100% 2px; }
+}
+
+.thesis-main-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .theses-grid { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cv-card,
+  .edu-card-modern,
+  .thesis-card-modern,
+  .cert-card-modern,
+  .edu-bg-watermark,
+  .thesis-bg-watermark,
+  .cv-download-btn { transition: none !important; }
+
+  .cv-card:hover,
+  .edu-card-modern:hover,
+  .thesis-card-modern:hover,
+  .cert-card-modern:hover,
+  .cv-download-btn:hover { transform: none !important; }
+}

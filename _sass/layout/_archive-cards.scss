@@ -1,0 +1,368 @@
+/* ==========================================================================
+   ARCHIVE CARDS
+   Shared styling for the Publications, Talks, and Teaching pages.
+   Reuses the tokens (--home-*) and card placeholders (%home-card-*) defined in
+   layout/_home.scss, so this file must be imported AFTER layout/home.
+   Everything hooks into the theme's CSS custom properties, so it adapts to
+   light / dark / system automatically.
+   ========================================================================== */
+
+/* Supplementary tokens specific to these pages */
+:root {
+  --card-on-accent:      #ffffff;   /* text on a filled accent button */
+  --badge-neutral-bg:    rgba(128, 128, 128, 0.10);
+  --badge-talk-text:     #1565c0;
+  --badge-seminar-text:  #3949ab;
+  --badge-poster-text:   #e65100;
+  --badge-hybrid-text:   #5d4037;
+}
+
+html[data-theme="dark"] {
+  --card-on-accent:      #1b1b1b;   /* dark text reads on the light-green accent */
+  --badge-neutral-bg:    rgba(255, 255, 255, 0.10);
+  --badge-talk-text:     #64b5f6;
+  --badge-seminar-text:  #9fa8da;
+  --badge-poster-text:   #ffb74d;
+  --badge-hybrid-text:   #bcaaa4;
+}
+
+/* --------------------------------------------------------------------------
+   Intros + section / year headings
+   -------------------------------------------------------------------------- */
+.pub-intro-box,
+.talks-intro,
+.teaching-intro {
+  font-size: 1.05em;
+  line-height: 1.6;
+  margin-bottom: 2em;
+  color: var(--global-text-color);
+  opacity: 0.95;
+
+  a {
+    color: var(--home-accent);
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover { text-decoration: underline; }
+    &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 2px; }
+  }
+}
+
+.pub-category-section,
+.year-section,
+.teaching-year-section {
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+}
+
+.pub-category-title,
+.year-title,
+.teaching-year-title {
+  font-size: 1.4em !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px !important;
+  color: var(--home-accent);   /* flips to a light green in dark mode */
+}
+
+.pub-category-hr,
+.year-hr,
+.teaching-year-hr {
+  border: 0;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--home-accent) 110px,
+    var(--global-border-color) 110px
+  );
+  margin: 0 0 1.5em 0;
+}
+
+/* --------------------------------------------------------------------------
+   Grids
+   -------------------------------------------------------------------------- */
+.pub-grid,
+.talks-grid,
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5em;
+}
+
+@media (max-width: 768px) {
+  .pub-grid,
+  .talks-grid,
+  .courses-grid { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   Cards (shared base + accent bar from _home.scss)
+   -------------------------------------------------------------------------- */
+.pub-card-modern,
+.talk-card-modern,
+.course-card-modern {
+  @extend %home-card-base;
+  @extend %home-card-bar;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.3em;
+}
+
+.pub-card-modern  { min-height: 190px; }
+.talk-card-modern { min-height: 160px; }
+.course-card-modern { min-height: 180px; }
+
+/* Hover / focus lift. Publications & talks lift on card hover; teaching wraps
+   the card in an <a class="course-card-link">, so it also lifts on link focus. */
+.pub-card-modern:hover,
+.talk-card-modern:hover,
+.course-card-modern:hover,
+.course-card-link:hover .course-card-modern,
+.course-card-link:focus-visible .course-card-modern { @extend %home-card-lift; }
+
+.pub-card-modern:hover::before,
+.talk-card-modern:hover::before,
+.course-card-modern:hover::before,
+.course-card-link:hover .course-card-modern::before,
+.course-card-link:focus-visible .course-card-modern::before { width: 6px; }
+
+/* The whole-card link overlays (publications, talks). Give the invisible anchor
+   a focus ring so keyboard users can see it. */
+.card-details-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--home-accent);
+    outline-offset: -3px;
+    border-radius: var(--home-radius);
+  }
+}
+
+.course-card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+  border-radius: var(--home-radius);
+
+  &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 3px; }
+}
+
+/* Logo watermark */
+.pub-bg-watermark,
+.talk-bg-watermark,
+.course-bg-watermark {
+  position: absolute;
+  right: -15px;
+  bottom: -15px;
+  width: 130px;
+  height: 130px;
+  opacity: 0.04;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.pub-card-modern:hover .pub-bg-watermark,
+.talk-card-modern:hover .talk-bg-watermark,
+.course-card-modern:hover .course-bg-watermark,
+.course-card-link:hover .course-bg-watermark {
+  opacity: 0.08;
+  transform: scale(1.05) rotate(-5deg);
+}
+
+/* Content wrappers sit above the watermark and overlay */
+.pub-main-content,
+.talk-card-content,
+.course-main {
+  position: relative;
+  z-index: 3;
+  pointer-events: none;   /* clicks fall through to the overlay link */
+}
+
+.course-main { display: flex; flex-direction: column; height: 100%; }
+
+/* --------------------------------------------------------------------------
+   Meta rows, badges, pills
+   -------------------------------------------------------------------------- */
+.pub-meta-top,
+.talk-badge-container,
+.course-badge-container {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pub-badge-year,
+.badge-date {
+  background: var(--home-accent-soft-bg);
+  color: var(--home-accent-soft-text);
+  font-size: 0.72em;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.pub-badge-venue,
+.badge-level,
+.talk-location-tag {
+  background: var(--badge-neutral-bg);
+  color: var(--global-text-color);
+  font-size: 0.72em;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+
+.talk-location-tag {
+  border-radius: 20px;
+  margin-left: auto;
+}
+
+.badge-type-talk    { background: rgba(13, 71, 161, 0.12);  color: var(--badge-talk-text);    font-size: 0.72em; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.5px; }
+.badge-type-seminar { background: rgba(26, 35, 126, 0.12);  color: var(--badge-seminar-text); font-size: 0.72em; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.5px; }
+.badge-type-poster  { background: rgba(230, 81, 0, 0.14);   color: var(--badge-poster-text);  font-size: 0.72em; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.5px; }
+.badge-type-hybrid  { background: rgba(78, 52, 46, 0.12);   color: var(--badge-hybrid-text);  font-size: 0.72em; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.5px; }
+
+/* "Instructor" role badge (blue), overrides the green .badge-date it sits with */
+.badge-instructor {
+  background: rgba(13, 71, 161, 0.12) !important;
+  color: var(--badge-talk-text) !important;
+}
+
+.talk-date-text {
+  font-size: 0.78em;
+  font-weight: 700;
+  color: var(--home-accent);
+  text-transform: uppercase;
+}
+
+.course-code-modern {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72em;
+  color: var(--global-text-color);
+  opacity: 0.6;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .course-code-modern { margin-left: 0; width: 100%; margin-top: 2px; }
+}
+
+/* --------------------------------------------------------------------------
+   Titles + body text
+   -------------------------------------------------------------------------- */
+.pub-card-modern h3,
+.talk-card-modern h3,
+.course-main h3 {
+  margin: 0 0 6px 0 !important;
+  font-size: 1.12em !important;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--global-text-color) !important;
+}
+
+.pub-title-text,
+.talk-title-text,
+.course-title-text {
+  @extend %home-title-underline;
+}
+
+.pub-card-modern:hover .pub-title-text,
+.talk-card-modern:hover .talk-title-text,
+.course-card-link:hover .course-title-text,
+.course-card-link:focus-visible .course-title-text {
+  color: var(--home-accent);
+  background-size: 100% 2px;
+}
+
+.pub-authors,
+.talk-venue-text,
+.course-inst-text,
+.course-desc,
+.pub-venue {
+  color: var(--global-text-color);
+  opacity: 0.78;
+  line-height: 1.4;
+}
+
+.pub-authors     { font-size: 0.84em; margin-bottom: 4px; }
+.talk-venue-text { font-size: 0.84em; margin: 0; opacity: 0.75; }
+.course-inst-text{ font-size: 0.82em; font-style: italic; margin-bottom: 8px; opacity: 0.7; }
+.course-desc     { font-size: 0.85em; line-height: 1.45; margin: 0; }
+.pub-venue       { font-size: 0.82em; font-style: italic; margin-top: 2px; opacity: 0.7; }
+
+/* --------------------------------------------------------------------------
+   Footer action buttons
+   -------------------------------------------------------------------------- */
+.pub-card-footer,
+.talk-card-footer {
+  position: relative;
+  z-index: 4;
+  pointer-events: auto;   /* real, clickable links above the overlay */
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pub-btn,
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--badge-neutral-bg);
+  color: var(--global-text-color);
+  border: 1px solid var(--global-border-color);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.77em;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  i { margin-right: 4px; font-size: 1em; }
+
+  &:hover,
+  &:focus-visible {
+    background: var(--home-accent);
+    color: var(--card-on-accent);
+    border-color: var(--home-accent);
+  }
+  &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 2px; }
+}
+
+.pub-btn-primary,
+.download-btn {
+  background: var(--home-accent-soft-bg);
+  color: var(--home-accent-soft-text);
+  border-color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pub-card-modern,
+  .talk-card-modern,
+  .course-card-modern,
+  .pub-bg-watermark,
+  .talk-bg-watermark,
+  .course-bg-watermark,
+  .pub-title-text,
+  .talk-title-text,
+  .course-title-text { transition: none !important; }
+
+  .pub-card-modern:hover,
+  .talk-card-modern:hover,
+  .course-card-modern:hover,
+  .course-card-link:hover .course-card-modern { transform: none !important; }
+}

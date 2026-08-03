@@ -1,0 +1,417 @@
+/* ==========================================================================
+   HOME PAGE
+   Custom styling for the homepage (_pages/about.md).
+   - All colors are tokenized so the palette lives in one place.
+   - Surface/text/border hook into the theme's CSS custom properties so the
+     page adapts automatically to light / dark / system modes.
+   - A single shared card base (.expertise-box, .thesis-card, .nav-card) avoids
+     the previous ~90% duplicated card CSS.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Design tokens
+   -------------------------------------------------------------------------- */
+:root {
+  --home-accent:            #2e7d32;
+  --home-accent-strong:     #1b5e20;
+  --home-accent-soft-bg:    #e8f5e9;
+  --home-accent-soft-text:  #2e7d32;
+
+  /* Card surface sits on top of the page. In light mode both are white and
+     are separated by border + shadow (as before). */
+  --home-surface:           var(--global-bg-color);
+  --home-heading:           var(--global-text-color);
+  --home-muted:             #555;
+
+  --home-tag-bg:            #f5f5f5;
+  --home-tag-text:          #555;
+
+  --home-card-border:       rgba(0, 0, 0, 0.08);
+  --home-card-border-hover: rgba(46, 125, 50, 0.22);
+  --home-card-shadow:       0 4px 6px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.03);
+  --home-card-shadow-hover: 0 12px 20px rgba(46, 125, 50, 0.06), 0 3px 8px rgba(0, 0, 0, 0.04);
+
+  --home-radius:            12px;
+  --home-ease:              cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html[data-theme="dark"] {
+  --home-accent:            #81c784;
+  --home-accent-strong:     #a5d6a7;
+  --home-accent-soft-bg:    #2f3b30;
+  --home-accent-soft-text:  #a5d6a7;
+
+  /* Slightly lighter than the dark page background (#474747) so cards read as
+     elevated surfaces instead of blending into the page. */
+  --home-surface:           #525252;
+  --home-heading:           var(--global-text-color);
+  --home-muted:             #cfcfcf;
+
+  --home-tag-bg:            #5c5c5c;
+  --home-tag-text:          #e0e0e0;
+
+  --home-card-border:       rgba(255, 255, 255, 0.14);
+  --home-card-border-hover: rgba(129, 199, 132, 0.45);
+  --home-card-shadow:       0 4px 10px rgba(0, 0, 0, 0.35);
+  --home-card-shadow-hover: 0 14px 26px rgba(0, 0, 0, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   Intro + section headings
+   -------------------------------------------------------------------------- */
+.home-intro {
+  font-size: 1.08em;
+  line-height: 1.65;
+  color: var(--global-text-color);   /* was hardcoded #333 -> invisible in dark */
+  margin-bottom: 2em;
+
+  &--tight { margin-top: -0.5em; }
+}
+
+.home-section-title {
+  border-bottom: 2px solid var(--home-accent);
+  padding-bottom: 8px;
+  margin-top: 2.2em;
+  margin-bottom: 1.2em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-size: 1.35em;
+  color: var(--home-heading);
+
+  &--first { margin-top: 0.5em; }
+}
+
+.home-heading-plain {
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--home-heading);
+  letter-spacing: -0.3px;
+}
+
+.inline-link {
+  color: var(--home-accent);
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover { text-decoration: underline; }
+
+  &:focus-visible {
+    outline: 2px solid var(--home-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Shared card base
+   -------------------------------------------------------------------------- */
+%home-card-base {
+  background: var(--home-surface);
+  border: 1px solid var(--home-card-border);
+  border-radius: var(--home-radius);
+  box-shadow: var(--home-card-shadow);
+  transition: transform 0.3s var(--home-ease),
+              box-shadow 0.3s var(--home-ease),
+              border-color 0.3s var(--home-ease);
+  position: relative;
+  overflow: hidden;
+}
+
+%home-card-lift {
+  transform: translateY(-2px);
+  box-shadow: var(--home-card-shadow-hover);
+  border-color: var(--home-card-border-hover);
+}
+
+/* Green accent bar down the left edge of a card */
+%home-card-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--home-accent);
+  opacity: 0.85;
+  transition: width 0.2s ease;
+}
+
+/* Animated underline used on card titles */
+%home-title-underline {
+  background-image: linear-gradient(var(--home-accent), var(--home-accent));
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease, color 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Pills / tags
+   -------------------------------------------------------------------------- */
+.tag-home-date {
+  background: var(--home-accent-soft-bg);
+  color: var(--home-accent-soft-text);
+  font-size: 0.78em;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.tag-home-label {
+  background: var(--home-tag-bg);
+  color: var(--home-tag-text);
+  font-size: 0.78em;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   Expertise grid
+   -------------------------------------------------------------------------- */
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin: 2em 0 3em 0;
+}
+
+.expertise-box {
+  @extend %home-card-base;
+  padding: 22px 18px;
+  text-align: center;
+
+  &:hover { @extend %home-card-lift; }
+
+  .expertise-icon {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  h3 {
+    margin: 0 0 8px 0 !important;
+    color: var(--home-accent);
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.88em;
+    color: var(--home-muted);
+    line-height: 1.45;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Thesis cards
+   -------------------------------------------------------------------------- */
+.thesis-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.8em;
+  margin-top: 1.5em;
+}
+
+.thesis-card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+  border-radius: var(--home-radius);
+
+  &:focus-visible {
+    outline: 2px solid var(--home-accent);
+    outline-offset: 3px;
+  }
+}
+
+.thesis-card {
+  @extend %home-card-base;
+  @extend %home-card-bar;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+
+  .thesis-card-link:hover &,
+  .thesis-card-link:focus-visible & { @extend %home-card-lift; }
+
+  .thesis-card-link:hover &::before,
+  .thesis-card-link:focus-visible &::before { width: 6px; }
+
+  h3 {
+    margin: 0 0 6px 0 !important;
+    font-size: 1.22em !important;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--home-heading);
+  }
+}
+
+.thesis-badge-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.thesis-title-text {
+  @extend %home-title-underline;
+
+  .thesis-card-link:hover &,
+  .thesis-card-link:focus-visible & {
+    color: var(--home-accent);
+    background-size: 100% 2px;
+  }
+}
+
+.thesis-venue-text {
+  font-size: 0.9em;
+  color: var(--home-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   "Explore my work" navigation cards
+   -------------------------------------------------------------------------- */
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5em;
+  margin-top: 1.5em;
+  margin-bottom: 3em;
+}
+
+.nav-card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+  border-radius: 14px;
+
+  &:focus-visible {
+    outline: 2px solid var(--home-accent);
+    outline-offset: 3px;
+  }
+}
+
+.nav-card {
+  @extend %home-card-base;
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;          /* was fixed height: 240px -> could clip text */
+  border-radius: 14px;
+
+  .nav-card-link:hover &,
+  .nav-card-link:focus-visible & {
+    transform: translateY(-4px);
+    box-shadow: var(--home-card-shadow-hover);
+    border-color: var(--home-card-border-hover);
+  }
+}
+
+.nav-card-image {
+  height: 110px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: var(--home-accent-soft-bg);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--home-ease);
+  }
+
+  .nav-card-link:hover & img { transform: scale(1.06); }
+}
+
+.nav-card-body {
+  padding: 1.2em;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h3 {
+    margin: 0 0 6px 0 !important;
+    font-size: 1.08em !important;
+    font-weight: 600 !important;
+    color: var(--home-heading) !important;
+    line-height: 1.3;
+    transition: color 0.25s ease;
+  }
+
+  p {
+    margin: 0 !important;
+    font-size: 0.82em !important;
+    line-height: 1.4 !important;
+    color: var(--home-muted) !important;
+  }
+}
+
+.nav-card-link:hover .nav-card-body h3,
+.nav-card-link:focus-visible .nav-card-body h3 { color: var(--home-accent) !important; }
+
+.nav-card-action {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--home-accent);
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+  transition: opacity 0.25s ease, color 0.25s ease;
+
+  i { margin-left: 4px; transition: transform 0.25s ease; }
+}
+
+.nav-card-link:hover .nav-card-action,
+.nav-card-link:focus-visible .nav-card-action {
+  opacity: 1;
+  color: var(--home-accent-strong);
+
+  i { transform: translateX(3px); }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .nav-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2em; }
+}
+
+@media (max-width: 600px) {
+  .expertise-grid { grid-template-columns: 1fr; gap: 15px; }
+}
+
+@media (max-width: 500px) {
+  .nav-grid { grid-template-columns: 1fr; gap: 1.2em; }
+  .nav-card { min-height: 210px; }
+  .nav-card-image { height: 90px; }
+}
+
+/* Respect users who ask for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .expertise-box,
+  .thesis-card,
+  .thesis-card::before,
+  .nav-card,
+  .nav-card-image img,
+  .thesis-title-text,
+  .nav-card-action,
+  .nav-card-action i {
+    transition: none !important;
+  }
+  .expertise-box:hover,
+  .thesis-card-link:hover .thesis-card,
+  .nav-card-link:hover .nav-card { transform: none !important; }
+}
