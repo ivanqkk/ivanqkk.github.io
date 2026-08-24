@@ -9,7 +9,7 @@
 ### 🧬 About Me
 I am an **Application Specialist in AI for Life Sciences** at **Stockholm University**, working within the Department of Biochemistry and Biophysics and based at **SciLifeLab** (Campus Solna) inside the Arne Elofsson Lab. 
 
-As part of the **MIMER AI Factory** and in collaboration with **NAISS**, I help academic and industrial researchers scale and optimize advanced machine learning solutions on national high-performance computing (HPC) infrastructures. 
+As part of the **Sweden AI Factory** and in collaboration with **NAISS**, I help academic and industrial researchers scale and optimize advanced machine learning solutions on national high-performance computing (HPC) infrastructures. 
 
 ### 🎓 Background
 * **Ph.D. Candidate** in *Computational Mathematics, Learning, and Data Science* (Joint program: University of Pavia & Università della Svizzera Italiana).
