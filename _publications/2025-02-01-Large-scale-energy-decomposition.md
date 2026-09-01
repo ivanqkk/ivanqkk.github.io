@@ -8,7 +8,7 @@ date: 2025-02-01
 venue: 'Cell Stress and Chaperones'
 slidesurl: 
 paperurl: 'https://doi.org/10.1016/j.cstres.2025.01.001'
-bibtexurl: 'https://ivanqkk.github.io/files/bibtex_integrating.bib'
+bibtexurl: 'https://ivanqkk.github.io/files/bibtex_large_scale.bib'
 citation: 'Mansoor, S., Frasnetti, E., Cucchi, I., Magni, A., Bonollo, G., Serapian, S. A., Pavarino, L. F. and Colombo, G. (2025). &quot;Large-scale energy decomposition for the analysis of protein stability.&quot; <i>Cell Stress and Chaperones</i>. 30(1).'
 ---
 
