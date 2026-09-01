@@ -14,12 +14,15 @@ jobs:
       contents: write           # This workflow pushes to the repository
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.9'   # Specify the Python version you need
+        # 3.10+ required: python-frontmatter 1.2.0 imports typing.TypeGuard
+        # without declaring requires_python, so pip on 3.9 installs it and the
+        # notebook fails at `import frontmatter`.
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
