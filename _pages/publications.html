@@ -13,6 +13,14 @@ author_profile: true
   </div>
 {% endif %}
 
+{% comment %}
+  Cards are generated from the _publications collection - one source of truth.
+  To add a paper, add a file to _publications/ with: category (manuscripts |
+  theses), date, venue_short, authors, and optionally paperurl / bibtexurl /
+  logo / supervisor / institution. Card markup lives in _includes/pub-card.html.
+{% endcomment %}
+{% assign publications = site.publications | sort: "date" | reverse %}
+
 <!-- ==================== MANUSCRIPTS SECTION ==================== -->
 <div class="pub-category-section">
   <h2 class="pub-category-title">Journal Articles &amp; Manuscripts</h2>
@@ -20,61 +28,9 @@ author_profile: true
 </div>
 
 <div class="pub-grid">
-
-  <!-- MANUSCRIPT 1: MOLECULE -->
-  <div class="pub-card-modern">
-    <a href="{{ base_path }}/publication/2025-09-11-Molecule" class="card-details-overlay" aria-label="View publication details: MOLECULE"></a>
-    <img src="{{ base_path }}/images/jctc-logo.png" class="pub-bg-watermark" alt="">
-    <div class="pub-main-content">
-      <div class="pub-meta-top">
-        <span class="pub-badge-year">2025</span>
-        <span class="pub-badge-venue">J. Chem. Theory Comput.</span>
-      </div>
-      <h3><span class="pub-title-text">MOLECULE: Molecular-dynamics and Optimized deep Learning for Entropy-regularized Classification and Uncertainty-aware Ligand Evaluation</span></h3>
-      <div class="pub-authors"><strong>I. Cucchi</strong>, E. Frasnetti, F. Frigerio, F. Cinquini, S. Pavoni, L. F. Pavarino, G. Colombo</div>
-    </div>
-    <div class="pub-card-footer">
-      <a href="https://doi.org/10.1021/acs.jctc.5c01140" target="_blank" rel="noopener noreferrer" class="pub-btn pub-btn-primary"><i class="fas fa-link" aria-hidden="true"></i> Publisher Link</a>
-      <a href="https://ivanqkk.github.io/files/bibtex_molecule.bib" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</a>
-    </div>
-  </div>
-
-  <!-- MANUSCRIPT 2: Protein Stability -->
-  <div class="pub-card-modern">
-    <a href="{{ base_path }}/publication/2025-02-01-Large-scale-energy-decomposition" class="card-details-overlay" aria-label="View publication details: Large-scale energy decomposition for the analysis of protein stability"></a>
-    <img src="{{ base_path }}/images/springer-logo.png" class="pub-bg-watermark" alt="">
-    <div class="pub-main-content">
-      <div class="pub-meta-top">
-        <span class="pub-badge-year">2025</span>
-        <span class="pub-badge-venue">Cell Stress and Chaperones</span>
-      </div>
-      <h3><span class="pub-title-text">Large-scale energy decomposition for the analysis of protein stability</span></h3>
-      <div class="pub-authors">S. Mansoor, E. Frasnetti, <strong>I. Cucchi</strong>, A. Magni, G. Bonollo, S. A. Serapian, L. F. Pavarino, G. Colombo</div>
-    </div>
-    <div class="pub-card-footer">
-      <a href="https://doi.org/10.1016/j.cstres.2025.01.001" target="_blank" rel="noopener noreferrer" class="pub-btn pub-btn-primary"><i class="fas fa-link" aria-hidden="true"></i> Publisher Link</a>
-      <a href="https://ivanqkk.github.io/files/bibtex_integrating.bib" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</a>
-    </div>
-  </div>
-
-  <!-- MANUSCRIPT 3: Kinase Ligands -->
-  <div class="pub-card-modern">
-    <a href="{{ base_path }}/publication/2024-10-10-Integrating-Molecular-Dynamics" class="card-details-overlay" aria-label="View publication details: Integrating Molecular Dynamics and Machine Learning to predict kinase ligand profiles"></a>
-    <img src="{{ base_path }}/images/jctc-logo.png" class="pub-bg-watermark" alt="">
-    <div class="pub-main-content">
-      <div class="pub-meta-top">
-        <span class="pub-badge-year">2024</span>
-        <span class="pub-badge-venue">J. Chem. Theory Comput.</span>
-      </div>
-      <h3><span class="pub-title-text">Integrating Molecular Dynamics and Machine Learning Algorithms to Predict the Functional Profile of Kinase Ligands</span></h3>
-      <div class="pub-authors">E. Frasnetti, <strong>I. Cucchi</strong>, S. Pavoni, F. Frigerio, F. Cinquini, S. A. Serapian, L. F. Pavarino, G. Colombo</div>
-    </div>
-    <div class="pub-card-footer">
-      <a href="https://doi.org/10.1021/acs.jctc.4c01097" target="_blank" rel="noopener noreferrer" class="pub-btn pub-btn-primary"><i class="fas fa-link" aria-hidden="true"></i> Publisher Link</a>
-      <a href="https://ivanqkk.github.io/files/bibtex_integrating.bib" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</a>
-    </div>
-  </div>
-
+{% for post in publications %}{% if post.category == 'manuscripts' %}
+{% include pub-card.html post=post %}
+{% endif %}{% endfor %}
 </div>
 
 <!-- ==================== ACADEMIC THESES SECTION ==================== -->
@@ -84,41 +40,7 @@ author_profile: true
 </div>
 
 <div class="pub-grid">
-
-  <!-- THESIS 1: Master Thesis -->
-  <div class="pub-card-modern">
-    <a href="{{ base_path }}/publication/2022-master-thesis" class="card-details-overlay" aria-label="View details: Master's thesis on atrial fibrillation detection in 12-lead ECGs"></a>
-    <img src="{{ base_path }}/images/unipv.png" class="pub-bg-watermark" alt="">
-    <div class="pub-main-content">
-      <div class="pub-meta-top">
-        <span class="pub-badge-year">2022</span>
-        <span class="pub-badge-venue">Master Thesis</span>
-      </div>
-      <h3><span class="pub-title-text">Machine Learning Methods for Identifying Atrial Fibrillation in 12-lead ECGs</span></h3>
-      <div class="pub-authors"><strong>Ivan Cucchi</strong></div>
-      <div class="pub-venue">Supervisor: Luca Franco Pavarino — University of Pavia</div>
-    </div>
-    <div class="pub-card-footer">
-      <a href="{{ base_path }}/publication/2022-master-thesis" class="pub-btn pub-btn-primary"><i class="fas fa-file-alt" aria-hidden="true"></i> View Details</a>
-    </div>
-  </div>
-
-  <!-- THESIS 2: Bachelor Thesis -->
-  <div class="pub-card-modern">
-    <a href="{{ base_path }}/publication/2019-bachelor-thesis" class="card-details-overlay" aria-label="View details: Bachelor's thesis on Long QT Syndrome cardiac simulations"></a>
-    <img src="{{ base_path }}/images/unipv.png" class="pub-bg-watermark" alt="">
-    <div class="pub-main-content">
-      <div class="pub-meta-top">
-        <span class="pub-badge-year">2019</span>
-        <span class="pub-badge-venue">Bachelor Thesis</span>
-      </div>
-      <h3><span class="pub-title-text">Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome</span></h3>
-      <div class="pub-authors"><strong>Ivan Cucchi</strong></div>
-      <div class="pub-venue">Supervisor: Luca Franco Pavarino — University of Pavia</div>
-    </div>
-    <div class="pub-card-footer">
-      <a href="{{ base_path }}/publication/2019-bachelor-thesis" class="pub-btn pub-btn-primary"><i class="fas fa-file-alt" aria-hidden="true"></i> View Details</a>
-    </div>
-  </div>
-
+{% for post in publications %}{% if post.category == 'theses' %}
+{% include pub-card.html post=post %}
+{% endif %}{% endfor %}
 </div>

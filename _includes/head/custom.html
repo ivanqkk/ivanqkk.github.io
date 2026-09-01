@@ -5,13 +5,26 @@
 <!-- Support for Academicons -->
 <link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
 
-<!-- favicon: favicon_IC.png -->
-<link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/favicon_IC.png"/>
-<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon_IC.png"/>
+<!-- Favicons. Generated from the 1024x1024 master images/favicon_IC.png,
+     removed after generation; recover it from git history to regenerate. -->
+<link rel="icon" href="{{ base_path }}/favicon.ico" sizes="16x16 32x32 48x48"/>
+<link rel="icon" type="image/png" sizes="32x32" href="{{ base_path }}/images/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="{{ base_path }}/images/favicon-192x192.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
 <link rel="manifest" href="{{ base_path }}/images/manifest.json"/>
-<link rel="icon" href="/images/favicon_IC.png"/>
-<meta name="theme-color" content="#ffffff"/>
-<meta property="og:image" content="{{ base_path }}/images/favicon_IC_reduced.png"/>
+<meta name="theme-color" content="#0F2334"/>
 
+<!-- Social preview card. seo.html only emits og:image for pages that set
+     header.image, so the site-wide default is supplied here instead. -->
+{% unless page.header.image or page.header.overlay_image %}
+  {% if site.og_image %}
+    <meta property="og:image" content="{{ site.og_image | prepend: '/images/' | prepend: base_path }}"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="{{ site.name | escape }} — Application Specialist in AI for Life Science"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="{{ site.og_image | prepend: '/images/' | prepend: base_path }}"/>
+  {% endif %}
+{% endunless %}
 
 <!-- end custom head snippets -->

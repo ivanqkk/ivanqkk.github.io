@@ -6,6 +6,17 @@ permalink: /publication/2024-10-10-Integrating-Molecular-Dynamics
 excerpt: 'This research presents a machine learning framework that combines chemical fingerprints with molecular dynamics-derived descriptors of protein motion to effectively predict and distinguish between orthosteric and allosteric ligands, demonstrating robust performance across cyclin-dependent kinases and other protein families.'
 date: 2024-10-10
 venue: 'Journal of Chemical Theory and Computation'
+venue_short: "J. Chem. Theory Comput."
+card_aria: "View publication details: Integrating Molecular Dynamics and Machine Learning to predict kinase ligand profiles"
+authors:
+  - E. Frasnetti
+  - I. Cucchi
+  - S. Pavoni
+  - F. Frigerio
+  - F. Cinquini
+  - S. A. Serapian
+  - L. F. Pavarino
+  - G. Colombo
 slidesurl: 
 paperurl: 'https://doi.org/10.1021/acs.jctc.4c01097'
 bibtexurl: 'https://ivanqkk.github.io/files/bibtex_integrating.bib'

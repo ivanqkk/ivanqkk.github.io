@@ -1,0 +1,29 @@
+{%- comment -%}
+  One teaching card. Expects `include.post` (a _teaching document).
+  Courses with a `link` are wrapped in an anchor; those without render as a
+  plain card. An "Instructor" role gets the extra badge-instructor class.
+{%- endcomment -%}
+{%- assign post = include.post -%}
+{%- if post.link %}
+  <a href="{{ post.link }}" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="{{ post.card_aria | default: post.title }}">
+{%- endif %}
+    <div class="course-card-modern">
+      {%- if post.logo %}
+      <img src="{{ base_path }}/images/{{ post.logo }}" class="course-bg-watermark" alt=""{% if post.logo_square %} style="border-radius: 0;"{% endif %}>
+      {%- endif %}
+      <div class="course-main">
+        <div class="course-badge-container">
+          <span class="badge-date{% if post.role == 'Instructor' %} badge-instructor{% endif %}">{{ post.role }}</span>
+          <span class="badge-level">{{ post.level }}</span>
+          <span class="course-code-modern">{{ post.code }}</span>
+        </div>
+        <h3><span class="course-title-text">{{ post.short_title | default: post.title }}</span></h3>
+        <div class="course-inst-text">{{ post.institution | default: post.venue }}</div>
+        <p class="course-desc">
+          {{ post.description }}
+        </p>
+      </div>
+    </div>
+{%- if post.link %}
+  </a>
+{%- endif %}

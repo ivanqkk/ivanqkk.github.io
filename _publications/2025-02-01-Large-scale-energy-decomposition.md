@@ -6,6 +6,17 @@ permalink: /publication/2025-02-01-Large-scale-energy-decomposition
 excerpt: 'By utilizing a molecular dynamics-based energy decomposition of residue-pair interactions, this study introduces the ENergy Gap (spectral gap) and main eigenvalue as robust descriptors for predicting protein stability trends and identifying key residues that maintain structural integrity across diverse folds.'
 date: 2025-02-01
 venue: 'Cell Stress and Chaperones'
+venue_short: "Cell Stress and Chaperones"
+card_aria: "View publication details: Large-scale energy decomposition for the analysis of protein stability"
+authors:
+  - S. Mansoor
+  - E. Frasnetti
+  - I. Cucchi
+  - A. Magni
+  - G. Bonollo
+  - S. A. Serapian
+  - L. F. Pavarino
+  - G. Colombo
 slidesurl: 
 paperurl: 'https://doi.org/10.1016/j.cstres.2025.01.001'
 bibtexurl: 'https://ivanqkk.github.io/files/bibtex_large_scale.bib'

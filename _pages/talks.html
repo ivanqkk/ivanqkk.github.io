@@ -11,172 +11,26 @@ author_profile: true
   An overview of scientific talks, invited seminars, and poster presentations delivered at international conferences, workshops, and academic institutions. Click on any card to view detailed information, or use the buttons to download the corresponding materials.
 </div>
 
-<!-- ==================== 2025 ==================== -->
+{% comment %}
+  Cards are generated from the _talks collection - one source of truth. To add a
+  talk, add a file to _talks/ with: type (Talk | Seminar | Poster | Talk +
+  Poster), date, location, link, venue_short, logo, and optionally slidesurl /
+  download_as / short_title. Card markup lives in _includes/talk-card.html.
+  Sections are grouped by year, newest first.
+{% endcomment %}
+{% assign talks = site.talks | sort: "date" | reverse %}
+{% assign by_year = talks | group_by_exp: "t", "t.date | date: '%Y'" %}
+
+{% for year in by_year %}
+<!-- ==================== {{ year.name }} ==================== -->
 <div class="year-section">
-  <h2 class="year-title">2025</h2>
+  <h2 class="year-title">{{ year.name }}</h2>
   <div class="year-hr"></div>
 </div>
 
 <div class="talks-grid">
-
-  <!-- TALK 1: YAMC -->
-  <div class="talk-card-modern">
-    <a href="https://sites.google.com/view/yamc2025/home" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="Conference website: 5th Young Applied Mathematicians Conference, Padua (opens in new tab)"></a>
-    <img src="{{ base_path }}/images/unipd.png" class="talk-bg-watermark" alt="">
-    <div class="talk-card-content">
-      <div class="talk-badge-container">
-        <span class="badge-type-talk">TALK</span>
-        <span class="talk-date-text">26 Sep</span>
-        <span class="talk-location-tag">Padua, Italy</span>
-      </div>
-      <h3><span class="talk-title-text">5th Edition of Young Applied Mathematicians Conference</span></h3>
-      <p class="talk-venue-text">University of Padua</p>
-    </div>
-    <div class="talk-card-footer">
-      <a href="{{ base_path }}/files/slides_yamc.pptx" download="Ivan_Cucchi_YAMC_Slides.pptx" class="download-btn">
-        <i class="fa-solid fa-file-powerpoint download-icon" aria-hidden="true"></i> Slides
-      </a>
-    </div>
-  </div>
-
-  <!-- TALK 2: Caffè Beltrami -->
-  <div class="talk-card-modern">
-    <a href="https://sites.google.com/view/caffebeltrami/past-talks?authuser=0#h.axvo357wtpgw" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="Seminar website: Caffè Beltrami Seminars, Pavia (opens in new tab)"></a>
-    <img src="{{ base_path }}/images/unipv.png" class="talk-bg-watermark" alt="">
-    <div class="talk-card-content">
-      <div class="talk-badge-container">
-        <span class="badge-type-seminar">SEMINAR</span>
-        <span class="talk-date-text">26 May</span>
-        <span class="talk-location-tag">Pavia, Italy</span>
-      </div>
-      <h3><span class="talk-title-text">Caffè Beltrami Seminars</span></h3>
-      <p class="talk-venue-text">University of Pavia</p>
-    </div>
-    <div class="talk-card-footer">
-      <a href="{{ base_path }}/files/slides_beltrami.pdf" download="Ivan_Cucchi_Beltrami_Slides.pdf" class="download-btn">
-        <i class="fa-solid fa-file-pdf download-icon" aria-hidden="true"></i> Slides
-      </a>
-    </div>
-  </div>
-
-  <!-- TALK 3: COMPMAT 2025 -->
-  <div class="talk-card-modern">
-    <a href="https://sites.google.com/universitadipavia.it/icam-compmat2025/compmat?authuser=0" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="Workshop website: Spring Workshop COMPMAT, Pavia (opens in new tab)"></a>
-    <img src="{{ base_path }}/images/unipv.png" class="talk-bg-watermark" alt="">
-    <div class="talk-card-content">
-      <div class="talk-badge-container">
-        <span class="badge-type-poster">POSTER</span>
-        <span class="talk-date-text">23 May</span>
-        <span class="talk-location-tag">Pavia, Italy</span>
-      </div>
-      <h3><span class="talk-title-text">Spring Workshop COMPMAT</span></h3>
-      <p class="talk-venue-text">University of Pavia</p>
-    </div>
-    <div class="talk-card-footer">
-      <a href="{{ base_path }}/files/poster_compmat.pdf" download="Ivan_Cucchi_COMPMAT_Poster.pdf" class="download-btn">
-        <i class="fa-solid fa-image download-icon" aria-hidden="true"></i> Poster
-      </a>
-    </div>
-  </div>
-
-  <!-- TALK 4: ICAM 2025 -->
-  <div class="talk-card-modern">
-    <a href="https://sites.google.com/universitadipavia.it/icam-compmat2025/icam?authuser=0" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="Workshop website: ICAM Workshop, Pavia (opens in new tab)"></a>
-    <img src="{{ base_path }}/images/unipv.png" class="talk-bg-watermark" alt="">
-    <div class="talk-card-content">
-      <div class="talk-badge-container">
-        <span class="badge-type-poster">POSTER</span>
-        <span class="talk-date-text">22 May</span>
-        <span class="talk-location-tag">Pavia, Italy</span>
-      </div>
-      <h3><span class="talk-title-text">ICAM Workshop</span></h3>
-      <p class="talk-venue-text">University of Pavia</p>
-    </div>
-    <div class="talk-card-footer">
-      <a href="{{ base_path }}/files/poster_ICAM.pdf" download="Ivan_Cucchi_ICAM_Poster.pdf" class="download-btn">
-        <i class="fa-solid fa-image download-icon" aria-hidden="true"></i> Poster
-      </a>
-    </div>
-  </div>
-
-  <!-- TALK 5: DS4HB Polimi -->
-  <div class="talk-card-modern">
-    <a href="https://www.ds4hb.polimi.it/index.html" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="Conference website: 1st Data Science for Health and Biology, Milan (opens in new tab)"></a>
-    <img src="{{ base_path }}/images/polimi.png" class="talk-bg-watermark" alt="">
-    <div class="talk-card-content">
-      <div class="talk-badge-container">
-        <span class="badge-type-poster">POSTER</span>
-        <span class="talk-date-text">07 Apr</span>
-        <span class="talk-location-tag">Milan, Italy</span>
-      </div>
-      <h3><span class="talk-title-text">1st Data Science for Health and Biology</span></h3>
-      <p class="talk-venue-text">Human Technopole &amp; Polimi</p>
-    </div>
-    <div class="talk-card-footer">
-      <a href="{{ base_path }}/files/poster_DS4HB.pdf" download="Ivan_Cucchi_DS4HB_Poster.pdf" class="download-btn">
-        <i class="fa-solid fa-image download-icon" aria-hidden="true"></i> Poster
-      </a>
-    </div>
-  </div>
-
-  <!-- TALK 6: UMI Bari -->
-  <div class="talk-card-modern">
-    <a href="https://umi-math4aiml2025.uniba.it/" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="Workshop website: 3rd UMI Group Workshop Math4AIML, Bari (opens in new tab)"></a>
-    <img src="{{ base_path }}/images/uniba.svg" class="talk-bg-watermark" alt="">
-    <div class="talk-card-content">
-      <div class="talk-badge-container">
-        <span class="badge-type-talk">TALK</span>
-        <span class="talk-date-text">31 Jan</span>
-        <span class="talk-location-tag">Bari, Italy</span>
-      </div>
-      <h3><span class="talk-title-text">3rd Workshop of UMI Group — Math4AIML</span></h3>
-      <p class="talk-venue-text">University of Bari</p>
-    </div>
-    <div class="talk-card-footer">
-      <a href="{{ base_path }}/files/slides_bari.pptx" download="Ivan_Cucchi_UMI_Bari_Slides.pptx" class="download-btn">
-        <i class="fa-solid fa-file-powerpoint download-icon" aria-hidden="true"></i> Slides
-      </a>
-    </div>
-  </div>
-
+{% for post in year.items %}
+{% include talk-card.html post=post %}
+{% endfor %}
 </div>
-
-<!-- ==================== 2024 ==================== -->
-<div class="year-section">
-  <h2 class="year-title">2024</h2>
-  <div class="year-hr"></div>
-</div>
-
-<div class="talks-grid">
-
-  <!-- TALK 7: SISSA -->
-  <div class="talk-card-modern">
-    <a href="https://indico.sissa.it/event/107/" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="Event website: Scientific Machine Learning Emerging Topics, SISSA Trieste (opens in new tab)"></a>
-    <img src="{{ base_path }}/images/sissa.png" class="talk-bg-watermark" alt="">
-    <div class="talk-card-content">
-      <div class="talk-badge-container">
-        <span class="badge-type-poster">POSTER</span>
-        <span class="talk-date-text">19 Jun</span>
-        <span class="talk-location-tag">Trieste, Italy</span>
-      </div>
-      <h3><span class="talk-title-text">Scientific Machine Learning, Emerging Topics</span></h3>
-      <p class="talk-venue-text">SISSA (International School for Advanced Studies)</p>
-    </div>
-  </div>
-
-  <!-- TALK 8: COMPMAT 2024 -->
-  <div class="talk-card-modern">
-    <a href="https://sites.google.com/universitadipavia.it/compmat-spring-workshop/" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="Workshop website: Spring Workshop COMPMAT 2024, Pavia (opens in new tab)"></a>
-    <img src="{{ base_path }}/images/unipv.png" class="talk-bg-watermark" alt="">
-    <div class="talk-card-content">
-      <div class="talk-badge-container">
-        <span class="badge-type-hybrid">TALK + POSTER</span>
-        <span class="talk-date-text">08 May</span>
-        <span class="talk-location-tag">Pavia, Italy</span>
-      </div>
-      <h3><span class="talk-title-text">Spring Workshop COMPMAT</span></h3>
-      <p class="talk-venue-text">University of Pavia</p>
-    </div>
-  </div>
-
-</div>
+{% endfor %}

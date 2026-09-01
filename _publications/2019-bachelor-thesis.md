@@ -8,10 +8,16 @@ permalink: /publication/2019-bachelor-thesis
 excerpt: 'The work focused on modeling and simulating Long QT Syndrome (LQTS) through numerical representations of cardiac electrophysiology. Explored and implemented biophysical models such as Hodgkin-Huxley, Luo-Rudy, and O’Hara-Rudy to reproduce action potentials and ion current dynamics. Simulations were conducted to study the electrical behavior of cardiac cells under normal and pathological conditions. The study integrated concepts from cardiac physiology, mathematical modeling, and computational simulation to deepen the understanding of arrhythmogenic mechanisms and support research in cardiology.'
 date: 2019-04-17
 venue: 
+venue_short: "Bachelor Thesis"
+card_aria: "View details: Bachelor's thesis on Long QT Syndrome cardiac simulations"
+authors:
+  - Ivan Cucchi
+institution: "University of Pavia"
+logo: "unipv.png"
 slidesurl: 
 paperurl: 
 bibtexurl: 
-citation: "Cucchi, I. (2019). Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome."
+citation: "Cucchi, I. (2019). &quot;Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome.&quot; Bachelor's thesis, <i>University of Pavia</i>. Supervisor: Luca Franco Pavarino."
 ---
 Since the time of Galileo Galilei and, even earlier, Pythagoras, it has been recognized that the reality surrounding us can be described in mathematical terms. This insight, both ancient and remarkably modern, is today reflected in the use of increasingly precise and advanced mathematical models, which enable a comprehensive understanding of complex phenomena from both qualitative and quantitative perspectives. In this context, mathematics has emerged as a powerful investigative tool in medicine, complementing and often integrating experimental approaches.
 

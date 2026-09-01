@@ -11,134 +11,27 @@ author_profile: true
   Alongside my research, I have been actively involved in academic teaching and student mentoring. Below is an overview of the university courses and instructional activities I have contributed to as a teaching assistant and instructor.
 </div>
 
-<!-- ==================== ACADEMIC YEAR 2024 – 2025 ==================== -->
+{% comment %}
+  Cards are generated from the _teaching collection - one source of truth. To
+  add a course, add a file to _teaching/ with: role, level, code, institution,
+  academic_year, order, logo, description and optionally link / short_title /
+  logo_square. `order` controls the position within its academic year, and the
+  year sections follow that same order. Markup: _includes/course-card.html.
+  The collection is output: false - these are card data, not standalone pages.
+{% endcomment %}
+{% assign courses = site.teaching | sort: "order" %}
+{% assign by_year = courses | group_by: "academic_year" %}
+
+{% for year in by_year %}
+<!-- ==================== ACADEMIC YEAR {{ year.name }} ==================== -->
 <div class="teaching-year-section">
-  <h2 class="teaching-year-title">A.Y. 2024 – 2025</h2>
+  <h2 class="teaching-year-title">A.Y. {{ year.name }}</h2>
   <div class="teaching-year-hr"></div>
 </div>
 
 <div class="courses-grid">
-
-  <!-- COURSE 1: Programming 2 -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/17222/2024/9999?schemaid=16894" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Programming 2, University of Pavia (opens in new tab)">
-    <div class="course-card-modern">
-      <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
-      <div class="course-main">
-        <div class="course-badge-container">
-          <span class="badge-date">Tutor</span>
-          <span class="badge-level">BSc in Mathematics</span>
-          <span class="course-code-modern">ID: 507290</span>
-        </div>
-        <h3><span class="course-title-text">Programming 2</span></h3>
-        <div class="course-inst-text">University of Pavia</div>
-        <p class="course-desc">
-          Assisted students in mastering intermediate programming concepts, software design, and practical implementation frameworks tailored for mathematical computation.
-        </p>
-      </div>
-    </div>
-  </a>
-
-  <!-- COURSE 2: Programming 1 -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/13139/2024/9999?schemaid=16894" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Programming 1, University of Pavia (opens in new tab)">
-    <div class="course-card-modern">
-      <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
-      <div class="course-main">
-        <div class="course-badge-container">
-          <span class="badge-date">Tutor</span>
-          <span class="badge-level">BSc in Mathematics</span>
-          <span class="course-code-modern">ID: 507289</span>
-        </div>
-        <h3><span class="course-title-text">Programming 1</span></h3>
-        <div class="course-inst-text">University of Pavia</div>
-        <p class="course-desc">
-          Conducted practical lab sessions and grading for introductory computer science, focusing on foundational algorithms, problem-solving, and clean coding practices.
-        </p>
-      </div>
-    </div>
-  </a>
-
-  <!-- COURSE 3: Mathematics for Economics -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10017/insegnamenti/2024/7561/2024/9999?schemaid=16505" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Mathematics for Economics, University of Pavia (opens in new tab)">
-    <div class="course-card-modern">
-      <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
-      <div class="course-main">
-        <div class="course-badge-container">
-          <span class="badge-date">Tutor</span>
-          <span class="badge-level">BSc in Economics</span>
-          <span class="course-code-modern">ID: 500142</span>
-        </div>
-        <h3><span class="course-title-text">Mathematics</span></h3>
-        <div class="course-inst-text">University of Pavia</div>
-        <p class="course-desc">
-          Provided instructional support and tutorial sessions covering calculus, linear algebra, and optimization problems applied to economic models.
-        </p>
-      </div>
-    </div>
-  </a>
-
-  <!-- COURSE 4: Dynamical Systems 2024/2025 -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10063/insegnamenti/2024/9502/2024/1?schemaid=16900" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Dynamical Systems Theory and Numerical Methods, University of Pavia (opens in new tab)">
-    <div class="course-card-modern">
-      <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
-      <div class="course-main">
-        <div class="course-badge-container">
-          <span class="badge-date">Tutor</span>
-          <span class="badge-level">MSc in Math &amp; Bioeng</span>
-          <span class="course-code-modern">ID: 502886</span>
-        </div>
-        <h3><span class="course-title-text">Dynamical Systems: Theory &amp; Numerical Methods</span></h3>
-        <div class="course-inst-text">University of Pavia</div>
-        <p class="course-desc">
-          Supported data science and engineering students with the analysis of continuous and discrete systems, biological modeling, and numerical implementations.
-        </p>
-      </div>
-    </div>
-  </a>
-
-  <!-- COURSE 5: IIS Simone Weil Module (no external link) -->
-  <div class="course-card-modern">
-    <img src="{{ base_path }}/images/weil.png" class="course-bg-watermark" alt="" style="border-radius: 0;">
-    <div class="course-main">
-      <div class="course-badge-container">
-        <span class="badge-date badge-instructor">Instructor</span>
-        <span class="badge-level">Skill Reinforcement</span>
-        <span class="course-code-modern">2025</span>
-      </div>
-      <h3>Targeted Mathematics Course</h3>
-      <div class="course-inst-text">IIS Simone Weil (Treviglio)</div>
-      <p class="course-desc">
-        Designed and delivered an intensive 10-hour module focusing on enhancing fundamental mathematics proficiencies and foundational mathematical concepts.
-      </p>
-    </div>
-  </div>
-
+{% for post in year.items %}
+{% include course-card.html post=post %}
+{% endfor %}
 </div>
-
-<!-- ==================== ACADEMIC YEAR 2023 – 2024 ==================== -->
-<div class="teaching-year-section">
-  <h2 class="teaching-year-title">A.Y. 2023 – 2024</h2>
-  <div class="teaching-year-hr"></div>
-</div>
-
-<div class="courses-grid">
-
-  <!-- COURSE 6: Dynamical Systems 2023/2024 -->
-  <a href="https://unipv.coursecatalogue.cineca.it/corsi/2023/10063/insegnamenti/2023/9502/2009/10004?schemaid=16006" target="_blank" rel="noopener noreferrer" class="course-card-link" aria-label="Course catalogue: Dynamical Systems Theory and Numerical Methods 2023/2024, University of Pavia (opens in new tab)">
-    <div class="course-card-modern">
-      <img src="{{ base_path }}/images/unipv.png" class="course-bg-watermark" alt="">
-      <div class="course-main">
-        <div class="course-badge-container">
-          <span class="badge-date">Tutor</span>
-          <span class="badge-level">MSc in Math &amp; Bioeng</span>
-          <span class="course-code-modern">ID: 502886</span>
-        </div>
-        <h3><span class="course-title-text">Dynamical Systems: Theory &amp; Numerical Methods</span></h3>
-        <div class="course-inst-text">University of Pavia</div>
-        <p class="course-desc">
-          Supported data science and engineering students with the analysis of continuous and discrete systems, biological modeling, and numerical implementations.
-        </p>
-      </div>
-    </div>
-  </a>
-
-</div>
+{% endfor %}

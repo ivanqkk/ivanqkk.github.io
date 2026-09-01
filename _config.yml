@@ -63,10 +63,19 @@ publication_category:
 
 # Site Settings
 teaser                   :  
+og_image                 : "og-image.png"   # 1200x630 social preview card in /images/
+
+# Author name variants to bold in rendered author lists (publication cards)
+author_aliases           : ["I. Cucchi", "Ivan Cucchi"]
 breadcrumbs              : false 
 words_per_minute         : 200
 future                   : true
 read_more                : "disabled" 
+
+# Atom feed - hidden: this site has no blog, so there is nothing to syndicate
+atom_feed:
+  hide                   : true
+
 talkmap_link             : true # Enabled to activate automated mapping or summary lists if supported by the layout
 
 comments:
@@ -96,6 +105,16 @@ exclude:
   - Gemfile
   - LICENSE
   - README
+  - README.md
+  - CONTRIBUTING.md
+  - Dockerfile
+  - docker-compose.yaml
+  - package.json
+  - markdown_generator
+  - scripts
+  - talkmap.ipynb
+  - talkmap.py
+  - talkmap_out.ipynb
   - tmp
   - vendor
 keep_files:
@@ -124,13 +143,12 @@ kramdown:
 
 # Collections configuration for structural pages
 collections:
+  # Course detail pages are not linked from anywhere: teaching.html renders every
+  # course inline and links out to the university catalogue. Kept as data only.
   teaching:
-    output: true
+    output: false
     permalink: /:collection/:path/
   publications:
-    output: true
-    permalink: /:collection/:path/
-  portfolio:
     output: true
     permalink: /:collection/:path/
   talks:
@@ -139,16 +157,6 @@ collections:
 
 # Markdown default values injection rules
 defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: false
-      share: true
-      related: true
   - scope:
       path: ""
       type: pages
@@ -187,7 +195,6 @@ timezone: Etc/UTC
 
 # Core Template Plugins
 plugins:
-  - jekyll-feed
   - jekyll-gist
   - jekyll-paginate
   - jekyll-sitemap
@@ -195,7 +202,6 @@ plugins:
   - jemoji
 
 whitelist:
-  - jekyll-feed
   - jekyll-gist
   - jekyll-paginate
   - jekyll-sitemap

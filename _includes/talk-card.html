@@ -1,0 +1,37 @@
+{%- comment -%}
+  One talk card. Expects `include.post` (a _talks document).
+  Badge style/label derive from `type`; the download button's label and icon
+  derive from the `slidesurl` filename, so a poster PDF renders as "Poster".
+{%- endcomment -%}
+{%- assign post = include.post -%}
+{%- assign badge = post.type | downcase -%}
+{%- if post.type contains '+' %}{% assign badge = 'hybrid' %}{% endif -%}
+{%- assign file = post.slidesurl | split: '/' | last -%}
+{%- if file contains 'poster' -%}
+  {%- assign dl_label = 'Poster' -%}{%- assign dl_icon = 'fa-image' -%}
+{%- else -%}
+  {%- assign dl_label = 'Slides' -%}
+  {%- if file contains '.pptx' %}{% assign dl_icon = 'fa-file-powerpoint' %}{% else %}{% assign dl_icon = 'fa-file-pdf' %}{% endif -%}
+{%- endif -%}
+  <div class="talk-card-modern">
+    <a href="{{ post.link }}" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="{{ post.card_aria | default: post.title }}"></a>
+    {%- if post.logo %}
+    <img src="{{ base_path }}/images/{{ post.logo }}" class="talk-bg-watermark" alt="">
+    {%- endif %}
+    <div class="talk-card-content">
+      <div class="talk-badge-container">
+        <span class="badge-type-{{ badge }}">{{ post.type | upcase }}</span>
+        <span class="talk-date-text">{{ post.date | date: "%d %b" }}</span>
+        <span class="talk-location-tag">{{ post.location }}</span>
+      </div>
+      <h3><span class="talk-title-text">{{ post.short_title | default: post.title }}</span></h3>
+      <p class="talk-venue-text">{{ post.venue_short | default: post.venue }}</p>
+    </div>
+    {%- if post.slidesurl %}
+    <div class="talk-card-footer">
+      <a href="{{ base_path }}/files/{{ file }}" download="{{ post.download_as | default: file }}" class="download-btn">
+        <i class="fa-solid {{ dl_icon }} download-icon" aria-hidden="true"></i> {{ dl_label }}
+      </a>
+    </div>
+    {%- endif %}
+  </div>
