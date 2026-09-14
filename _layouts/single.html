@@ -39,7 +39,7 @@ layout: default
         {% elsif page.thesis_type and page.date %}
           <p>{{ page.thesis_type }}{% if page.venue %} <i>{{ page.venue }}</i>{% endif %}, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
           {% if page.supervisor %}
-            <p>Supervisor: {{ page.supervisor }}</p>
+            <p>Supervisor{% if page.supervisor.size > 1 %}s{% endif %}: {{ page.supervisor | join: ", " }}</p>
           {% endif %}
         {% elsif page.venue and page.date %}
           <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>

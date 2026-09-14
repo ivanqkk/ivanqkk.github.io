@@ -204,6 +204,24 @@ author_profile: true
 
 <div class="theses-grid">
 
+  <!-- PHD THESIS -->
+  <div class="thesis-card-modern">
+    <img src="{{ base_path }}/images/unipv.png" class="thesis-bg-watermark" alt="">
+    <div class="thesis-main-content">
+      <div class="cv-meta-container cv-meta-container--sm">
+        <span class="badge-cv-date badge-sm">2026</span>
+        <span class="badge-cv-location badge-sm">PhD Thesis</span>
+      </div>
+      <h3><a href="{{ base_path }}/publication/2026-phd-thesis">Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability</a></h3>
+      <div class="cv-org-text cv-org-text--thesis">
+        Supervisors: Luca F. Pavarino, Giorgio Colombo | University of Pavia
+      </div>
+      <p class="cv-desc-text cv-desc-text--sm">
+        The work integrated atomistic Molecular Dynamics with Machine and Deep Learning to decode the functional profiles of biomolecules beyond static structural representations. Three biophysical domains were addressed: the functional profiling of kinase ligands through MOLECULE, a self-designed dual-modal deep neural network combining chemical fingerprints with dynamic structural fluctuations; the prediction of mutational protein stability by coupling plain MD with the Energy Decomposition Method; and the target-independent classification of SARS-CoV-2 neutralizing nanobody binding from the energetic distribution of the hypervariable CDR3 loop. Together, these contributions define a scalable computational triage methodology that connects instantaneous static predictors with expensive alchemical calculations, offering a cost-aware protocol for molecular prioritization in the design of selective small-molecule drugs and variant-proof biologics.
+      </p>
+    </div>
+  </div>
+
   <!-- MASTER'S THESIS -->
   <div class="thesis-card-modern">
     <img src="{{ base_path }}/images/unipv.png" class="thesis-bg-watermark" alt="">

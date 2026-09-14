@@ -43,7 +43,7 @@
         {% elsif post.thesis_type %}
           <p>{{ post.thesis_type }}{% if post.venue %} <i>{{ post.venue }}</i>{% endif %}, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
           {% if post.supervisor %}
-            <p>Supervisor: {{ post.supervisor }}</p>
+            <p>Supervisor{% if post.supervisor.size > 1 %}s{% endif %}: {{ post.supervisor | join: ", " }}</p>
           {% endif %}
         {% elsif post.collection == 'publications' %}
           <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>

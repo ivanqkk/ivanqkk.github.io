@@ -3,7 +3,8 @@ title: "Machine Learning Methods for Identifying Atrial Fibrillation in 12-lead 
 collection: publications
 category: theses
 thesis_type: "Master Thesis"
-supervisor: "Luca Franco Pavarino"
+supervisor:
+  - Luca Franco Pavarino
 permalink: /publication/2022-master-thesis
 excerpt: 'The work focused on identifying atrial fibrillation through the analysis of 12-lead ECG signals using supervised Machine Learning techniques. Explored and compared the performance of k-Nearest Neighbors, Random Forest, and Multilayer Perceptron classifiers. The study involved preprocessing clinical data, implementing classification models, and evaluating their accuracy in detecting cardiac arrhythmias. Integrated concepts from physiology, signal processing, and computational modeling to enhance understanding and support preventive diagnostics in cardiology.'
 date: 2022-11-24

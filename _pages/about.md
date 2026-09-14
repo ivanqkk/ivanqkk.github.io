@@ -37,48 +37,79 @@ description: "Personal website of Ivan Cucchi"
   </div>
 </div>
 
+<h2 class="home-section-title"><span aria-hidden="true">📣</span> News</h2>
+
+{% comment %}
+  Items live in _data/news.yml, newest first; only the first 5 are shown here.
+{% endcomment %}
+<div class="news-list">
+{%- for item in site.data.news limit: 5 %}
+  <div class="news-item">
+    <span class="tag-home-date">{{ item.date }}</span>
+    {%- if item.tag %}
+    <span class="tag-home-label">{{ item.tag }}</span>
+    {%- endif %}
+    <div class="news-item-text">
+      {%- if item.url -%}
+        {%- if item.url contains '://' -%}
+          <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="inline-link">{{ item.text }}</a>
+        {%- else -%}
+          <a href="{{ base_path }}{{ item.url }}" class="inline-link">{{ item.text }}</a>
+        {%- endif -%}
+      {%- else -%}
+        {{ item.text }}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endfor %}
+</div>
+
+<h2 class="home-section-title"><span aria-hidden="true">📚</span> Recent Publications</h2>
+
+{% comment %}
+  Pulled live from the _publications collection (journal articles only) so this
+  section never needs updating by hand. Full list lives at /publications/.
+{% endcomment %}
+{%- assign recent_papers = site.publications | where: "category", "manuscripts" | sort: "date" | reverse %}
+<div class="pub-grid">
+{%- for post in recent_papers limit: 2 %}
+{% include pub-card.html post=post %}
+{%- endfor %}
+</div>
+
+<div class="section-more">
+  <a href="{{ base_path }}/publications/" class="inline-link">View all publications <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</div>
+
 <h2 class="home-section-title"><span aria-hidden="true">🎓</span> Academic Background</h2>
 
 <div class="home-intro">
-  I am currently in the final stage of my Ph.D. in <a href="https://compmat.unipv.it/" target="_blank" rel="noopener noreferrer" class="inline-link">Computational Mathematics, Learning, and Data Science</a>, jointly offered by the <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer" class="inline-link">University of Pavia</a> and the <a href="https://www.usi.ch/it" target="_blank" rel="noopener noreferrer" class="inline-link">Università della Svizzera Italiana</a>, and I will defend my thesis soon. My doctoral research was conducted within the thematic program <em>High Performance Computing and Deep Learning Methods for Protein Evolution and Design</em>, where I developed machine learning and deep learning methodologies for computational chemistry and biomedical applications, supervised by professors <a href="https://sites.google.com/unipv.it/lucafp/home" target="_blank" rel="noopener noreferrer" class="inline-link">Luca F. Pavarino</a> and Giorgio Colombo.
+  I hold a Ph.D. in <a href="https://compmat.unipv.it/" target="_blank" rel="noopener noreferrer" class="inline-link">Computational Mathematics, Learning, and Data Science</a>, jointly offered by the <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer" class="inline-link">University of Pavia</a> and the <a href="https://www.usi.ch/it" target="_blank" rel="noopener noreferrer" class="inline-link">Università della Svizzera Italiana</a>, which I defended in September 2026. My doctoral research was conducted within the thematic program <em>High Performance Computing and Deep Learning Methods for Protein Evolution and Design</em>, where I developed machine learning and deep learning methodologies for computational chemistry and biomedical applications, supervised by professors <a href="https://sites.google.com/unipv.it/lucafp/home" target="_blank" rel="noopener noreferrer" class="inline-link">Luca F. Pavarino</a> and Giorgio Colombo. My thesis, <a href="{{ base_path }}/publication/2026-phd-thesis" class="inline-link">Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability</a>, coupled atomistic molecular dynamics with machine and deep learning to predict ligand modes of action, mutational protein stability, and nanobody binding.
 </div>
 
 <blockquote>
   My research background combines <strong>scientific machine learning, structural bioinformatics, molecular modeling, and statistical learning</strong>, with a focus on protein–ligand interactions, protein stability prediction, and allosteric mechanisms, including projects in low-data regimes.
 </blockquote>
 
-<div class="home-intro" style="margin-top: 1.5em; margin-bottom: 1em;">
-  I hold both a <strong>BSc and MSc in Mathematics</strong> from the University of Pavia. Below are the key structural details of my core research projects:
-</div>
-
 <div class="thesis-grid">
 
-  <!-- MASTER THESIS -->
-  <a href="{{ base_path }}/publication/2022-master-thesis" class="thesis-card-link" aria-label="2022 Master's Thesis, University of Pavia: Machine Learning Methods for Identifying Atrial Fibrillation in 12-lead ECGs">
+  <!-- PHD THESIS -->
+  <a href="{{ base_path }}/publication/2026-phd-thesis" class="thesis-card-link" aria-label="2026 PhD Thesis, University of Pavia: Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability">
     <div class="thesis-card">
       <div class="thesis-badge-container">
-        <span class="tag-home-date">2022</span>
-        <span class="tag-home-label">Master's Thesis</span>
+        <span class="tag-home-date">2026</span>
+        <span class="tag-home-label">PhD Thesis</span>
         <span class="tag-home-label" style="margin-left: auto;">University of Pavia</span>
       </div>
-      <h3><span class="thesis-title-text">Machine Learning Methods for Identifying Atrial Fibrillation in 12-lead ECGs</span></h3>
-      <p class="thesis-venue-text">Investigated the automated detection of atrial fibrillation using advanced supervised classification techniques applied to the public PTB-XL dataset, integrating digital signal processing with machine learning models.</p>
+      <h3><span class="thesis-title-text">Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability</span></h3>
+      <p class="thesis-venue-text">Coupled atomistic molecular dynamics with machine and deep learning across three biophysical domains — kinase ligand profiling, mutational protein stability, and target-independent nanobody binding — establishing a scalable computational triage protocol for molecular prioritization.</p>
     </div>
   </a>
 
-  <!-- BACHELOR THESIS -->
-  <a href="{{ base_path }}/publication/2019-bachelor-thesis" class="thesis-card-link" aria-label="2019 Bachelor's Thesis, University of Pavia: Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome">
-    <div class="thesis-card">
-      <div class="thesis-badge-container">
-        <span class="tag-home-date">2019</span>
-        <span class="tag-home-label">Bachelor's Thesis</span>
-        <span class="tag-home-label" style="margin-left: auto;">University of Pavia</span>
-      </div>
-      <h3><span class="thesis-title-text">Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome</span></h3>
-      <p class="thesis-venue-text">Developed and implemented numerical simulations of cardiac electrophysiology using biophysical models (such as the O’Hara–Rudy model) to reproduce and study the electrical dynamics of Long QT Syndrome.</p>
-    </div>
-  </a>
+</div>
 
+<div class="home-intro" style="margin-top: 1.5em;">
+  I also earned my <strong>BSc and MSc in Mathematics</strong> at the University of Pavia, with earlier theses on cardiac electrophysiology simulation and ECG-based arrhythmia classification — both listed on my <a href="{{ base_path }}/cv/" class="inline-link">CV</a>.
 </div>
 
 <div class="home-intro" style="margin-top: 2em; margin-bottom: 0;">

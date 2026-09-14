@@ -1,7 +1,7 @@
 {%- comment -%}
   One publication card. Expects `include.post` (a _publications document).
   Fields used: permalink, logo, date, venue_short, title, authors, card_aria,
-               supervisor, institution, paperurl, bibtexurl.
+               supervisor (list), institution, paperurl, bibtexurl.
 {%- endcomment -%}
 {%- assign post = include.post -%}
   <div class="pub-card-modern">
@@ -22,7 +22,7 @@
         {%- endfor -%}
       </div>
       {%- if post.supervisor %}
-      <div class="pub-venue">Supervisor: {{ post.supervisor }}{% if post.institution %} — {{ post.institution }}{% endif %}</div>
+      <div class="pub-venue">Supervisor{% if post.supervisor.size > 1 %}s{% endif %}: {{ post.supervisor | join: ", " }}{% if post.institution %} — {{ post.institution }}{% endif %}</div>
       {%- endif %}
     </div>
     <div class="pub-card-footer">

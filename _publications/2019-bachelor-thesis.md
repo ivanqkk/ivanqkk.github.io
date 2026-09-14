@@ -3,7 +3,8 @@ title: "Numerical Models and Cardiac Electrophysiology Simulations for Long QT S
 collection: publications
 category: theses
 thesis_type: "Bachelor Thesis"
-supervisor: "Luca Franco Pavarino"
+supervisor:
+  - Luca Franco Pavarino
 permalink: /publication/2019-bachelor-thesis
 excerpt: 'The work focused on modeling and simulating Long QT Syndrome (LQTS) through numerical representations of cardiac electrophysiology. Explored and implemented biophysical models such as Hodgkin-Huxley, Luo-Rudy, and O’Hara-Rudy to reproduce action potentials and ion current dynamics. Simulations were conducted to study the electrical behavior of cardiac cells under normal and pathological conditions. The study integrated concepts from cardiac physiology, mathematical modeling, and computational simulation to deepen the understanding of arrhythmogenic mechanisms and support research in cardiology.'
 date: 2019-04-17

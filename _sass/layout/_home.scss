@@ -209,6 +209,43 @@ html[data-theme="dark"] {
 }
 
 /* --------------------------------------------------------------------------
+   News list
+   Items come from _data/news.yml; see that file for the item fields.
+   -------------------------------------------------------------------------- */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  margin: 1.5em 0 3em 0;
+}
+
+.news-item {
+  @extend %home-card-base;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4em 0.7em;
+  padding: 0.9em 1.1em;
+
+  &:hover { @extend %home-card-lift; }
+}
+
+.news-item-text {
+  flex: 1 1 16em;
+  min-width: 0;
+  font-size: 0.95em;
+  line-height: 1.55;
+  color: var(--global-text-color);
+}
+
+/* "View all ..." link closing a section */
+.section-more {
+  margin: 1.2em 0 3em 0;
+  font-size: 0.95em;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
    Thesis cards
    -------------------------------------------------------------------------- */
 .thesis-grid {
