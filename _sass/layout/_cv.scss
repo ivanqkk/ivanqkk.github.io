@@ -147,12 +147,29 @@
   line-height: 1.4;
 }
 
+/* Holds one or more affiliation logos, stacked vertically. Direction is column
+   with align/justify swapped, so a single logo renders exactly as before
+   (horizontally centred, top-aligned) and the gap only kicks in from two up. */
 .cv-card-logo {
   width: 55px;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
   flex-shrink: 0;
+
+  /* Roles with several affiliations: a 2-wide grid, so four logos form a
+     square block instead of a very tall, thin strip down the card. */
+  &--multi {
+    width: 116px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: start;
+    justify-items: center;
+    align-items: center;
+    gap: 14px;
+  }
 
   img {
     max-width: 100%;
@@ -166,6 +183,15 @@
 @media (max-width: 600px) {
   .cv-card { flex-direction: column-reverse; }
   .cv-card-logo { width: 45px; margin-bottom: 12px; align-self: flex-start; }
+
+  /* Logos sit above the text once the card stacks, so a single row reads
+     better than a grid. Must stay after the rule above to win on source order. */
+  .cv-card-logo--multi {
+    width: 100%;
+    grid-template-columns: repeat(4, 42px);
+    justify-content: start;
+    gap: 12px;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -397,6 +423,13 @@
   min-height: 220px;
 
   &:hover { @extend %home-card-lift; }
+
+  /* Spans the full grid width, so the PhD thesis gets a row of its own above
+     the two earlier theses. Harmless once the grid collapses to one column. */
+  &--wide {
+    grid-column: 1 / -1;
+    min-height: 0;
+  }
 
   h3 {
     margin: 4px 0 3px 0 !important;

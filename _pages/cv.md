@@ -29,12 +29,18 @@ author_profile: true
       </div>
       <h3>Application Specialist in AI for Life Science</h3>
       <div class="cv-org-text">
-        <a href="https://www.su.se/english" target="_blank" rel="noopener noreferrer">Stockholm University</a>
+        <a href="https://swedenaifactory.se/" target="_blank" rel="noopener noreferrer">Sweden AI Factory</a> |
+        <a href="https://www.su.se/english" target="_blank" rel="noopener noreferrer">Stockholm University</a> &middot;
+        <a href="https://www.scilifelab.se/" target="_blank" rel="noopener noreferrer">SciLifeLab</a> &middot;
+        <a href="https://www.naiss.se/" target="_blank" rel="noopener noreferrer">NAISS</a>
       </div>
       <p class="cv-desc-text">As an Application Specialist in AI for Life Science, I work at the interface of SciLifeLab, NAISS, and the Sweden AI competence center, supporting life science researchers in the development and deployment of advanced AI and machine-learning solutions on national high-performance computing infrastructures. My responsibilities include curating and managing large, heterogeneous biological datasets; assisting with applications for computational resources; and designing end-to-end machine learning pipelines for applications such as microscopy image analysis, biomolecular structure prediction, genomics, and precision medicine. I also contribute to user support, training activities, and workshops, and collaborate with national and international research infrastructures to promote the effective adoption of AI methodologies in life science research.</p>
     </div>
-    <div class="cv-card-logo">
+    <div class="cv-card-logo cv-card-logo--multi">
+      <img src="{{ base_path }}/images/swedenaifactory.png" alt="Sweden AI Factory logo">
       <img src="{{ base_path }}/images/su.png" alt="Stockholm University logo">
+      <img src="{{ base_path }}/images/scilifelab.png" alt="SciLifeLab logo">
+      <img src="{{ base_path }}/images/naiss.jpeg" alt="NAISS logo">
     </div>
   </div>
 
@@ -47,12 +53,14 @@ author_profile: true
       </div>
       <h3>PhD Student</h3>
       <div class="cv-org-text">
-        <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a>
+        <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a> &middot;
+        <a href="https://www.usi.ch/it" target="_blank" rel="noopener noreferrer">Università della Svizzera Italiana</a>
       </div>
       <p class="cv-desc-text">PhD student in Computational Mathematics, Learning, and Data Science, enrolled in the thematic program titled <em>High Performance Computing and Deep Learning Methods for Protein Evolution and Design</em>. Research involves the analysis and prediction of protein stability, folding, and function, using data from molecular dynamics simulations and structural bioinformatics. Work includes designing hybrid AI models that combine sequence-based and structural features, with the goal of supporting drug discovery and therapeutic protein engineering. The project is carried out in collaboration with the University of Pavia and Università della Svizzera italiana (USI) in Lugano, with results published in peer-reviewed scientific journals.</p>
     </div>
     <div class="cv-card-logo">
       <img src="{{ base_path }}/images/unipv.png" alt="University of Pavia logo">
+      <img src="{{ base_path }}/images/usi.png" alt="Università della Svizzera Italiana logo">
     </div>
   </div>
 
@@ -205,7 +213,7 @@ author_profile: true
 <div class="theses-grid">
 
   <!-- PHD THESIS -->
-  <div class="thesis-card-modern">
+  <div class="thesis-card-modern thesis-card-modern--wide">
     <img src="{{ base_path }}/images/unipv.png" class="thesis-bg-watermark" alt="">
     <div class="thesis-main-content">
       <div class="cv-meta-container cv-meta-container--sm">
