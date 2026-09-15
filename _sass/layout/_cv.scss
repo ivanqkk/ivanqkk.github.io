@@ -185,12 +185,18 @@
   .cv-card-logo { width: 45px; margin-bottom: 12px; align-self: flex-start; }
 
   /* Logos sit above the text once the card stacks, so a single row reads
-     better than a grid. Must stay after the rule above to win on source order. */
+     better than a grid. Flex rather than fixed tracks, so two and four logos
+     both pack left with no empty columns trailing behind them.
+     Must stay after the rule above to win on source order. */
   .cv-card-logo--multi {
     width: 100%;
-    grid-template-columns: repeat(4, 42px);
-    justify-content: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 12px;
+
+    img { width: 42px; }
   }
 }
 
