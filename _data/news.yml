@@ -24,13 +24,11 @@
   text: "Defended my PhD thesis, Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability, at the University of Pavia."
   url: "/publication/2026-phd-thesis"
 
-# The two press items link to the articles until the "In the media" page
-# exists (phase 5 of the redesign), then they point to /media/.
 - date: "May 2026"
   dt: 2026-05
   tag: "Talk"
   text: "Spoke at Stockholm MLOps #35 on AI factories and enterprise AI productivity, for Mimer AI Factory."
-  url: "https://www.stockholmmlops.se/insights/unlocking-enterprise-ai-productivity-stockholm-mlops-event-35-may-2026"
+  url: "/media/#press-mlops-35"
 
 - date: "Feb 2026"
   dt: 2026-02
@@ -42,7 +40,7 @@
   dt: 2026-01
   tag: "Interview"
   text: "Interviewed with the MOLECULE team by Kiin Bio Weekly about why protein motion matters for drug action."
-  url: "https://newsletter.kiin.bio/p/molecule-why-protein-motion-changes"
+  url: "/media/#press-kiin-molecule"
 
 - date: "Sep 2025"
   dt: 2025-09

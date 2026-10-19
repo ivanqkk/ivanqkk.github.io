@@ -6,6 +6,8 @@ layout: default
   Order follows the redesign demo: back link, title, year/venue, authors,
   summary (front matter `excerpt`), topics, actions; then the full abstract
   (the document body) and the recommended citation (`citation`, APA).
+  "Covered in" lists the _data/press.yml items whose `publication` is this
+  page's slug, each linking to its card on /media/.
   The <h1> shares pub-<slug> with the card title, so it flies in on a page
   transition (layout/_transitions.scss).
 {%- endcomment -%}
@@ -42,6 +44,18 @@ layout: default
         {%- endif %}
         {% include cite-button.html pub=page class="ui-btn ui-btn--secondary" %}
       </div>
+
+      {%- assign coverage = site.data.press | where: "publication", vt_slug | sort: "date" | reverse %}
+      {%- if coverage.size > 0 %}
+      <aside class="covered" aria-labelledby="covered-head">
+        <p class="covered-head" id="covered-head">Covered in</p>
+        <ul class="covered-list">
+          {%- for item in coverage %}
+          <li><a class="covered-item" href="{{ base_path }}/media/#press-{{ item.id }}">{% include icon.html name="mic" %}<span><strong>{{ item.outlet }}</strong>, {{ item.kind | downcase }}, {{ item.date | date: "%b %Y" }}</span></a></li>
+          {%- endfor %}
+        </ul>
+      </aside>
+      {%- endif %}
 
       {%- assign body = content | strip %}
       {%- if body != "" %}

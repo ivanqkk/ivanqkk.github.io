@@ -37,7 +37,9 @@
 
 /* Same specificity as `.archive a` (which underlines every link); wins by order */
 a.link-btn,
-a.link-btn:hover { text-decoration: none; }
+a.link-btn:hover,
+a.ui-btn,
+a.ui-btn:hover { text-decoration: none; }
 
 .ui-btns {
   display: flex;

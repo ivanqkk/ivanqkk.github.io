@@ -1,0 +1,38 @@
+# Press coverage: the "In the media" page (_pages/media.md), the home page
+# section and the "Covered in" box on publication pages.
+#
+# Fields per item:
+#   id           (required) short unique id; the card gets id="press-<id>"
+#   outlet       (required) publication or site name
+#   kind         (required) e.g. "Interview", "Event report"
+#   date         (required) YYYY-MM-DD
+#   title, url   (required) the article
+#   author       (optional) shown as "By <author>"
+#   summary      (optional) one or two sentences
+#   quote        (optional) a short quote shown next to the card
+#   quote_by     (optional) caption of the quote; default "Ivan Cucchi, in the <kind>"
+#   publication  (optional) slug of the publication it covers (the file name
+#                without the date, lower case, e.g. "molecule"); adds an
+#                "About the paper" button and a "Covered in" box on that page
+
+- id: mlops-35
+  outlet: Stockholm MLOps
+  kind: Event report
+  date: 2026-05-27
+  author: Jonas Laeben
+  title: "Unlocking Enterprise AI Productivity: Stockholm MLOps #35"
+  url: https://www.stockholmmlops.se/insights/unlocking-enterprise-ai-productivity-stockholm-mlops-event-35-may-2026
+  summary: "Report from Stockholm MLOps #35, where I spoke for Mimer AI Factory alongside Proxify, Crowd Collective, Munters, TRATON Group and IKEA about what breaks when AI moves into enterprise-scale operations."
+  quote: "AI factories are not about one model."
+  quote_by: Ivan Cucchi, speaking at the event
+
+- id: kiin-molecule
+  outlet: Kiin Bio Weekly
+  kind: Interview
+  date: 2026-01-14
+  author: Natasha Kilroy
+  title: "MOLECULE: Why Protein Motion Changes How We Classify Drug Action"
+  url: https://newsletter.kiin.bio/p/molecule-why-protein-motion-changes
+  summary: "A deep dive with the MOLECULE team on why protein motion matters for telling orthosteric from allosteric kinase ligands, and why the model is built to flag the cases it isn’t sure about."
+  quote: "This is a reliable instrument for real-life projects, not just academic ones"
+  publication: molecule

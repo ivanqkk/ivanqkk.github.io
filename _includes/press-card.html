@@ -1,0 +1,41 @@
+{%- comment -%}
+  One press item from _data/press.yml. Expects `include.item`.
+  The card has id="press-<id>" so news items and the "Covered in" box on a
+  publication page can link straight to it (/media/#press-<id>).
+  With `publication`, it links to that paper (matched on its slug). The quote
+  sits beside the card on wide screens. Styles: layout/_press.scss.
+{%- endcomment -%}
+{%- include base_path -%}
+{%- assign item = include.item -%}
+{%- assign kind = item.kind | downcase -%}
+{%- assign paper = nil -%}
+{%- if item.publication -%}
+  {%- for p in site.publications -%}
+    {%- assign p_slug = p.slug | slugify -%}
+    {%- if p_slug == item.publication %}{% assign paper = p %}{% endif -%}
+  {%- endfor -%}
+{%- endif -%}
+<article class="press" id="press-{{ item.id }}" style="view-transition-name: press-{{ item.id }}">
+  <div class="press-main">
+    <p class="press-meta"><span class="press-outlet">{{ item.outlet }}</span><span class="tag">{{ item.kind }}</span><time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: "%b %Y" }}</time></p>
+    <h3 class="press-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h3>
+    {%- if item.author %}
+    <p class="press-by">By {{ item.author }}</p>
+    {%- endif %}
+    {%- if item.summary %}
+    <p class="press-summary">{{ item.summary }}</p>
+    {%- endif %}
+    <div class="ui-btns">
+      <a class="ui-btn ui-btn--primary" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="ext" %}<span>Read the {{ kind }}</span></a>
+      {%- if paper %}
+      <a class="ui-btn ui-btn--secondary" href="{{ base_path }}{{ paper.url }}">{% include icon.html name="file" %}<span>About the paper</span></a>
+      {%- endif %}
+    </div>
+  </div>
+  {%- if item.quote %}
+  <figure class="press-quote">
+    <blockquote><p>“{{ item.quote }}”</p></blockquote>
+    <figcaption>{% if item.quote_by %}{{ item.quote_by }}{% else %}Ivan Cucchi, in the {{ kind }}{% endif %}</figcaption>
+  </figure>
+  {%- endif %}
+</article>

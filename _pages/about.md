@@ -55,6 +55,18 @@ scripts: [hero-network, timeline, cite]
   <a href="{{ base_path }}/publications/" class="inline-link">View all publications {% include icon.html name="arrow-right" %}</a>
 </div>
 
+<h2 class="home-section-title" id="media">In the media</h2>
+
+{% comment %}
+  The most recent item of _data/press.yml; all of them are on /media/.
+{% endcomment %}
+{%- assign latest_press = site.data.press | sort: "date" | reverse | first %}
+{% include press-card.html item=latest_press %}
+
+<div class="section-more">
+  <a href="{{ base_path }}/media/" class="inline-link">All coverage {% include icon.html name="arrow-right" %}</a>
+</div>
+
 <h2 class="home-section-title" id="background">Academic background</h2>
 
 <div class="home-intro">
