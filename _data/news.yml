@@ -1,38 +1,63 @@
-# Recent news shown on the home page (_pages/about.md).
+# Recent news shown as a timeline on the home page (_pages/about.md,
+# _includes/news-timeline.html).
 #
-# Newest first — items are rendered in the order written here, and the home
-# page shows only the first 5, so older entries can stay in this file as an
-# archive without lengthening the page.
+# Newest first — items are rendered in the order written here.
 #
 # Fields per item:
-#   date  (required) short label for the pill, e.g. "Sep 2026" or "2026"
+#   date  (required) short label shown on the timeline, e.g. "Sep 2026"
+#   dt    (required) the same date in ISO form for <time datetime>, e.g. 2026-09
 #   text  (required) one sentence; plain text
-#   tag   (optional) second pill, e.g. "Milestone", "Paper", "Talk"
+#   tag   (optional) pill next to the date, e.g. "Milestone", "Paper", "Talk"
 #   url   (optional) makes the text a link. Site-relative paths start with "/"
 #         ("/publications/"); anything containing "://" is treated as external
 #         and opens in a new tab.
 
+- date: "Oct 2026"
+  dt: 2026-10
+  tag: "Workshop"
+  text: "Taught the Generative AI for Life Science workshop for Sweden AI Factory, from autoencoders to protein language models."
+  url: "/talks/"
+
 - date: "Sep 2026"
+  dt: 2026-09
   tag: "Milestone"
   text: "Defended my PhD thesis, Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability, at the University of Pavia."
   url: "/publication/2026-phd-thesis"
 
+# The two press items link to the articles until the "In the media" page
+# exists (phase 5 of the redesign), then they point to /media/.
+- date: "May 2026"
+  dt: 2026-05
+  tag: "Talk"
+  text: "Spoke at Stockholm MLOps #35 on AI factories and enterprise AI productivity, for Mimer AI Factory."
+  url: "https://www.stockholmmlops.se/insights/unlocking-enterprise-ai-productivity-stockholm-mlops-event-35-may-2026"
+
 - date: "Feb 2026"
+  dt: 2026-02
   tag: "New role"
   text: "Joined Stockholm University and Sweden AI Factory as Application Specialist in AI for Life Science, based at SciLifeLab within the Arne Elofsson Lab."
   url: "/cv/"
 
+- date: "Jan 2026"
+  dt: 2026-01
+  tag: "Interview"
+  text: "Interviewed with the MOLECULE team by Kiin Bio Weekly about why protein motion matters for drug action."
+  url: "https://newsletter.kiin.bio/p/molecule-why-protein-motion-changes"
+
 - date: "Sep 2025"
+  dt: 2025-09
   tag: "Talk"
   text: "Presented at the 5th Young Applied Mathematicians Conference, University of Padua."
   url: "/talks/"
 
 - date: "Sep 2025"
+  dt: 2025-09
   tag: "Paper"
   text: "MOLECULE, our dual-modal deep neural network for predicting ligand modes of action, was published in the Journal of Chemical Theory and Computation."
   url: "/publication/2025-09-11-Molecule"
 
 - date: "Feb 2025"
+  dt: 2025-02
   tag: "Paper"
   text: "Large-scale energy decomposition for the analysis of protein stability appeared in Cell Stress and Chaperones."
   url: "/publication/2025-02-01-Large-scale-energy-decomposition"

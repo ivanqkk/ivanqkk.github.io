@@ -4,8 +4,10 @@
    - All colors are tokenized so the palette lives in one place.
    - Surface/text/border hook into the theme's CSS custom properties so the
      page adapts automatically to light / dark / system modes.
-   - A single shared card base (.expertise-box, .thesis-card, .nav-card) avoids
-     the previous ~90% duplicated card CSS.
+   - A single shared card base (%home-card-*) is used by the thesis card here
+     and by the publication, talk, course and CV cards.
+   - The hero and the news timeline have partials of their own
+     (layout/_hero.scss, layout/_timeline.scss).
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -53,27 +55,19 @@
   &--tight { margin-top: -0.5em; }
 }
 
+/* Section headings, as in the redesign demo: heading font, sentence case,
+   no rule underneath. The first one follows the hero. */
 .home-section-title {
-  border-bottom: 2px solid var(--home-accent);
-  padding-bottom: 8px;
-  margin-top: 2.2em;
-  margin-bottom: 1.2em;
+  margin: 56px 0 0;
+  font-family: var(--font-head);
+  font-size: 1.5rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  font-size: 1.35em;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   color: var(--home-heading);
 
-  &--first { margin-top: 0.5em; }
-}
-
-.home-heading-plain {
-  margin-top: 2.5em;
-  margin-bottom: 1em;
-  font-size: 1.5em;
-  font-weight: 700;
-  color: var(--home-heading);
-  letter-spacing: -0.3px;
+  + .home-intro,
+  + blockquote { margin-top: 14px; }
 }
 
 .inline-link {
@@ -156,78 +150,75 @@
 }
 
 /* --------------------------------------------------------------------------
-   Expertise grid
+   "What I work on": three focus areas, a list on small screens and three
+   columns with dividers on wide ones
    -------------------------------------------------------------------------- */
-.expertise-grid {
+.focus {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin: 2em 0 3em 0;
-}
+  grid-template-columns: minmax(0, 1fr);
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
 
-.expertise-box {
-  @extend %home-card-base;
-  padding: 22px 18px;
-  text-align: center;
-
-  &:hover { @extend %home-card-lift; }
-
-  .expertise-icon {
-    width: 40px;
-    height: 40px;
-    margin: 0 auto 12px;
-    border-radius: 10px;
-    background: var(--home-accent-soft-bg);
-    color: var(--home-accent);
+  li {
     display: grid;
-    place-items: center;
-
-    .ico { width: 22px; height: 22px; }
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 2px 14px;
+    margin: 0;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
   }
 
   h3 {
-    margin: 0 0 8px 0 !important;
-    color: var(--home-accent);
-    font-weight: 600;
-    font-size: 1.1em;
+    margin: 0;
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--home-heading);
   }
 
   p {
+    grid-column: 2;
     margin: 0;
-    font-size: 0.88em;
+    font-size: 0.98rem;
+    line-height: 1.55;
     color: var(--home-muted);
-    line-height: 1.45;
   }
 }
 
-/* --------------------------------------------------------------------------
-   News list
-   Items come from _data/news.yml; see that file for the item fields.
-   -------------------------------------------------------------------------- */
-.news-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8em;
-  margin: 1.5em 0 3em 0;
+.ico-wrap {
+  grid-row: span 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--home-accent);
+  background: var(--home-accent-soft-bg);
+
+  .ico { width: 20px; height: 20px; }
 }
 
-.news-item {
-  @extend %home-card-base;
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.4em 0.7em;
-  padding: 0.9em 1.1em;
+@media (min-width: 760px) {
+  .focus {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: none;
 
-  &:hover { @extend %home-card-lift; }
-}
+    li {
+      grid-template-columns: minmax(0, 1fr);
+      align-content: start;
+      padding: 4px 22px;
+      border-bottom: none;
+      border-left: 1px solid var(--line);
 
-.news-item-text {
-  flex: 1 1 16em;
-  min-width: 0;
-  font-size: 0.95em;
-  line-height: 1.55;
-  color: var(--global-text-color);
+      &:first-child { padding-left: 0; border-left: none; }
+    }
+
+    p { grid-column: auto; margin-top: 4px; }
+  }
+
+  .ico-wrap { grid-row: auto; margin-bottom: 12px; }
 }
 
 /* "View all ..." link closing a section */
@@ -306,141 +297,12 @@
   line-height: 1.4;
 }
 
-/* --------------------------------------------------------------------------
-   "Explore my work" navigation cards
-   -------------------------------------------------------------------------- */
-.nav-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5em;
-  margin-top: 1.5em;
-  margin-bottom: 3em;
-}
-
-.nav-card-link {
-  text-decoration: none !important;
-  color: inherit !important;
-  display: block;
-  border-radius: 14px;
-
-  &:focus-visible {
-    outline: 2px solid var(--home-accent);
-    outline-offset: 3px;
-  }
-}
-
-.nav-card {
-  @extend %home-card-base;
-  display: flex;
-  flex-direction: column;
-  min-height: 240px;          /* was fixed height: 240px -> could clip text */
-  border-radius: 14px;
-
-  .nav-card-link:hover &,
-  .nav-card-link:focus-visible & {
-    transform: translateY(-4px);
-    box-shadow: var(--home-card-shadow-hover);
-    border-color: var(--home-card-border-hover);
-  }
-}
-
-.nav-card-image {
-  height: 110px;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  background: var(--home-accent-soft-bg);
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s var(--home-ease);
-  }
-
-  .nav-card-link:hover & img { transform: scale(1.06); }
-}
-
-.nav-card-body {
-  padding: 1.2em;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  h3 {
-    margin: 0 0 6px 0 !important;
-    font-size: 1.08em !important;
-    font-weight: 600 !important;
-    color: var(--home-heading) !important;
-    line-height: 1.3;
-    transition: color 0.25s ease;
-  }
-
-  p {
-    margin: 0 !important;
-    font-size: 0.82em !important;
-    line-height: 1.4 !important;
-    color: var(--home-muted) !important;
-  }
-}
-
-.nav-card-link:hover .nav-card-body h3,
-.nav-card-link:focus-visible .nav-card-body h3 { color: var(--home-accent) !important; }
-
-.nav-card-action {
-  font-size: 0.8em;
-  font-weight: 700;
-  color: var(--home-accent);
-  display: inline-flex;
-  align-items: center;
-  margin-top: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  opacity: 0.85;
-  transition: opacity 0.25s ease, color 0.25s ease;
-
-  .ico { margin-left: 4px; transition: transform 0.25s ease; }
-}
-
-.nav-card-link:hover .nav-card-action,
-.nav-card-link:focus-visible .nav-card-action {
-  opacity: 1;
-  color: var(--home-accent-strong);
-
-  .ico { transform: translateX(3px); }
-}
-
-/* --------------------------------------------------------------------------
-   Responsive
-   -------------------------------------------------------------------------- */
-@media (max-width: 768px) {
-  .nav-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2em; }
-}
-
-@media (max-width: 600px) {
-  .expertise-grid { grid-template-columns: 1fr; gap: 15px; }
-}
-
-@media (max-width: 500px) {
-  .nav-grid { grid-template-columns: 1fr; gap: 1.2em; }
-  .nav-card { min-height: 210px; }
-  .nav-card-image { height: 90px; }
-}
-
 /* Respect users who ask for reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .expertise-box,
   .thesis-card,
   .thesis-card::before,
-  .nav-card,
-  .nav-card-image img,
-  .thesis-title-text,
-  .nav-card-action,
-  .nav-card-action .ico {
+  .thesis-title-text {
     transition: none !important;
   }
-  .expertise-box:hover,
-  .thesis-card-link:hover .thesis-card,
-  .nav-card-link:hover .nav-card { transform: none !important; }
+  .thesis-card-link:hover .thesis-card { transform: none !important; }
 }

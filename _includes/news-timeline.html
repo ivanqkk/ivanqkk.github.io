@@ -1,0 +1,33 @@
+{%- comment -%}
+  Vertical timeline. Expects `include.items`, a list of items with:
+    date (label), dt (ISO date for <time>), text, and optionally tag, url, sub.
+  `url`: site-relative paths start with "/"; anything with "://" opens in a
+  new tab. assets/js/timeline.js fills the line and lights the dots as the
+  page scrolls; without it, both are drawn full (see layout/_timeline.scss).
+{%- endcomment -%}
+{%- include base_path -%}
+<div class="timeline-wrap">
+  <span class="tl-progress" aria-hidden="true"></span>
+  <ol class="tl">
+  {%- for item in include.items %}
+    <li>
+      <span class="dot" aria-hidden="true"></span>
+      <div class="tl-meta"><time datetime="{{ item.dt }}">{{ item.date }}</time>{% if item.tag %}<span class="tag">{{ item.tag }}</span>{% endif %}</div>
+      <p class="tl-text">
+        {%- if item.url -%}
+          {%- if item.url contains '://' -%}
+            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.text }}</a>
+          {%- else -%}
+            <a href="{{ base_path }}{{ item.url }}">{{ item.text }}</a>
+          {%- endif -%}
+        {%- else -%}
+          {{ item.text }}
+        {%- endif -%}
+      </p>
+      {%- if item.sub %}
+      <p class="tl-sub">{{ item.sub }}</p>
+      {%- endif %}
+    </li>
+  {%- endfor %}
+  </ol>
+</div>
