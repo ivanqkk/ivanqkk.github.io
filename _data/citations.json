@@ -1,0 +1,18 @@
+{
+  "source": "OpenAlex",
+  "updated": "2026-10-19",
+  "works": {
+    "10.1016/j.cstres.2025.01.001": {
+      "count": 3,
+      "openalex": "W4406934502"
+    },
+    "10.1021/acs.jctc.4c01097": {
+      "count": 19,
+      "openalex": "W4403299465"
+    },
+    "10.1021/acs.jctc.5c01140": {
+      "count": 3,
+      "openalex": "W4414133932"
+    }
+  }
+}

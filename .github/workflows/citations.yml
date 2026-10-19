@@ -1,0 +1,38 @@
+name: Update citation counts
+
+# Monthly refresh of _data/citations.json from OpenAlex
+# (scripts/update_citations.py). Commits only when a count has changed.
+# Scheduled runs use the workflow file on the default branch.
+on:
+  schedule:
+    - cron: '0 6 1 * *'     # 06:00 UTC on the 1st of every month
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write           # This workflow pushes to the repository
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Fetch citation counts
+      run: python scripts/update_citations.py
+
+    - name: Commit changes
+      run: |
+        if git diff --quiet -- _data/citations.json && git ls-files --error-unmatch _data/citations.json >/dev/null 2>&1; then
+          echo "No change in citation counts"
+          exit 0
+        fi
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add _data/citations.json
+        git commit -m "Update citation counts from OpenAlex"
+        git push

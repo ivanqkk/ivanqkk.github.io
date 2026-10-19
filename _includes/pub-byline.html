@@ -6,6 +6,9 @@
   as their venue.
   `include.part`: "meta" (year + venue only), "people" (authors and
   supervisors only), or omitted for both — a card puts its title in between.
+  The meta line ends with "Cited by N" when _data/citations.json (filled
+  monthly from OpenAlex by scripts/update_citations.py) has a count above 0
+  for the DOI (`doi`, or a doi.org `paperurl`). It links to the citing works.
 {%- endcomment -%}
 {%- assign pub = include.pub -%}
 {%- if pub.thesis_type -%}
@@ -13,8 +16,13 @@
 {%- else -%}
   {%- assign pub_venue = pub.venue | default: pub.venue_short -%}
 {%- endif -%}
+{%- assign pub_doi = pub.doi | default: "" -%}
+{%- if pub_doi == "" and pub.paperurl contains "doi.org/" %}{% assign pub_doi = pub.paperurl | split: "doi.org/" | last %}{% endif -%}
+{%- assign pub_doi = pub_doi | downcase -%}
+{%- assign pub_cites = nil -%}
+{%- if pub_doi != "" %}{% assign pub_cites = site.data.citations.works[pub_doi] %}{% endif -%}
 {%- unless include.part == "people" %}
-<p class="pub-meta"><span><time datetime="{{ pub.date | date: '%Y-%m-%d' }}">{{ pub.date | date: "%Y" }}</time></span>{% if pub_venue != "" %}<span>{{ pub_venue }}</span>{% endif %}</p>
+<p class="pub-meta"><span><time datetime="{{ pub.date | date: '%Y-%m-%d' }}">{{ pub.date | date: "%Y" }}</time></span>{% if pub_venue != "" %}<span>{{ pub_venue }}</span>{% endif %}{% if pub_cites and pub_cites.count > 0 %}<a class="pub-cites" href="https://openalex.org/works?filter=cites:{{ pub_cites.openalex }}" target="_blank" rel="noopener noreferrer" title="Counted by {{ site.data.citations.source }}, updated {{ site.data.citations.updated | date: '%-d %b %Y' }}">Cited by {{ pub_cites.count }}<span class="sr-only"> (citing works on {{ site.data.citations.source }}, opens in a new tab)</span></a>{% endif %}</p>
 {%- endunless %}
 {%- unless include.part == "meta" %}
 {%- if pub.authors %}
