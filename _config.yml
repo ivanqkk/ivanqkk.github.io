@@ -111,6 +111,8 @@ exclude:
   - docker-compose.yaml
   - package.json
   - markdown_generator
+  - node_modules
+  - package-lock.json
   - scripts
   - talkmap.ipynb
   - talkmap.py

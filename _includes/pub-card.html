@@ -2,9 +2,12 @@
   One publication card. Expects `include.post` (a _publications document).
   Fields used: permalink, logo, date, venue_short, title, authors, card_aria,
                supervisor (list), institution, paperurl, bibtexurl.
+  The view-transition names (card-/pub-<slug>) let the title fly into the
+  publication page; _layouts/single.html uses the same pub-<slug>.
 {%- endcomment -%}
 {%- assign post = include.post -%}
-  <div class="pub-card-modern">
+{%- assign vt_slug = post.slug | slugify -%}
+  <div class="pub-card-modern" style="view-transition-name: card-{{ vt_slug }}">
     <a href="{{ base_path }}{{ post.permalink }}" class="card-details-overlay" aria-label="{{ post.card_aria | default: post.title | escape }}"></a>
     {%- if post.logo %}
     <img src="{{ base_path }}/images/{{ post.logo }}" class="pub-bg-watermark" alt="">
@@ -14,7 +17,7 @@
         <span class="pub-badge-year">{{ post.date | date: "%Y" }}</span>
         <span class="pub-badge-venue">{{ post.venue_short | default: post.venue }}</span>
       </div>
-      <h3><span class="pub-title-text">{{ post.title }}</span></h3>
+      <h3 style="view-transition-name: pub-{{ vt_slug }}"><span class="pub-title-text">{{ post.title }}</span></h3>
       <div class="pub-authors">
         {%- for a in post.authors -%}
           {%- if site.author_aliases contains a -%}<strong>{{ a }}</strong>{%- else -%}{{ a }}{%- endif -%}

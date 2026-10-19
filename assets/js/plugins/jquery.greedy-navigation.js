@@ -6,7 +6,8 @@
 */
 
 var $nav = $('#site-nav');
-var $btn = $('#site-nav button');
+// Only the overflow ("hamburger") button, not the theme toggle inside the list
+var $btn = $('#site-nav > button');
 var $vlinks = $('#site-nav .visible-links');
 var $vlinks_persist_tail = $vlinks.children("*.persist.tail");
 var $hlinks = $('#site-nav .hidden-links');

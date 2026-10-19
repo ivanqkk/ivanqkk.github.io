@@ -225,14 +225,31 @@
       }
     }
 
-    #theme-toggle {
-      a {
-        width: 25px;
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-      }
+    /* Theme toggle (assets/js/theme-toggle.js). Undoes the absolute
+       positioning that `.greedy-nav button` gives the overflow button. */
+    #theme-toggle .theme-btn {
+      position: relative;
+      right: auto;
+      width: 44px;
+      height: 44px;
+      margin-left: 0.5rem;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.3s var(--ease);
+
+      &:hover { border-color: var(--accent); }
+      &:active { transform: scale(0.92); }
+      &:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
     }
+
+    /* Without JavaScript the toggle cannot work; the system theme applies. */
+    .no-js & #theme-toggle { display: none; }
 
     a {
       position: relative;

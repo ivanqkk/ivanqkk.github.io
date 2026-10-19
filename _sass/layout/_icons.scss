@@ -21,13 +21,9 @@
   }
 }
 
-/* Theme toggle: show the icon of the theme you would switch to */
-#theme-toggle .ico { width: 20px; height: 20px; }
+/* Theme toggle: show the icon of the theme you would switch to. The script in
+   _includes/head.html always sets data-theme, so no system fallback is needed. */
+#theme-toggle .ico { width: 20px; height: 20px; vertical-align: 0; }
 
 html:not([data-theme="dark"]) #theme-toggle .ico-sun,
 html[data-theme="dark"] #theme-toggle .ico-moon { display: none; }
-
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) #theme-toggle .ico-sun { display: inline-block; }
-  html:not([data-theme]) #theme-toggle .ico-moon { display: none; }
-}

@@ -1,0 +1,43 @@
+/* ==========================================================================
+   VIEW TRANSITIONS
+   Cross-document transitions between pages (Chrome, Edge, Safari 18.2+;
+   other browsers just navigate). Named elements morph from one page to the
+   next instead of cross-fading with the rest:
+   - masthead, sidebar   stay put while the content changes
+   - nav-ind             the menu underline slides to the new item
+   - page                the main column fades out and slides in
+   - card-<slug>, pub-<slug>  a publication card and its title, which flies
+                         into the <h1> of the publication page
+   Names must be unique on a page, or the browser skips the transition.
+   ========================================================================== */
+
+.masthead { view-transition-name: masthead; }
+.sidebar  { view-transition-name: sidebar; }
+.nav-ind  { view-transition-name: nav-ind; }
+
+#main > .archive,
+#main > .page { view-transition-name: page; }
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+
+  ::view-transition-old(page) { animation: vt-out 0.18s ease-in both; }
+  ::view-transition-new(page) { animation: vt-in 0.38s var(--ease) 0.06s both; }
+  ::view-transition-group(*) {
+    animation-duration: 0.45s;
+    animation-timing-function: var(--ease);
+  }
+}
+
+@keyframes vt-out { to   { opacity: 0; transform: translateY(-8px); } }
+@keyframes vt-in  { from { opacity: 0; transform: translateY(14px); } }
+
+/* Theme toggle (assets/js/theme-toggle.js): the page is captured as a single
+   image and the new theme is revealed by a circle, so no element keeps a
+   name of its own and the default cross-fade is switched off. */
+html.theme-anim * { view-transition-name: none !important; }
+html.theme-anim::view-transition-old(root),
+html.theme-anim::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
