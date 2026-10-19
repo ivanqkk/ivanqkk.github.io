@@ -27,10 +27,7 @@
           mask-image: linear-gradient(to top, transparent 0, rgba(0, 0, 0, 0.25) 45%, #000 100%);
 }
 
-.hero-text {
-  position: relative;
-  max-width: 36ch;
-}
+.hero-text { position: relative; }
 
 .hero h1 {
   margin: 0;
@@ -39,11 +36,12 @@
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.025em;
+  max-width: 7.5em;   /* "AI for Life / Sciences" on two lines */
   color: var(--ink);
 }
 
 .hero-sub {
-  max-width: 44ch;
+  max-width: 48ch;    /* three lines from tablet width up */
   margin: 14px 0 0;
   font-size: 1.05rem;
   line-height: 1.55;

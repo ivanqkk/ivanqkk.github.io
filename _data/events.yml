@@ -27,8 +27,8 @@
   start: 2026-10-07T15:00:00+02:00
   end: 2026-10-08T16:30:00+02:00
   register_by: 2026-10-06T23:59:00+02:00
-  role: "Instructor, with Luca Panconi and Ashwin Mohanan."
-  past_role: instructor
+  role: "Support."
+  past_role: support
   summary: "A hands-on workshop on generative AI for life science: autoencoders for images, protein language models and an application to drug discovery, on real biomedical data."
   audience: "For researchers, data scientists and ML practitioners in life science. Basic Python expected."
   url: https://swedenaifactory.se/event/generative-ai-for-life-science/
