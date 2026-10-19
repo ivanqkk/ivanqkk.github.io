@@ -398,6 +398,9 @@ scripts: [events]
       </div>
       <p class="cv-desc-text">Regular blood donor through GeBlod, the Swedish blood donation network that supplies the roughly 100,000 people in Sweden who need a transfusion every year.</p>
     </div>
+    <div class="cv-card-logo">
+      <img src="{{ base_path }}/images/geblod.png" alt="GeBlod logo">
+    </div>
   </div>
   <div class="cv-card">
     <div class="cv-card-main">
