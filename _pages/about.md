@@ -31,7 +31,7 @@ scripts: [hero-network, timeline, cite, events]
 <h2 class="home-section-title" id="focus">What I work on</h2>
 
 <ul class="focus">
-  <li><span class="ico-wrap">{% include icon.html name="dna" %}</span><h3>Scientific ML</h3><p>Deep learning for structural biology, bioimaging, omics and wider life-science applications.</p></li>
+  <li><span class="ico-wrap">{% include icon.html name="network" %}</span><h3>Scientific ML</h3><p>Deep learning for structural biology, bioimaging, omics and wider life-science applications.</p></li>
   <li><span class="ico-wrap">{% include icon.html name="server" %}</span><h3>HPC and infrastructure</h3><p>Scaling AI pipelines on NAISS supercomputers for high-throughput life-science workflows.</p></li>
   <li><span class="ico-wrap">{% include icon.html name="pulse" %}</span><h3>Biomedical data</h3><p>Statistical learning and feature engineering on clinical signals and biobank data.</p></li>
 </ul>
