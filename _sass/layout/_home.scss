@@ -11,49 +11,34 @@
 /* --------------------------------------------------------------------------
    Design tokens
    -------------------------------------------------------------------------- */
+/* Aliases of the design tokens in theme/_default_light.scss, so they follow
+   light / dark / system without a dark block of their own. Only the shadows
+   differ per theme, because a shadow has to be stronger on a dark page. */
 :root {
-  --home-accent:            #2e7d32;
-  --home-accent-strong:     #1b5e20;
-  --home-accent-soft-bg:    #e8f5e9;
-  --home-accent-soft-text:  #2e7d32;
+  --home-accent:            var(--accent);
+  --home-accent-strong:     color-mix(in srgb, var(--accent) 82%, var(--ink));
+  --home-accent-soft-bg:    var(--accent-soft);
+  --home-accent-soft-text:  var(--accent);
 
-  /* Card surface sits on top of the page. In light mode both are white and
-     are separated by border + shadow (as before). */
-  --home-surface:           var(--global-bg-color);
-  --home-heading:           var(--global-text-color);
-  --home-muted:             #555;
+  --home-surface:           var(--surface);
+  --home-heading:           var(--ink);
+  --home-muted:             var(--muted);
 
-  --home-tag-bg:            #f5f5f5;
-  --home-tag-text:          #555;
+  --home-tag-bg:            var(--bg);
+  --home-tag-text:          var(--muted);
 
-  --home-card-border:       rgba(0, 0, 0, 0.08);
-  --home-card-border-hover: rgba(46, 125, 50, 0.22);
-  --home-card-shadow:       0 4px 6px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.03);
-  --home-card-shadow-hover: 0 12px 20px rgba(46, 125, 50, 0.06), 0 3px 8px rgba(0, 0, 0, 0.04);
+  --home-card-border:       var(--line);
+  --home-card-border-hover: color-mix(in srgb, var(--accent) 55%, var(--line));
+  --home-card-shadow:       0 1px 3px rgba(15, 35, 52, 0.05);
+  --home-card-shadow-hover: 0 14px 32px -20px rgba(15, 35, 52, 0.55);
 
-  --home-radius:            12px;
-  --home-ease:              cubic-bezier(0.16, 1, 0.3, 1);
+  --home-radius:            14px;
+  --home-ease:              var(--ease);
 }
 
-html[data-theme="dark"] {
-  --home-accent:            #81c784;
-  --home-accent-strong:     #a5d6a7;
-  --home-accent-soft-bg:    #2f3b30;
-  --home-accent-soft-text:  #a5d6a7;
-
-  /* Slightly lighter than the dark page background (#474747) so cards read as
-     elevated surfaces instead of blending into the page. */
-  --home-surface:           #525252;
-  --home-heading:           var(--global-text-color);
-  --home-muted:             #cfcfcf;
-
-  --home-tag-bg:            #5c5c5c;
-  --home-tag-text:          #e0e0e0;
-
-  --home-card-border:       rgba(255, 255, 255, 0.14);
-  --home-card-border-hover: rgba(129, 199, 132, 0.45);
-  --home-card-shadow:       0 4px 10px rgba(0, 0, 0, 0.35);
-  --home-card-shadow-hover: 0 14px 26px rgba(0, 0, 0, 0.45);
+@include dark-theme {
+  --home-card-shadow:       0 1px 3px rgba(0, 0, 0, 0.3);
+  --home-card-shadow-hover: 0 14px 32px -18px rgba(0, 0, 0, 0.8);
 }
 
 /* --------------------------------------------------------------------------
@@ -188,9 +173,16 @@ html[data-theme="dark"] {
   &:hover { @extend %home-card-lift; }
 
   .expertise-icon {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 12px;
+    border-radius: 10px;
+    background: var(--home-accent-soft-bg);
+    color: var(--home-accent);
+    display: grid;
+    place-items: center;
+
+    .ico { width: 22px; height: 22px; }
   }
 
   h3 {
@@ -408,7 +400,7 @@ html[data-theme="dark"] {
   opacity: 0.85;
   transition: opacity 0.25s ease, color 0.25s ease;
 
-  i { margin-left: 4px; transition: transform 0.25s ease; }
+  .ico { margin-left: 4px; transition: transform 0.25s ease; }
 }
 
 .nav-card-link:hover .nav-card-action,
@@ -416,7 +408,7 @@ html[data-theme="dark"] {
   opacity: 1;
   color: var(--home-accent-strong);
 
-  i { transform: translateX(3px); }
+  .ico { transform: translateX(3px); }
 }
 
 /* --------------------------------------------------------------------------
@@ -445,7 +437,7 @@ html[data-theme="dark"] {
   .nav-card-image img,
   .thesis-title-text,
   .nav-card-action,
-  .nav-card-action i {
+  .nav-card-action .ico {
     transition: none !important;
   }
   .expertise-box:hover,

@@ -23,7 +23,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   transition: background 0.2s ease, transform 0.2s ease;
 
-  svg { width: 18px; height: 18px; fill: currentColor; }
+  .ico { width: 18px; height: 18px; }
 
   &:hover { background: var(--home-accent-strong); transform: translateY(-1px); }
   &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 3px; }

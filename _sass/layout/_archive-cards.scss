@@ -9,16 +9,15 @@
 
 /* Supplementary tokens specific to these pages */
 :root {
-  --card-on-accent:      #ffffff;   /* text on a filled accent button */
+  --card-on-accent:      var(--accent-ink);   /* text on a filled accent button */
   --badge-neutral-bg:    rgba(128, 128, 128, 0.10);
   --badge-talk-text:     #1565c0;
   --badge-seminar-text:  #3949ab;
-  --badge-poster-text:   #e65100;
+  --badge-poster-text:   #b23c00;
   --badge-hybrid-text:   #5d4037;
 }
 
-html[data-theme="dark"] {
-  --card-on-accent:      #1b1b1b;   /* dark text reads on the light-green accent */
+@include dark-theme {
   --badge-neutral-bg:    rgba(255, 255, 255, 0.10);
   --badge-talk-text:     #64b5f6;
   --badge-seminar-text:  #9fa8da;
@@ -329,7 +328,7 @@ html[data-theme="dark"] {
   text-decoration: none !important;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 
-  i { margin-right: 4px; font-size: 1em; }
+  .ico { margin-right: 4px; }
 
   &:hover,
   &:focus-visible {

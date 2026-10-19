@@ -34,23 +34,21 @@ $navicon-height             : 4px;
 $sidebar-link-max-width     : 250px;
 $sidebar-screen-min-width   : 1024px;
 
-/* Dark theme for the site */
-html[data-theme="dark"] {
-    --global-base-color                 : #{$primary-color};
-    --global-bg-color                   : #{$background};
-    --global-footer-bg-color            : #{$background};
-    --global-border-color               : #{$light-gray};
-    --global-dark-border-color          : #{$background-light};
-    --global-code-background-color      : #fafafa;
-    --global-code-text-color            : #{$darker-gray};
-    --global-fig-caption-color          : #{$light-gray};
-    --global-link-color                 : #{$link};
-    --global-link-color-hover           : #{$link-dark};
-    --global-link-color-visited         : #{$link-light};
-    --global-masthead-link-color        : #{$text};
-    --global-masthead-link-color-hover  : #{$primary-color};
-    --global-text-color                 : #{$text};
-    --global-text-color-light           : #f3f3f3;
-    --global-thead-color                : #{$background-lighter};
+/* Dark values of the design tokens declared in theme/_default_light.scss.
+   The --global-* aliases there follow automatically. The dark-theme mixin
+   (_themes.scss) applies them for the toggle and for the system preference. */
+@include dark-theme {
+    --bg                                : #0F2334;
+    --surface                           : #153049;
+    --ink                               : #E7EEF4;
+    --muted                             : #A9BBCB;
+    --line                              : #27445E;
+    --accent                            : #5CC8C9;
+    --accent-ink                        : #0F2334;
+    --accent-soft                       : #1B4053;
+    --node                              : 92, 200, 201;
+    --warn                              : #F2B562;
+
+    color-scheme                        : dark;
 }
 

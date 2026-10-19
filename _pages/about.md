@@ -8,7 +8,7 @@ description: "Personal website of Ivan Cucchi"
 
 {% include base_path %}
 
-<h2 class="home-section-title home-section-title--first"><span aria-hidden="true">🔬</span> About Me</h2>
+<h2 class="home-section-title home-section-title--first">{% include icon.html name="flask" %} About Me</h2>
 
 <div class="home-intro">
   I am an <strong>Application Specialist in AI for Life Science</strong> at <a href="https://www.su.se/english" target="_blank" rel="noopener noreferrer" class="inline-link">Stockholm University</a>, working within the <a href="https://www.su.se/english/profiles/i/ivcu9753" target="_blank" rel="noopener noreferrer" class="inline-link">Department of Biochemistry and Biophysics</a> and based at <a href="https://www.scilifelab.se/" target="_blank" rel="noopener noreferrer" class="inline-link">SciLifeLab</a> (Campus Solna) in the <a href="https://bioinfo.se/" target="_blank" rel="noopener noreferrer" class="inline-link">Arne Elofsson Lab</a>.
@@ -21,23 +21,23 @@ description: "Personal website of Ivan Cucchi"
 <!-- CORE EXPERTISE GRID -->
 <div class="expertise-grid">
   <div class="expertise-box">
-    <span class="expertise-icon" aria-hidden="true">🧬</span>
+    <span class="expertise-icon">{% include icon.html name="dna" %}</span>
     <h3>Scientific ML</h3>
     <p>Deep learning architectures optimized for structural biology, bioimaging, omics, and general life science applications.</p>
   </div>
   <div class="expertise-box">
-    <span class="expertise-icon" aria-hidden="true">💻</span>
+    <span class="expertise-icon">{% include icon.html name="server" %}</span>
     <h3>HPC &amp; Infrastructure</h3>
     <p>Scaling AI pipelines on national supercomputing infrastructures (NAISS) for high-throughput life science workflows.</p>
   </div>
   <div class="expertise-box">
-    <span class="expertise-icon" aria-hidden="true">📊</span>
+    <span class="expertise-icon">{% include icon.html name="pulse" %}</span>
     <h3>Biomedical Data</h3>
     <p>Statistical learning and advanced feature engineering applied to complex clinical signals and biobank datasets.</p>
   </div>
 </div>
 
-<h2 class="home-section-title"><span aria-hidden="true">📣</span> News</h2>
+<h2 class="home-section-title">{% include icon.html name="news" %} News</h2>
 
 {% comment %}
   Items live in _data/news.yml, newest first; only the first 5 are shown here.
@@ -64,7 +64,7 @@ description: "Personal website of Ivan Cucchi"
 {%- endfor %}
 </div>
 
-<h2 class="home-section-title"><span aria-hidden="true">📚</span> Recent Publications</h2>
+<h2 class="home-section-title">{% include icon.html name="book" %} Recent Publications</h2>
 
 {% comment %}
   Pulled live from the _publications collection (journal articles only) so this
@@ -78,10 +78,10 @@ description: "Personal website of Ivan Cucchi"
 </div>
 
 <div class="section-more">
-  <a href="{{ base_path }}/publications/" class="inline-link">View all publications <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+  <a href="{{ base_path }}/publications/" class="inline-link">View all publications {% include icon.html name="arrow-right" %}</a>
 </div>
 
-<h2 class="home-section-title"><span aria-hidden="true">🎓</span> Academic Background</h2>
+<h2 class="home-section-title">{% include icon.html name="scholar" %} Academic Background</h2>
 
 <div class="home-intro">
   I hold a Ph.D. in <a href="https://compmat.unipv.it/" target="_blank" rel="noopener noreferrer" class="inline-link">Computational Mathematics, Learning, and Data Science</a>, jointly offered by the <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer" class="inline-link">University of Pavia</a> and the <a href="https://www.usi.ch/it" target="_blank" rel="noopener noreferrer" class="inline-link">Università della Svizzera Italiana</a>, which I defended in September 2026. My doctoral research was conducted within the thematic program <em>High Performance Computing and Deep Learning Methods for Protein Evolution and Design</em>, where I developed machine learning and deep learning methodologies for computational chemistry and biomedical applications, supervised by professors <a href="https://sites.google.com/unipv.it/lucafp/home" target="_blank" rel="noopener noreferrer" class="inline-link">Luca F. Pavarino</a> and Giorgio Colombo. My thesis, <a href="{{ base_path }}/publication/2026-phd-thesis" class="inline-link">Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability</a>, coupled atomistic molecular dynamics with machine and deep learning to predict ligand modes of action, mutational protein stability, and nanobody binding.
@@ -132,7 +132,7 @@ description: "Personal website of Ivan Cucchi"
           <p>Journal articles, conference papers, and active machine learning research manuscripts.</p>
         </div>
         <div class="nav-card-action">
-          View Papers <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          View Papers {% include icon.html name="arrow-right" %}
         </div>
       </div>
     </div>
@@ -150,7 +150,7 @@ description: "Personal website of Ivan Cucchi"
           <p>Conference presentations, invited biology seminars, and downloadable research posters.</p>
         </div>
         <div class="nav-card-action">
-          View Talks <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          View Talks {% include icon.html name="arrow-right" %}
         </div>
       </div>
     </div>
@@ -168,7 +168,7 @@ description: "Personal website of Ivan Cucchi"
           <p>Academic courses, computational tutorials, and student mentoring initiatives.</p>
         </div>
         <div class="nav-card-action">
-          View Courses <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          View Courses {% include icon.html name="arrow-right" %}
         </div>
       </div>
     </div>

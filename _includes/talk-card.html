@@ -8,10 +8,10 @@
 {%- if post.type contains '+' %}{% assign badge = 'hybrid' %}{% endif -%}
 {%- assign file = post.slidesurl | split: '/' | last -%}
 {%- if file contains 'poster' -%}
-  {%- assign dl_label = 'Poster' -%}{%- assign dl_icon = 'fa-image' -%}
+  {%- assign dl_label = 'Poster' -%}{%- assign dl_icon = 'image' -%}
 {%- else -%}
   {%- assign dl_label = 'Slides' -%}
-  {%- if file contains '.pptx' %}{% assign dl_icon = 'fa-file-powerpoint' %}{% else %}{% assign dl_icon = 'fa-file-pdf' %}{% endif -%}
+  {%- if file contains '.pptx' %}{% assign dl_icon = 'file-slides' %}{% else %}{% assign dl_icon = 'file-pdf' %}{% endif -%}
 {%- endif -%}
   <div class="talk-card-modern">
     <a href="{{ post.link }}" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="{{ post.card_aria | default: post.title }}"></a>
@@ -30,7 +30,7 @@
     {%- if post.slidesurl %}
     <div class="talk-card-footer">
       <a href="{{ base_path }}/files/{{ file }}" download="{{ post.download_as | default: file }}" class="download-btn">
-        <i class="fa-solid {{ dl_icon }} download-icon" aria-hidden="true"></i> {{ dl_label }}
+        {% include icon.html name=dl_icon class="download-icon" %} {{ dl_label }}
       </a>
     </div>
     {%- endif %}
