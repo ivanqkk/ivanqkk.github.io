@@ -219,6 +219,7 @@
   color: var(--global-text-color);
 
   &:last-child { border-bottom: none; }
+  &[hidden] { display: none; }   /* events not yet held (assets/js/events.js) */
 }
 
 .pub-title-link {

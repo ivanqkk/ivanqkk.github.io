@@ -3,6 +3,7 @@ layout: archive
 title: "Curriculum Vitae"
 permalink: /cv/
 author_profile: true
+scripts: [events]
 ---
 
 {% include base_path %}
@@ -158,6 +159,21 @@ author_profile: true
 
 <div class="education-grid">
 
+  <!-- DEGREE 0: PhD -->
+  <div class="edu-card-modern">
+    <img src="{{ base_path }}/images/unipv.png" class="edu-bg-watermark" alt="">
+    <div class="edu-main-content">
+      <div class="cv-meta-container cv-meta-container--sm">
+        <span class="badge-cv-date badge-sm">2023 – 2026</span>
+        <span class="badge-cv-location badge-sm">Pavia, Italy</span>
+      </div>
+      <h3>PhD in Computational Mathematics, Learning, and Data Science</h3>
+      <div class="cv-org-text cv-org-text--sub">
+        <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a> · <a href="https://www.usi.ch/it" target="_blank" rel="noopener noreferrer">Università della Svizzera Italiana</a>
+      </div>
+    </div>
+  </div>
+
   <!-- DEGREE 1: Master -->
   <div class="edu-card-modern">
     <img src="{{ base_path }}/images/unipv.png" class="edu-bg-watermark" alt="">
@@ -308,57 +324,8 @@ author_profile: true
 
 <!-- ==================== TALKS & PRESENTATIONS ==================== -->
 <h2 class="cv-section-title">{% include icon.html name="mic" %} Talks &amp; Presentations</h2>
-<div class="cv-flat-list-box">
-
-  <div class="pub-item">
-    <span class="badge-type-talk cv-list-badge">TALK</span>
-    <strong class="cv-date-inline">Sep 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-09-26-yamc" class="pub-title-link">5th Edition of Young Applied Mathematicians Conference</a>. University of Padua.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-seminar cv-list-badge">SEMINAR</span>
-    <strong class="cv-date-inline">May 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-05-26-beltrami" class="pub-title-link">Caffè Beltrami</a>. University of Pavia.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-poster cv-list-badge">POSTER</span>
-    <strong class="cv-date-inline">May 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-05-23-compmat2" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-poster cv-list-badge">POSTER</span>
-    <strong class="cv-date-inline">May 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-05-22-icam" class="pub-title-link">ICAM Workshop</a>. University of Pavia.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-poster cv-list-badge">POSTER</span>
-    <strong class="cv-date-inline">Apr 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-04-07-human-technopole" class="pub-title-link">1st Workshop on Data Science for Health and Biology</a>. HT &amp; PoliMi.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-talk cv-list-badge">TALK</span>
-    <strong class="cv-date-inline">Jan 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-01-31-bari" class="pub-title-link">3rd Workshop of UMI Group — Mathematics for Artificial Intelligence and Machine Learning</a>. University of Bari.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-poster cv-list-badge">POSTER</span>
-    <strong class="cv-date-inline">Jun 2024</strong> |
-    <a href="{{ base_path }}/talks/2024-06-21-sissa" class="pub-title-link">Scientific Machine Learning, emerging topics</a>. SISSA.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-hybrid cv-list-badge">TALK+POST</span>
-    <strong class="cv-date-inline">May 2024</strong> |
-    <a href="{{ base_path }}/talks/2024-05-08-compmat1" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.
-  </div>
-
-</div>
+{% comment %}Built from _talks/ and _data/events.yml (past events only).{% endcomment %}
+{% include cv-talk-list.html %}
 
 <!-- ==================== TEACHING ASSISTANCE ==================== -->
 <h2 class="cv-section-title">{% include icon.html name="board" %} Teaching Assistance</h2>
@@ -419,6 +386,19 @@ author_profile: true
 <!-- ==================== VOLUNTEERING ==================== -->
 <h2 class="cv-section-title">{% include icon.html name="heart" %} Volunteering</h2>
 <div class="cv-grid">
+  <div class="cv-card">
+    <div class="cv-card-main">
+      <div class="cv-meta-container">
+        <span class="badge-cv-date">2026 – Present</span>
+        <span class="badge-cv-location">Stockholm, Sweden</span>
+      </div>
+      <h3>Blood Donor</h3>
+      <div class="cv-org-text">
+        <a href="https://geblod.nu/" target="_blank" rel="noopener noreferrer">GeBlod</a>
+      </div>
+      <p class="cv-desc-text">Regular blood donor through GeBlod, the Swedish blood donation network that supplies the roughly 100,000 people in Sweden who need a transfusion every year.</p>
+    </div>
+  </div>
   <div class="cv-card">
     <div class="cv-card-main">
       <div class="cv-meta-container">
