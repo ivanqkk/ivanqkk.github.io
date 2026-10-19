@@ -12,6 +12,16 @@
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  /* Set the theme before first paint: the saved choice, else the system one.
+     assets/js/theme-toggle.js takes over from here. Without JavaScript the
+     CSS follows the system preference on its own.
+     Block comments only: compress_html joins lines. */
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    var sys = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', (saved === 'dark' || saved === 'light') ? saved : sys);
+  })();
 </script>
 
 <!-- For all browsers -->

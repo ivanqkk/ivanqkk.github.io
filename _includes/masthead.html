@@ -1,12 +1,21 @@
 {% include base_path %}
+{%- comment -%}
+  The selected item carries .nav-ind, the underline that slides between items
+  during a page transition (view-transition-name: nav-ind, _transitions.scss).
+  Publication pages live under /publication/, so they select "Publications"
+  by collection rather than by URL. Only the exact page gets aria-current, so
+  a section link stays clickable from its detail pages.
+{%- endcomment -%}
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button><span class="navicon"></span></button>
+      <nav id="site-nav" class="greedy-nav" aria-label="Main">
+        <button type="button" aria-label="More pages"><span class="navicon"></span></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
-            <a href="{{ base_path }}/">{{ site.title }}</a>
+          {%- assign home_selected = false -%}
+          {%- if page.url == '/' or page.url == '/index.html' %}{% assign home_selected = true %}{% endif %}
+          <li class="masthead__menu-item masthead__menu-item--lg persist {% if home_selected %}selected{% endif %}">
+            <a href="{{ base_path }}/"{% if home_selected %} aria-current="page"{% endif %}>{{ site.title }}{% if home_selected %}<span class="nav-ind" aria-hidden="true"></span>{% endif %}</a>
           </li>
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
@@ -14,12 +23,15 @@
             {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
-              <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
+            {%- assign selected = false -%}
+            {%- if page.url contains link.url and link.url != '/' %}{% assign selected = true %}{% endif -%}
+            {%- if link.url == '/publications/' and page.collection == 'publications' %}{% assign selected = true %}{% endif %}
+            <li class="masthead__menu-item {% if selected %}selected{% endif %}">
+              <a href="{{ domain }}{{ link.url }}"{% if page.url == link.url %} aria-current="page"{% endif %}>{{ link.title }}{% if selected %}<span class="nav-ind" aria-hidden="true"></span>{% endif %}</a>
             </li>
           {% endfor %}
           <li id="theme-toggle" class="masthead__menu-item persist tail">
-            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+            <button type="button" class="theme-btn" aria-label="Switch to dark theme">{% include icon.html name="moon" %}{% include icon.html name="sun" %}</button>
           </li>
         </ul>
         <ul class="hidden-links hidden"></ul>

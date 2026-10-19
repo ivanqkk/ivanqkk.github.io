@@ -1,0 +1,39 @@
+{%- comment -%}
+  "Talks & Presentations" rows of the CV (_pages/cv.md), built from the _talks
+  collection and the past events in _data/events.yml, newest first, in the
+  CV's list style. Talks link to their page; events to the event page.
+  Events that had not ended at build time are rendered hidden and
+  assets/js/events.js shows them once they have (data-event-past), so only
+  past events are listed.
+{%- endcomment -%}
+{%- include base_path -%}
+{%- assign now_s = site.time | date: "%s" | plus: 0 -%}
+{%- capture keys -%}
+  {%- for t in site.talks -%}{{ t.date | date: "%Y-%m-%d" }}|t|{{ t.url }};{%- endfor -%}
+  {%- for e in site.data.events -%}{{ e.start | date: "%Y-%m-%d" }}|e|{{ e.id }};{%- endfor -%}
+{%- endcapture -%}
+{%- assign keys = keys | split: ";" | sort | reverse -%}
+<div class="cv-flat-list-box">
+{%- for k in keys %}
+  {%- assign kp = k | split: "|" -%}
+  {%- if kp[1] == "t" -%}
+    {%- assign t = site.talks | where: "url", kp[2] | first -%}
+    {%- assign badge = t.type | downcase -%}
+    {%- assign label = t.type | upcase -%}
+    {%- if t.type contains '+' %}{% assign badge = 'hybrid' %}{% assign label = 'TALK+POST' %}{% endif %}
+  <div class="pub-item">
+    <span class="badge-type-{{ badge }} cv-list-badge">{{ label }}</span>
+    <strong class="cv-date-inline">{{ t.date | date: "%b %Y" }}</strong> |
+    <a href="{{ base_path }}{{ t.url }}" class="pub-title-link">{{ t.title }}</a>. {{ t.venue_short | default: t.venue }}.
+  </div>
+  {%- else -%}
+    {%- assign e = site.data.events | where: "id", kp[2] | first -%}
+    {%- assign end_s = e.end | date: "%s" | plus: 0 %}
+  <div class="pub-item" data-event-past="{{ e.id }}" data-end="{{ e.end | date_to_xmlschema }}"{% if end_s > now_s %} hidden{% endif %}>
+    <span class="badge-type-{{ e.kind | downcase }} cv-list-badge">{{ e.kind | upcase }}</span>
+    <strong class="cv-date-inline">{{ e.start | date: "%b %Y" }}</strong> |
+    <a href="{{ e.url }}" class="pub-title-link" target="_blank" rel="noopener noreferrer">{{ e.title }}</a>. {{ e.org }}{% if e.past_role %}, {{ e.past_role }}{% endif %}.
+  </div>
+  {%- endif -%}
+{%- endfor %}
+</div>

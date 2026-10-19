@@ -1,36 +1,76 @@
 ---
 layout: archive
-title: "Talks, Seminars and Posters"
+title: "Talks and events"
 permalink: /talks/
 author_profile: true
+scripts: [events]
 ---
 
 {% include base_path %}
 
 <div class="talks-intro">
-  An overview of scientific talks, invited seminars, and poster presentations delivered at international conferences, workshops, and academic institutions. Click on any card to view detailed information, or use the buttons to download the corresponding materials.
+  Workshops and courses I’m teaching, and the talks, seminars and posters I have presented at conferences, workshops and academic institutions. Open a card for the event page, or use the buttons to download the materials.
 </div>
 
 {% comment %}
-  Cards are generated from the _talks collection - one source of truth. To add a
-  talk, add a file to _talks/ with: type (Talk | Seminar | Poster | Talk +
-  Poster), date, location, link, venue_short, logo, and optionally slidesurl /
-  download_as / short_title. Card markup lives in _includes/talk-card.html.
-  Sections are grouped by year, newest first.
+  Upcoming events come from _data/events.yml (_includes/upcoming-events.html).
+  The year grid mixes the _talks collection and past events, newest first:
+  each item becomes a sortable "date|kind|key" string, so talks and events
+  interleave by date. Events that had not ended at build time are rendered
+  hidden in their year; assets/js/events.js moves them over once they end.
+  To add a talk, add a file to _talks/ with: type (Talk | Seminar | Poster |
+  Talk + Poster), date, location, link, venue_short, logo, and optionally
+  slidesurl / download_as / short_title. Card markup: _includes/talk-card.html.
 {% endcomment %}
-{% assign talks = site.talks | sort: "date" | reverse %}
-{% assign by_year = talks | group_by_exp: "t", "t.date | date: '%Y'" %}
+{% include upcoming-events.html heading="Upcoming" heading_id="upcoming" %}
 
-{% for year in by_year %}
-<!-- ==================== {{ year.name }} ==================== -->
-<div class="year-section">
-  <h2 class="year-title">{{ year.name }}</h2>
-  <div class="year-hr"></div>
-</div>
+{%- assign now_s = site.time | date: "%s" | plus: 0 -%}
+{%- capture keys -%}
+  {%- for t in site.talks -%}{{ t.date | date: "%Y-%m-%d" }}|t|{{ t.url }};{%- endfor -%}
+  {%- for e in site.data.events -%}{{ e.start | date: "%Y-%m-%d" }}|e|{{ e.id }};{%- endfor -%}
+{%- endcapture -%}
+{%- assign keys = keys | split: ";" | sort | reverse -%}
+{%- capture years -%}{%- for k in keys -%}{{ k | slice: 0, 4 }}{% unless forloop.last %};{% endunless %}{%- endfor -%}{%- endcapture -%}
+{%- assign years = years | split: ";" | uniq %}
 
-<div class="talks-grid">
-{% for post in year.items %}
-{% include talk-card.html post=post %}
-{% endfor %}
-</div>
+{% for year in years %}
+{%- comment -%} A year is hidden when all it holds is events that had not ended at build time. {%- endcomment -%}
+{%- assign visible = 0 -%}
+{%- for k in keys -%}
+  {%- assign kp = k | split: "|" -%}
+  {%- assign ky = kp[0] | slice: 0, 4 -%}
+  {%- if ky == year -%}
+    {%- if kp[1] == "t" -%}
+      {%- assign visible = visible | plus: 1 -%}
+    {%- else -%}
+      {%- assign ev = site.data.events | where: "id", kp[2] | first -%}
+      {%- assign end_s = ev.end | date: "%s" | plus: 0 -%}
+      {%- if end_s <= now_s %}{% assign visible = visible | plus: 1 %}{% endif -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor %}
+<section class="year-group" aria-labelledby="year-{{ year }}"{% if visible == 0 %} hidden{% endif %}>
+  <div class="year-section">
+    <h2 class="year-title" id="year-{{ year }}">{{ year }}</h2>
+    <div class="year-hr"></div>
+  </div>
+  <div class="talks-grid">
+  {%- for k in keys %}
+    {%- assign kp = k | split: "|" -%}
+    {%- assign ky = kp[0] | slice: 0, 4 -%}
+    {%- if ky == year -%}
+      {%- if kp[1] == "t" -%}
+        {%- assign talk = site.talks | where: "url", kp[2] | first %}
+  {% include talk-card.html post=talk %}
+      {%- else -%}
+        {%- assign ev = site.data.events | where: "id", kp[2] | first -%}
+        {%- assign end_s = ev.end | date: "%s" | plus: 0 -%}
+        {%- assign not_ended = false -%}
+        {%- if end_s > now_s %}{% assign not_ended = true %}{% endif %}
+  {% include talk-card.html event=ev hidden=not_ended %}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor %}
+  </div>
+</section>
 {% endfor %}

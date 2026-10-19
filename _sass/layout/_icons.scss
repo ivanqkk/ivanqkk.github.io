@@ -1,0 +1,29 @@
+/* ==========================================================================
+   ICONS
+   Inline SVG icons from _includes/icon.html. They are sized in em so they
+   follow the text around them, and coloured with currentColor.
+   ========================================================================== */
+
+.ico {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+  vertical-align: -0.2em;
+}
+
+/* Icon leading a section heading (home and CV) */
+.home-section-title,
+.cv-section-title {
+  .ico {
+    margin-right: 0.35em;
+    color: var(--home-accent);
+  }
+}
+
+/* Theme toggle: show the icon of the theme you would switch to. The script in
+   _includes/head.html always sets data-theme, so no system fallback is needed. */
+#theme-toggle .ico { width: 20px; height: 20px; vertical-align: 0; }
+
+html:not([data-theme="dark"]) #theme-toggle .ico-sun,
+html[data-theme="dark"] #theme-toggle .ico-moon { display: none; }

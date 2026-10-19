@@ -1,0 +1,155 @@
+/* ==========================================================================
+   IN THE MEDIA
+   Press cards (_includes/press-card.html) on /media/ and the home page, and
+   the "Covered in" box on publication pages (_layouts/publication.html).
+   Styles follow the redesign demo; buttons are .ui-btn (layout/_publications).
+   ========================================================================== */
+
+.press-list {
+  display: grid;
+  gap: 18px;
+}
+
+.press {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  /* Land a /media/#press-<id> link below the fixed masthead */
+  scroll-margin-top: 90px;
+
+  &:target { border-color: var(--accent); }
+
+  .ui-btns { margin-top: 18px; }
+}
+
+.press-main { padding: 22px 22px 24px; }
+
+.press-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.press-outlet {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.press-title {
+  margin: 10px 0 0;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+
+  a {
+    color: var(--ink);
+    text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0% 2px no-repeat;
+
+    &:hover { text-decoration: none; background-size: 100% 2px; }
+    &:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  }
+}
+
+.press-by {
+  margin: 6px 0 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.press-summary {
+  max-width: 60ch;
+  margin: 12px 0 0;
+}
+
+.press-quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+  padding: 24px 22px 26px;
+  background: var(--accent-soft);
+
+  blockquote {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-style: normal;
+  }
+
+  p {
+    margin: 0;
+    font-family: var(--font-head);
+    font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-indent: -0.42em;   /* hang the opening quote mark */
+    color: var(--ink);
+  }
+
+  figcaption {
+    font-family: var(--font-body);   /* the theme sets captions in a serif */
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+}
+
+@media (min-width: 760px) {
+  .press { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); }
+  .press-main,
+  .press-quote { padding: 28px; }
+}
+
+/* --------------------------------------------------------------------------
+   "Covered in" on a publication page
+   -------------------------------------------------------------------------- */
+.covered {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.covered-head {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.covered-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li { margin: 0; }
+}
+
+.covered-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--ink);
+  text-decoration: none;
+
+  .ico { color: var(--accent); }
+  &:hover { color: var(--ink); text-decoration: none; }
+  &:hover span { text-decoration: underline; text-underline-offset: 4px; }
+  &:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .press-title a { transition: background-size 0.35s var(--ease); }
+  .press { transition: border-color 0.25s; }
+}

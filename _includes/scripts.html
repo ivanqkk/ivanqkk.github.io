@@ -1,3 +1,12 @@
-<script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
+{% include base_path %}
+<script defer src="{{ base_path }}/assets/js/main.min.js"></script>
+<script defer src="{{ base_path }}/assets/js/theme-toggle.js"></script>
+{%- comment -%}
+  Page-specific scripts: list their names (without .js) in the front matter,
+  e.g. `scripts: [hero-network, timeline]`, and only that page loads them.
+{%- endcomment -%}
+{%- for script in page.scripts %}
+<script defer src="{{ base_path }}/assets/js/{{ script }}.js"></script>
+{%- endfor %}
 
 {% include analytics.html %}

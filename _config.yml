@@ -111,6 +111,8 @@ exclude:
   - docker-compose.yaml
   - package.json
   - markdown_generator
+  - node_modules
+  - package-lock.json
   - scripts
   - talkmap.ipynb
   - talkmap.py
@@ -174,9 +176,10 @@ defaults:
       path: ""
       type: publications
     values:
-      layout: single
+      layout: publication
       author_profile: true
       share: true
+      scripts: [cite]
   - scope:
       path: ""
       type: talks
@@ -191,7 +194,7 @@ sass:
   style: compressed 
 
 permalink: /:categories/:title/
-timezone: Etc/UTC 
+timezone: Europe/Stockholm  # event times in _data/events.yml are shown in Stockholm time
 
 # Core Template Plugins
 plugins:

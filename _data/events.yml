@@ -1,0 +1,68 @@
+# Workshops and courses: "Upcoming events" on the home page and the Talks
+# page (_pages/talks.html). Once an event has ended it moves among the talk
+# cards of its year. Jekyll splits upcoming / past at build time;
+# assets/js/events.js redoes it in the visitor's browser, adds the countdown
+# and the registration-deadline note. Without JavaScript every card still
+# shows its date.
+#
+# Fields per item:
+#   id            (required) short unique id
+#   title, kind   (required) e.g. kind "Workshop", "Course"
+#   format        (required) e.g. "Online", "Online, free" — shown as the location
+#   org           (required) organiser(s)
+#   start, end    (required) ISO date-time with offset, e.g. 2026-10-23T09:00:00+02:00
+#   register_by   (optional) end of registration, same format
+#   role          (optional) my role, shown while upcoming
+#   past_role     (optional) short role shown on the card once it is past
+#   summary, audience (optional)
+#   url           (required) event page
+#   register_url  (optional) registration form; hidden once registration closes
+#   logo          (optional) image in /images/ for the past card watermark
+
+- id: genai-ls
+  title: Generative AI for Life Science
+  kind: Workshop
+  format: Online
+  org: Sweden AI Factory
+  start: 2026-10-07T15:00:00+02:00
+  end: 2026-10-08T16:30:00+02:00
+  register_by: 2026-10-06T23:59:00+02:00
+  role: "Support."
+  past_role: support
+  summary: "A hands-on workshop on generative AI for life science: autoencoders for images, protein language models and an application to drug discovery, on real biomedical data."
+  audience: "For researchers, data scientists and ML practitioners in life science. Basic Python expected."
+  url: https://swedenaifactory.se/event/generative-ai-for-life-science/
+  register_url: https://nextcloud.naiss.se/apps/forms/s/wFWzRKWEP4JH7xqTNbPbfPFK
+  logo: swedenaifactory.png
+
+- id: xai-ls
+  title: Explainable AI for Life Science
+  kind: Workshop
+  format: Online
+  org: Sweden AI Factory
+  start: 2026-10-23T09:00:00+02:00
+  end: 2026-10-23T16:00:00+02:00
+  register_by: 2026-10-21T23:59:00+02:00
+  role: "Lecture at 09:20, “Explainable AI for Life Science: Turning Predictions into Biological Insights”, then instructor for the hands-on notebooks."
+  past_role: lecturer and instructor
+  summary: "A one-day workshop on explainable AI in the life sciences: interactive lectures, then hands-on notebooks applying SHAP, saliency maps and Grad-CAM to real medical datasets."
+  audience: "For researchers, data scientists and ML practitioners in life science. Basic Python expected."
+  url: https://swedenaifactory.se/event/explainable-ai-for-life-science/
+  register_url: https://nextcloud.naiss.se/apps/forms/s/ELwAFLf2fdRq7cnyGDj2HsJK
+  logo: swedenaifactory.png
+
+- id: primer
+  title: "Using AI in Life Science: A Primer"
+  kind: Course
+  format: Online, free
+  org: Sweden AI Factory, NBIS and SciLifeLab Training Hub
+  start: 2026-11-25T09:00:00+01:00
+  end: 2026-11-25T16:00:00+01:00
+  register_by: 2026-11-24T23:59:00+01:00
+  role: "Co-leading the xAI session at 13:00 with Marcin Kierczak: the black-box problem, real-life examples, and what explanations really tell us."
+  past_role: xAI session co-lead
+  summary: "A one-day primer on using AI consciously in research, covering agentic AI, AI-specific cybersecurity, explainable AI and the legal and ethical side, with cases from life science."
+  audience: "For doctoral students, postdocs and research support staff. No prerequisites."
+  url: https://scilifelab-training.github.io/using-ai-in-lifescience/2611/
+  register_url: https://nextcloud.naiss.se/apps/forms/s/jcqF8weesKyBRPsRJ9ppKbkM
+  logo: scilifelab.png

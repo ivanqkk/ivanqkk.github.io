@@ -1,0 +1,17 @@
+{%- comment -%}
+  "Cite" button for a publication; assets/js/cite.js opens the citation dialog
+  (_includes/cite-dialog.html) from it. It ships `hidden` and the script
+  reveals it, so without JavaScript there is no dead button — the BibTeX file
+  link next to it still works.
+  Expects `include.pub`; optional `include.class` (default: link-btn).
+  - APA: `citation`, without its HTML.
+  - BibTeX: the `bibtex` front matter field, passed as JSON with every space
+    written as \u0020 (compress_html would otherwise join its lines and
+    collapse its alignment), or else the .bib file named by
+    `bibtexurl`, fetched from /files/ on the same origin.
+{%- endcomment -%}
+{%- include base_path -%}
+{%- assign pub = include.pub -%}
+{%- if pub.citation or pub.bibtex or pub.bibtexurl -%}
+<button type="button" class="{{ include.class | default: 'link-btn' }}" hidden data-cite-title="{{ pub.title | escape }}"{% if pub.citation %} data-apa="{{ pub.citation | strip_html | strip_newlines | escape }}"{% endif %}{% if pub.bibtex %} data-bibtex="{{ pub.bibtex | jsonify | replace: " ", "\u0020" | escape }}"{% elsif pub.bibtexurl %} data-bib-url="{{ base_path }}/files/{{ pub.bibtexurl | split: '/' | last }}"{% endif %}>{% include icon.html name="quote" %}<span>Cite</span></button>
+{%- endif -%}

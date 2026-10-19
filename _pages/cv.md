@@ -3,21 +3,20 @@ layout: archive
 title: "Curriculum Vitae"
 permalink: /cv/
 author_profile: true
+scripts: [events]
 ---
 
 {% include base_path %}
 
 <div class="cv-download-wrap">
   <a href="{{ base_path }}/files/Curriculum_Vitae.pdf" download="Ivan_Cucchi_CV.pdf" class="cv-download-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/>
-    </svg>
+    {% include icon.html name="download" %}
     Download Full CV (PDF)
   </a>
 </div>
 
 <!-- ==================== PROFESSIONAL EXPERIENCE ==================== -->
-<h2 class="cv-section-title cv-section-title--first"><span aria-hidden="true">💼</span> Professional Experience</h2>
+<h2 class="cv-section-title cv-section-title--first">{% include icon.html name="briefcase" %} Professional Experience</h2>
 <div class="cv-grid">
 
   <!-- ROLE 1: SU -->
@@ -156,59 +155,54 @@ author_profile: true
 </div>
 
 <!-- ==================== EDUCATION ==================== -->
-<h2 class="cv-section-title"><span aria-hidden="true">🎓</span> Education</h2>
+<h2 class="cv-section-title">{% include icon.html name="scholar" %} Education</h2>
 
-<div class="education-grid">
+{% comment %}
+  Horizontal timeline, oldest to newest; a vertical one on narrow screens.
+  Each node shows the institution's logo. Styles: .edu-timeline in layout/_cv.scss.
+{% endcomment %}
+<ol class="edu-timeline">
 
-  <!-- DEGREE 1: Master -->
-  <div class="edu-card-modern">
-    <img src="{{ base_path }}/images/unipv.png" class="edu-bg-watermark" alt="">
-    <div class="edu-main-content">
-      <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2019 – 2022</span>
-        <span class="badge-cv-location badge-sm">Pavia, Italy</span>
-      </div>
-      <h3>Master in Mathematics</h3>
-      <div class="cv-org-text cv-org-text--sub">
-        <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- DEGREE 2: Bachelor -->
-  <div class="edu-card-modern">
-    <img src="{{ base_path }}/images/unipv.png" class="edu-bg-watermark" alt="">
-    <div class="edu-main-content">
-      <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2011 – 2019</span>
-        <span class="badge-cv-location badge-sm">Pavia, Italy</span>
-      </div>
-      <h3>Bachelor in Mathematics</h3>
-      <div class="cv-org-text cv-org-text--sub">
-        <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- DEGREE 3: High School -->
-  <div class="edu-card-modern">
-    <img src="{{ base_path }}/images/copernico.png" class="edu-bg-watermark" alt="">
-    <div class="edu-main-content">
-      <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2007 – 2011</span>
-        <span class="badge-cv-location badge-sm">Pavia, Italy</span>
-      </div>
+  <li class="edu-step">
+    <span class="edu-node" aria-hidden="true"><img src="{{ base_path }}/images/copernico.png" alt=""></span>
+    <div class="edu-text">
+      <p class="edu-dates"><time datetime="2007">2007</time> – <time datetime="2011">2011</time> · Pavia, Italy</p>
       <h3>Scientific High School Graduation</h3>
-      <div class="cv-org-text cv-org-text--sub">
-        <a href="https://copernico.edu.it/" target="_blank" rel="noopener noreferrer">Niccolò Copernico</a>
-      </div>
+      <p class="edu-org"><a href="https://copernico.edu.it/" target="_blank" rel="noopener noreferrer">Niccolò Copernico</a></p>
     </div>
-  </div>
+  </li>
 
-</div>
+  <li class="edu-step">
+    <span class="edu-node" aria-hidden="true"><img src="{{ base_path }}/images/unipv.png" alt=""></span>
+    <div class="edu-text">
+      <p class="edu-dates"><time datetime="2011">2011</time> – <time datetime="2019">2019</time> · Pavia, Italy</p>
+      <h3>Bachelor in Mathematics</h3>
+      <p class="edu-org"><a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a></p>
+    </div>
+  </li>
+
+  <li class="edu-step">
+    <span class="edu-node" aria-hidden="true"><img src="{{ base_path }}/images/unipv.png" alt=""></span>
+    <div class="edu-text">
+      <p class="edu-dates"><time datetime="2019">2019</time> – <time datetime="2022">2022</time> · Pavia, Italy</p>
+      <h3>Master in Mathematics</h3>
+      <p class="edu-org"><a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a></p>
+    </div>
+  </li>
+
+  <li class="edu-step">
+    <span class="edu-node edu-node--pair" aria-hidden="true"><img src="{{ base_path }}/images/unipv.png" alt=""><img src="{{ base_path }}/images/usi.png" alt=""></span>
+    <div class="edu-text">
+      <p class="edu-dates"><time datetime="2023">2023</time> – <time datetime="2026">2026</time> · Pavia, Italy</p>
+      <h3>PhD in Computational Mathematics, Learning, and Data Science</h3>
+      <p class="edu-org"><a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a> · <a href="https://www.usi.ch/it" target="_blank" rel="noopener noreferrer">Università della Svizzera Italiana</a></p>
+    </div>
+  </li>
+
+</ol>
 
 <!-- ==================== THESES ==================== -->
-<h2 class="cv-section-title"><span aria-hidden="true">📝</span> Theses</h2>
+<h2 class="cv-section-title">{% include icon.html name="file" %} Theses</h2>
 
 <div class="theses-grid">
 
@@ -269,30 +263,30 @@ author_profile: true
 </div>
 
 <!-- ==================== PUBLICATIONS ==================== -->
-<h2 class="cv-section-title"><span aria-hidden="true">📚</span> Publications</h2>
+<h2 class="cv-section-title">{% include icon.html name="book" %} Publications</h2>
 <div class="cv-flat-list-box">
   <div class="pub-item">
     <span class="pub-venue-tag">JCTC</span>
-    <span aria-hidden="true">📅</span> <strong>2025</strong> | <strong>Cucchi, I.</strong>, Frasnetti, E., Frigerio, F., Cinquini, F., Pavoni, S., Pavarino, L. F., &amp; Colombo, G. (2025).
+    {% include icon.html name="cal" %} <strong>2025</strong> | <strong>Cucchi, I.</strong>, Frasnetti, E., Frigerio, F., Cinquini, F., Pavoni, S., Pavarino, L. F., &amp; Colombo, G. (2025).
     <a href="{{ base_path }}/publication/2025-09-11-Molecule" class="pub-title-link">MOLECULE: Molecular-dynamics and Optimized deep Learning for Entropy-regularized Classification and Uncertainty-aware Ligand Evaluation</a>.
     <em>Journal of Chemical Theory and Computation</em>, 21(18), 9186–9199. <a href="https://doi.org/10.1021/acs.jctc.5c01140" target="_blank" rel="noopener noreferrer" class="pub-doi-link">[DOI]</a>
   </div>
   <div class="pub-item">
     <span class="pub-venue-tag">Cell Stress</span>
-    <span aria-hidden="true">📅</span> <strong>2025</strong> | Mansoor, S., Frasnetti, E., <strong>Cucchi, I.</strong>, Magni, A., Bonollo, G., Serapian, S. A., Pavarino, L. F., &amp; Colombo, G. (2025).
+    {% include icon.html name="cal" %} <strong>2025</strong> | Mansoor, S., Frasnetti, E., <strong>Cucchi, I.</strong>, Magni, A., Bonollo, G., Serapian, S. A., Pavarino, L. F., &amp; Colombo, G. (2025).
     <a href="{{ base_path }}/publication/2025-02-01-Large-scale-energy-decomposition" class="pub-title-link">LARGE SCALE ENERGY DECOMPOSITION FOR THE ANALYSIS OF PROTEIN STABILITY</a>.
     <em>Cell Stress and Chaperones</em>, 30(1), 57–68. <a href="https://doi.org/10.1016/j.cstres.2025.01.001" target="_blank" rel="noopener noreferrer" class="pub-doi-link">[DOI]</a>
   </div>
   <div class="pub-item">
     <span class="pub-venue-tag">JCTC</span>
-    <span aria-hidden="true">📅</span> <strong>2024</strong> | Frasnetti, E., <strong>Cucchi, I.</strong>, Pavoni, S., Frigerio, F., Cinquini, F., Serapian, S. A., Pavarino, L. F., &amp; Colombo, G. (2024).
+    {% include icon.html name="cal" %} <strong>2024</strong> | Frasnetti, E., <strong>Cucchi, I.</strong>, Pavoni, S., Frigerio, F., Cinquini, F., Serapian, S. A., Pavarino, L. F., &amp; Colombo, G. (2024).
     <a href="{{ base_path }}/publication/2024-10-10-Integrating-Molecular-Dynamics" class="pub-title-link">Integrating Molecular Dynamics and Machine Learning Algorithms to Predict the Functional Profile of Kinase Ligands</a>.
     <em>Journal of Chemical Theory and Computation</em>, 20(20), 9209–9229. <a href="https://doi.org/10.1021/acs.jctc.4c01097" target="_blank" rel="noopener noreferrer" class="pub-doi-link">[DOI]</a>
   </div>
 </div>
 
 <!-- ==================== ACADEMIC SUPERVISION ==================== -->
-<h2 class="cv-section-title"><span aria-hidden="true">👥</span> Academic Supervision</h2>
+<h2 class="cv-section-title">{% include icon.html name="users" %} Academic Supervision</h2>
 <div class="cv-card">
   <div class="cv-card-main">
     <div class="cv-meta-container">
@@ -309,71 +303,22 @@ author_profile: true
 </div>
 
 <!-- ==================== TALKS & PRESENTATIONS ==================== -->
-<h2 class="cv-section-title"><span aria-hidden="true">📢</span> Talks &amp; Presentations</h2>
-<div class="cv-flat-list-box">
-
-  <div class="pub-item">
-    <span class="badge-type-talk cv-list-badge">TALK</span>
-    <strong class="cv-date-inline">Sep 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-09-26-yamc" class="pub-title-link">5th Edition of Young Applied Mathematicians Conference</a>. University of Padua.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-seminar cv-list-badge">SEMINAR</span>
-    <strong class="cv-date-inline">May 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-05-26-beltrami" class="pub-title-link">Caffè Beltrami</a>. University of Pavia.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-poster cv-list-badge">POSTER</span>
-    <strong class="cv-date-inline">May 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-05-23-compmat2" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-poster cv-list-badge">POSTER</span>
-    <strong class="cv-date-inline">May 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-05-22-icam" class="pub-title-link">ICAM Workshop</a>. University of Pavia.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-poster cv-list-badge">POSTER</span>
-    <strong class="cv-date-inline">Apr 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-04-07-human-technopole" class="pub-title-link">1st Workshop on Data Science for Health and Biology</a>. HT &amp; PoliMi.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-talk cv-list-badge">TALK</span>
-    <strong class="cv-date-inline">Jan 2025</strong> |
-    <a href="{{ base_path }}/talks/2025-01-31-bari" class="pub-title-link">3rd Workshop of UMI Group — Mathematics for Artificial Intelligence and Machine Learning</a>. University of Bari.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-poster cv-list-badge">POSTER</span>
-    <strong class="cv-date-inline">Jun 2024</strong> |
-    <a href="{{ base_path }}/talks/2024-06-21-sissa" class="pub-title-link">Scientific Machine Learning, emerging topics</a>. SISSA.
-  </div>
-
-  <div class="pub-item">
-    <span class="badge-type-hybrid cv-list-badge">TALK+POST</span>
-    <strong class="cv-date-inline">May 2024</strong> |
-    <a href="{{ base_path }}/talks/2024-05-08-compmat1" class="pub-title-link">Spring Workshop COMPMAT</a>. University of Pavia.
-  </div>
-
-</div>
+<h2 class="cv-section-title">{% include icon.html name="mic" %} Talks &amp; Presentations</h2>
+{% comment %}Built from _talks/ and _data/events.yml (past events only).{% endcomment %}
+{% include cv-talk-list.html %}
 
 <!-- ==================== TEACHING ASSISTANCE ==================== -->
-<h2 class="cv-section-title"><span aria-hidden="true">🏫</span> Teaching Assistance</h2>
+<h2 class="cv-section-title">{% include icon.html name="board" %} Teaching Assistance</h2>
 <div class="cv-flat-list-box">
-  <div class="pub-item"><span aria-hidden="true">📅</span> <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/17222/2024/9999?schemaid=16894" target="_blank" rel="noopener noreferrer" class="pub-title-link">507290 — Programming 2</a> <span class="cv-muted">(BSc in Mathematics, University of Pavia)</span></div>
-  <div class="pub-item"><span aria-hidden="true">📅</span> <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/13139/2024/9999?schemaid=16894" target="_blank" rel="noopener noreferrer" class="pub-title-link">507289 — Programming 1</a> <span class="cv-muted">(BSc in Mathematics, University of Pavia)</span></div>
-  <div class="pub-item"><span aria-hidden="true">📅</span> <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10017/insegnamenti/2024/7561/2024/9999?schemaid=16505" target="_blank" rel="noopener noreferrer" class="pub-title-link">500142 — Mathematics</a> <span class="cv-muted">(BSc in Economics, University of Pavia)</span></div>
-  <div class="pub-item"><span aria-hidden="true">📅</span> <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10063/insegnamenti/2024/9502/2024/1?schemaid=16900" target="_blank" rel="noopener noreferrer" class="pub-title-link">502886 — Dynamical systems: theory and numerical methods (Year 2)</a> <span class="cv-muted">(MSc in Mathematics and Bioengineering, University of Pavia)</span></div>
-  <div class="pub-item"><span aria-hidden="true">📅</span> <strong>2023 – 2024</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2023/10063/insegnamenti/2023/9502/2009/10004?schemaid=16006" target="_blank" rel="noopener noreferrer" class="pub-title-link">502886 — Dynamical systems: theory and numerical methods (Year 1)</a> <span class="cv-muted">(MSc in Mathematics and Bioengineering, University of Pavia)</span></div>
+  <div class="pub-item">{% include icon.html name="cal" %} <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/17222/2024/9999?schemaid=16894" target="_blank" rel="noopener noreferrer" class="pub-title-link">507290 — Programming 2</a> <span class="cv-muted">(BSc in Mathematics, University of Pavia)</span></div>
+  <div class="pub-item">{% include icon.html name="cal" %} <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/13139/2024/9999?schemaid=16894" target="_blank" rel="noopener noreferrer" class="pub-title-link">507289 — Programming 1</a> <span class="cv-muted">(BSc in Mathematics, University of Pavia)</span></div>
+  <div class="pub-item">{% include icon.html name="cal" %} <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10017/insegnamenti/2024/7561/2024/9999?schemaid=16505" target="_blank" rel="noopener noreferrer" class="pub-title-link">500142 — Mathematics</a> <span class="cv-muted">(BSc in Economics, University of Pavia)</span></div>
+  <div class="pub-item">{% include icon.html name="cal" %} <strong>2024 – 2025</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2024/10063/insegnamenti/2024/9502/2024/1?schemaid=16900" target="_blank" rel="noopener noreferrer" class="pub-title-link">502886 — Dynamical systems: theory and numerical methods (Year 2)</a> <span class="cv-muted">(MSc in Mathematics and Bioengineering, University of Pavia)</span></div>
+  <div class="pub-item">{% include icon.html name="cal" %} <strong>2023 – 2024</strong> | <a href="https://unipv.coursecatalogue.cineca.it/corsi/2023/10063/insegnamenti/2023/9502/2009/10004?schemaid=16006" target="_blank" rel="noopener noreferrer" class="pub-title-link">502886 — Dynamical systems: theory and numerical methods (Year 1)</a> <span class="cv-muted">(MSc in Mathematics and Bioengineering, University of Pavia)</span></div>
 </div>
 
 <!-- ==================== TECHNICAL SKILLS ==================== -->
-<h2 class="cv-section-title"><span aria-hidden="true">🛠</span> Technical Skills</h2>
+<h2 class="cv-section-title">{% include icon.html name="code" %} Technical Skills</h2>
 
 ### **Programming Languages**
 <div class="grid-badges">
@@ -390,7 +335,7 @@ author_profile: true
 `NumPy` • `pandas` • `PyTorch` • `scikit-learn` • `SciPy` • `RDKit`
 
 <!-- ==================== CERTIFICATES & GRANTS ==================== -->
-<h2 class="cv-section-title"><span aria-hidden="true">🎖</span> Certificates &amp; Grants</h2>
+<h2 class="cv-section-title">{% include icon.html name="award" %} Certificates &amp; Grants</h2>
 <div class="cert-grid">
   <div class="cert-card-modern">
     <div class="cert-logo-box"><img src="{{ base_path }}/images/b2.png" alt=""></div>
@@ -419,8 +364,24 @@ author_profile: true
 </div>
 
 <!-- ==================== VOLUNTEERING ==================== -->
-<h2 class="cv-section-title"><span aria-hidden="true">🤝</span> Volunteering</h2>
+<h2 class="cv-section-title">{% include icon.html name="heart" %} Volunteering</h2>
 <div class="cv-grid">
+  <div class="cv-card">
+    <div class="cv-card-main">
+      <div class="cv-meta-container">
+        <span class="badge-cv-date">2026 – Present</span>
+        <span class="badge-cv-location">Stockholm, Sweden</span>
+      </div>
+      <h3>Blood Donor</h3>
+      <div class="cv-org-text">
+        <a href="https://geblod.nu/" target="_blank" rel="noopener noreferrer">GeBlod</a>
+      </div>
+      <p class="cv-desc-text">Regular blood donor through GeBlod, the Swedish blood donation network that supplies the roughly 100,000 people in Sweden who need a transfusion every year.</p>
+    </div>
+    <div class="cv-card-logo">
+      <img src="{{ base_path }}/images/geblod.png" alt="GeBlod logo">
+    </div>
+  </div>
   <div class="cv-card">
     <div class="cv-card-main">
       <div class="cv-meta-container">

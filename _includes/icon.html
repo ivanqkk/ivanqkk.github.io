@@ -1,0 +1,74 @@
+{%- comment -%}
+  Inline SVG icon, drawn on a 24px grid with a 1.75 stroke in currentColor.
+  Usage: {% include icon.html name="mail" %}
+         {% include icon.html name="cal" class="extra-class" %}
+  Icons are decorative (aria-hidden): the link or button around them carries
+  the accessible name. Output stays on one line so it is safe inside Markdown.
+{%- endcomment -%}
+{%- case include.name -%}
+  {%- comment -%} People, places, contact {%- endcomment -%}
+  {%- when "mail" -%}{%- capture _ico_path -%}<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>{%- endcapture -%}
+  {%- when "user" -%}{%- capture _ico_path -%}<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>{%- endcapture -%}
+  {%- when "users" -%}{%- capture _ico_path -%}<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/>{%- endcapture -%}
+  {%- when "building" -%}{%- capture _ico_path -%}<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/>{%- endcapture -%}
+  {%- when "pin" -%}{%- capture _ico_path -%}<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>{%- endcapture -%}
+  {%- when "globe" -%}{%- capture _ico_path -%}<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>{%- endcapture -%}
+
+  {%- comment -%} Profiles and social networks {%- endcomment -%}
+  {%- when "linkedin" -%}{%- capture _ico_path -%}<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.5v.01M12 17v-6.5M12 13.5a2.5 2.5 0 0 1 5 0V17"/>{%- endcapture -%}
+  {%- when "github" -%}{%- capture _ico_path -%}<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>{%- endcapture -%}
+  {%- when "scholar" -%}{%- capture _ico_path -%}<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>{%- endcapture -%}
+  {%- when "orcid" -%}{%- capture _ico_path -%}<circle cx="12" cy="12" r="9"/><path d="M9 8v.01M9 11v6M12.5 8h1.5a4.5 4.5 0 0 1 0 9h-1.5z"/>{%- endcapture -%}
+  {%- when "researchgate" -%}{%- capture _ico_path -%}<path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/>{%- endcapture -%}
+  {%- when "x" -%}{%- capture _ico_path -%}<path d="M4 4h4.5L20 20h-4.5z"/><path d="M20 4l-6.6 7.3M4 20l6.6-7.3"/>{%- endcapture -%}
+  {%- when "facebook" -%}{%- capture _ico_path -%}<path d="M15 3h-2a4 4 0 0 0-4 4v3H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h2z"/>{%- endcapture -%}
+  {%- when "mastodon" -%}{%- capture _ico_path -%}<path d="M20 13.5c0 3.7-3.2 4.9-5.8 5.3-2 .3-4.2.2-6.2-.3 0 1.3.6 2.1 2 2.3 1.7.3 3.5.1 5-.3v2c-1.4.6-3.2.7-5 .5-4-.4-6-2.5-6-6v-7.5C4 5.5 6.6 4 10 3.7c1.3-.1 2.7-.1 4 0 3.4.3 6 1.8 6 5.8z"/><path d="M8 14V9.5a1.5 1.5 0 0 1 3 0V12M11 12V9.5a1.5 1.5 0 0 1 3 0V14"/>{%- endcapture -%}
+  {%- when "bluesky" -%}{%- capture _ico_path -%}<path d="M12 11C10.5 8 7 4 4.5 4 3 4 3 5.5 3 7c0 2.5 1 5 4.5 5.5C4 13 4 16 6.5 17.5 9 19 11 15 12 13c1 2 3 6 5.5 4.5S20 13 16.5 12.5C20 12 21 9.5 21 7c0-1.5 0-3-1.5-3C17 4 13.5 8 12 11z"/>{%- endcapture -%}
+  {%- when "bitbucket" -%}{%- capture _ico_path -%}<path d="M3.5 4h17l-2.6 16H6.1z"/><path d="M9.6 15h4.8l1-6H8.6z"/>{%- endcapture -%}
+  {%- when "rss" -%}{%- capture _ico_path -%}<path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14"/><circle cx="6" cy="18" r="1" fill="currentColor"/>{%- endcapture -%}
+
+  {%- comment -%} Research topics and sections {%- endcomment -%}
+  {%- when "flask" -%}{%- capture _ico_path -%}<path d="M9 3h6M10 3v6L4.5 18.5A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.5-2.5L14 9V3"/><path d="M7 15h10"/>{%- endcapture -%}
+  {%- when "network" -%}{%- capture _ico_path -%}<path stroke-width="1.5" d="M4.5 4.5L12 8M4.5 4.5L12 16M4.5 12L12 8M4.5 12L12 16M4.5 19.5L12 8M4.5 19.5L12 16M12 8L19.5 12M12 16L19.5 12"/><g fill="currentColor" stroke="none"><circle cx="4.5" cy="4.5" r="2.5"/><circle cx="4.5" cy="12" r="2.5"/><circle cx="4.5" cy="19.5" r="2.5"/><circle cx="12" cy="8" r="2.5"/><circle cx="12" cy="16" r="2.5"/><circle cx="19.5" cy="12" r="2.5"/></g>{%- endcapture -%}
+  {%- when "dna" -%}{%- capture _ico_path -%}<path d="M7 3c0 5 10 7 10 12 0 3-2 5-2 6"/><path d="M17 3c0 5-10 7-10 12 0 3 2 5 2 6"/><path d="M8.5 7h7M8.5 17h7M10 12h4"/>{%- endcapture -%}
+  {%- when "server" -%}{%- capture _ico_path -%}<rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/>{%- endcapture -%}
+  {%- when "pulse" -%}{%- capture _ico_path -%}<path d="M3 12h4l3-8 4 16 3-8h4"/>{%- endcapture -%}
+  {%- when "news" -%}{%- capture _ico_path -%}<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/>{%- endcapture -%}
+  {%- when "book" -%}{%- capture _ico_path -%}<path d="M4 19V5a2 2 0 0 1 2-2h14v14H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/>{%- endcapture -%}
+  {%- when "briefcase" -%}{%- capture _ico_path -%}<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/>{%- endcapture -%}
+  {%- when "mic" -%}{%- capture _ico_path -%}<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>{%- endcapture -%}
+  {%- when "board" -%}{%- capture _ico_path -%}<rect x="3" y="4" width="18" height="12" rx="1"/><path d="M12 16v4M8 20h8"/>{%- endcapture -%}
+  {%- when "code" -%}{%- capture _ico_path -%}<path d="m8 7-5 5 5 5M16 7l5 5-5 5"/>{%- endcapture -%}
+  {%- when "award" -%}{%- capture _ico_path -%}<circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-3 5 3-1.5-7"/>{%- endcapture -%}
+  {%- when "heart" -%}{%- capture _ico_path -%}<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>{%- endcapture -%}
+
+  {%- comment -%} Documents and files {%- endcomment -%}
+  {%- when "file" -%}{%- capture _ico_path -%}<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5"/>{%- endcapture -%}
+  {%- when "file-pdf" -%}{%- capture _ico_path -%}<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h4.5"/>{%- endcapture -%}
+  {%- when "file-slides" -%}{%- capture _ico_path -%}<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5"/><rect x="8" y="12" width="8" height="5" rx="1"/>{%- endcapture -%}
+  {%- when "image" -%}{%- capture _ico_path -%}<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/>{%- endcapture -%}
+  {%- when "quote" -%}{%- capture _ico_path -%}<path d="M9 7H5v5h4v1a3 3 0 0 1-3 3M19 7h-4v5h4v1a3 3 0 0 1-3 3"/>{%- endcapture -%}
+  {%- when "download" -%}{%- capture _ico_path -%}<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>{%- endcapture -%}
+
+  {%- comment -%} Navigation and actions {%- endcomment -%}
+  {%- when "arrow-right" -%}{%- capture _ico_path -%}<path d="M5 12h14M13 6l6 6-6 6"/>{%- endcapture -%}
+  {%- when "back" -%}{%- capture _ico_path -%}<path d="M19 12H5M11 18l-6-6 6-6"/>{%- endcapture -%}
+  {%- when "ext" -%}{%- capture _ico_path -%}<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>{%- endcapture -%}
+  {%- when "link" -%}{%- capture _ico_path -%}<path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/>{%- endcapture -%}
+  {%- when "search" -%}{%- capture _ico_path -%}<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>{%- endcapture -%}
+  {%- when "copy" -%}{%- capture _ico_path -%}<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>{%- endcapture -%}
+  {%- when "check" -%}{%- capture _ico_path -%}<path d="M20 6 9 17l-5-5"/>{%- endcapture -%}
+  {%- when "close" -%}{%- capture _ico_path -%}<path d="M18 6 6 18M6 6l12 12"/>{%- endcapture -%}
+  {%- when "page" -%}{%- capture _ico_path -%}<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/>{%- endcapture -%}
+  {%- when "tag" -%}{%- capture _ico_path -%}<path d="M3 3h8l10 10-8 8L3 11z"/><path d="M7.5 7.5h.01"/>{%- endcapture -%}
+  {%- when "folder" -%}{%- capture _ico_path -%}<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>{%- endcapture -%}
+
+  {%- comment -%} Time and theme {%- endcomment -%}
+  {%- when "cal" -%}{%- capture _ico_path -%}<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/>{%- endcapture -%}
+  {%- when "clock" -%}{%- capture _ico_path -%}<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>{%- endcapture -%}
+  {%- when "sun" -%}{%- capture _ico_path -%}<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>{%- endcapture -%}
+  {%- when "moon" -%}{%- capture _ico_path -%}<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>{%- endcapture -%}
+  {%- when "contrast" -%}{%- capture _ico_path -%}<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>{%- endcapture -%}
+  {%- else -%}{%- assign _ico_path = nil -%}
+{%- endcase -%}
+{%- if _ico_path -%}<svg class="ico ico-{{ include.name }}{% if include.class %} {{ include.class }}{% endif %}" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">{{ _ico_path }}</svg>{%- endif -%}

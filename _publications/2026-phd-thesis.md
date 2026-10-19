@@ -19,7 +19,15 @@ logo: "unipv.png"
 slidesurl: 
 paperurl: 
 bibtexurl: 
-citation: "Cucchi, I. (2026). &quot;Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability.&quot; PhD thesis, <i>University of Pavia</i>. Supervisors: Luca Franco Pavarino and Giorgio Colombo."
+citation: "Cucchi, I. (2026). <i>Molecular dynamics-enhanced machine learning models for protein binding and stability</i> [Doctoral dissertation, University of Pavia]."
+topics: [Ligand binding, Protein stability, Nanobodies]
+bibtex: |
+  @phdthesis{cucchi2026thesis,
+    title  = {Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability},
+    author = {Cucchi, Ivan},
+    school = {University of Pavia},
+    year   = {2026}
+  }
 ---
 This thesis explores the integration of atomistic Molecular Dynamics (MD) with Machine Learning (ML) and Deep Learning (DL) to decode the complex functional profiles of biomolecules, moving beyond the traditional static representations of structural biology. The research introduces molecular dynamics-enhanced machine learning frameworks across three distinct biophysical domains, with a focus on innovative algorithmic strategies for extracting informative patterns from high-dimensional molecular trajectories.
 

@@ -26,23 +26,45 @@ $navicon-height             : 4px;
 $sidebar-link-max-width     : 250px;
 $sidebar-screen-min-width   : 1024px;
 
+/* Design tokens: the single source of colour and type for the whole site.
+   The dark values live in theme/_default_dark.scss. Everything else
+   (--global-*, --home-*, --card-*) is an alias of these. */
+:root {
+    --bg                                : #F3F6F8;
+    --surface                           : #FFFFFF;
+    --ink                               : #0F2334;
+    --muted                             : #475A6B;
+    --line                              : #D6DEE5;
+    --accent                            : #0B6B75;
+    --accent-ink                        : #FFFFFF;
+    --accent-soft                       : #DDEFF0;
+    --node                              : 11, 107, 117;
+    --warn                              : #8F4400;
+
+    --font-body                         : "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-head                         : "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --ease                              : cubic-bezier(.2, .7, .2, 1);
+
+    color-scheme                        : light;
+}
+
 /* Default light theme for the site */
 :root {
-    --global-base-color                 : #{$primary-color};
-    --global-bg-color                   : #fff;
-    --global-footer-bg-color            : #f2f3f3;
-    --global-border-color               : #{$lighter-gray};
-    --global-dark-border-color          : #bdc1c4;
+    --global-base-color                 : var(--accent);
+    --global-bg-color                   : var(--bg);
+    --global-footer-bg-color            : var(--bg);
+    --global-border-color               : var(--line);
+    --global-dark-border-color          : color-mix(in srgb, var(--line) 70%, var(--muted));
     --global-code-background-color      : #fafafa;
     --global-code-text-color            : #{$darker-gray};
-    --global-fig-caption-color          : mix(#fff,  #{$dark-gray}, 25%);
-    --global-link-color                 : #52adc8;
-    --global-link-color-hover           : mix(#000, #2f7f93, 25%);
-    --global-link-color-visited         : mix(#fff, #2f7f93, 25%);  
-    --global-masthead-link-color        : #{$dark-gray};
-    --global-masthead-link-color-hover  : mix(#000, #{$gray}, 25%);    
-    --global-text-color                 : #{$dark-gray};
-    --global-text-color-light           : #{$light-gray};
-    --global-thead-color                : #{$lighter-gray};
+    --global-fig-caption-color          : var(--muted);
+    --global-link-color                 : var(--accent);
+    --global-link-color-hover           : color-mix(in srgb, var(--accent) 75%, var(--ink));
+    --global-link-color-visited         : var(--accent);
+    --global-masthead-link-color        : var(--muted);
+    --global-masthead-link-color-hover  : var(--ink);
+    --global-text-color                 : var(--ink);
+    --global-text-color-light           : var(--muted);
+    --global-thead-color                : var(--line);
 }
 

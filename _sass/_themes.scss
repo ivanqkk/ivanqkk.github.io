@@ -13,9 +13,10 @@ $doc-font-size              : 16;
 $paragraph-indent           : false; // true, false (default)
 $indent-var                 : 1.3em;
 
-/* System typefaces */
+/* Typefaces. The webfonts are loaded in _includes/head/custom.html; the
+   stacks themselves live in --font-body / --font-head (theme/_default_light). */
 $serif                      : Georgia, Times, serif;
-$sans-serif                 : -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$sans-serif                 : var(--font-body);
 $monospace                  : Monaco, Consolas, "Lucida Console", monospace;
 
 /* Sans serif typefaces */
@@ -39,9 +40,23 @@ $type-size-6                : 0.75em;   // ~12px
 $type-size-7                : 0.6875em; // ~11px
 $type-size-8                : 0.625em;  // ~10px
 
-$global-font-family         : $sans-serif;
-$header-font-family         : $sans-serif;
+$global-font-family         : var(--font-body);
+$header-font-family         : var(--font-head);
 $caption-font-family        : $serif;
+
+/* ==========================================================================
+   Dark mode
+   Emits a block of dark-theme declarations twice: for the explicit toggle
+   (data-theme="dark") and for the system preference when the visitor has not
+   picked light. Use it for every dark override so both paths stay in sync.
+   ========================================================================== */
+
+@mixin dark-theme {
+  html[data-theme="dark"] { @content; }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) { @content; }
+  }
+}
 
 /* ==========================================================================
    Breakpoints

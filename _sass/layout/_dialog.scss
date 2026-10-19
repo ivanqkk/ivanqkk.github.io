@@ -1,0 +1,170 @@
+/* ==========================================================================
+   DIALOG SHEETS + TOAST
+   <dialog class="sheet"> panels (the citation dialog now, the search palette
+   later) and the confirmation toast. Open/close motion only runs without a
+   reduced-motion preference; .closing is set by the script while it closes.
+   ========================================================================== */
+
+dialog.sheet {
+  width: #{"min(640px, calc(100vw - 24px))"};
+  max-width: none;
+  margin: calc(env(safe-area-inset-top, 0px) + 72px) auto auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 30px 80px -30px rgba(15, 35, 52, 0.6);
+
+  &::backdrop {
+    background: rgba(15, 35, 52, 0.4);
+    -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+  }
+}
+
+.close-btn {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: none;
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+  .ico { width: 20px; height: 20px; }
+  &:hover { background: var(--accent-soft); color: var(--ink); }
+  &:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+}
+
+/* --------------------------------------------------------------------------
+   Citation dialog
+   -------------------------------------------------------------------------- */
+.cite-body { padding: 14px 20px 22px; }
+
+.cite-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-right: -10px;
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-head);
+    font-size: 1.25rem;
+  }
+}
+
+.cite-for {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Segmented BibTeX / APA switch */
+.seg {
+  display: inline-flex;
+  margin-top: 16px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+
+  button {
+    min-height: 44px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: var(--muted);
+    font: 600 0.92rem var(--font-body);
+    cursor: pointer;
+
+    &[aria-pressed="true"] {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: 0 1px 4px rgba(15, 35, 52, 0.18);
+    }
+
+    &:disabled { opacity: 0.45; cursor: not-allowed; }
+    &:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  }
+}
+
+.cite-text {
+  max-height: 38vh;
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 0.85rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  &:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+}
+
+.cite-body .ui-btns { margin-top: 16px; }
+
+/* Copy button: copy icon, then a check once copied */
+#cite-copy {
+  .when-done { display: none; }
+  &.is-done .when-idle { display: none; }
+  &.is-done .when-done { display: inline-block; }
+}
+
+/* --------------------------------------------------------------------------
+   Toast
+   -------------------------------------------------------------------------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100vw - 32px);
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 16px);
+
+  .ico { width: 18px; height: 18px; }
+
+  &.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  dialog.sheet[open] { animation: sheet-in 0.3s var(--ease); }
+  dialog.sheet[open]::backdrop { animation: fade-in 0.3s ease; }
+  dialog.sheet.closing { animation: sheet-out 0.18s ease-in forwards; }
+  dialog.sheet.closing::backdrop { animation: fade-out 0.18s ease-in forwards; }
+
+  .toast { transition: opacity 0.25s, transform 0.35s var(--ease); }
+}
+
+@keyframes sheet-in  { from { opacity: 0; transform: translateY(-12px) scale(0.98); } }
+@keyframes sheet-out { to   { opacity: 0; transform: translateY(-8px) scale(0.98); } }
+@keyframes fade-in   { from { opacity: 0; } }
+@keyframes fade-out  { to   { opacity: 0; } }
