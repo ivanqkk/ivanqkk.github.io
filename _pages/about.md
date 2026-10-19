@@ -5,7 +5,7 @@ title: "Ivan Cucchi – AI for Life Sciences"
 author_profile: true
 description: "Personal website of Ivan Cucchi"
 hero: true
-scripts: [hero-network, timeline]
+scripts: [hero-network, timeline, cite]
 ---
 
 {% include base_path %}
@@ -45,7 +45,7 @@ scripts: [hero-network, timeline]
   section never needs updating by hand. Full list lives at /publications/.
 {% endcomment %}
 {%- assign recent_papers = site.publications | where: "category", "manuscripts" | sort: "date" | reverse %}
-<div class="pub-grid">
+<div class="pubs pubs--grid">
 {%- for post in recent_papers limit: 2 %}
 {% include pub-card.html post=post %}
 {%- endfor %}

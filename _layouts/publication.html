@@ -1,0 +1,64 @@
+---
+layout: default
+---
+{%- comment -%}
+  Page of one publication (assigned to the collection in _config.yml).
+  Order follows the redesign demo: back link, title, year/venue, authors,
+  summary (front matter `excerpt`), topics, actions; then the full abstract
+  (the document body) and the recommended citation (`citation`, APA).
+  The <h1> shares pub-<slug> with the card title, so it flies in on a page
+  transition (layout/_transitions.scss).
+{%- endcomment -%}
+{% include base_path %}
+{%- assign vt_slug = page.slug | slugify -%}
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <article class="page pub-detail" itemscope itemtype="http://schema.org/ScholarlyArticle">
+    <meta itemprop="datePublished" content="{{ page.date | date: '%Y-%m-%d' }}">
+    <div class="page__inner-wrap">
+      <a class="back-link" href="{{ base_path }}/publications/">{% include icon.html name="back" %}<span>All publications</span></a>
+
+      <h1 class="pub-detail-title" itemprop="headline" style="view-transition-name: pub-{{ vt_slug }}">{{ page.title }}</h1>
+      {% include pub-byline.html pub=page %}
+
+      {%- if page.excerpt %}
+      <p class="pub-summary" itemprop="description">{{ page.excerpt | markdownify | strip_html | strip }}</p>
+      {%- endif %}
+
+      {%- if page.topics %}
+      <ul class="pub-tags" aria-label="Topics">
+        {%- for t in page.topics %}<li class="tag">{{ t }}</li>{% endfor -%}
+      </ul>
+      {%- endif %}
+
+      <div class="ui-btns">
+        {%- if page.paperurl %}
+        <a class="ui-btn ui-btn--primary" href="{{ page.paperurl }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="ext" %}<span>Publisher</span></a>
+        {%- endif %}
+        {%- if page.bibtexurl %}
+        <a class="ui-btn ui-btn--secondary" href="{{ base_path }}/files/{{ page.bibtexurl | split: '/' | last }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="file" %}<span>BibTeX</span></a>
+        {%- endif %}
+        {% include cite-button.html pub=page class="ui-btn ui-btn--secondary" %}
+      </div>
+
+      {%- assign body = content | strip %}
+      {%- if body != "" %}
+      <section class="page__content pub-abstract" itemprop="text" aria-labelledby="abstract">
+        <h2 id="abstract">Abstract</h2>
+        {{ content }}
+      </section>
+      {%- endif %}
+
+      {%- if page.citation %}
+      <section class="pub-citation" aria-labelledby="recommended-citation">
+        <h2 id="recommended-citation">Recommended citation</h2>
+        <p>{{ page.citation }}</p>
+      </section>
+      {%- endif %}
+
+      {% if page.share %}{% include social-share.html %}{% endif %}
+    </div>
+  </article>
+</div>

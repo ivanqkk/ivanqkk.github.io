@@ -1,6 +1,7 @@
 /* ==========================================================================
    ARCHIVE CARDS
-   Shared styling for the Publications, Talks, and Teaching pages.
+   Shared styling for the Talks and Teaching pages (publication cards have
+   their own partial, layout/_publications.scss).
    Reuses the tokens (--home-*) and card placeholders (%home-card-*) defined in
    layout/_home.scss, so this file must be imported AFTER layout/home.
    Everything hooks into the theme's CSS custom properties, so it adapts to
@@ -28,7 +29,6 @@
 /* --------------------------------------------------------------------------
    Intros + section / year headings
    -------------------------------------------------------------------------- */
-.pub-intro-box,
 .talks-intro,
 .teaching-intro {
   font-size: 1.05em;
@@ -47,14 +47,12 @@
   }
 }
 
-.pub-category-section,
 .year-section,
 .teaching-year-section {
   margin-top: 2.5em;
   margin-bottom: 1em;
 }
 
-.pub-category-title,
 .year-title,
 .teaching-year-title {
   font-size: 1.4em !important;
@@ -65,7 +63,6 @@
   color: var(--home-accent);   /* flips to a light green in dark mode */
 }
 
-.pub-category-hr,
 .year-hr,
 .teaching-year-hr {
   border: 0;
@@ -81,7 +78,6 @@
 /* --------------------------------------------------------------------------
    Grids
    -------------------------------------------------------------------------- */
-.pub-grid,
 .talks-grid,
 .courses-grid {
   display: grid;
@@ -90,7 +86,6 @@
 }
 
 @media (max-width: 768px) {
-  .pub-grid,
   .talks-grid,
   .courses-grid { grid-template-columns: 1fr; }
 }
@@ -98,7 +93,6 @@
 /* --------------------------------------------------------------------------
    Cards (shared base + accent bar from _home.scss)
    -------------------------------------------------------------------------- */
-.pub-card-modern,
 .talk-card-modern,
 .course-card-modern {
   @extend %home-card-base;
@@ -109,25 +103,22 @@
   padding: 1.3em;
 }
 
-.pub-card-modern  { min-height: 190px; }
 .talk-card-modern { min-height: 160px; }
 .course-card-modern { min-height: 180px; }
 
-/* Hover / focus lift. Publications & talks lift on card hover; teaching wraps
+/* Hover / focus lift. Talks lift on card hover; teaching wraps
    the card in an <a class="course-card-link">, so it also lifts on link focus. */
-.pub-card-modern:hover,
 .talk-card-modern:hover,
 .course-card-modern:hover,
 .course-card-link:hover .course-card-modern,
 .course-card-link:focus-visible .course-card-modern { @extend %home-card-lift; }
 
-.pub-card-modern:hover::before,
 .talk-card-modern:hover::before,
 .course-card-modern:hover::before,
 .course-card-link:hover .course-card-modern::before,
 .course-card-link:focus-visible .course-card-modern::before { width: 6px; }
 
-/* The whole-card link overlays (publications, talks). Give the invisible anchor
+/* The whole-card link overlay (talks). Give the invisible anchor
    a focus ring so keyboard users can see it. */
 .card-details-overlay {
   position: absolute;
@@ -152,7 +143,6 @@
 }
 
 /* Logo watermark */
-.pub-bg-watermark,
 .talk-bg-watermark,
 .course-bg-watermark {
   position: absolute;
@@ -167,7 +157,6 @@
   filter: grayscale(100%);
 }
 
-.pub-card-modern:hover .pub-bg-watermark,
 .talk-card-modern:hover .talk-bg-watermark,
 .course-card-modern:hover .course-bg-watermark,
 .course-card-link:hover .course-bg-watermark {
@@ -176,7 +165,6 @@
 }
 
 /* Content wrappers sit above the watermark and overlay */
-.pub-main-content,
 .talk-card-content,
 .course-main {
   position: relative;
@@ -189,7 +177,6 @@
 /* --------------------------------------------------------------------------
    Meta rows, badges, pills
    -------------------------------------------------------------------------- */
-.pub-meta-top,
 .talk-badge-container,
 .course-badge-container {
   display: flex;
@@ -199,7 +186,6 @@
   flex-wrap: wrap;
 }
 
-.pub-badge-year,
 .badge-date {
   background: var(--home-accent-soft-bg);
   color: var(--home-accent-soft-text);
@@ -210,7 +196,6 @@
   text-transform: uppercase;
 }
 
-.pub-badge-venue,
 .badge-level,
 .talk-location-tag {
   background: var(--badge-neutral-bg);
@@ -260,7 +245,6 @@
 /* --------------------------------------------------------------------------
    Titles + body text
    -------------------------------------------------------------------------- */
-.pub-card-modern h3,
 .talk-card-modern h3,
 .course-main h3 {
   margin: 0 0 6px 0 !important;
@@ -270,13 +254,11 @@
   color: var(--global-text-color) !important;
 }
 
-.pub-title-text,
 .talk-title-text,
 .course-title-text {
   @extend %home-title-underline;
 }
 
-.pub-card-modern:hover .pub-title-text,
 .talk-card-modern:hover .talk-title-text,
 .course-card-link:hover .course-title-text,
 .course-card-link:focus-visible .course-title-text {
@@ -284,26 +266,21 @@
   background-size: 100% 2px;
 }
 
-.pub-authors,
 .talk-venue-text,
 .course-inst-text,
-.course-desc,
-.pub-venue {
+.course-desc {
   color: var(--global-text-color);
   opacity: 0.78;
   line-height: 1.4;
 }
 
-.pub-authors     { font-size: 0.84em; margin-bottom: 4px; }
 .talk-venue-text { font-size: 0.84em; margin: 0; opacity: 0.75; }
 .course-inst-text{ font-size: 0.82em; font-style: italic; margin-bottom: 8px; opacity: 0.7; }
 .course-desc     { font-size: 0.85em; line-height: 1.45; margin: 0; }
-.pub-venue       { font-size: 0.82em; font-style: italic; margin-top: 2px; opacity: 0.7; }
 
 /* --------------------------------------------------------------------------
    Footer action buttons
    -------------------------------------------------------------------------- */
-.pub-card-footer,
 .talk-card-footer {
   position: relative;
   z-index: 4;
@@ -314,7 +291,6 @@
   flex-wrap: wrap;
 }
 
-.pub-btn,
 .download-btn {
   display: inline-flex;
   align-items: center;
@@ -339,7 +315,6 @@
   &:focus-visible { outline: 2px solid var(--home-accent); outline-offset: 2px; }
 }
 
-.pub-btn-primary,
 .download-btn {
   background: var(--home-accent-soft-bg);
   color: var(--home-accent-soft-text);
@@ -350,17 +325,13 @@
    Reduced motion
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .pub-card-modern,
   .talk-card-modern,
   .course-card-modern,
-  .pub-bg-watermark,
   .talk-bg-watermark,
   .course-bg-watermark,
-  .pub-title-text,
   .talk-title-text,
   .course-title-text { transition: none !important; }
 
-  .pub-card-modern:hover,
   .talk-card-modern:hover,
   .course-card-modern:hover,
   .course-card-link:hover .course-card-modern { transform: none !important; }

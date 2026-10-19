@@ -1,0 +1,31 @@
+{%- comment -%}
+  Year + venue line, authors and supervisors of a publication. Shared by
+  _includes/pub-card.html and _layouts/publication.html.
+  Expects `include.pub` (a _publications document). Names listed in
+  site.author_aliases are set in bold. Theses show "<thesis_type>, <institution>"
+  as their venue.
+  `include.part`: "meta" (year + venue only), "people" (authors and
+  supervisors only), or omitted for both — a card puts its title in between.
+{%- endcomment -%}
+{%- assign pub = include.pub -%}
+{%- if pub.thesis_type -%}
+  {%- capture pub_venue -%}{{ pub.thesis_type }}{% if pub.institution %}, {{ pub.institution }}{% endif %}{%- endcapture -%}
+{%- else -%}
+  {%- assign pub_venue = pub.venue | default: pub.venue_short -%}
+{%- endif -%}
+{%- unless include.part == "people" %}
+<p class="pub-meta"><span><time datetime="{{ pub.date | date: '%Y-%m-%d' }}">{{ pub.date | date: "%Y" }}</time></span>{% if pub_venue != "" %}<span>{{ pub_venue }}</span>{% endif %}</p>
+{%- endunless %}
+{%- unless include.part == "meta" %}
+{%- if pub.authors %}
+<p class="pub-authors">
+  {%- for a in pub.authors -%}
+    {%- if site.author_aliases contains a -%}<strong>{{ a }}</strong>{%- else -%}{{ a }}{%- endif -%}
+    {%- unless forloop.last %}, {% endunless -%}
+  {%- endfor -%}
+</p>
+{%- endif %}
+{%- if pub.supervisor %}
+<p class="pub-supervisor">Supervisor{% if pub.supervisor.size > 1 %}s{% endif %}: {{ pub.supervisor | join: ", " }}</p>
+{%- endif %}
+{%- endunless %}

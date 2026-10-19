@@ -1,0 +1,23 @@
+{%- comment -%}
+  Citation dialog and confirmation toast, driven by assets/js/cite.js.
+  Included by _layouts/default.html on pages whose `scripts` list has "cite".
+  Both stay closed/empty without JavaScript. Styles: layout/_dialog.scss.
+{%- endcomment -%}
+<dialog class="sheet" id="cite-dialog" aria-labelledby="cite-title">
+  <div class="cite-body">
+    <div class="cite-head">
+      <h2 id="cite-title">Cite this work</h2>
+      <button class="close-btn" type="button" data-close aria-label="Close">{% include icon.html name="close" %}</button>
+    </div>
+    <p class="cite-for" id="cite-for"></p>
+    <div class="seg" role="group" aria-label="Citation format">
+      <button type="button" data-fmt="bib" aria-pressed="true">BibTeX</button>
+      <button type="button" data-fmt="apa" aria-pressed="false">APA</button>
+    </div>
+    <pre class="cite-text" id="cite-text" tabindex="0" aria-label="Citation"></pre>
+    <div class="ui-btns">
+      <button class="ui-btn ui-btn--primary" type="button" id="cite-copy">{% include icon.html name="copy" class="when-idle" %}{% include icon.html name="check" class="when-done" %}<span>Copy citation</span></button>
+    </div>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite">{% include icon.html name="check" %}<span></span></div>

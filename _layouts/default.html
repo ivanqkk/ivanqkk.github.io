@@ -25,6 +25,7 @@ layout: compress
       </footer>
     </div>
 
+    {% if page.scripts contains "cite" %}{% include cite-dialog.html %}{% endif %}
     {% include scripts.html %}
 
   </body>

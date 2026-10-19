@@ -3,44 +3,48 @@ layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: true
+scripts: [pub-filters, cite]
 ---
 
 {% include base_path %}
 
-{% if site.author.googlescholar %}
-  <div class="pub-intro-box">
-    You can also find my articles on <a href="{{ site.author.googlescholar }}" target="_blank" rel="noopener noreferrer">my Google Scholar profile</a>.
-  </div>
-{% endif %}
-
 {% comment %}
   Cards are generated from the _publications collection - one source of truth.
   To add a paper, add a file to _publications/ with: category (manuscripts |
-  theses), date, venue_short, authors, and optionally paperurl / bibtexurl /
-  logo / supervisor / institution. Card markup lives in _includes/pub-card.html.
+  theses), date, venue (or thesis_type + institution), authors, topics, and
+  optionally paperurl / bibtexurl / bibtex / citation / supervisor.
+  Card markup lives in _includes/pub-card.html. Sections are grouped by year,
+  newest first. The topic chips are built from every `topics` entry and are
+  revealed by assets/js/pub-filters.js.
 {% endcomment %}
 {% assign publications = site.publications | sort: "date" | reverse %}
 
-<!-- ==================== MANUSCRIPTS SECTION ==================== -->
-<div class="pub-category-section">
-  <h2 class="pub-category-title">Journal Articles &amp; Manuscripts</h2>
-  <div class="pub-category-hr"></div>
-</div>
+<p class="lede">Journal articles and theses, newest first. Open one for the abstract and the citation{% if site.author.googlescholar %}, or find them all on <a href="{{ site.author.googlescholar }}" target="_blank" rel="noopener noreferrer">Google Scholar</a>{% endif %}.</p>
 
-<div class="pub-grid">
-{% for post in publications %}{% if post.category == 'manuscripts' %}
-{% include pub-card.html post=post %}
-{% endif %}{% endfor %}
-</div>
+{%- assign all_topics = "" | split: "" -%}
+{%- for p in publications -%}{%- if p.topics -%}{%- assign all_topics = all_topics | concat: p.topics -%}{%- endif -%}{%- endfor -%}
+{%- assign all_topics = all_topics | uniq %}
 
-<!-- ==================== ACADEMIC THESES SECTION ==================== -->
-<div class="pub-category-section">
-  <h2 class="pub-category-title">Academic Theses</h2>
-  <div class="pub-category-hr"></div>
+<div class="chips" role="group" aria-label="Filter by topic" data-pub-filters hidden>
+  <button class="chip" type="button" data-filter="" aria-pressed="true">All <span class="count">{{ publications.size }}</span></button>
+  {%- for t in all_topics %}
+  {%- assign n = publications | where_exp: "p", "p.topics contains t" | size %}
+  <button class="chip" type="button" data-filter="{{ t | escape }}" aria-pressed="false">{{ t }} <span class="count">{{ n }}</span></button>
+  {%- endfor %}
 </div>
+<p class="count-line" id="pub-count" aria-live="polite">{{ publications.size }} publications</p>
 
-<div class="pub-grid">
-{% for post in publications %}{% if post.category == 'theses' %}
-{% include pub-card.html post=post %}
-{% endif %}{% endfor %}
-</div>
+{% assign by_year = publications | group_by_exp: "p", "p.date | date: '%Y'" %}
+{% for year in by_year %}
+<section class="year-group" aria-labelledby="year-{{ year.name }}">
+  <div class="year-section">
+    <h2 class="year-title" id="year-{{ year.name }}">{{ year.name }}</h2>
+    <div class="year-hr"></div>
+  </div>
+  <div class="pubs">
+  {%- for post in year.items %}
+  {% include pub-card.html post=post tags=true %}
+  {%- endfor %}
+  </div>
+</section>
+{% endfor %}

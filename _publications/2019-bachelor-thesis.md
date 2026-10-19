@@ -18,7 +18,15 @@ logo: "unipv.png"
 slidesurl: 
 paperurl: 
 bibtexurl: 
-citation: "Cucchi, I. (2019). &quot;Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome.&quot; Bachelor's thesis, <i>University of Pavia</i>. Supervisor: Luca Franco Pavarino."
+citation: "Cucchi, I. (2019). <i>Numerical models and cardiac electrophysiology simulations for Long QT syndrome</i> [Bachelor's thesis, University of Pavia]."
+topics: [Electrophysiology]
+bibtex: |
+  @misc{cucchi2019bachelor,
+    title  = {Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome},
+    author = {Cucchi, Ivan},
+    note   = {Bachelor's thesis, University of Pavia},
+    year   = {2019}
+  }
 ---
 Since the time of Galileo Galilei and, even earlier, Pythagoras, it has been recognized that the reality surrounding us can be described in mathematical terms. This insight, both ancient and remarkably modern, is today reflected in the use of increasingly precise and advanced mathematical models, which enable a comprehensive understanding of complex phenomena from both qualitative and quantitative perspectives. In this context, mathematics has emerged as a powerful investigative tool in medicine, complementing and often integrating experimental approaches.
 
