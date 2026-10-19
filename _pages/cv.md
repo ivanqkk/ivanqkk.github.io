@@ -157,69 +157,49 @@ scripts: [events]
 <!-- ==================== EDUCATION ==================== -->
 <h2 class="cv-section-title">{% include icon.html name="scholar" %} Education</h2>
 
-<div class="education-grid">
+{% comment %}
+  Horizontal timeline, oldest to newest; a vertical one on narrow screens.
+  Each node shows the institution's logo. Styles: .edu-timeline in layout/_cv.scss.
+{% endcomment %}
+<ol class="edu-timeline">
 
-  <!-- DEGREE 0: PhD -->
-  <div class="edu-card-modern">
-    <img src="{{ base_path }}/images/unipv.png" class="edu-bg-watermark" alt="">
-    <div class="edu-main-content">
-      <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2023 – 2026</span>
-        <span class="badge-cv-location badge-sm">Pavia, Italy</span>
-      </div>
-      <h3>PhD in Computational Mathematics, Learning, and Data Science</h3>
-      <div class="cv-org-text cv-org-text--sub">
-        <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a> · <a href="https://www.usi.ch/it" target="_blank" rel="noopener noreferrer">Università della Svizzera Italiana</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- DEGREE 1: Master -->
-  <div class="edu-card-modern">
-    <img src="{{ base_path }}/images/unipv.png" class="edu-bg-watermark" alt="">
-    <div class="edu-main-content">
-      <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2019 – 2022</span>
-        <span class="badge-cv-location badge-sm">Pavia, Italy</span>
-      </div>
-      <h3>Master in Mathematics</h3>
-      <div class="cv-org-text cv-org-text--sub">
-        <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- DEGREE 2: Bachelor -->
-  <div class="edu-card-modern">
-    <img src="{{ base_path }}/images/unipv.png" class="edu-bg-watermark" alt="">
-    <div class="edu-main-content">
-      <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2011 – 2019</span>
-        <span class="badge-cv-location badge-sm">Pavia, Italy</span>
-      </div>
-      <h3>Bachelor in Mathematics</h3>
-      <div class="cv-org-text cv-org-text--sub">
-        <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- DEGREE 3: High School -->
-  <div class="edu-card-modern">
-    <img src="{{ base_path }}/images/copernico.png" class="edu-bg-watermark" alt="">
-    <div class="edu-main-content">
-      <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2007 – 2011</span>
-        <span class="badge-cv-location badge-sm">Pavia, Italy</span>
-      </div>
+  <li class="edu-step">
+    <span class="edu-node" aria-hidden="true"><img src="{{ base_path }}/images/copernico.png" alt=""></span>
+    <div class="edu-text">
+      <p class="edu-dates"><time datetime="2007">2007</time> – <time datetime="2011">2011</time> · Pavia, Italy</p>
       <h3>Scientific High School Graduation</h3>
-      <div class="cv-org-text cv-org-text--sub">
-        <a href="https://copernico.edu.it/" target="_blank" rel="noopener noreferrer">Niccolò Copernico</a>
-      </div>
+      <p class="edu-org"><a href="https://copernico.edu.it/" target="_blank" rel="noopener noreferrer">Niccolò Copernico</a></p>
     </div>
-  </div>
+  </li>
 
-</div>
+  <li class="edu-step">
+    <span class="edu-node" aria-hidden="true"><img src="{{ base_path }}/images/unipv.png" alt=""></span>
+    <div class="edu-text">
+      <p class="edu-dates"><time datetime="2011">2011</time> – <time datetime="2019">2019</time> · Pavia, Italy</p>
+      <h3>Bachelor in Mathematics</h3>
+      <p class="edu-org"><a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a></p>
+    </div>
+  </li>
+
+  <li class="edu-step">
+    <span class="edu-node" aria-hidden="true"><img src="{{ base_path }}/images/unipv.png" alt=""></span>
+    <div class="edu-text">
+      <p class="edu-dates"><time datetime="2019">2019</time> – <time datetime="2022">2022</time> · Pavia, Italy</p>
+      <h3>Master in Mathematics</h3>
+      <p class="edu-org"><a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a></p>
+    </div>
+  </li>
+
+  <li class="edu-step">
+    <span class="edu-node edu-node--pair" aria-hidden="true"><img src="{{ base_path }}/images/unipv.png" alt=""><img src="{{ base_path }}/images/usi.png" alt=""></span>
+    <div class="edu-text">
+      <p class="edu-dates"><time datetime="2023">2023</time> – <time datetime="2026">2026</time> · Pavia, Italy</p>
+      <h3>PhD in Computational Mathematics, Learning, and Data Science</h3>
+      <p class="edu-org"><a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer">University of Pavia</a> · <a href="https://www.usi.ch/it" target="_blank" rel="noopener noreferrer">Università della Svizzera Italiana</a></p>
+    </div>
+  </li>
+
+</ol>
 
 <!-- ==================== THESES ==================== -->
 <h2 class="cv-section-title">{% include icon.html name="file" %} Theses</h2>

@@ -357,36 +357,131 @@
 }
 
 /* --------------------------------------------------------------------------
-   Education grid
+   Education timeline: horizontal with equal steps, oldest to newest; a
+   vertical line on narrow screens. Nodes hold the institution logos on a
+   white disc, so the transparent logos stay visible in dark mode too.
    -------------------------------------------------------------------------- */
-.education-grid {
+.edu-timeline {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.2em;
-  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 24px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.edu-card-modern {
-  @extend %home-card-base;
-  @extend %home-card-bar;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.2em;
-  min-height: 140px;
+.edu-step {
+  position: relative;
+  margin: 0;
 
-  &:hover { @extend %home-card-lift; }
-
-  h3 {
-    margin: 4px 0 2px 0 !important;
-    font-size: 1.1em !important;
-    font-weight: 600;
-    line-height: 1.35;
-    color: var(--global-text-color) !important;
+  /* Connector to the next step */
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 27px;
+    left: 64px;
+    right: -16px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+    opacity: 0.55;
   }
 }
 
-.edu-bg-watermark,
+.edu-node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 56px;
+  height: 56px;
+  padding: 8px;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  background: #fff;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* PhD: two logos side by side */
+  &--pair {
+    width: 96px;
+
+    img { width: 36px; }
+  }
+}
+
+.edu-text { margin-top: 14px; }
+
+.edu-dates {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.edu-step h3 {
+  margin: 4px 0 2px !important;
+  font-family: var(--font-head);
+  font-size: 1.05rem !important;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink) !important;
+}
+
+.edu-org {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--muted);
+
+  /* Same link style as .cv-org-text in the rest of the CV */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+
+    &:hover { text-decoration: none; border-bottom-color: currentColor; }
+    &:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  }
+}
+
+@media (max-width: 760px) {
+  .edu-timeline {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .edu-step {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 0 16px;
+
+    &:not(:last-child)::after {
+      top: 58px;
+      bottom: -22px;
+      left: 27px;
+      right: auto;
+      width: 2px;
+      height: auto;
+    }
+  }
+
+  .edu-node--pair {
+    flex-direction: column;
+    width: 56px;
+    height: 96px;
+    border-radius: 28px;
+
+    img { width: 100%; height: 36px; }
+  }
+
+  .edu-text { margin-top: 0; }
+}
+
 .thesis-bg-watermark {
   position: absolute;
   pointer-events: none;
@@ -395,20 +490,13 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.edu-bg-watermark { right: -10px; bottom: -10px; width: 110px; height: 110px; opacity: 0.04; }
 .thesis-bg-watermark { right: -15px; bottom: -15px; width: 140px; height: 140px; opacity: 0.03; }
 
-.edu-card-modern:hover .edu-bg-watermark,
 .thesis-card-modern:hover .thesis-bg-watermark {
   opacity: 0.08;
   transform: scale(1.05) rotate(-5deg);
 }
 
-.edu-main-content { position: relative; z-index: 2; }
-
-@media (max-width: 768px) {
-  .education-grid { grid-template-columns: 1fr; }
-}
 
 /* --------------------------------------------------------------------------
    Theses grid
@@ -474,15 +562,12 @@
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .cv-card,
-  .edu-card-modern,
   .thesis-card-modern,
   .cert-card-modern,
-  .edu-bg-watermark,
   .thesis-bg-watermark,
   .cv-download-btn { transition: none !important; }
 
   .cv-card:hover,
-  .edu-card-modern:hover,
   .thesis-card-modern:hover,
   .cert-card-modern:hover,
   .cv-download-btn:hover { transform: none !important; }
