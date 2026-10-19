@@ -1,0 +1,52 @@
+{%- comment -%}
+  One upcoming event from _data/events.yml. Expects `include.event`;
+  `include.hidden=true` renders it hidden (it had already ended at build time).
+  Everything here is static and correct without JavaScript: date, time in
+  Stockholm time, organiser, role, registration deadline and the "Add to
+  calendar" link. assets/js/events.js adds the countdown, the visitor's local
+  time, the urgency of the deadline, hides Register once registration closes
+  and moves the event to its year among the talk cards once it has ended.
+  Styles: layout/_events.scss.
+{%- endcomment -%}
+{%- assign e = include.event -%}
+{%- assign same_day = false -%}
+{%- assign d1 = e.start | date: "%Y-%m-%d" -%}{%- assign d2 = e.end | date: "%Y-%m-%d" -%}
+{%- assign m1 = e.start | date: "%Y-%m" -%}{%- assign m2 = e.end | date: "%Y-%m" -%}
+{%- if d1 == d2 %}{% assign same_day = true %}{% endif -%}
+{%- capture when -%}
+  {%- if same_day -%}
+    {{ e.start | date: "%A %-d %B %Y" }}
+  {%- elsif m1 == m2 -%}
+    {{ e.start | date: "%A %-d" }} – {{ e.end | date: "%A %-d %B %Y" }}
+  {%- else -%}
+    {{ e.start | date: "%A %-d %B" }} – {{ e.end | date: "%A %-d %B %Y" }}
+  {%- endif -%}
+{%- endcapture -%}
+{%- capture gcal -%}https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text={{ e.title | url_encode }}&amp;dates={{ e.start | date: "%Y%m%dT%H%M%S" }}/{{ e.end | date: "%Y%m%dT%H%M%S" }}&amp;ctz=Europe/Stockholm&amp;details={{ e.url | url_encode }}&amp;location={{ e.format | url_encode }}{%- endcapture -%}
+<article class="event" id="event-{{ e.id }}" data-event data-start="{{ e.start | date_to_xmlschema }}" data-end="{{ e.end | date_to_xmlschema }}"{% if e.register_by %} data-register-by="{{ e.register_by | date_to_xmlschema }}"{% endif %} style="view-transition-name: event-{{ e.id }}"{% if include.hidden %} hidden{% endif %}>
+  <div class="event-date" aria-hidden="true"><span class="ev-month">{{ e.start | date: "%b" }}</span><span class="ev-day">{{ e.start | date: "%-d" }}</span><span class="ev-wd">{{ e.start | date: "%a" }}</span></div>
+  <div class="event-main">
+    <p class="event-meta"><span class="tag">{{ e.kind }}</span><span>{{ e.format }}</span><span class="ev-count" data-countdown></span></p>
+    <h3 class="event-title"><a href="{{ e.url }}" target="_blank" rel="noopener noreferrer">{{ e.title }}</a></h3>
+    <p class="event-when"><time datetime="{{ e.start | date_to_xmlschema }}">{{ when }}, {{ e.start | date: "%H:%M" }}–{{ e.end | date: "%H:%M" }} Stockholm time</time><span class="local" data-local></span></p>
+    <p class="event-org">{{ e.org }}</p>
+    {%- if e.role %}
+    <div class="event-role">{% include icon.html name="mic" %}<p><strong>My role</strong>{{ e.role }}</p></div>
+    {%- endif %}
+    {%- if e.summary %}
+    <p class="event-summary">{{ e.summary }}</p>
+    {%- endif %}
+    {%- if e.audience %}
+    <p class="event-aud">{{ e.audience }}</p>
+    {%- endif %}
+    {%- if e.register_by %}
+    <p class="reg-note" data-reg-note>{% include icon.html name="clock" %}<span>Registration closes {{ e.register_by | date: "%A %-d %B" }}</span></p>
+    {%- endif %}
+    <div class="ui-btns">
+      {%- if e.register_url %}
+      <a class="ui-btn ui-btn--primary" data-register href="{{ e.register_url }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="ext" %}<span>Register</span></a>
+      {%- endif %}
+      <a class="ui-btn ui-btn--secondary" href="{{ gcal }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="cal" %}<span>Add to calendar</span></a>
+    </div>
+  </div>
+</article>

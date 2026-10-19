@@ -1,0 +1,39 @@
+{%- comment -%}
+  "Upcoming events" section, used on the home page and the Talks page.
+  Parameters: heading, heading_id, and optionally
+    max   show at most this many events (home page: 2)
+    more  URL of the full list, linked as "All upcoming events" when there
+          are more than `max`
+  Every event is rendered; the ones that had ended at build time (and those
+  beyond `max`) are hidden, and the section is hidden when none is left.
+  assets/js/events.js redoes this with the visitor's clock.
+{%- endcomment -%}
+{%- include base_path -%}
+{%- assign now_s = site.time | date: "%s" | plus: 0 -%}
+{%- assign up_events = site.data.events | sort: "start" -%}
+{%- assign up_count = 0 -%}
+{%- for e in up_events -%}
+  {%- assign end_s = e.end | date: "%s" | plus: 0 -%}
+  {%- if end_s > now_s %}{% assign up_count = up_count | plus: 1 %}{% endif -%}
+{%- endfor -%}
+{%- assign up_max = include.max | default: 1000 | plus: 0 -%}
+<section class="upcoming" data-upcoming{% if include.max %} data-max="{{ include.max }}"{% endif %} aria-labelledby="{{ include.heading_id }}"{% if up_count == 0 %} hidden{% endif %}>
+  <h2 class="home-section-title" id="{{ include.heading_id }}">{{ include.heading }}</h2>
+  <div class="events">
+  {%- assign up_shown = 0 -%}
+  {%- for e in up_events -%}
+    {%- assign end_s = e.end | date: "%s" | plus: 0 -%}
+    {%- assign up_hide = false -%}
+    {%- if end_s <= now_s -%}
+      {%- assign up_hide = true -%}
+    {%- else -%}
+      {%- assign up_shown = up_shown | plus: 1 -%}
+      {%- if up_shown > up_max %}{% assign up_hide = true %}{% endif -%}
+    {%- endif %}
+    {% include event-card.html event=e hidden=up_hide %}
+  {%- endfor %}
+  </div>
+  {%- if include.more %}
+  <p class="section-more" data-more{% unless up_count > up_max %} hidden{% endunless %}><a href="{{ base_path }}{{ include.more }}" class="inline-link">All upcoming events {% include icon.html name="arrow-right" %}</a></p>
+  {%- endif %}
+</section>

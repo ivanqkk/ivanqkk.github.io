@@ -5,7 +5,7 @@ title: "Ivan Cucchi – AI for Life Sciences"
 author_profile: true
 description: "Personal website of Ivan Cucchi"
 hero: true
-scripts: [hero-network, timeline, cite]
+scripts: [hero-network, timeline, cite, events]
 ---
 
 {% include base_path %}
@@ -21,6 +21,12 @@ scripts: [hero-network, timeline, cite]
 <div class="home-intro home-intro--tight">
   As part of the <a href="https://SwedenAIFactory.se/" target="_blank" rel="noopener noreferrer" class="inline-link">Sweden AI Factory</a>, I collaborate with <a href="https://www.naiss.se/" target="_blank" rel="noopener noreferrer" class="inline-link">NAISS</a> to empower researchers from both academia and industry to leverage national AI and high-performance computing (HPC) infrastructure, accelerating data-driven discovery in the life sciences. I am also actively involved in training initiatives, contributing to the development of courses, seminars, and workshops aimed at strengthening AI competence across the life science community.
 </div>
+
+{% comment %}
+  Upcoming workshops and courses from _data/events.yml, at most two; the
+  section disappears when there is none (_includes/upcoming-events.html).
+{% endcomment %}
+{% include upcoming-events.html heading="Upcoming events" heading_id="upcoming" max=2 more="/talks/" %}
 
 <h2 class="home-section-title" id="focus">What I work on</h2>
 

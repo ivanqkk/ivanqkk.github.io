@@ -1,37 +1,72 @@
 {%- comment -%}
-  One talk card. Expects `include.post` (a _talks document).
-  Badge style/label derive from `type`; the download button's label and icon
-  derive from the `slidesurl` filename, so a poster PDF renders as "Poster".
+  One card in the year grid of the Talks page. Expects either
+  - `include.post`: a _talks document, or
+  - `include.event`: a past event from _data/events.yml (kind as the badge,
+    format as the location, organiser and `past_role` as the venue line).
+    `include.hidden=true` renders it hidden: the event had not ended at build
+    time, and assets/js/events.js reveals it once it has (data-event-past).
+  The title link is stretched over the card (::after), so the card has one
+  link; the Slides/Poster download sits above it. The download label and
+  icon derive from the `slidesurl` filename, so a poster PDF says "Poster".
 {%- endcomment -%}
-{%- assign post = include.post -%}
-{%- assign badge = post.type | downcase -%}
-{%- if post.type contains '+' %}{% assign badge = 'hybrid' %}{% endif -%}
-{%- assign file = post.slidesurl | split: '/' | last -%}
-{%- if file contains 'poster' -%}
-  {%- assign dl_label = 'Poster' -%}{%- assign dl_icon = 'image' -%}
+{%- include base_path -%}
+{%- if include.event -%}
+  {%- assign ev = include.event -%}
+  {%- assign t_type = ev.kind -%}
+  {%- assign t_date = ev.start -%}
+  {%- assign t_location = ev.format -%}
+  {%- assign t_title = ev.title -%}
+  {%- capture t_venue -%}{{ ev.org }}{% if ev.past_role %}, {{ ev.past_role }}{% endif %}{%- endcapture -%}
+  {%- assign t_link = ev.url -%}
+  {%- assign t_logo = ev.logo -%}
+  {%- assign t_slides = nil -%}
 {%- else -%}
-  {%- assign dl_label = 'Slides' -%}
-  {%- if file contains '.pptx' %}{% assign dl_icon = 'file-slides' %}{% else %}{% assign dl_icon = 'file-pdf' %}{% endif -%}
+  {%- assign ev = nil -%}
+  {%- assign post = include.post -%}
+  {%- assign t_type = post.type -%}
+  {%- assign t_date = post.date -%}
+  {%- assign t_location = post.location -%}
+  {%- assign t_title = post.short_title | default: post.title -%}
+  {%- assign t_venue = post.venue_short | default: post.venue -%}
+  {%- assign t_link = post.link -%}
+  {%- assign t_logo = post.logo -%}
+  {%- assign t_slides = post.slidesurl -%}
 {%- endif -%}
-  <div class="talk-card-modern">
-    <a href="{{ post.link }}" target="_blank" rel="noopener noreferrer" class="card-details-overlay" aria-label="{{ post.card_aria | default: post.title }}"></a>
-    {%- if post.logo %}
-    <img src="{{ base_path }}/images/{{ post.logo }}" class="talk-bg-watermark" alt="">
+{%- assign badge = t_type | downcase -%}
+{%- if t_type contains '+' %}{% assign badge = 'hybrid' %}{% endif -%}
+{%- if t_slides -%}
+  {%- assign file = t_slides | split: '/' | last -%}
+  {%- if file contains 'poster' -%}
+    {%- assign dl_label = 'Poster' -%}{%- assign dl_icon = 'image' -%}
+  {%- else -%}
+    {%- assign dl_label = 'Slides' -%}
+    {%- if file contains '.pptx' %}{% assign dl_icon = 'file-slides' %}{% else %}{% assign dl_icon = 'file-pdf' %}{% endif -%}
+  {%- endif -%}
+{%- endif -%}
+  <article class="talk-card-modern"{% if ev %} data-event-past="{{ ev.id }}" data-end="{{ ev.end | date_to_xmlschema }}"{% if include.hidden %} hidden{% endif %}{% endif %}>
+    {%- if t_logo %}
+    <img src="{{ base_path }}/images/{{ t_logo }}" class="talk-bg-watermark" alt="" loading="lazy">
     {%- endif %}
     <div class="talk-card-content">
       <div class="talk-badge-container">
-        <span class="badge-type-{{ badge }}">{{ post.type | upcase }}</span>
-        <span class="talk-date-text">{{ post.date | date: "%d %b" }}</span>
-        <span class="talk-location-tag">{{ post.location }}</span>
+        <span class="badge-type-{{ badge }}">{{ t_type | upcase }}</span>
+        <time class="talk-date-text" datetime="{{ t_date | date: '%Y-%m-%d' }}">{{ t_date | date: "%d %b" }}</time>
+        <span class="talk-location-tag">{{ t_location }}</span>
       </div>
-      <h3><span class="talk-title-text">{{ post.short_title | default: post.title }}</span></h3>
-      <p class="talk-venue-text">{{ post.venue_short | default: post.venue }}</p>
+      <h3 class="talk-title">
+        {%- if t_link -%}
+        <a class="talk-link" href="{{ t_link }}" target="_blank" rel="noopener noreferrer"><span class="talk-title-text">{{ t_title }}</span><span class="sr-only"> (opens in a new tab)</span></a>
+        {%- else -%}
+        <span class="talk-title-text">{{ t_title }}</span>
+        {%- endif -%}
+      </h3>
+      <p class="talk-venue-text">{{ t_venue }}</p>
     </div>
-    {%- if post.slidesurl %}
+    {%- if t_slides %}
     <div class="talk-card-footer">
       <a href="{{ base_path }}/files/{{ file }}" download="{{ post.download_as | default: file }}" class="download-btn">
         {% include icon.html name=dl_icon class="download-icon" %} {{ dl_label }}
       </a>
     </div>
     {%- endif %}
-  </div>
+  </article>

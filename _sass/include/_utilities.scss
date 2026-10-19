@@ -26,6 +26,7 @@
 /* https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html */
 
 .visually-hidden,
+.sr-only,   /* used by several includes; FontAwesome used to provide it */
 .screen-reader-text,
 .screen-reader-text span,
 .screen-reader-shortcut {

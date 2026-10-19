@@ -194,7 +194,7 @@ sass:
   style: compressed 
 
 permalink: /:categories/:title/
-timezone: Etc/UTC 
+timezone: Europe/Stockholm  # event times in _data/events.yml are shown in Stockholm time
 
 # Core Template Plugins
 plugins:
