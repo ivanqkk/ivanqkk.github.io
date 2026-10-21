@@ -66,3 +66,17 @@
   url: https://scilifelab-training.github.io/using-ai-in-lifescience/2611/
   register_url: https://nextcloud.naiss.se/apps/forms/s/jcqF8weesKyBRPsRJ9ppKbkM
   logo: scilifelab.png
+
+- id: ai4metascience
+  title: AI4Metascience NeurIPS Hackathon
+  kind: Hackathon
+  format: Stockholm, kick-off at RISE KTH
+  org: Stockholm AI and Sweden AI Factory
+  start: 2026-11-10T17:30:00+01:00
+  end: 2026-11-17T18:00:00+01:00
+  role: "Mentor for the hackathon teams."
+  past_role: mentor
+  summary: "A seven-day hackathon on AI for meta-science, on how scientific research is evaluated and rewarded. It opens with an in-person kick-off on 10 November at 17:30 and submissions close on 17 November at 18:00; the winning team gets a trip to NeurIPS 2026 in Paris and a poster at the AI for Meta-Science workshop."
+  url: https://luma.com/6b08hj2b
+  register_url: https://luma.com/6b08hj2b
+  logo: swedenaifactory.png

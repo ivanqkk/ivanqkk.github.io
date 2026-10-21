@@ -1,0 +1,439 @@
+# Albero accademico dal Mathematics Genealogy Project (ottobre 2026).
+# g = generazioni da Ivan. star = tappa in evidenza. decode = testo che si decifra.
+# dial = etichetta del contatore per le date approssimative.
+# Quando MGP pubblica la voce di Ivan, metti il suo ID in main[0].mgp_id.
+main:
+- g: 0
+  name: Ivan Cucchi
+  deg: PhD
+  school: University of Pavia
+  place: Pavia
+  year: 2026
+  thesis: Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability
+  fact: Molecular dynamics plus machine learning, to predict how molecules bind to proteins and what keeps proteins stable. My own entry in the Genealogy Project is waiting to be processed.
+  mgp_id: null
+- g: 1
+  name: Luca F. Pavarino
+  deg: PhD
+  school: New York University
+  place: New York
+  year: 1992
+  thesis: Domain Decomposition Algorithms for the P-Version Finite Element Method for Elliptic Problems
+  fact: Domain decomposition splits one huge problem into pieces that many processors solve together. Not far from what I do on supercomputers today.
+  mgp_id: 33620
+- g: 2
+  name: Olof B. Widlund
+  deg: PhD
+  school: KTH Royal Institute of Technology
+  place: Stockholm
+  year: 1965
+  thesis: On the Stability of Parabolic Difference Schemes
+  fact: Defended at KTH in Stockholm, then built his career in New York. With me, the line is back in Stockholm, a few kilometres from where it left.
+  mgp_id: 33012
+- g: 3
+  name: Heinz-Otto Kreiss
+  deg: PhD
+  school: KTH Royal Institute of Technology
+  place: Stockholm
+  year: 1959
+  thesis: Über die Lösung des Cauchyproblems für lineare partielle Differentialgleichungen mit Hilfe von Differenzengleichungen
+  fact: A founder of the modern numerical analysis of differential equations; the Kreiss matrix theorem carries his name. He supervised 35 PhDs and has more than 850 academic descendants.
+  mgp_id: 12003
+- g: 4
+  name: Göran Borg
+  deg: PhD
+  school: Uppsala University
+  place: Uppsala
+  year: 1945
+  fact: 'His 1946 theorem showed that two spectra are enough to pin down a vibrating string: a founding result of inverse spectral theory.'
+  mgp_id: 20034
+- g: 5
+  name: Arne Beurling
+  deg: PhD
+  school: Uppsala University
+  place: Uppsala
+  year: 1933
+  thesis: Études sur un problème de majoration
+  fact: In 1940, with nothing but intercepted teleprinter tapes, he broke the German Geheimschreiber cipher in about two weeks. Later, at the Institute for Advanced Study in Princeton, he moved into Einstein’s old office.
+  mgp_id: 19779
+  decode: true
+- g: 6
+  name: Anders Wiman
+  deg: PhD
+  school: Lund University
+  place: Lund
+  year: 1892
+  thesis: Klassifikation af regelytorna af sjette graden
+  fact: The only one of a farming family to go to university. Wiman–Valiron theory and Wiman’s sextic curve still carry his name.
+  mgp_id: 19965
+- g: 7
+  name: Carl F. E. Björling
+  deg: PhD
+  school: Uppsala University
+  place: Uppsala
+  year: 1863
+  thesis: Om några arcus-tangens-summor och deras användande till definita integralers evaluering
+  fact: 'His doctoral advisor was his own father: the only father-to-son step in the whole line.'
+  mgp_id: 20367
+- g: 8
+  name: Emanuel G. Björling
+  deg: PhD
+  school: Uppsala University
+  place: Uppsala
+  year: 1830
+  thesis: On the movements of rigid bodies
+  fact: The Björling problem, building a minimal surface from a single curve, is named after him.
+  mgp_id: 20542
+- g: 9
+  name: Jöns Svanberg
+  deg: PhD
+  school: Uppsala University
+  place: Uppsala
+  year: 1796
+  thesis: Nodatio enumerationis linearum tertii ordinis Newtonianæ
+  fact: His thesis dealt with Newton’s classification of cubic curves. Cubic curves come back three generations further up.
+  mgp_id: 20543
+- g: 10
+  name: Fredric Mallet
+  deg: Magister
+  school: Uppsala University
+  place: Uppsala
+  year: 1752
+  thesis: Dissertatio gradualis de Mercurii theoria
+  fact: 'An astronomer in the family: he wrote on the motion of Mercury, and in 1769 travelled to Pello, in the Torne Valley, to observe the transit of Venus.'
+  mgp_id: 183360
+- g: 11
+  name: Mårten Strömer
+  deg: Magister
+  school: Uppsala University
+  place: Uppsala
+  year: 1731
+  mgp_id: 145119
+- g: 12
+  name: Samuel Klingenstierna
+  deg: Dr. phil.
+  school: University of Marburg
+  place: Marburg
+  year: 1728
+  thesis: Über Curven 3. Grades
+  fact: Trained in law at Uppsala, then went to Marburg to study with Wolff. His thesis there was on cubic curves, the topic Svanberg chose almost 70 years later.
+  mgp_id: 145118
+- g: 13
+  name: Christian von Wolff
+  deg: Dr. phil.
+  school: Leipzig University
+  place: Leipzig
+  year: 1703
+  thesis: Philosophia practica universalis, methodo mathematica conscripta
+  fact: Leibniz was one of his three advisors. Another of his students was Mikhail Lomonosov, founder of Moscow University. He has more than 40,000 academic descendants.
+  mgp_id: 47793
+- g: 14
+  name: Gottfried Wilhelm Leibniz
+  deg: Dr. phil.
+  school: Leipzig University
+  place: Leipzig
+  year: 1666
+  thesis: Disputatio arithmetica de complexionibus
+  fact: 'Co-inventor of calculus and an early champion of binary arithmetic: every model I train runs on both. His teacher Jakob Thomasius had himself studied with Leibniz’s own father. The main line continues through Erhard Weigel; swipe below for a side branch through Huygens.'
+  mgp_id: 60985
+  star: true
+- g: 15
+  name: Erhard Weigel
+  school: Leipzig University
+  place: Leipzig
+  year: 1650
+  thesis: De ascensionibus et descensionibus astronomicis dissertatio
+  fact: Mathematician and astronomer at Jena, where a teenage Leibniz came to study with him.
+  mgp_id: 60984
+- g: 16
+  name: Philipp Müller
+  school: Leipzig University
+  place: Leipzig
+  year: 1604
+  mgp_id: 144221
+- g: 17
+  name: Christoph Meurer
+  deg: Magister artium
+  school: Leipzig University
+  place: Leipzig
+  year: 1582
+  thesis: De Iride seu Arcu coelesti
+  fact: His thesis was about the rainbow.
+  mgp_id: 144220
+- g: 18
+  name: Moritz Steinmetz
+  deg: Magister artium and Doctor of Medicine
+  school: Leipzig University
+  place: Leipzig
+  year: 1567
+  thesis: De Peste Capita Disputationis Ordinariae
+  fact: A medical doctorate, on the plague. Biomedicine was in the family long before me.
+  mgp_id: 127790
+- g: 19
+  name: Georg Joachim Rheticus
+  deg: Magister artium
+  school: University of Wittenberg
+  place: Wittenberg
+  year: 1535
+  fact: Copernicus’s only student. He travelled to Frombork to work with him and persuaded him to publish De revolutionibus.
+  mgp_id: 126827
+- g: 20
+  name: Nicolaus Copernicus
+  deg: Doctor of both laws
+  school: Bologna, Padua, Kraków and Ferrara
+  place: Bologna and Ferrara
+  year: 1499
+  fact: The man who put the Sun at the centre earned his doctorate in law, not astronomy. A fitting ancestor for someone who also works with astrophysical data.
+  mgp_id: 126177
+  star: true
+- g: 21
+  name: Domenico Maria Novara
+  school: University of Florence
+  place: Florence
+  year: 1483
+  fact: 'Professor of astronomy in Bologna, where the young Copernicus worked as his assistant. He had two teachers: the main line continues with Regiomontanus, and a side branch leads to Luca Pacioli.'
+  mgp_id: 126112
+- g: 22
+  name: Johannes Regiomontanus
+  deg: Magister artium
+  school: Leipzig and Vienna
+  place: Vienna
+  year: 1457
+  fact: Astronomer and mathematician. His tables of planetary positions sailed with Columbus, who used them to predict the lunar eclipse of 1504.
+  mgp_id: 126109
+- g: 23
+  name: Basilios Bessarion
+  school: Mystras
+  place: Mystras
+  year: 1436
+  fact: Byzantine scholar turned Catholic cardinal. His collection of Greek manuscripts became the core of the Biblioteca Marciana in Venice.
+  mgp_id: 131561
+- g: 24
+  name: Georgios Gemistos Plethon
+  place: Constantinople
+  year: 1380
+  fact: Neoplatonist philosopher. His lectures in Florence in 1438–39 helped spark the Renaissance revival of Plato.
+  mgp_id: 131575
+- g: 25
+  name: Demetrios Kydones
+  place: Constantinople
+  year: 1350
+  year_label: mid-14th century
+  dial: c. 1350
+  fact: Statesman and translator who brought Thomas Aquinas into Greek.
+  mgp_id: 134780
+- g: 26
+  name: Nilos Kabasilas
+  place: Thessaloniki
+  year: 1330
+  year_label: early 14th century
+  dial: c. 1330
+  fact: Theologian and Archbishop of Thessaloniki.
+  mgp_id: 146365
+- g: 27
+  name: Gregory Palamas
+  school: Imperial University of Constantinople
+  place: Constantinople
+  year: 1316
+  fact: Monk of Mount Athos and theologian, later venerated as a saint by the Orthodox Church.
+  mgp_id: 176844
+- g: 28
+  name: Theodore Metochites
+  school: Imperial University of Constantinople
+  place: Constantinople
+  year: 1315
+  fact: Statesman and astronomer who restored the Chora Church in Constantinople, famous today for its mosaics.
+  mgp_id: 184631
+- g: 29
+  name: Manuel Bryennios
+  school: Imperial University of Constantinople
+  place: Constantinople
+  year: 1300
+  fact: Wrote a major Byzantine treatise on harmonics, the mathematics of music.
+  mgp_id: 184632
+- g: 30
+  name: Gregory Chioniades
+  school: Ilkhanid court at Tabriz
+  place: Tabriz
+  year: 1296
+  fact: Travelled from Constantinople to Persia to learn astronomy, and brought Persian astronomical tables back to Byzantium.
+  mgp_id: 201288
+- g: 31
+  name: Shams al-Din al-Bukhari
+  place: Tabriz
+  year: 1280
+  year_label: late 13th century
+  dial: c. 1280
+  mgp_id: 204293
+- g: 32
+  name: Nasir al-Din al-Tusi
+  place: Mosul
+  year: 1230
+  year_label: early 13th century
+  dial: c. 1230
+  fact: Founded the Maragheh observatory. The “Tusi couple”, his way of turning two circular motions into a straight line, reappears in Copernicus, who sits twelve generations below him in this very tree.
+- g: 33
+  name: Kamal al-Din ibn Yunus
+  place: Mosul
+  year: 1190
+  year_label: late 12th century
+  dial: c. 1190
+  fact: 'Taught in Mosul. The database lists two teachers for him: the main line follows the one that leads to Omar Khayyam, and the other is in the side branch.'
+  mgp_id: 223724
+- g: 34
+  name: Sharaf al-Din al-Mas’udi al-Marwazi
+  place: Persia
+  year: 1150
+  year_label: 12th century
+  dial: c. 1150
+  mgp_id: 287466
+- g: 35
+  name: Omar Khayyam
+  short: Khayyam
+  school: Nishapur
+  place: Nishapur
+  year: 1068
+  fact: Solved cubic equations with conic sections, helped reform the Persian calendar, and is remembered worldwide for the quatrains attributed to him, the Rubaiyat.
+  mgp_id: 295739
+  star: true
+- g: 36
+  name: Bahmanyar ibn al-Marzuban
+  place: Persia
+  year: 1030
+  year_label: early 11th century
+  dial: c. 1030
+  fact: Studied with Avicenna from a very young age and became one of his closest disciples.
+  mgp_id: 287468
+- g: 37
+  name: Ibn Sina (Avicenna)
+  short: Avicenna
+  place: Bukhara
+  year: 1000
+  year_label: around the year 1000
+  dial: c. 1000
+  fact: Philosopher and physician. His Canon of Medicine was a standard textbook in European universities for centuries. A thousand years later, one of his academic descendants trains machine learning models on medical data.
+  mgp_id: 298616
+  star: true
+sides:
+- at: 14
+  title: Leibniz’s teacher in Paris
+  teaser: Christiaan Huygens, then four Dutch generations back to the man who spent his life computing π.
+  people:
+  - g: 15
+    name: Christiaan Huygens
+    short: Huygens
+    deg: Artium Liberalium Magister
+    school: Leiden University
+    place: Leiden
+    year: 1647
+    fact: Built the first pendulum clock, proposed the wave theory of light and discovered Titan, Saturn’s largest moon. The database lists him as Leibniz’s teacher during his years in Paris.
+    mgp_id: 125561
+    star: true
+  - g: 16
+    name: Frans van Schooten Jr.
+    deg: Artium Liberalium Magister
+    school: Leiden University
+    place: Leiden
+    year: 1635
+    fact: Translated Descartes’ Géométrie into Latin, which is how much of Europe learned analytic geometry. His second teacher was Marin Mersenne, of the Mersenne primes.
+    mgp_id: 125450
+  - g: 17
+    name: Jacobus Golius
+    deg: Magister and PhD
+    school: Leiden University
+    place: Leiden
+    year: 1612
+    year_label: 1612 and 1621
+    fact: 'Orientalist and mathematician. Among his other students: René Descartes.'
+    mgp_id: 125408
+  - g: 18
+    name: Willebrord Snellius
+    deg: Artium Liberalium Magister
+    school: Leiden University
+    place: Leiden
+    year: 1607
+    fact: Snell’s law of refraction carries his name, and he pioneered measuring the Earth by triangulation.
+    mgp_id: 125302
+  - g: 19
+    name: Ludolph van Ceulen
+    place: Leiden
+    year: 1590
+    year_label: late 16th century
+    dial: c. 1590
+    fact: A fencing master who spent much of his life computing π, reaching 35 decimal places. The digits were engraved on his tombstone, and in German π was long called the Ludolphine number.
+    mgp_id: 125232
+- at: 21
+  title: Novara had a second teacher
+  teaser: 'Luca Pacioli: father of double-entry bookkeeping and friend of Leonardo da Vinci.'
+  people:
+  - g: 22
+    name: Luca Pacioli
+    short: Pacioli
+    deg: No degree recorded
+    place: Italy
+    year: 1480
+    year_label: active from the 1470s
+    dial: c. 1480
+    fact: The father of double-entry bookkeeping, and a friend of Leonardo da Vinci, who drew the polyhedra for his book on the divine proportion. His own teacher is unknown, so this branch stops here, in Italy, where the line began.
+    mgp_id: 126888
+    star: true
+- at: 22
+  title: Regiomontanus’s first teacher
+  teaser: Georg von Peuerbach, and through Vienna and Paris back to Nicole Oresme, who was drawing graphs in the 1300s.
+  people:
+  - g: 23
+    name: Georg von Peuerbach
+    deg: Magister artium
+    school: University of Vienna
+    place: Vienna
+    year: 1440
+    fact: His textbook on the motions of the planets was the standard introduction to astronomy for well over a century.
+    mgp_id: 126087
+  - g: 24
+    name: Johannes von Gmunden
+    deg: Magister artium
+    school: University of Vienna
+    place: Vienna
+    year: 1406
+    fact: One of the founders of the Vienna school of mathematical astronomy.
+    mgp_id: 126887
+  - g: 25
+    name: Heinrich von Langenstein
+    deg: Magister artium
+    school: University of Paris
+    place: Paris
+    year: 1363
+    fact: Moved from Paris to Vienna, where he helped build up the young university.
+    mgp_id: 127264
+  - g: 26
+    name: Nicole Oresme
+    short: Oresme
+    school: University of Paris
+    place: Paris
+    year: 1350
+    year_label: mid-14th century
+    dial: c. 1350
+    fact: Drew quantities as graphs three centuries before Descartes, proved that the harmonic series diverges, and argued that the Earth might rotate. Later Bishop of Lisieux.
+    star: true
+- at: 33
+  title: Ibn Yunus’s other teacher
+  teaser: Sharaf al-Din al-Tusi, who studied cubic equations with something very close to a derivative.
+  people:
+  - g: 34
+    name: Sharaf al-Din al-Tusi
+    place: Mosul
+    year: 1170
+    year_label: 12th century
+    dial: c. 1170
+    fact: His treatise on equations works out when a cubic has positive roots, using an idea remarkably close to the derivative. He also invented the linear astrolabe, the “staff of al-Tusi”.
+    mgp_id: 230926
+relatives:
+- name: Björn Engquist
+  shared_advisor_g: 3
+  why: Another student of Kreiss, and a leading name in computational mathematics.
+- name: Lennart Carleson
+  shared_advisor_g: 5
+  why: Another student of Beurling. Abel Prize, 2006.
+- name: Mikhail Lomonosov
+  shared_advisor_g: 13
+  why: Another student of Wolff, and founder of Moscow University.

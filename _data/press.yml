@@ -15,6 +15,16 @@
 #                without the date, lower case, e.g. "molecule"); adds an
 #                "About the paper" button and a "Covered in" box on that page
 
+- id: scilifelab-saif
+  outlet: SciLifeLab
+  kind: News
+  date: 2026-10-14
+  title: "SciLifeLab joins forces with Sweden AI Factory on AI Skills Training"
+  url: https://www.scilifelab.se/news/scilifelab-joins-forces-with-sweden-ai-factory-on-ai-skills-training/
+  summary: "NBIS and the SciLifeLab Training Hub partner with Sweden AI Factory on AI training for researchers, starting with “Using AI in Life Science: A Primer”, a one-day online course on agentic AI, cybersecurity, explainable AI and ethics."
+  quote: "We also wanted to cover topics that are particularly relevant in life science and healthcare applications, such as explainable AI"
+  quote_by: Ivan Cucchi, in the announcement
+
 - id: mlops-35
   outlet: Stockholm MLOps
   kind: Event report

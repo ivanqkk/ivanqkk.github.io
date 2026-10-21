@@ -1,0 +1,126 @@
+{%- comment -%}
+  The academic family tree on /lineage/ (_pages/lineage.md), rendered from
+  _data/lineage.yml (fields documented there). Everything works without
+  JavaScript: the full list, the side branches as natively scrolling rails,
+  and "Jump to" / "Open the side branch" / relatives as plain anchor links.
+  assets/js/family-tree.js adds .ft-js to .ft-page and with it the year
+  counter, the order switch, the rail dots and the deciphering text.
+  Ids: gen-<g> for each card of the main line, side-<g> for each side card.
+  Styles: _sass/_family.scss, all scoped to .ft-page.
+{%- endcomment -%}
+{%- assign L = site.data.lineage -%}
+{%- assign mgp = "https://www.mathgenealogy.org/id.php?id=" -%}
+<div class="ft-page">
+
+<p class="lede">Take my PhD advisor, then his advisor, and keep going. After ten Swedish degrees in a row the line reaches Leibniz and Copernicus, then crosses Byzantium and Persia to Avicenna, around the year 1000. Along the way, side branches lead to Huygens, Pacioli, Oresme and more: swipe sideways on the cards that have one.</p>
+
+<div class="seg ft-order" role="group" aria-label="Order of the tree">
+  <button type="button" data-order="down" aria-pressed="true">From me</button>
+  <button type="button" data-order="up" aria-pressed="false">From the oldest</button>
+</div>
+
+<p class="ft-jumps"><span>Jump to</span>
+{%- for g in (0..37) -%}
+  {%- for p in L.main -%}
+    {%- if p.g == g and p.star -%}
+      {%- assign label = p.short | default: nil -%}
+      {%- unless label %}{% assign label = p.name | split: " " | last %}{% endunless %}
+  <a class="ft-jump" href="#gen-{{ p.g }}">{{ label }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+  {%- for s in L.sides -%}
+    {%- for q in s.people -%}
+      {%- if q.g == g and q.star -%}
+        {%- assign label = q.short | default: nil -%}
+        {%- unless label %}{% assign label = q.name | split: " " | last %}{% endunless %}
+  <a class="ft-jump" href="#side-{{ q.g }}">{{ label }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endfor %}
+</p>
+
+<div class="ft-wrap">
+  <div class="ft-dial" aria-hidden="true">
+    <div class="ft-dial-row"><span class="ft-dial-year">2026</span><span class="ft-dial-place">Pavia</span><span class="ft-dial-gen">Me</span></div>
+    <div class="ft-dial-track"><span class="ft-dial-fill"></span></div>
+    <div class="ft-dial-ends"><span>2026</span><span>c. 1000</span></div>
+  </div>
+
+  <ol class="ft-gens">
+  {%- for p in L.main %}
+    {%- capture meta -%}
+      {{ p.deg }}{% if p.deg and p.school %}, {% endif %}{{ p.school }}{% if p.deg or p.school %}, {% endif %}{{ p.year_label | default: p.year }}
+    {%- endcapture %}
+    <li class="ft-gen{% if p.star %} ft-milestone{% endif %}" id="gen-{{ p.g }}" data-g="{{ p.g }}" data-year="{{ p.year }}" data-place="{{ p.place }}"{% if p.dial %} data-dial="{{ p.dial }}"{% endif %}>
+      <span class="ft-num" aria-hidden="true">{{ p.g }}</span>
+      <p class="ft-meta"><strong>{% case p.g %}{% when 0 %}Me{% when 1 %}Advisor{% when 2 %}Grand-advisor{% else %}Generation {{ p.g }}{% endcase %}</strong><span>{{ meta }}</span></p>
+      <h2 class="ft-name">{{ p.name }}</h2>
+      {%- if p.thesis %}
+      <p class="ft-thesis">“{{ p.thesis }}”</p>
+      {%- endif %}
+      {%- if p.fact %}
+        {%- if p.decode %}
+      <p class="ft-fact"><span class="sr-only">{{ p.fact }}</span><span class="ft-decode" aria-hidden="true">{{ p.fact }}</span></p>
+        {%- else %}
+      <p class="ft-fact">{{ p.fact }}</p>
+        {%- endif %}
+      {%- endif %}
+      {%- if p.mgp_id %}
+      <p class="ft-link"><a href="{{ mgp }}{{ p.mgp_id }}" target="_blank" rel="noopener noreferrer">Genealogy Project entry</a></p>
+      {%- endif %}
+      {%- assign side = L.sides | where: "at", p.g | first %}
+      {%- if side %}
+        {%- assign first = side.people | first %}
+      <div class="ft-side{% if side.people.size == 1 %} ft-few{% endif %}">
+        <p class="ft-side-label">{% if side.people.size > 1 %}Side branch, older generations to the right{% else %}Side branch{% endif %}</p>
+        <div class="ft-rail" tabindex="0" role="region" aria-label="Side branch through {{ first.name }}">
+          <div class="ft-slide ft-stub">
+            <p class="ft-stub-title">{{ side.title }}</p>
+            <p class="ft-stub-text">{{ side.teaser }}</p>
+            <a class="ft-jump" href="#side-{{ first.g }}">Open the side branch</a>
+          </div>
+          {%- for q in side.people %}
+            {%- capture qmeta -%}
+              {{ q.deg }}{% if q.deg and q.school %}, {% endif %}{{ q.school }}{% if q.deg or q.school %}, {% endif %}{{ q.year_label | default: q.year }}
+            {%- endcapture %}
+          <article class="ft-slide ft-side-card" id="side-{{ q.g }}" data-g="{{ q.g }}" data-year="{{ q.year }}" data-place="{{ q.place }}"{% if q.dial %} data-dial="{{ q.dial }}"{% endif %}>
+            <p class="ft-meta"><strong>Generation {{ q.g }}, side branch</strong><span>{{ qmeta }}</span></p>
+            <h3 class="ft-name">{{ q.name }}</h3>
+            {%- if q.fact %}
+            <p class="ft-fact">{{ q.fact }}</p>
+            {%- endif %}
+            {%- if q.mgp_id %}
+            <p class="ft-link"><a href="{{ mgp }}{{ q.mgp_id }}" target="_blank" rel="noopener noreferrer">Genealogy Project entry</a></p>
+            {%- endif %}
+          </article>
+          {%- endfor %}
+        </div>
+        <div class="ft-dots" aria-hidden="true"><i class="on"></i>{% for q in side.people %}<i></i>{% endfor %}</div>
+      </div>
+      {%- endif %}
+    </li>
+  {%- endfor %}
+  </ol>
+</div>
+
+<section class="ft-relatives" aria-labelledby="ft-relatives-h">
+  <h2 id="ft-relatives-h">Famous relatives</h2>
+  <p class="lede">Academic siblings of my ancestors. Tap one to jump to the advisor we share.</p>
+  <div class="ft-rels">
+  {%- for r in L.relatives %}
+    {%- assign adv = L.main | where: "g", r.shared_advisor_g | first %}
+    {%- assign j = r.shared_advisor_g | minus: 1 %}
+    <a class="ft-rel" href="#gen-{{ r.shared_advisor_g }}">
+      <span class="ft-rel-label">{% if j == 1 %}Uncle{% elsif j == 2 %}Great-uncle{% else %}{{ j | minus: 1 }}× great-uncle{% endif %}</span>
+      <span class="ft-rel-name">{{ r.name }}</span>
+      <span class="ft-rel-why">{{ r.why }}</span>
+      <span class="ft-rel-go">Shared advisor: {{ adv.name }}</span>
+    </a>
+  {%- endfor %}
+  </div>
+</section>
+
+<p class="ft-note">Data from the <a href="https://www.mathgenealogy.org/" target="_blank" rel="noopener noreferrer">Mathematics Genealogy Project</a>, October 2026. Before the 1500s the links are between teacher and student rather than doctorates, and dates marked c. are approximate. Where someone had several teachers, the tree follows one line, plus a few side branches you can swipe through.</p>
+
+</div>

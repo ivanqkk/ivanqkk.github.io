@@ -19,4 +19,7 @@ main:
     
   - title: "CV"
     url: /cv/
+
+  - title: "Academic lineage"
+    url: /lineage/
     

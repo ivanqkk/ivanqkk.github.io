@@ -1,0 +1,530 @@
+/* ==========================================================================
+   ACADEMIC FAMILY TREE
+   The /lineage/ page (_includes/family-tree.html). Everything is scoped to
+   .ft-page and built on the site's design tokens, so it follows the theme
+   and dark mode on its own. assets/js/family-tree.js adds .ft-js to
+   .ft-page; the parts that need it (counter, order switch, rail dots) stay
+   hidden until then. The script also sets --ft-top (the real masthead
+   height; $masthead-height is the fallback) and --ft-dial-h (the counter).
+   ========================================================================== */
+
+/* Element-level specificity: beats the global h2/h3/p margins (same weight,
+   later in the cascade) and lets the classes below and .lede set their own. */
+:where(.ft-page) h2,
+:where(.ft-page) h3,
+:where(.ft-page) p { margin: 0; }
+
+.ft-page {
+  --ft-top: #{$masthead-height};
+
+  a:focus-visible,
+  button:focus-visible,
+  .ft-rail:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* A card that received focus from a jump: the flash marks it instead */
+  [tabindex="-1"]:focus { outline: none; }
+
+  > .lede { max-width: 62ch; }
+
+  .ft-order { display: none; }
+  &.ft-js .ft-order { display: inline-flex; }
+}
+
+/* The theme gives span, p, a, b, i... a `transition: all 0.2s` whatever the
+   motion preference; inside the tree, reduced motion means no motion at all. */
+@media (prefers-reduced-motion: reduce) {
+  .ft-page,
+  .ft-page * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Jump to: pill links */
+.ft-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.ft-page a.ft-jump {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 600 0.9rem var(--font-body);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+
+  &:hover { border-color: var(--accent); color: var(--accent); }
+}
+
+/* --------------------------------------------------------------------------
+   Year counter, sticky below the masthead
+   -------------------------------------------------------------------------- */
+.ft-wrap {
+  position: relative;
+  margin-top: 22px;
+}
+
+.ft-dial {
+  display: none;
+  position: sticky;
+  top: calc(var(--ft-top) + 8px);
+  z-index: 15;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px -18px rgba(15, 35, 52, 0.5);
+
+  .ft-js & { display: block; }
+}
+
+.ft-dial-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+}
+
+.ft-dial-year {
+  min-width: 4ch;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ft-dial-place { font-weight: 600; }
+
+.ft-dial-gen {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: var(--muted);
+
+  /* Narrow screens: always on its own line, so the counter keeps one height
+     whatever the label ("15 generations back, side branch") */
+  @media (max-width: 520px) {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}
+
+.ft-dial-track {
+  position: relative;
+  height: 4px;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.ft-dial-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  border-radius: 2px;
+  background: var(--accent);
+
+  @media (prefers-reduced-motion: no-preference) { transition: width 0.45s var(--ease); }
+}
+
+.ft-dial-ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   Generations
+   -------------------------------------------------------------------------- */
+.ft-gens {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 32px;
+  list-style: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 11px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(var(--accent), color-mix(in srgb, var(--accent) 25%, var(--line)));
+  }
+}
+
+.ft-gen {
+  position: relative;
+  margin: 0 0 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  /* Land an anchor link below the masthead (and the counter, with JS) */
+  scroll-margin-top: calc(var(--ft-top) + 16px);
+
+  .ft-js & { scroll-margin-top: calc(var(--ft-top) + var(--ft-dial-h, 96px) + 20px); }
+  &:target { border-color: var(--accent); }
+}
+
+/* Flash after a jump (family-tree.js) */
+.ft-gen,
+.ft-side-card {
+  @media (prefers-reduced-motion: no-preference) { transition: border-color 0.3s, box-shadow 0.3s; }
+
+  /* .ft-page in front, to beat the milestone border defined further down */
+  .ft-page &.ft-flash {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 5px var(--accent-soft);
+  }
+}
+
+.ft-num {
+  position: absolute;
+  left: -32px;
+  top: 18px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ft-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  font-size: 0.88rem;
+  color: var(--muted);
+
+  strong { color: var(--accent); }
+}
+
+.ft-page .ft-name {
+  margin-top: 6px;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.ft-page .ft-thesis {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.ft-page .ft-fact {
+  max-width: 62ch;
+  margin-top: 10px;
+}
+
+.ft-decode.ft-cipher { color: var(--accent); }
+
+.ft-page .ft-link {
+  margin-top: 4px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--accent);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; text-underline-offset: 4px; }
+  }
+}
+
+/* Milestones: the people with star: true */
+.ft-gen.ft-milestone {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: linear-gradient(var(--accent-soft), var(--surface) 70%);
+
+  .ft-num {
+    left: -35px;
+    top: 16px;
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+
+  .ft-name { font-size: 1.45rem; }
+}
+
+/* --------------------------------------------------------------------------
+   Side branches: a horizontal rail inside the card
+   -------------------------------------------------------------------------- */
+.ft-side {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed color-mix(in srgb, var(--accent) 40%, var(--line));
+}
+
+.ft-page .ft-side-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+
+  &::before {
+    content: "";
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+}
+
+/* A thin scrollbar stays visible, so the rail reads as scrollable with a
+   mouse and without JavaScript. */
+.ft-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 88%;
+  gap: 12px;
+  margin: -6px;
+  padding: 6px 6px 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) transparent;
+
+  @media (min-width: 760px) { grid-auto-columns: calc(50% - 6px); }
+  @media (prefers-reduced-motion: no-preference) { scroll-behavior: smooth; }
+}
+
+.ft-slide {
+  scroll-snap-align: start;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.ft-side-card {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: linear-gradient(var(--accent-soft), var(--surface) 70%);
+  scroll-margin-top: calc(var(--ft-top) + 16px);
+
+  .ft-js & { scroll-margin-top: calc(var(--ft-top) + var(--ft-dial-h, 96px) + 20px); }
+  &:target { border-color: var(--accent); }
+
+  .ft-name { font-size: 1.3rem; }
+}
+
+.ft-page .ft-stub-title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.ft-page .ft-stub-text {
+  margin: 6px 0 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.ft-dots {
+  display: none;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+
+  .ft-js & { display: flex; }
+  .ft-js .ft-few & { @media (min-width: 760px) { display: none; } }
+
+  i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--line);
+    transition: background-color 0.25s, transform 0.25s;
+  }
+
+  i.on {
+    background: var(--accent);
+    transform: scale(1.3);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Famous relatives
+   -------------------------------------------------------------------------- */
+.ft-relatives {
+  margin-top: 56px;
+
+  h2 {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+}
+
+.ft-rels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+
+  @media (min-width: 720px) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.ft-page a.ft-rel {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.25s var(--ease);
+
+  &:hover { border-color: var(--accent); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover { transform: translateY(-2px); }
+  }
+}
+
+.ft-rel-label { font-size: 0.82rem; font-weight: 600; color: var(--accent); }
+.ft-rel-name  { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; }
+.ft-rel-why   { font-size: 0.92rem; line-height: 1.45; color: var(--muted); }
+.ft-rel-go    { margin-top: 4px; font-size: 0.88rem; font-weight: 600; }
+
+.ft-page .ft-note {
+  margin-top: 32px;
+  font-size: 0.9rem;
+  color: var(--muted);
+
+  a { color: var(--accent); }
+}
+
+/* --------------------------------------------------------------------------
+   Home page box (_includes/family-teaser.html)
+   -------------------------------------------------------------------------- */
+.ft-page a.ft-teaser {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.25s, box-shadow 0.3s var(--ease);
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+    box-shadow: 0 14px 32px -20px rgba(15, 35, 52, 0.55);
+    text-decoration: none;
+
+    .ft-teaser-cta { text-decoration: underline; text-underline-offset: 4px; }
+  }
+
+  &:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 16px; }
+}
+
+/* One dot per generation, joined by a line; the two ends are larger */
+.ft-trail {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+
+  i {
+    flex: 1;
+    height: 2px;
+    background: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+
+  b {
+    flex: none;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  b:first-child,
+  b:last-child {
+    width: 12px;
+    height: 12px;
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ft-teaser:hover .ft-trail b {
+    animation: ft-dot-wave 0.8s var(--ease) both;
+    animation-delay: calc(var(--i) * 45ms);
+  }
+}
+
+@keyframes ft-dot-wave {
+  40% { transform: translateY(-7px) scale(1.25); }
+}
+
+.ft-trail-ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.ft-teaser-text {
+  line-height: 1.55;
+
+  strong {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--font-head);
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+}
+
+.ft-teaser-cta {
+  font-weight: 600;
+  color: var(--accent);
+}

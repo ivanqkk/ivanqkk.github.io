@@ -1,0 +1,18 @@
+{%- comment -%}
+  Home page box that leads to the academic lineage (/lineage/).
+  One dot per generation of the main line in _data/lineage.yml, oldest on
+  the left. Styles: _sass/_family.scss (the dots wave on hover, motion
+  permitting).
+{%- endcomment -%}
+{%- include base_path -%}
+{%- assign last_g = site.data.lineage.main.size | minus: 1 -%}
+<div class="ft-page">
+  <a class="ft-teaser" href="{{ base_path }}/lineage/">
+    <span class="ft-trail" aria-hidden="true">
+      {%- for i in (0..last_g) -%}{% unless forloop.first %}<i></i>{% endunless %}<b style="--i: {{ i }}"></b>{%- endfor -%}
+    </span>
+    <span class="ft-trail-ends" aria-hidden="true"><span>Avicenna, c. 1000</span><span>Me, 2026</span></span>
+    <span class="ft-teaser-text"><strong>Thirty-seven generations of teachers lead back to Avicenna, around the year 1000.</strong>On the way: a wartime codebreaker, Leibniz, Copernicus, Byzantium and Omar Khayyam.</span>
+    <span class="ft-teaser-cta">Explore the lineage</span>
+  </a>
+</div>

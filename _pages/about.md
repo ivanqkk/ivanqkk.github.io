@@ -103,3 +103,8 @@ scripts: [hero-network, timeline, cite, events]
 <div class="home-intro" style="margin-top: 1.5em;">
   I also earned my <strong>BSc and MSc in Mathematics</strong> at the University of Pavia, with earlier theses on cardiac electrophysiology simulation and ECG-based arrhythmia classification — both listed on my <a href="{{ base_path }}/cv/" class="inline-link">CV</a>.
 </div>
+
+<h2 class="home-section-title" id="lineage">Academic lineage</h2>
+
+{% comment %}Box linking to /lineage/ (_includes/family-teaser.html){% endcomment %}
+{% include family-teaser.html %}
