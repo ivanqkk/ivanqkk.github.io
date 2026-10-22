@@ -315,6 +315,19 @@ main:
   mgp_id: 298616
   star: true
 sides:
+- at: 0
+  title: My second advisor
+  teaser: Giorgio Colombo, computational chemist, who co-supervised my PhD.
+  people:
+  - g: 1
+    label: Co-advisor
+    name: Giorgio Colombo
+    deg: PhD
+    school: University of Milan
+    place: Milan
+    year: 2000
+    thesis: 'Structure, reactivity and activity of proteases: computational studies'
+    fact: Professor of organic chemistry in Pavia, who uses molecular dynamics to understand how proteins move and bind, and to design molecules that change it. As a postdoc in Groningen he worked with Herman Berendsen, one of the creators of GROMACS. 
 - at: 14
   title: Leibniz’s teacher in Paris
   teaser: Christiaan Huygens, then four Dutch generations back to the man who spent his life computing π.
