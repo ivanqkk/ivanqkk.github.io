@@ -1,12 +1,17 @@
 {% include base_path %}
-<script defer src="{{ base_path }}/assets/js/main.min.js"></script>
-<script defer src="{{ base_path }}/assets/js/theme-toggle.js"></script>
+{%- comment -%}
+  ?v= changes on every build, so browsers fetch the scripts of the current
+  deploy instead of a cached copy (GitHub Pages caches for 10 minutes).
+{%- endcomment -%}
+{%- capture v %}{{ site.time | date: '%s' }}{% endcapture %}
+<script defer src="{{ base_path }}/assets/js/main.min.js?v={{ v }}"></script>
+<script defer src="{{ base_path }}/assets/js/theme-toggle.js?v={{ v }}"></script>
 {%- comment -%}
   Page-specific scripts: list their names (without .js) in the front matter,
   e.g. `scripts: [hero-network, timeline]`, and only that page loads them.
 {%- endcomment -%}
 {%- for script in page.scripts %}
-<script defer src="{{ base_path }}/assets/js/{{ script }}.js"></script>
+<script defer src="{{ base_path }}/assets/js/{{ script }}.js?v={{ v }}"></script>
 {%- endfor %}
 
 {% include analytics.html %}
