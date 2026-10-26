@@ -16,7 +16,7 @@ authors:
   - Ivan Cucchi
 institution: "University of Pavia"
 logo: "unipv.png"
-slidesurl: 
+slidesurl: '/files/phd-defence.html'
 paperurl: 
 bibtexurl: 
 citation: "Cucchi, I. (2026). <i>Molecular dynamics-enhanced machine learning models for protein binding and stability</i> [Doctoral dissertation, University of Pavia]."

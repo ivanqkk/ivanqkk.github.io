@@ -24,3 +24,6 @@ package-lock.json
 
 # Local verification builds
 .build-*/
+
+# Ignore the contents of the _redesign directory
+_redesign/
