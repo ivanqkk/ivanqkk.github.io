@@ -39,6 +39,10 @@ layout: default
         {%- if page.paperurl %}
         <a class="ui-btn ui-btn--primary" href="{{ page.paperurl }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="ext" %}<span>Publisher</span></a>
         {%- endif %}
+        {%- if page.slidesurl %}
+        {%- if page.slidesurl contains '://' %}{% assign slides_href = page.slidesurl %}{% else %}{% assign slides_href = base_path | append: page.slidesurl %}{% endif %}
+        <a class="ui-btn ui-btn--primary" href="{{ slides_href }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="board" %}<span>Slides</span></a>
+        {%- endif %}        
         {%- if page.bibtexurl %}
         <a class="ui-btn ui-btn--secondary" href="{{ base_path }}/files/{{ page.bibtexurl | split: '/' | last }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="file" %}<span>BibTeX</span></a>
         {%- endif %}
