@@ -11,15 +11,18 @@
 {%- assign e = include.event -%}
 {%- assign same_day = false -%}
 {%- assign d1 = e.start | date: "%Y-%m-%d" -%}{%- assign d2 = e.end | date: "%Y-%m-%d" -%}
-{%- assign m1 = e.start | date: "%Y-%m" -%}{%- assign m2 = e.end | date: "%Y-%m" -%}
+{%- assign y1 = e.start | date: "%Y" -%}{%- assign y2 = e.end | date: "%Y" -%}
 {%- if d1 == d2 %}{% assign same_day = true %}{% endif -%}
+{%- comment -%}
+  One day: "Friday 23 October 2026, 09:00–16:00". Several days: start and
+  end each with their own time, "Tuesday 10 November, 17:30 – Tuesday
+  17 November 2026, 18:00", so it reads as one span, not a daily slot.
+{%- endcomment -%}
 {%- capture when -%}
   {%- if same_day -%}
-    {{ e.start | date: "%A %-d %B %Y" }}
-  {%- elsif m1 == m2 -%}
-    {{ e.start | date: "%A %-d" }} – {{ e.end | date: "%A %-d %B %Y" }}
+    {{ e.start | date: "%A %-d %B %Y" }}, {{ e.start | date: "%H:%M" }}–{{ e.end | date: "%H:%M" }}
   {%- else -%}
-    {{ e.start | date: "%A %-d %B" }} – {{ e.end | date: "%A %-d %B %Y" }}
+    {{ e.start | date: "%A %-d %B" }}{% if y1 != y2 %} {{ y1 }}{% endif %}, {{ e.start | date: "%H:%M" }} – {{ e.end | date: "%A %-d %B %Y" }}, {{ e.end | date: "%H:%M" }}
   {%- endif -%}
 {%- endcapture -%}
 {%- capture gcal -%}https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text={{ e.title | url_encode }}&amp;dates={{ e.start | date: "%Y%m%dT%H%M%S" }}/{{ e.end | date: "%Y%m%dT%H%M%S" }}&amp;ctz=Europe/Stockholm&amp;details={{ e.url | url_encode }}&amp;location={{ e.format | url_encode }}{%- endcapture -%}
@@ -28,7 +31,7 @@
   <div class="event-main">
     <p class="event-meta"><span class="tag">{{ e.kind }}</span><span>{{ e.format }}</span><span class="ev-count" data-countdown></span></p>
     <h3 class="event-title"><a href="{{ e.url }}" target="_blank" rel="noopener noreferrer">{{ e.title }}</a></h3>
-    <p class="event-when"><time datetime="{{ e.start | date_to_xmlschema }}">{{ when }}, {{ e.start | date: "%H:%M" }}–{{ e.end | date: "%H:%M" }} Stockholm time</time><span class="local" data-local></span></p>
+    <p class="event-when"><time datetime="{{ e.start | date_to_xmlschema }}">{{ when }} Stockholm time</time><span class="local" data-local></span></p>
     <p class="event-org">{{ e.org }}</p>
     {%- if e.role %}
     <div class="event-role">{% include icon.html name="mic" %}<p><strong>My role</strong>{{ e.role }}</p></div>

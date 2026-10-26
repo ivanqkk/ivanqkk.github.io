@@ -16,7 +16,7 @@ layout: default
   {% include sidebar.html %}
 
   <div class="archive">
-    {% comment %}A page with `hero: true` gets its <h1> from _includes/hero.html.{% endcomment %}
+    {% comment %}A page with `hero: true` prints its own <h1>.{% endcomment %}
     {% unless page.header.overlay_color or page.header.overlay_image or page.hero %}
       <h1 class="page__title">{{ page.title }}</h1>
     {% endunless %}

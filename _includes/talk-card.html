@@ -6,7 +6,8 @@
     `include.hidden=true` renders it hidden: the event had not ended at build
     time, and assets/js/events.js reveals it once it has (data-event-past).
   The title link is stretched over the card (::after), so the card has one
-  link; the Slides/Poster download sits above it. The download label and
+  link; the Slides/Poster download and, for events with `code_url`, the
+  GitHub button sit above it. The download label and
   icon derive from the `slidesurl` filename, so a poster PDF says "Poster".
 {%- endcomment -%}
 {%- include base_path -%}
@@ -20,6 +21,7 @@
   {%- assign t_link = ev.url -%}
   {%- assign t_logo = ev.logo -%}
   {%- assign t_slides = nil -%}
+  {%- assign t_code = ev.code_url -%}
 {%- else -%}
   {%- assign ev = nil -%}
   {%- assign post = include.post -%}
@@ -31,6 +33,7 @@
   {%- assign t_link = post.link -%}
   {%- assign t_logo = post.logo -%}
   {%- assign t_slides = post.slidesurl -%}
+  {%- assign t_code = nil -%}
 {%- endif -%}
 {%- assign badge = t_type | downcase -%}
 {%- if t_type contains '+' %}{% assign badge = 'hybrid' %}{% endif -%}
@@ -62,11 +65,18 @@
       </h3>
       <p class="talk-venue-text">{{ t_venue }}</p>
     </div>
-    {%- if t_slides %}
+    {%- if t_slides or t_code %}
     <div class="talk-card-footer">
+      {%- if t_slides %}
       <a href="{{ base_path }}/files/{{ file }}" download="{{ post.download_as | default: file }}" class="download-btn">
         {% include icon.html name=dl_icon class="download-icon" %} {{ dl_label }}
       </a>
+      {%- endif %}
+      {%- if t_code %}
+      <a href="{{ t_code }}" target="_blank" rel="noopener noreferrer" class="download-btn">
+        {% include icon.html name="github" class="download-icon" %} GitHub<span class="sr-only"> repository (opens in a new tab)</span>
+      </a>
+      {%- endif %}
     </div>
     {%- endif %}
   </article>

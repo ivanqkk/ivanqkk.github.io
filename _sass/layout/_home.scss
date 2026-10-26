@@ -65,10 +65,15 @@
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--home-heading);
+  /* Land /about/#news and the like below the fixed masthead */
+  scroll-margin-top: 90px;
 
   + .home-intro,
   + blockquote { margin-top: 14px; }
 }
+
+/* The first About section has no heading; its id sits on the paragraph */
+.home-intro[id] { scroll-margin-top: 90px; }
 
 .inline-link {
   color: var(--home-accent);

@@ -15,6 +15,12 @@
 - date: "Oct 2026"
   dt: 2026-10
   tag: "Workshop"
+  text: "Co-organised the Explainable AI for Life Science workshop for Sweden AI Factory, and lectured on turning predictions into biological insights."
+  url: "/talks/"
+
+- date: "Oct 2026"
+  dt: 2026-10
+  tag: "Workshop"
   text: "Supported the Generative AI for Life Science workshop for Sweden AI Factory, from autoencoders to protein language models."
   url: "/talks/"
 

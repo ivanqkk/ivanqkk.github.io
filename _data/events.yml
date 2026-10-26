@@ -17,6 +17,8 @@
 #   summary, audience (optional)
 #   url           (required) event page
 #   register_url  (optional) registration form; hidden once registration closes
+#   code_url      (optional) repository with the materials, shown as a GitHub
+#                 button on the past card (Talks page)
 #   logo          (optional) image in /images/ for the past card watermark
 
 - id: genai-ls
@@ -33,6 +35,7 @@
   audience: "For researchers, data scientists and ML practitioners in life science. Basic Python expected."
   url: https://swedenaifactory.se/event/generative-ai-for-life-science/
   register_url: https://nextcloud.naiss.se/apps/forms/s/wFWzRKWEP4JH7xqTNbPbfPFK
+  code_url: https://github.com/sweden-ai-factory/gen-ai-for-life-science
   logo: swedenaifactory.png
 
 - id: xai-ls
@@ -44,11 +47,12 @@
   end: 2026-10-23T16:00:00+02:00
   register_by: 2026-10-21T23:59:00+02:00
   role: "Lecture at 09:20, “Explainable AI for Life Science: Turning Predictions into Biological Insights”, then instructor for the hands-on notebooks."
-  past_role: lecturer and instructor
+  past_role: co-organiser and lecturer
   summary: "A one-day workshop on explainable AI in the life sciences: interactive lectures, then hands-on notebooks applying SHAP, saliency maps and Grad-CAM to real medical datasets."
   audience: "For researchers, data scientists and ML practitioners in life science. Basic Python expected."
   url: https://swedenaifactory.se/event/explainable-ai-for-life-science/
   register_url: https://nextcloud.naiss.se/apps/forms/s/ELwAFLf2fdRq7cnyGDj2HsJK
+  code_url: https://github.com/sweden-ai-factory/xai-for-life-science
   logo: swedenaifactory.png
 
 - id: primer
@@ -77,6 +81,6 @@
   role: "Mentor for the hackathon teams."
   past_role: mentor
   summary: "A seven-day hackathon on AI for meta-science, on how scientific research is evaluated and rewarded. It opens with an in-person kick-off on 10 November at 17:30 and submissions close on 17 November at 18:00; the winning team gets a trip to NeurIPS 2026 in Paris and a poster at the AI for Meta-Science workshop."
-  url: https://luma.com/6b08hj2b
+  url: https://swedenaifactory.se/event/ai-for-meta-science-hackathon-2026/
   register_url: https://luma.com/6b08hj2b
   logo: swedenaifactory.png

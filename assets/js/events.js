@@ -45,7 +45,11 @@
     var local = card.querySelector('[data-local]');
     if (local) {
       var here = fmt(s, HM, null), there = fmt(s, HM);
-      local.textContent = here !== there ? ' (' + here + '–' + fmt(e, HM, null) + ' your time)' : '';
+      var DAY = { weekday: 'short', day: 'numeric', month: 'short' };
+      var oneDay = fmt(s, DAY) === fmt(e, DAY);
+      local.textContent = here === there ? '' : oneDay
+        ? ' (' + here + '–' + fmt(e, HM, null) + ' your time)'
+        : ' (' + fmt(s, DAY, null) + ', ' + here + ' – ' + fmt(e, DAY, null) + ', ' + fmt(e, HM, null) + ' your time)';
     }
 
     var note = card.querySelector('[data-reg-note]');

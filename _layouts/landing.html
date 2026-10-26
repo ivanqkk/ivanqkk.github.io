@@ -1,0 +1,36 @@
+---
+layout: compress
+---
+{%- comment -%}
+  Home page only (_pages/about.md): a full-screen scene with no masthead,
+  sidebar or footer. Same <head> and scripts as the other pages
+  (_layouts/default.html). Styles: _sass/layout/_landing.scss.
+{%- endcomment -%}
+{% include base_path %}
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
+  <head>
+    {%- comment -%}
+      The sections of the old home now live on /about/: send old links such
+      as /#news there before anything is drawn.
+    {%- endcomment -%}
+    <script>
+      if (/^#(about|upcoming|focus|news|recent|media|background|lineage)$/.test(location.hash)) {
+        location.replace('{{ base_path }}/about/' + location.hash);
+      }
+    </script>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
+
+  <body class="landing-body">
+
+    {% include browser-upgrade.html %}
+
+    {{ content }}
+
+    {% include scripts.html %}
+
+  </body>
+</html>

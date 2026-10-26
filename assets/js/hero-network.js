@@ -1,9 +1,13 @@
 /* ==========================================================================
    Hero network
-   Drifting "molecular" network on the home page hero (_includes/hero.html).
+   Drifting "molecular" network behind the home page card (_pages/about.md).
    Nodes drift, link to their neighbours and move away from the pointer.
-   - Colours come from the --node token (r, g, b), so it follows the theme;
-     it redraws on the `themechange` event from theme-toggle.js.
+   - Colours come from the --node token (r, g, b) as seen by the canvas, so
+     a scene can set its own (the home is always dark, _landing.scss); it
+     redraws on the `themechange` event from theme-toggle.js.
+   - Up to 120 nodes on the full-screen home scene, 72 elsewhere.
+   - A tap or click on the background (not on a link, button or input)
+     sends out a ring that grows for 0.9 s and pushes the nodes it meets.
    - Pauses while the hero is off screen.
    - With reduced motion it draws a single still frame and ignores the pointer.
    ========================================================================== */
@@ -11,10 +15,10 @@
   var c = document.querySelector('.hero-canvas');
   if (!c || !c.getContext) return;
 
-  var root = document.documentElement;
   var sec = c.parentElement, ctx = c.getContext('2d');
   var reducedMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var st = { raf: 0, visible: true, nodes: [], w: 0, h: 0, mx: -1e4, my: -1e4 };
+  var st = { raf: 0, visible: true, nodes: [], w: 0, h: 0, mx: -1e4, my: -1e4, ripples: [] };
+  var RIPPLE_MS = 900, RIPPLE_SPEED = 0.55;   // ring radius grows by px per ms
 
   function mk() {
     return { x: Math.random() * st.w, y: Math.random() * st.h, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3, r: 1.6 + Math.random() * 2.2 };
@@ -25,7 +29,7 @@
     st.w = r.width; st.h = r.height;
     c.width = Math.round(r.width * dpr); c.height = Math.round(r.height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var n = Math.round(Math.min(72, Math.max(26, st.w * st.h / 8500)));
+    var n = Math.round(Math.min(c.closest('.landing') ? 120 : 72, Math.max(26, st.w * st.h / 8500)));
     while (st.nodes.length < n) st.nodes.push(mk());
     st.nodes.length = n;
     st.nodes.forEach(function (p) { p.x = Math.min(p.x, st.w); p.y = Math.min(p.y, st.h); });
@@ -33,12 +37,18 @@
   }
 
   function step() {
+    var now = performance.now();
+    st.ripples = st.ripples.filter(function (rp) { return now - rp.t < RIPPLE_MS; });
     st.nodes.forEach(function (n) {
       n.vx += (Math.random() - .5) * .04; n.vy += (Math.random() - .5) * .04;
+      st.ripples.forEach(function (rp) {
+        var rr = (now - rp.t) * RIPPLE_SPEED, ex = n.x - rp.x, ey = n.y - rp.y, ed = Math.sqrt(ex * ex + ey * ey) || 1;
+        if (Math.abs(ed - rr) < 26) { n.vx += ex / ed * .9; n.vy += ey / ed * .9; }
+      });
       var dx = n.x - st.mx, dy = n.y - st.my, d2 = dx * dx + dy * dy;
       if (d2 < 14400) { var d = Math.sqrt(d2) || 1, f = (1 - d / 120) * .12; n.vx += dx / d * f; n.vy += dy / d * f; }
       n.vx *= .985; n.vy *= .985;
-      var sp = Math.hypot(n.vx, n.vy); if (sp > .9) { n.vx *= .9 / sp; n.vy *= .9 / sp; }
+      var sp = Math.hypot(n.vx, n.vy); if (sp > 2.4) { n.vx *= 2.4 / sp; n.vy *= 2.4 / sp; }
       n.x += n.vx; n.y += n.vy;
       if (n.x < 0) { n.x = 0; n.vx *= -1; } else if (n.x > st.w) { n.x = st.w; n.vx *= -1; }
       if (n.y < 0) { n.y = 0; n.vy *= -1; } else if (n.y > st.h) { n.y = st.h; n.vy *= -1; }
@@ -46,7 +56,7 @@
   }
 
   function draw() {
-    var rgb = getComputedStyle(root).getPropertyValue('--node').trim();
+    var rgb = getComputedStyle(c).getPropertyValue('--node').trim();
     var maxD = st.w < 600 ? 92 : 124, ns = st.nodes;
     ctx.clearRect(0, 0, st.w, st.h);
     ctx.lineWidth = 1;
@@ -64,6 +74,14 @@
       ctx.fillStyle = 'rgba(' + rgb + ',' + (near ? .95 : .7) + ')';
       ctx.beginPath(); ctx.arc(n.x, n.y, n.r * (near ? 1.5 : 1), 0, Math.PI * 2); ctx.fill();
     });
+    var t = performance.now();
+    ctx.lineWidth = 1.5;
+    st.ripples.forEach(function (rp) {
+      var age = t - rp.t;
+      if (age >= RIPPLE_MS) return;
+      ctx.strokeStyle = 'rgba(' + rgb + ',' + ((1 - age / RIPPLE_MS) * .5).toFixed(3) + ')';
+      ctx.beginPath(); ctx.arc(rp.x, rp.y, age * RIPPLE_SPEED, 0, Math.PI * 2); ctx.stroke();
+    });
   }
 
   function loop() {
@@ -73,17 +91,25 @@
 
   function onMove(e) { var r = c.getBoundingClientRect(); st.mx = e.clientX - r.left; st.my = e.clientY - r.top; }
   function onLeave() { st.mx = -1e4; st.my = -1e4; }
+  function onDown(e) {
+    if (e.target.closest('a, button, input')) return;
+    var r = c.getBoundingClientRect();
+    st.ripples.push({ x: e.clientX - r.left, y: e.clientY - r.top, t: performance.now() });
+  }
 
   function start() {
     if (st.raf) return;
     sec.addEventListener('pointermove', onMove);
     sec.addEventListener('pointerleave', onLeave);
+    sec.addEventListener('pointerdown', onDown);
     st.raf = requestAnimationFrame(loop);
   }
   function stop() {
     cancelAnimationFrame(st.raf); st.raf = 0;
     sec.removeEventListener('pointermove', onMove);
     sec.removeEventListener('pointerleave', onLeave);
+    sec.removeEventListener('pointerdown', onDown);
+    st.ripples = [];
     onLeave(); draw();
   }
 

@@ -1,110 +1,83 @@
 ---
-layout: archive
+layout: landing
 permalink: /
 title: "Ivan Cucchi – AI for Life Sciences"
-author_profile: true
-description: "Personal website of Ivan Cucchi"
-hero: true
-scripts: [hero-network, timeline, cite, events]
+scripts: [hero-network, landing]
 ---
 
 {% include base_path %}
-
-{% include hero.html title="AI for Life Sciences" subtitle="Application Specialist at Stockholm University and Sweden AI Factory, helping life-science researchers put national AI and HPC infrastructure to work." %}
-
-<h2 class="home-section-title" id="about">About me</h2>
-
-<div class="home-intro">
-  I am an <strong>Application Specialist in AI for Life Science</strong> at <a href="https://www.su.se/english" target="_blank" rel="noopener noreferrer" class="inline-link">Stockholm University</a>, working within the <a href="https://www.su.se/english/profiles/i/ivcu9753" target="_blank" rel="noopener noreferrer" class="inline-link">Department of Biochemistry and Biophysics</a> and based at <a href="https://www.scilifelab.se/" target="_blank" rel="noopener noreferrer" class="inline-link">SciLifeLab</a> (Campus Solna) in the <a href="https://bioinfo.se/" target="_blank" rel="noopener noreferrer" class="inline-link">Arne Elofsson Lab</a>.
-</div>
-
-<div class="home-intro home-intro--tight">
-  As part of the <a href="https://SwedenAIFactory.se/" target="_blank" rel="noopener noreferrer" class="inline-link">Sweden AI Factory</a>, I collaborate with <a href="https://www.naiss.se/" target="_blank" rel="noopener noreferrer" class="inline-link">NAISS</a> to empower researchers from both academia and industry to leverage national AI and high-performance computing (HPC) infrastructure, accelerating data-driven discovery in the life sciences. I am also actively involved in training initiatives, contributing to the development of courses, seminars, and workshops aimed at strengthening AI competence across the life science community.
-</div>
+{%- assign author = site.author -%}
 
 {% comment %}
-  Upcoming workshops and courses from _data/events.yml, at most two; the
-  section disappears when there is none (_includes/upcoming-events.html).
+  The home page: a business card over the molecular network
+  (assets/js/hero-network.js), always on a dark scene. The old home content
+  is on /about/ (_pages/about-me.md). Complete without JavaScript: the
+  network, the credit line and the JS-only extras (typing tagline, clock,
+  copy button, countdown) simply don't appear. Behaviour:
+  assets/js/landing.js. Styles: _sass/layout/_landing.scss.
 {% endcomment %}
-{% include upcoming-events.html heading="Upcoming events" heading_id="upcoming" max=2 more="/talks/" %}
+<main class="landing">
+  <canvas class="hero-canvas" aria-hidden="true"></canvas>
 
-<h2 class="home-section-title" id="focus">What I work on</h2>
+  <div class="landing-card">
+    <img class="landing-avatar" src="{{ author.avatar | prepend: '/images/' | prepend: base_path }}" alt="" width="112" height="112" fetchpriority="high">
+    <p class="landing-aff">Sweden AI Factory · Stockholm University</p>
+    <h1>Ivan Cucchi</h1>
+    <p class="landing-tag"><span class="sr-only">AI for life sciences: proteins, drug discovery, medical data and supercomputers</span><span aria-hidden="true"><span class="rot-text">AI for life sciences</span><span class="rot-caret"></span></span></p>
+    <p class="landing-local"><span class="live-dot" aria-hidden="true"></span><span>SciLifeLab, Stockholm<span data-clock hidden>: <time></time>, <span data-tz-diff></span></span></span></p>
+    <p class="landing-mail"><span data-email>ivanqkk92 [at] naiss.se</span><button class="mail-copy" type="button" data-copy-email aria-label="Copy email address" title="Copy email address" hidden>{% include icon.html name="copy" %}</button></p>
 
-<ul class="focus">
-  <li><span class="ico-wrap">{% include icon.html name="network" %}</span><h3>Scientific ML</h3><p>Deep learning for structural biology, bioimaging, omics and wider life-science applications.</p></li>
-  <li><span class="ico-wrap">{% include icon.html name="server" %}</span><h3>HPC and infrastructure</h3><p>Scaling AI pipelines on NAISS supercomputers for high-throughput life-science workflows.</p></li>
-  <li><span class="ico-wrap">{% include icon.html name="pulse" %}</span><h3>Biomedical data</h3><p>Statistical learning and feature engineering on clinical signals and biobank data.</p></li>
-</ul>
+    <nav class="landing-go" aria-label="Explore">
+      <a class="ui-btn ui-btn--primary" href="{{ base_path }}/about/">About me</a>
+      <a class="ui-btn ui-btn--secondary" href="{{ base_path }}/files/Curriculum_Vitae.pdf">CV</a>
+      <a class="ui-btn ui-btn--secondary" href="{{ base_path }}/publications/">Publications</a>
+      <a class="ui-btn ui-btn--secondary" href="{{ base_path }}/talks/">Talks</a>
+    </nav>
 
-<h2 class="home-section-title" id="news">News</h2>
+    <ul class="landing-links" aria-label="Profiles">
+      {%- if author.linkedin %}
+      <li><a href="https://www.linkedin.com/in/{{ author.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">{% include icon.html name="linkedin" %}</a></li>
+      {%- endif %}
+      {%- if author.github %}
+      <li><a href="https://github.com/{{ author.github }}" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">{% include icon.html name="github" %}</a></li>
+      {%- endif %}
+      {%- if author.googlescholar %}
+      <li><a href="{{ author.googlescholar }}" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">{% include icon.html name="scholar" %}</a></li>
+      {%- endif %}
+      {%- if author.orcid %}
+      <li><a href="{{ author.orcid }}" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID">{% include icon.html name="orcid" %}</a></li>
+      {%- endif %}
+      {%- if author.researchgate %}
+      <li><a href="{{ author.researchgate }}" target="_blank" rel="noopener" aria-label="ResearchGate" title="ResearchGate">{% include icon.html name="researchgate" %}</a></li>
+      {%- endif %}
+    </ul>
 
-{% comment %}
-  Items live in _data/news.yml, newest first. The timeline line fills as the
-  page scrolls (assets/js/timeline.js); without JavaScript it is drawn full.
-{% endcomment %}
-{% include news-timeline.html items=site.data.news %}
-
-<h2 class="home-section-title" id="recent">Recent publications</h2>
-
-{% comment %}
-  Pulled live from the _publications collection (journal articles only) so this
-  section never needs updating by hand. Full list lives at /publications/.
-{% endcomment %}
-{%- assign recent_papers = site.publications | where: "category", "manuscripts" | sort: "date" | reverse %}
-<div class="pubs pubs--grid">
-{%- for post in recent_papers limit: 2 %}
-{% include pub-card.html post=post %}
-{%- endfor %}
-</div>
-
-<div class="section-more">
-  <a href="{{ base_path }}/publications/" class="inline-link">View all publications {% include icon.html name="arrow-right" %}</a>
-</div>
-
-<h2 class="home-section-title" id="media">In the media</h2>
-
-{% comment %}
-  The most recent item of _data/press.yml; all of them are on /media/.
-{% endcomment %}
-{%- assign latest_press = site.data.press | sort: "date" | reverse | first %}
-{% include press-card.html item=latest_press %}
-
-<div class="section-more">
-  <a href="{{ base_path }}/media/" class="inline-link">All coverage {% include icon.html name="arrow-right" %}</a>
-</div>
-
-<h2 class="home-section-title" id="background">Academic background</h2>
-
-<div class="home-intro">
-  I hold a Ph.D. in <a href="https://compmat.unipv.it/" target="_blank" rel="noopener noreferrer" class="inline-link">Computational Mathematics, Learning, and Data Science</a>, jointly offered by the <a href="https://portale.unipv.it/it" target="_blank" rel="noopener noreferrer" class="inline-link">University of Pavia</a> and the <a href="https://www.usi.ch/it" target="_blank" rel="noopener noreferrer" class="inline-link">Università della Svizzera Italiana</a>, which I defended in September 2026. My doctoral research was conducted within the thematic program <em>High Performance Computing and Deep Learning Methods for Protein Evolution and Design</em>, where I developed machine learning and deep learning methodologies for computational chemistry and biomedical applications, supervised by professors <a href="https://sites.google.com/unipv.it/lucafp/home" target="_blank" rel="noopener noreferrer" class="inline-link">Luca F. Pavarino</a> and Giorgio Colombo. My thesis, <a href="{{ base_path }}/publication/2026-phd-thesis" class="inline-link">Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability</a>, coupled atomistic molecular dynamics with machine and deep learning to predict ligand modes of action, mutational protein stability, and nanobody binding.
-</div>
-
-<blockquote>
-  My research background combines <strong>scientific machine learning, structural bioinformatics, molecular modeling, and statistical learning</strong>, with a focus on protein–ligand interactions, protein stability prediction, and allosteric mechanisms, including projects in low-data regimes.
-</blockquote>
-
-<div class="thesis-grid">
-
-  <!-- PHD THESIS -->
-  <a href="{{ base_path }}/publication/2026-phd-thesis" class="thesis-card-link" aria-label="2026 PhD Thesis, University of Pavia: Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability">
-    <div class="thesis-card">
-      <div class="thesis-badge-container">
-        <span class="tag-home-date">2026</span>
-        <span class="tag-home-label">PhD Thesis</span>
-        <span class="tag-home-label" style="margin-left: auto;">University of Pavia</span>
-      </div>
-      <h3><span class="thesis-title-text">Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability</span></h3>
-      <p class="thesis-venue-text">Coupled atomistic molecular dynamics with machine and deep learning across three biophysical domains — kinase ligand profiling, mutational protein stability, and target-independent nanobody binding — establishing a scalable computational triage protocol for molecular prioritization.</p>
+    {%- comment -%}
+      "Next": one link per event of _data/events.yml, in start order; the
+      first one that had not ended at build time is shown. The line is
+      dropped when there is none. landing.js redoes the choice with the
+      visitor's clock and adds "in N days" or "Happening now".
+    {%- endcomment -%}
+    {%- assign now_s = site.time | date: "%s" | plus: 0 -%}
+    {%- assign next_events = site.data.events | sort: "start" -%}
+    {%- assign next_shown = false %}
+    <div class="landing-next-wrap">
+    {%- for e in next_events -%}
+      {%- assign end_s = e.end | date: "%s" | plus: 0 -%}
+      {%- assign show = false -%}
+      {%- if end_s > now_s and next_shown == false %}{% assign show = true %}{% assign next_shown = true %}{% endif %}
+      <a class="landing-next" href="{{ base_path }}/talks/" data-next data-start="{{ e.start | date_to_xmlschema }}" data-end="{{ e.end | date_to_xmlschema }}"{% unless show %} hidden{% endunless %}>
+        <span class="ln-label" data-next-label>Next</span>
+        <span class="ln-title">{{ e.title }}</span>
+        {%- assign d1 = e.start | date: "%Y-%m-%d" -%}{%- assign d2 = e.end | date: "%Y-%m-%d" -%}
+        {%- assign mo1 = e.start | date: "%Y-%m" -%}{%- assign mo2 = e.end | date: "%Y-%m" %}
+        <span class="ln-date"><time datetime="{{ e.start | date_to_xmlschema }}">{% if d1 == d2 %}{{ e.start | date: "%a %-d %b" }}{% elsif mo1 == mo2 %}{{ e.start | date: "%-d" }}–{{ e.end | date: "%-d %b" }}{% else %}{{ e.start | date: "%-d %b" }} – {{ e.end | date: "%-d %b" }}{% endif %}</time>, {{ e.format }}</span>
+      </a>
+    {%- endfor %}
     </div>
-  </a>
+  </div>
 
-</div>
+  <p class="landing-credit">Background: a molecular network, simulated live in your browser. Tap it to give it a kick.</p>
 
-<div class="home-intro" style="margin-top: 1.5em;">
-  I also earned my <strong>BSc and MSc in Mathematics</strong> at the University of Pavia, with earlier theses on cardiac electrophysiology simulation and ECG-based arrhythmia classification — both listed on my <a href="{{ base_path }}/cv/" class="inline-link">CV</a>.
-</div>
-
-<h2 class="home-section-title" id="lineage">Academic lineage</h2>
-
-{% comment %}Box linking to /lineage/ (_includes/family-teaser.html){% endcomment %}
-{% include family-teaser.html %}
+  <div class="toast" id="toast" role="status" aria-live="polite">{% include icon.html name="check" %}<span></span></div>
+</main>
