@@ -48,7 +48,7 @@
   register_by: 2026-10-21T23:59:00+02:00
   role: "Lecture at 09:20, “Explainable AI for Life Science: Turning Predictions into Biological Insights”, then instructor for the hands-on notebooks."
   past_role: co-organiser and lecturer
-  summary: "A one-day workshop on explainable AI in the life sciences: interactive lectures, then hands-on notebooks applying SHAP, saliency maps and Grad-CAM to real medical datasets."
+  summary: "A one-day workshop on explainable AI in life science: interactive lectures, then hands-on notebooks applying SHAP, saliency maps and Grad-CAM to real medical datasets."
   audience: "For researchers, data scientists and ML practitioners in life science. Basic Python expected."
   url: https://swedenaifactory.se/event/explainable-ai-for-life-science/
   register_url: https://nextcloud.naiss.se/apps/forms/s/ELwAFLf2fdRq7cnyGDj2HsJK

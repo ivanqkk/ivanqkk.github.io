@@ -1,7 +1,7 @@
 ---
 layout: landing
 permalink: /
-title: "Ivan Cucchi – AI for Life Sciences"
+title: "Ivan Cucchi – AI for Life Science"
 scripts: [hero-network, landing]
 ---
 
@@ -23,7 +23,7 @@ scripts: [hero-network, landing]
     <img class="landing-avatar" src="{{ author.avatar | prepend: '/images/' | prepend: base_path }}" alt="" width="112" height="112" fetchpriority="high">
     <p class="landing-aff">Sweden AI Factory · Stockholm University</p>
     <h1>Ivan Cucchi</h1>
-    <p class="landing-tag"><span class="sr-only">AI for life sciences: proteins, drug discovery, medical data and supercomputers</span><span aria-hidden="true"><span class="rot-text">AI for life sciences</span><span class="rot-caret"></span></span></p>
+    <p class="landing-tag"><span class="sr-only">AI for life science: proteins, drug discovery, medical data and supercomputers</span><span aria-hidden="true"><span class="rot-text">AI for life science</span><span class="rot-caret"></span></span></p>
     <p class="landing-local"><span class="live-dot" aria-hidden="true"></span><span>SciLifeLab, Stockholm<span data-clock hidden>: <time></time>, <span data-tz-diff></span></span></span></p>
     <p class="landing-mail"><span data-email>ivanqkk92 [at] naiss.se</span><button class="mail-copy" type="button" data-copy-email aria-label="Copy email address" title="Copy email address" hidden>{% include icon.html name="copy" %}</button></p>
 

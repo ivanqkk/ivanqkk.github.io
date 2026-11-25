@@ -18,7 +18,7 @@
   var reducedMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   /* ---- Tagline -------------------------------------------------------- */
-  var PHRASES = ['AI for life sciences', 'AI for proteins', 'AI for drug discovery', 'AI for medical data', 'AI at supercomputer scale'];
+  var PHRASES = ['AI for life science', 'AI for proteins', 'AI for drug discovery', 'AI for medical data', 'AI at supercomputer scale'];
   var tag = card.querySelector('.landing-tag'), txt = card.querySelector('.rot-text');
   var typing = 0;
   function startTyping() {
