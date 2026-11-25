@@ -205,61 +205,39 @@ scripts: [events]
 <h2 class="cv-section-title">{% include icon.html name="file" %} Theses</h2>
 
 <div class="theses-grid">
-
-  <!-- PHD THESIS -->
-  <div class="thesis-card-modern thesis-card-modern--wide">
-    <img src="{{ base_path }}/images/unipv.png" class="thesis-bg-watermark" alt="">
+{% comment %}
+  Built from the theses in _publications/ (category: theses), newest first;
+  the newest gets the wide card. Abstract = the thesis' `excerpt`, so the CV
+  and the publication pages always show the same text. Supervisors' middle
+  names are shortened to initials ("Luca Franco Pavarino" -> "Luca F. Pavarino").
+{% endcomment %}
+{%- assign theses = site.publications | where: "category", "theses" | sort: "date" | reverse %}
+{%- for thesis in theses %}
+  <div class="thesis-card-modern{% if forloop.first %} thesis-card-modern--wide{% endif %}">
+    {%- if thesis.logo %}
+    <img src="{{ base_path }}/images/{{ thesis.logo }}" class="thesis-bg-watermark" alt="">
+    {%- endif %}
     <div class="thesis-main-content">
       <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2026</span>
-        <span class="badge-cv-location badge-sm">PhD Thesis</span>
+        <span class="badge-cv-date badge-sm">{{ thesis.date | date: "%Y" }}</span>
+        <span class="badge-cv-location badge-sm">{{ thesis.thesis_type | replace: "Master Thesis", "Master's Thesis" | replace: "Bachelor Thesis", "Bachelor's Thesis" }}</span>
       </div>
-      <h3><a href="{{ base_path }}/publication/2026-phd-thesis">Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability</a></h3>
+      <h3><a href="{{ base_path }}{{ thesis.url }}">{{ thesis.title }}</a></h3>
       <div class="cv-org-text cv-org-text--thesis">
-        Supervisors: Luca F. Pavarino, Giorgio Colombo | University of Pavia
+        {%- capture sups -%}
+          {%- for s in thesis.supervisor -%}
+            {%- assign w = s | split: " " -%}
+            {{ w.first }}{% if w.size > 2 %}{% assign mid = w.size | minus: 2 %}{% for m in w offset: 1 limit: mid %} {{ m | slice: 0 }}.{% endfor %}{% endif %} {{ w.last }}{% unless forloop.last %}, {% endunless %}
+          {%- endfor -%}
+        {%- endcapture %}
+        Supervisor{% if thesis.supervisor.size > 1 %}s{% endif %}: {{ sups }} | {{ thesis.institution }}
       </div>
       <p class="cv-desc-text cv-desc-text--sm">
-        The work integrated atomistic Molecular Dynamics with Machine and Deep Learning to decode the functional profiles of biomolecules beyond static structural representations. Three biophysical domains were addressed: the functional profiling of kinase ligands through MOLECULE, a self-designed dual-modal deep neural network combining chemical fingerprints with dynamic structural fluctuations; the prediction of mutational protein stability by coupling plain MD with the Energy Decomposition Method; and the target-independent classification of SARS-CoV-2 neutralizing nanobody binding from the energetic distribution of the hypervariable CDR3 loop. Together, these contributions define a scalable computational triage methodology that connects instantaneous static predictors with expensive alchemical calculations, offering a cost-aware protocol for molecular prioritization in the design of selective small-molecule drugs and variant-proof biologics.
+        {{ thesis.excerpt | strip_html | strip }}
       </p>
     </div>
   </div>
-
-  <!-- MASTER'S THESIS -->
-  <div class="thesis-card-modern">
-    <img src="{{ base_path }}/images/unipv.png" class="thesis-bg-watermark" alt="">
-    <div class="thesis-main-content">
-      <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2022</span>
-        <span class="badge-cv-location badge-sm">Master's Thesis</span>
-      </div>
-      <h3><a href="{{ base_path }}/publication/2022-master-thesis">Machine Learning Methods for Identifying Atrial Fibrillation in 12-lead ECGs</a></h3>
-      <div class="cv-org-text cv-org-text--thesis">
-        Supervisor: Luca F. Pavarino | University of Pavia
-      </div>
-      <p class="cv-desc-text cv-desc-text--sm">
-        The work focused on identifying atrial fibrillation through the analysis of 12-lead ECG signals using supervised Machine Learning techniques. Explored and compared the performance of k-Nearest Neighbors, Random Forest, and Multilayer Perceptron classifiers. The study involved preprocessing clinical data, implementing classification models, and evaluating their accuracy in detecting cardiac arrhythmias. Integrated concepts from physiology, signal processing, and computational modeling to enhance understanding and support preventive diagnostics in cardiology.
-      </p>
-    </div>
-  </div>
-
-  <!-- BACHELOR'S THESIS -->
-  <div class="thesis-card-modern">
-    <img src="{{ base_path }}/images/unipv.png" class="thesis-bg-watermark" alt="">
-    <div class="thesis-main-content">
-      <div class="cv-meta-container cv-meta-container--sm">
-        <span class="badge-cv-date badge-sm">2019</span>
-        <span class="badge-cv-location badge-sm">Bachelor's Thesis</span>
-      </div>
-      <h3><a href="{{ base_path }}/publication/2019-bachelor-thesis">Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome</a></h3>
-      <div class="cv-org-text cv-org-text--thesis">
-        Supervisor: Luca F. Pavarino | University of Pavia
-      </div>
-      <p class="cv-desc-text cv-desc-text--sm">
-        The work focused on modeling and simulating Long QT Syndrome (LQTS) through numerical representations of cardiac electrophysiology. Explored and implemented biophysical models such as Hodgkin-Huxley, Luo-Rudy, and O’Hara-Rudy to reproduce action potentials and ion current dynamics. Simulations were conducted to study the electrical behavior of cardiac cells under normal and pathological conditions. The study integrated concepts from cardiac physiology, mathematical modeling, and computational simulation to deepen the understanding of arrhythmogenic mechanisms and support research in cardiology.
-      </p>
-    </div>
-  </div>
-
+{%- endfor %}
 </div>
 
 <!-- ==================== PUBLICATIONS ==================== -->
