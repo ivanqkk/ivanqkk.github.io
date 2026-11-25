@@ -81,11 +81,9 @@ talkmap_link             : true # Enabled to activate automated mapping or summa
 comments:
   provider               : false
 
-# Analytics - Google Analytics 4 integration tracking active traffic
+# Analytics - disabled: no visitor tracking, so no cookies and no consent banner needed
 analytics:
-  provider               : "google-analytics-4"
-  google:
-    tracking_id          : "G-8LBVNLFBNN"
+  provider               : false
 
 # Reading Files
 include:
