@@ -19,6 +19,8 @@
 #   register_url  (optional) registration form; hidden once registration closes
 #   code_url      (optional) repository with the materials, shown as a GitHub
 #                 button on the past card (Talks page)
+#   video_url     (optional) recording (e.g. YouTube, with &t= to start at my
+#                 part), shown as a Recording button on the past card
 #   logo          (optional) image in /images/ for the past card watermark
 
 - id: genai-ls
@@ -36,6 +38,7 @@
   url: https://swedenaifactory.se/event/generative-ai-for-life-science/
   register_url: https://nextcloud.naiss.se/apps/forms/s/wFWzRKWEP4JH7xqTNbPbfPFK
   code_url: https://github.com/sweden-ai-factory/gen-ai-for-life-science
+  video_url: https://www.youtube.com/watch?v=hDgJBQol9Pg&t=1397s
   logo: swedenaifactory.png
 
 - id: xai-ls
@@ -53,6 +56,7 @@
   url: https://swedenaifactory.se/event/explainable-ai-for-life-science/
   register_url: https://nextcloud.naiss.se/apps/forms/s/ELwAFLf2fdRq7cnyGDj2HsJK
   code_url: https://github.com/sweden-ai-factory/xai-for-life-science
+  video_url: https://www.youtube.com/watch?v=66H30iuzAO0&t=591s
   logo: swedenaifactory.png
 
 - id: primer
