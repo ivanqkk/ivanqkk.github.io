@@ -12,6 +12,18 @@
 #         ("/publications/"); anything containing "://" is treated as external
 #         and opens in a new tab.
 
+- date: "Nov 2026"
+  dt: 2026-11
+  tag: "Workshop"
+  text: "Co-led the explainable AI session with Marcin Kierczak at Using AI in Life Science: A Primer, a one-day workshop by Sweden AI Factory, NBIS and SciLifeLab Training Hub."
+  url: "/talks/"
+
+- date: "Nov 2026"
+  dt: 2026-11
+  tag: "Hackathon"
+  text: "Mentored the teams at the AI4Metascience NeurIPS Hackathon, organised by Stockholm AI and Sweden AI Factory, a week of work on AI for how research is evaluated and rewarded."
+  url: "/talks/"
+
 - date: "Oct 2026"
   dt: 2026-10
   tag: "Workshop"
