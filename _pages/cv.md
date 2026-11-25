@@ -322,13 +322,13 @@ scripts: [events]
 
 ### **Programming Languages**
 <div class="grid-badges">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" loading="lazy">
+  <img src="{{ base_path }}/images/badge-python.svg" alt="Python" loading="lazy">
   <span class="skill-badge-matlab">
     <img src="{{ base_path }}/images/matlab.png" alt="">
     MATLAB
   </span>
-  <img src="https://img.shields.io/badge/Julia-9558B2?style=flat-square&logo=julia&logoColor=white" alt="Julia" loading="lazy">
-  <img src="https://img.shields.io/badge/LaTeX-008080?style=flat-square&logo=latex&logoColor=white" alt="LaTeX" loading="lazy">
+  <img src="{{ base_path }}/images/badge-julia.svg" alt="Julia" loading="lazy">
+  <img src="{{ base_path }}/images/badge-latex.svg" alt="LaTeX" loading="lazy">
 </div>
 
 ### **Core Libraries & Modules**

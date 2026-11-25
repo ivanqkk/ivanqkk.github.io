@@ -2,11 +2,11 @@
 
 <!-- start custom head snippets -->
 
-<!-- Webfonts: Bricolage Grotesque for headings, Atkinson Hyperlegible Next for text.
-     The stacks are the --font-head / --font-body tokens in _sass/theme/_default_light.scss. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap">
+<!-- Webfonts: Bricolage Grotesque for headings, Atkinson Hyperlegible Next for text,
+     self-hosted in assets/fonts/ (@font-face rules in _sass/_fonts.scss).
+     The latin files are preloaded so text does not flash in the fallback font. -->
+<link rel="preload" href="{{ base_path }}/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ base_path }}/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <!-- Favicons. Generated from the 1024x1024 master images/favicon_IC.png,
      removed after generation; recover it from git history to regenerate. -->

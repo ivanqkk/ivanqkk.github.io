@@ -76,8 +76,6 @@ read_more                : "disabled"
 atom_feed:
   hide                   : true
 
-talkmap_link             : true # Enabled to activate automated mapping or summary lists if supported by the layout
-
 comments:
   provider               : false
 
@@ -112,9 +110,6 @@ exclude:
   - node_modules
   - package-lock.json
   - scripts
-  - talkmap.ipynb
-  - talkmap.py
-  - talkmap_out.ipynb
   - tmp
   - vendor
 keep_files:
