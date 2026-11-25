@@ -76,16 +76,12 @@ read_more                : "disabled"
 atom_feed:
   hide                   : true
 
-comments:
-  provider               : false
-
 # Analytics - disabled: no visitor tracking, so no cookies and no consent banner needed
 analytics:
   provider               : false
 
 # Reading Files
 include:
-  - .htaccess
   - _pages
   - files
 exclude:
@@ -102,11 +98,9 @@ exclude:
   - LICENSE
   - README
   - README.md
-  - CONTRIBUTING.md
   - Dockerfile
   - docker-compose.yaml
   - package.json
-  - markdown_generator
   - node_modules
   - package-lock.json
   - scripts
@@ -191,18 +185,10 @@ timezone: Europe/Stockholm  # event times in _data/events.yml are shown in Stock
 
 # Core Template Plugins
 plugins:
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-redirect-from
-  - jemoji
 
 whitelist:
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-redirect-from
-  - jemoji
 
 category_archive:
   type: liquid
