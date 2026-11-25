@@ -161,8 +161,15 @@
     <ul class="modern-social-grid">
       <!-- Email -->
       {% if author.email %}
+        {%- comment -%}
+          No address in the HTML, so harvesters that scan pages for
+          "x@y.z" or mailto: find nothing. assets/js/email.js joins the two
+          halves into a mailto: link; without JavaScript the link goes to the
+          home page, which shows the address as "user [at] domain".
+        {%- endcomment -%}
+        {%- assign mail_parts = author.email | split: "@" %}
         <li>
-          <a href="mailto:{{ author.email }}" class="social-card-link link-email">
+          <a href="{{ base_path }}/" data-mail-user="{{ mail_parts[0] }}" data-mail-domain="{{ mail_parts[1] }}" class="social-card-link link-email">
             {% include icon.html name="mail" %}
             <span class="social-card-text">Email</span>
           </a>

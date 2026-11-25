@@ -6,6 +6,7 @@
 {%- capture v %}{{ site.time | date: '%s' }}{% endcapture %}
 <script defer src="{{ base_path }}/assets/js/main.min.js?v={{ v }}"></script>
 <script defer src="{{ base_path }}/assets/js/theme-toggle.js?v={{ v }}"></script>
+<script defer src="{{ base_path }}/assets/js/email.js?v={{ v }}"></script>
 {%- comment -%}
   Page-specific scripts: list their names (without .js) in the front matter,
   e.g. `scripts: [hero-network, timeline]`, and only that page loads them.
