@@ -10,6 +10,9 @@
      sends out a ring that grows for 0.9 s and pushes the nodes it meets.
    - Pauses while the hero is off screen.
    - With reduced motion it draws a single still frame and ignores the pointer.
+   - On Fibonacci Day (23 November, or ?day=YYYY-11-23) the home scene starts
+     with the nodes on a sunflower spiral, one every golden angle, and lets
+     them drift apart; with reduced motion the spiral stays.
    ========================================================================== */
 (function () {
   var c = document.querySelector('.hero-canvas');
@@ -24,6 +27,24 @@
     return { x: Math.random() * st.w, y: Math.random() * st.h, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3, r: 1.6 + Math.random() * 2.2 };
   }
 
+  function fibonacciDay() {
+    if (!c.closest('.landing')) return false;
+    var q = /[?&]day=\d{4}-(\d{2})-(\d{2})/.exec(location.search), d = new Date();
+    return q ? q[1] === '11' && q[2] === '23' : d.getMonth() === 10 && d.getDate() === 23;
+  }
+
+  // Node i at angle i x 137.5 degrees and radius proportional to sqrt(i), at rest.
+  function sunflower() {
+    var n = st.nodes.length, golden = Math.PI * (3 - Math.sqrt(5));
+    var k = 0.48 * Math.min(st.w, st.h) / Math.sqrt(n);   // fits the scene
+    st.nodes.forEach(function (p, i) {
+      var r = k * Math.sqrt(i + 0.5), a = i * golden;
+      p.x = st.w / 2 + r * Math.cos(a);
+      p.y = st.h / 2 + r * Math.sin(a);
+      p.vx = 0; p.vy = 0;
+    });
+  }
+
   function resize() {
     var r = c.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
     st.w = r.width; st.h = r.height;
@@ -33,6 +54,7 @@
     while (st.nodes.length < n) st.nodes.push(mk());
     st.nodes.length = n;
     st.nodes.forEach(function (p) { p.x = Math.min(p.x, st.w); p.y = Math.min(p.y, st.h); });
+    if (!st.seeded) { st.seeded = true; if (fibonacciDay()) sunflower(); }
     draw();
   }
 

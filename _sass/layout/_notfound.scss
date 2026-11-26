@@ -1,0 +1,46 @@
+/* ==========================================================================
+   404: "This page has misfolded" (_pages/404.md, assets/js/notfound.js)
+   A tangled chain that jiggles until "Refold" folds it into a helix.
+   Filled residues are the hydrophobic ones; they end up on the near face.
+   ========================================================================== */
+
+.misfold-chain {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 4px 0 18px;
+}
+
+.misfold-bond {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.7;
+}
+
+.misfold-res {
+  fill: var(--surface);
+  stroke: var(--accent);
+  stroke-width: 2;
+
+  &.is-hydrophobic { fill: var(--accent); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .misfold-res {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: misfold-jiggle 2.4s ease-in-out var(--d, 0s) infinite;
+  }
+  .is-folding .misfold-res { animation: none; }
+  .is-folded { animation: misfold-settle 0.5s var(--ease) both; }
+}
+
+@keyframes misfold-jiggle {
+  25% { transform: translate(1.5px, -1px); }
+  75% { transform: translate(-1px, 1.5px); }
+}
+@keyframes misfold-settle { 50% { transform: scale(1.04); } }
