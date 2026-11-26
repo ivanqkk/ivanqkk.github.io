@@ -85,6 +85,8 @@ exclude:
   - LICENSE
   - README
   - README.md
+  - THIRD_PARTY_NOTICES.md
+  - assets/js/plugins/notice.js
   - Dockerfile
   - docker-compose.yaml
   - package.json
