@@ -77,6 +77,7 @@ exclude:
   - .asset-cache
   - .bundle
   - .github
+  - cv-latex
   - .jekyll-assets-cache
   - .sass-cache
   - assets/js/_main.js

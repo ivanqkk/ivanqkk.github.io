@@ -27,3 +27,17 @@ package-lock.json
 
 # Ignore the contents of the _redesign directory
 _redesign/
+
+# LaTeX build artefacts from scripts/build_cv.sh (the PDF itself is committed)
+cv-latex/.build/
+cv-latex/*.aux
+cv-latex/*.bbl
+cv-latex/*.bcf
+cv-latex/*.blg
+cv-latex/*.fdb_latexmk
+cv-latex/*.fls
+cv-latex/*.log
+cv-latex/*.out
+cv-latex/*.run.xml
+cv-latex/*.synctex.gz
+cv-latex/*.toc

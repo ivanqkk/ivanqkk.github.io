@@ -1,0 +1,277 @@
+\documentclass[lighthipster]{simplehipstercv}
+\usepackage[default]{raleway} %lmodern
+\usepackage[margin=1cm, a4paper]{geometry}
+\usepackage{comment}
+\hypersetup{hidelinks}   % links stay clickable, without coloured boxes
+
+% Images are referenced as images/<name> and resolved first against a local
+% cv-latex/images/ (if any), then against the site's top-level images/, so the
+% CV reuses the same logos as the website.
+\graphicspath{{./}{../}}
+
+%------------------------------------------------------------------ Variablen
+
+\newlength{\rightcolwidth}
+\newlength{\leftcolwidth}
+\setlength{\leftcolwidth}{0.23\textwidth}
+\setlength{\rightcolwidth}{0.75\textwidth}
+
+%------------------------------------------------------------------
+\title{CV --- Ivan Cucchi}
+\author{\LaTeX{} Ivan Cucchi}
+\date{}
+
+\pagestyle{empty}
+\begin{document}
+
+
+\thispagestyle{empty}
+%-------------------------------------------------------------
+
+\section*{Start}
+
+\simpleheader{headercolour}{Ivan}{Cucchi}{Application Specialist in AI for Life Science}{white}
+
+
+
+%------------------------------------------------
+
+% this has to be here so the paracols starts..
+\subsection*{}
+\vspace{4em}
+
+\setlength{\columnsep}{0.5cm}
+\columnratio{0.23}[0.75]
+\begin{paracol}{2}
+\hbadness5000
+%\backgroundcolor{c[1]}[rgb]{1,1,0.8} % cream yellow for column-1 %\backgroundcolor{g}[rgb]{0.8,1,1} % \backgroundcolor{l}[rgb]{0,0,0.7} % dark blue for left margin
+
+\paracolbackgroundoptions%
+% 0.9,0.9,0.9 -- 0.8,0.8,0.8
+
+
+\footnotesize
+{\setasidefontcolour%
+\flushright%
+\begin{center}
+    \roundpic{images/me.jpeg}
+\end{center}
+
+\bg{cvgreen}{white}{About me}\\[0.5em]
+\begin{minipage}[t]{0.2\textwidth}
+    {\footnotesize I’m driven to advance AI techniques to foster innovation and deeper insights in medical and pharmaceutical research.}
+\end{minipage}
+
+\bigskip
+
+\bg{cvgreen}{white}{Areas of specialization} \\[0.5em]
+
+Machine Learning~•~Protein Design~•~Computational Mathematics~•~Computational Chemistry~•~Tutoring
+
+\bigskip
+
+\bg{cvgreen}{white}{Personal} \\[0.5em]
+Nationality: Italian
+
+Residence: Stockholm (Sweden)
+
+\bigskip
+
+\bg{cvgreen}{white}{Languages}\\[0.5em]
+\hspace*{-0.6cm}
+\begin{tabular}{lll}
+\textbf{Italian} & C2 & \hspace{-1em}{\phantom{x}\footnotesize mother tongue} \\
+\textbf{English} & C1 & \pictofraction{\faCircle}{cvgreen}{3}{black!30}{1}{\tiny}
+\end{tabular}
+
+\bigskip
+
+\bg{cvgreen}{white}{Social}\\[0.5em]
+\setlength{\tabcolsep}{3pt} % reduce space between columns
+\begin{tabular}{l l l l l}
+    \cvsocial{\href{https://scholar.google.com/citations?user=McUStm0AAAAJ}}{images/scholar.png} &
+    \cvsocial{\href{https://github.com/ivanqkk}}{images/github.png} &
+    \cvsocial{\href{https://orcid.org/0009-0007-8832-6820}}{images/orcid.png} &
+    \cvsocial{\href{https://www.researchgate.net/profile/Ivan-Cucchi}}{images/researchgate.png} &
+    \cvsocial{\href{https://www.linkedin.com/in/ivan-cucchi-298758193}}{images/linkedin.png}
+\end{tabular}
+\bigskip
+
+\bg{cvgreen}{white}{Contact}\\[0.5em]
+\cvcontact{ivanqkk92@naiss.se}{\icon{\faEnvelope}{cvgreen}{}} \\
+\cvcontact{ivan.cucchi@dbb.su.se}{\icon{\faEnvelope}{cvgreen}{}} \\
+\cvcontact{ivan.cucchi@scilifelab.se}{\icon{\faEnvelope}{cvgreen}{}} \\
+\cvcontact{\href{https://ivanqkk.github.io}{ivanqkk.github.io}}{\icon{\faGlobe}{cvgreen}{}}
+\bigskip
+
+\phantom{turn the page}
+
+\phantom{turn the page}
+}
+%-----------------------------------------------------------
+\switchcolumn%
+
+\small
+% The main column follows the CV page of the website (_pages/cv.md):
+% same sections, titles, descriptions and logos. Change both together.
+
+\section*{Professional Experience}
+\begin{tabular}{r p{0.5\textwidth} c}
+    \cvevent{2026--Present}{Application Specialist in AI for Life Science}{Sweden AI Factory \textbar{} Stockholm University · SciLifeLab · NAISS}{Stockholm, Sweden \color{cvred}}{As an Application Specialist in AI for Life Science, I work at the interface of SciLifeLab, NAISS, and the Sweden AI Factory, supporting life science researchers in the development and deployment of advanced AI and machine-learning solutions on national high-performance computing infrastructures. My responsibilities include curating and managing large, heterogeneous biological datasets; assisting with applications for computational resources; and designing end-to-end machine learning pipelines for applications such as microscopy image analysis, biomolecular structure prediction, genomics, and precision medicine. I also contribute to user support, training activities, and workshops, and collaborate with national and international research infrastructures to promote the effective adoption of AI methodologies in life science research.}{images/swedenaifactory.png,images/su.png,images/scilifelab.png,images/naiss.jpeg} \\
+    \cvevent{2023--2026}{PhD Student}{University of Pavia · Università della Svizzera Italiana}{Pavia, Italy \color{cvred}}{PhD student in Computational Mathematics, Learning, and Data Science, enrolled in the thematic program titled High Performance Computing and Deep Learning Methods for Protein Evolution and Design. Research involves the analysis and prediction of protein stability, folding, and function, using data from molecular dynamics simulations and structural bioinformatics. Work includes designing hybrid AI models that combine sequence-based and structural features, with the goal of supporting drug discovery and therapeutic protein engineering. The project is carried out in collaboration with the University of Pavia and Università della Svizzera italiana (USI) in Lugano, with results published in peer-reviewed scientific journals.}{images/unipv.png,images/usi.png} \\
+    \cvevent{2025--2026}{PhD Visiting Student}{SciLifeLab}{Stockholm, Sweden \color{cvred}}{3-month visiting period at SciLifeLab as part of my PhD program. I have regularly attended meetings and conferences, actively cooperating with Prof. Elofsson and his research team.}{images/scilifelab.png} \\
+    \cvevent{2025}{Mathematics Instructor}{Istituto d'Istruzione Superiore Simone Weil}{Treviglio, Italy \color{cvred}}{10-hour targeted mathematics course focused on student skill potentiation and reinforcement of core concepts.}{images/weil.png} \\
+    \cvevent{2024}{PhD Visiting Student}{Università della Svizzera Italiana}{Lugano, Switzerland \color{cvred}}{6-month visiting period at Euler Institute of Università della Svizzera Italiana as part of my PhD program. I have regularly attended meetings, conferences and courses, actively cooperating with Prof. Krause and his research team.}{images/usi.png} \\
+    \cvevent{2022}{Intern}{Sync Lab S.r.l.}{Milan, Italy \color{cvred}}{Development of integration flows using TIBCO BusinessWorks, through lessons, practical exercises, and real enterprise use cases, covering software engineering, distributed systems, relational databases with SQL, and implementation of projects with TIBCO BW and BPM as part of a postgraduate internship in the engineering and design area.}{images/synclab.jpg} \\
+    \cvevent{2021--2022}{Trainer}{Ver Italia — Tutoring \& Education}{Monza, Italy \color{cvred}}{Provided educational support through private tutoring for students, focusing on study methods and school activities.}{images/ver.png}
+\end{tabular}
+
+\begin{minipage}[t]{0.74\textwidth}
+\section*{Education}
+\begin{tabular}{r p{0.72\textwidth} c}
+    \cvdegree{2023--2026}{PhD in Computational Mathematics, Learning, and Data Science}{University of Pavia · Università della Svizzera Italiana}{Pavia, Italy \color{headerblue}}{}{images/unipv.png,images/usi.png} \\
+    \cvdegree{2019--2022}{Master in Mathematics}{University of Pavia}{Pavia, Italy \color{headerblue}}{}{images/unipv.png} \\
+    \cvdegree{2011--2019}{Bachelor in Mathematics}{University of Pavia}{Pavia, Italy \color{headerblue}}{}{images/unipv.png} \\
+    \cvdegree{2007--2011}{Scientific High School Graduation}{Niccolò Copernico}{Pavia, Italy \color{headerblue}}{}{images/copernico.png}
+\end{tabular}
+\end{minipage}
+
+\begin{minipage}[t]{0.71\textwidth}
+\section*{Theses}
+\begin{tabular}{r p{0.88\textwidth}}
+    \cvthesis{2026}{PhD Thesis}{Molecular Dynamics-Enhanced Machine Learning Models for Protein Binding and Stability}{Supervisors: Luca F. Pavarino, Giorgio Colombo}{University of Pavia}{The work integrated atomistic Molecular Dynamics with Machine and Deep Learning to decode the functional profiles of biomolecules beyond static structural representations. Three biophysical domains were addressed: the functional profiling of kinase ligands through MOLECULE, a self-designed dual-modal deep neural network combining chemical fingerprints with dynamic structural fluctuations; the prediction of mutational protein stability by coupling plain MD with the Energy Decomposition Method; and the target-independent classification of SARS-CoV-2 neutralizing nanobody binding from the energetic distribution of the hypervariable CDR3 loop. Together, these contributions define a scalable computational triage methodology that connects instantaneous static predictors with expensive alchemical calculations, offering a cost-aware protocol for molecular prioritization in the design of selective small-molecule drugs and variant-proof biologics.} \\
+    \cvthesis{2022}{Master's Thesis}{Machine Learning Methods for Identifying Atrial Fibrillation in 12-lead ECGs}{Supervisor: Luca F. Pavarino}{University of Pavia}{The work focused on identifying atrial fibrillation through the analysis of 12-lead ECG signals using supervised Machine Learning techniques. Explored and compared the performance of k-Nearest Neighbors, Random Forest, and Multilayer Perceptron classifiers. The study involved preprocessing clinical data, implementing classification models, and evaluating their accuracy in detecting cardiac arrhythmias. Integrated concepts from physiology, signal processing, and computational modeling to enhance understanding and support preventive diagnostics in cardiology.} \\
+    \cvthesis{2019}{Bachelor's Thesis}{Numerical Models and Cardiac Electrophysiology Simulations for Long QT Syndrome}{Supervisor: Luca F. Pavarino}{University of Pavia}{The work focused on modeling and simulating Long QT Syndrome (LQTS) through numerical representations of cardiac electrophysiology. Explored and implemented biophysical models such as Hodgkin-Huxley, Luo-Rudy, and O’Hara-Rudy to reproduce action potentials and ion current dynamics. Simulations were conducted to study the electrical behavior of cardiac cells under normal and pathological conditions. The study integrated concepts from cardiac physiology, mathematical modeling, and computational simulation to deepen the understanding of arrhythmogenic mechanisms and support research in cardiology.}
+\end{tabular}
+\bigskip
+\end{minipage}
+
+\begin{minipage}[t]{0.71\textwidth}
+\section*{Publications}
+\begin{tabular}{r p{0.88\textwidth}}
+    2025 & \textbf{Cucchi, I.}, Frasnetti, E., Frigerio, F., Cinquini, F., Pavoni, S., Pavarino, L. F., \& Colombo, G. (2025). \href{https://doi.org/10.1021/acs.jctc.5c01140}{\textit{MOLECULE: Molecular-dynamics and Optimized deep Learning for Entropy-regularized Classification and Uncertainty-aware Ligand Evaluation}}. Journal of Chemical Theory and Computation, 21(18), 9186--9199. \\
+    2025 & Mansoor, S., Frasnetti, E., \textbf{Cucchi, I.}, Magni, A., Bonollo, G., Serapian, S. A., Pavarino, L. F., \& Colombo, G. (2025). \href{https://doi.org/10.1016/j.cstres.2025.01.001}{\textit{LARGE SCALE ENERGY DECOMPOSITION FOR THE ANALYSIS OF PROTEIN STABILITY}}. Cell Stress and Chaperones, 30(1), 57--68. \\
+    2024 & Frasnetti, E., \textbf{Cucchi, I.}, Pavoni, S., Frigerio, F., Cinquini, F., Serapian, S. A., Pavarino, L. F., \& Colombo, G. (2024). \href{https://doi.org/10.1021/acs.jctc.4c01097}{\textit{Integrating Molecular Dynamics and Machine Learning Algorithms to Predict the Functional Profile of Kinase Ligands}}. Journal of Chemical Theory and Computation, 20(20), 9209--9229.
+\end{tabular}
+\bigskip
+\end{minipage}
+
+\begin{minipage}[t]{0.71\textwidth}
+\section*{Academic Supervision}
+\begin{tabular}{r p{0.88\textwidth}}
+    \cvsthesis{2025}{Integrating Molecular Dynamics Simulations with Machine Learning and Deep Learning to Predict Nanobody Binding Modes}{Master Thesis Co-supervision}{Mattia Lai}{University of Pavia}{Luca F. Pavarino, Giorgio Colombo}{Gauthier Trèves, Ivan Cucchi}{The work focused on predicting nanobody–antigen binding mechanisms by integrating molecular dynamics simulations with supervised machine learning approaches. Physicochemical descriptors were extracted from high-quality crystallographic structures and used to train and compare machine learning and deep learning classifiers, optimizing the trade-off between predictive performance and computational efficiency. The models were developed in a target-free setting, without prior assumptions on binding sites or antigen type, and addressed both orthosteric and allosteric recognition mechanisms. Feature importance analysis was then performed to uncover the structural determinants distinguishing the two binding classes, transforming machine learning from a purely predictive tool into a physics-informed framework for molecular insight in drug discovery.}
+\end{tabular}
+\bigskip
+\end{minipage}
+
+\begin{minipage}[t]{0.71\textwidth}
+\section*{Talks \& Presentations}
+\begin{tabular}{r p{0.83\textwidth}}
+    Nov 2026 & [\textsc{workshop}] \href{https://scilifelab-training.github.io/using-ai-in-lifescience/2611/}{\textbf{Using AI in Life Science: A Primer}}. Sweden AI Factory, NBIS and SciLifeLab Training Hub, xAI session co-lead. \\
+    Nov 2026 & [\textsc{hackathon}] \href{https://swedenaifactory.se/event/ai-for-meta-science-hackathon-2026/}{\textbf{AI4Metascience NeurIPS Hackathon}}. Stockholm AI and Sweden AI Factory, mentor. \\
+    Oct 2026 & [\textsc{workshop}] \href{https://swedenaifactory.se/event/explainable-ai-for-life-science/}{\textbf{Explainable AI for Life Science}}. Sweden AI Factory, co-organiser and lecturer. \\
+    Oct 2026 & [\textsc{workshop}] \href{https://swedenaifactory.se/event/generative-ai-for-life-science/}{\textbf{Generative AI for Life Science}}. Sweden AI Factory, support. \\
+    May 2026 & [\textsc{talk}] \href{https://ivanqkk.github.io/talks/2026-05-27-stockholm-mlops}{\textbf{Stockholm MLOps \#35: Unlocking Enterprise AI Productivity}}. Crowd Collective, for Sweden AI Factory. \\
+    Sep 2025 & [\textsc{talk}] \href{https://ivanqkk.github.io/talks/2025-09-26-yamc}{\textbf{5th Edition of Young Applied Mathematicians Conference}}. University of Padua. \\
+    May 2025 & [\textsc{seminar}] \href{https://ivanqkk.github.io/talks/2025-05-26-beltrami}{\textbf{Caffè Beltrami Seminars}}. University of Pavia. \\
+    May 2025 & [\textsc{poster}] \href{https://ivanqkk.github.io/talks/2025-05-23-compmat2}{\textbf{Spring Workshop COMPMAT 2025}}. University of Pavia. \\
+    May 2025 & [\textsc{poster}] \href{https://ivanqkk.github.io/talks/2025-05-22-icam}{\textbf{ICAM Workshop}}. University of Pavia. \\
+    Apr 2025 & [\textsc{poster}] \href{https://ivanqkk.github.io/talks/2025-04-07-human-technopole}{\textbf{1st Workshop on Data Science for Health and Biology}}. Human Technopole \& Polimi. \\
+    Jan 2025 & [\textsc{talk}] \href{https://ivanqkk.github.io/talks/2025-01-31-bari}{\textbf{3rd Workshop of UMI Group — Mathematics for Artificial Intelligence and Machine Learning}}. University of Bari. \\
+    Jun 2024 & [\textsc{poster}] \href{https://ivanqkk.github.io/talks/2024-06-21-sissa}{\textbf{Scientific Machine Learning, Emerging Topics}}. SISSA (International School for Advanced Studies). \\
+    May 2024 & [\textsc{talk+post}] \href{https://ivanqkk.github.io/talks/2024-05-08-compmat1}{\textbf{Spring Workshop COMPMAT 2024}}. University of Pavia.
+\end{tabular}
+\bigskip
+\end{minipage}
+
+\begin{minipage}[t]{0.71\textwidth}
+\section*{Teaching Assistance}
+\begin{tabular}{r p{0.8\textwidth}}
+    \cvacademic{2024--2025}{\href{https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/17222/2024/9999?schemaid=16894}{507290 — Programming 2}}{BSc in Mathematics}{University of Pavia} \\
+    \cvacademic{2024--2025}{\href{https://unipv.coursecatalogue.cineca.it/corsi/2024/10057/insegnamenti/2024/13139/2024/9999?schemaid=16894}{507289 — Programming 1}}{BSc in Mathematics}{University of Pavia} \\
+    \cvacademic{2024--2025}{\href{https://unipv.coursecatalogue.cineca.it/corsi/2024/10017/insegnamenti/2024/7561/2024/9999?schemaid=16505}{500142 — Mathematics}}{BSc in Economics}{University of Pavia} \\
+    \cvacademic{2024--2025}{\href{https://unipv.coursecatalogue.cineca.it/corsi/2024/10063/insegnamenti/2024/9502/2024/1?schemaid=16900}{502886 — Dynamical systems: theory and numerical methods (Year 2)}}{MSc in Mathematics and Bioengineering}{University of Pavia} \\
+    \cvacademic{2023--2024}{\href{https://unipv.coursecatalogue.cineca.it/corsi/2023/10063/insegnamenti/2023/9502/2009/10004?schemaid=16006}{502886 — Dynamical systems: theory and numerical methods (Year 1)}}{MSc in Mathematics and Bioengineering}{University of Pavia}
+\end{tabular}
+\bigskip
+\end{minipage}
+
+\section*{Technical Skills}
+\begin{minipage}[t]{0.3\textwidth}
+\textbf{Programming Languages}\\[0.6em]
+\begin{tabular}{r @{\hspace{0.2em}}l}
+    \bg{skilllabelcolour}{iconcolour}{Python} & \barrule{0.6}{0.5em}{cvgreen} \\
+
+    \bg{skilllabelcolour}{iconcolour}{MATLAB} & \barrule{0.5}{0.5em}{cvgreen} \\
+
+    \bg{skilllabelcolour}{iconcolour}{Julia} & \barrule{0.4}{0.5em}{cvgreen} \\
+
+     \bg{skilllabelcolour}{iconcolour}{\LaTeX} & \barrule{0.55}{0.5em}{cvgreen} \\
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\textbf{Core Libraries \& Modules}\\[0.6em]
+\begingroup
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{r r r}
+    \bg{skilllabelcolour}{iconcolour}{NumPy} & & \bg{skilllabelcolour}{iconcolour}{RDKit} \\
+    \bg{skilllabelcolour}{iconcolour}{pandas} & & \bg{skilllabelcolour}{iconcolour}{scikit-learn} \\
+    \bg{skilllabelcolour}{iconcolour}{PyTorch} & & \bg{skilllabelcolour}{iconcolour}{SciPy}
+\end{tabular}
+\endgroup
+\bigskip
+\end{minipage}
+
+\begin{minipage}[t]{0.71\textwidth}
+\section*{Certificates \& Grants}
+\begin{tabular}{r p{0.8\textwidth} c}
+    \cvcertificate{2024}{\href{https://app.myopenbadge.com/receive/CEsL-4857988ff331239c331c8b1e18c48c48-7fB2I1w0PFbe-51710857757/vgFUTrces-b534f9e3b9537a0b5bfcb536bd011a02-7S43uD1AUf-5/public}{B2 English Open Badge}}{images/b2.png} \\
+    \cvcertificate{2023}{\href{https://learn.nvidia.com/certificates?id=bbb853648afc49519efc7d3da887fa70}{Fundamentals of Accelerated Computing with CUDA Python}}{images/nvidia.png} \\
+    \cvcertificate{2023}{\href{https://courses.nvidia.com/certificates/2286a85c41c041f9a0c079ad6ea12a5e}{Accelerating End-to-End Data Science Workflows}}{images/nvidia.png} \\
+    \cvcertificate{2023}{\href{https://courses.nvidia.com/certificates/bde07bd68b52478bb152a297ae1cac20/}{Getting Started with Deep Learning}}{images/nvidia.png} \\
+    \cvcertificate{2022}{PNRR-MUR Research Programme CN00000013 (National Centre for HPC)}{images/pnrr.jpg} \\
+    \cvcertificate{2009}{Shorei-Kan Karate Gojuryu Sho Dan}{images/shoreikan.png}
+\end{tabular}
+\bigskip
+\end{minipage}
+
+\section*{Volunteering}
+\begin{tabular}{r p{0.5\textwidth} c}
+    \cvevent{2026--Present}{Blood Donor}{GeBlod}{Stockholm, Sweden \color{cvred}}{Regular blood donor through GeBlod, the Swedish blood donation network that supplies the roughly 100,000 people in Sweden who need a transfusion every year.}{images/geblod.png} \\
+    \cvevent{2016--2023}{Rescuer}{Croce Bianca Milano}{Binasco, Italy \color{cvred}}{Volunteered as a rescuer providing emergency medical assistance, patient transport, and support during urgent interventions, demonstrating teamwork, stress management, and a strong commitment to public service.}{images/crocebianca.png}
+\end{tabular}
+\bigskip
+
+\begin{comment}
+\begin{minipage}[t]{0.71\textwidth}
+\section*{Relevant Courses}
+\begin{itemize}
+    \item \textbf{Machine Learning} --- Prof.\ C. Cusano, \textit{University of Pavia} \\[-1.5em]
+    \item \textbf{Statistical Learning Theory} --- Prof.\ G. De Nicolao, \textit{University of Pavia} \\[-1.5em]
+    \item \textbf{Deep Learning} --- Prof.\ M. Piastra, \textit{University of Pavia} \\[-1.5em]
+    \item \textbf{Graph Deep Learning} --- Prof.\ C. Alippi, \textit{Università della Svizzera Italiana} \\[-1.5em]
+    \item \textbf{Scientific Machine Learning} --- Dr.\ H. Kothari, \textit{Università della Svizzera Italiana} \\[-1.5em]
+    \item \textbf{Biomathematics} --- Prof.\ L. F. Pavarino, \textit{University of Pavia} \\[-1.5em]
+    \item \textbf{Membrane Biophysics and Electrophysiology} --- Prof.\ M. G. Toselli, \textit{University of Pavia} \\[-1.5em]
+    \item \textbf{Single-Cell Modeling of Cardiac Electrophysiology} --- Dr.\ A. Trancuccio, \textit{University of Pavia} \\[-1.5em]
+    \item \textbf{Computational Optimal Transport} --- Prof.\ S. Gualandi, \textit{University of Pavia} \\[-1.5em]
+    \item \textbf{Julia High Performance} --- R. Assante, \textit{Cineca} \\[-1.5em]
+    \item \textbf{Learning on Graphs Conference 2024 --- Italy Meetup} --- \textit{University of Siena} \\[-1.5em]
+    \item \textbf{Annual Meeting of EMS activity group on Scientific Machine Learning} --- \textit{Politecnico di Milano} \\[-1.5em]
+    \item \textbf{Machine Learning: From Data to Mathematical Understanding} --- \textit{C.I.M.E. Foundation} \\[-1.5em]
+    \item \textbf{High-Dimensional Approximation: From Theoretical Foundations to Machine
+Learning and PDEs} --- \textit{C.I.M.E. Foundation} \\[-1.5em]
+\end{itemize}
+\bigskip
+\end{minipage}
+\end{comment}
+
+%\vfill{} % Whitespace before final footer
+
+%----------------------------------------------------------------------------------------
+%	FINAL FOOTER
+%---------------------------------------------------------------------------------------
+
+\end{paracol}
+
+\end{document}

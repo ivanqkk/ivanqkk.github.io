@@ -57,6 +57,7 @@ The website is built with [Jekyll](https://jekyllrb.com) on a customised [Academ
 
 * **Content:** `_pages/` (pages), `_publications/` and `_talks/` (one Markdown file per item), `_data/` (news, events, press, academic lineage, citation counts).
 * **Citation counts:** refreshed monthly from OpenAlex by `.github/workflows/citations.yml`.
+* **CV PDF:** built from the LaTeX source in `cv-latex/` by `scripts/build_cv.sh`, locally or by `.github/workflows/build_cv.yml` on every change to the source (see `cv-latex/README.md`).
 * **Licences:** the theme code is MIT ([`LICENSE`](LICENSE)); bundled libraries and fonts are listed in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 * **Privacy:** no analytics and no cookies; the pages load fonts, scripts and images only from this site. The one exception is the PhD defence slides (`files/phd-defence.html`), which load their fonts from Google Fonts.
 

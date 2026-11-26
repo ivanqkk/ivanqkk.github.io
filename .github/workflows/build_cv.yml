@@ -1,0 +1,82 @@
+name: Build CV PDF
+
+# Runs on demand from the Actions tab (or `gh workflow run build_cv.yml`), and
+# automatically whenever the LaTeX source changes.
+#
+# GitHub Pages serves this site straight from the branch, so the built PDF has
+# to be committed for /files/Curriculum_Vitae.pdf to exist, as citations.yml
+# does for _data/citations.json. That commit is what triggers the Pages
+# rebuild; it touches only files/, so it does not re-trigger this workflow.
+# The runner has no TeX installed, so scripts/build_cv.sh falls back to a
+# TeX Live container on its own; that is the same script used for local
+# builds, so CI and laptop cannot drift apart.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'cv-latex/**'
+      # The images CV.tex takes from the site's images/ (the social icons
+      # live in cv-latex/images/). Keep this list in step with CV.tex; see
+      # cv-latex/README.md. Other site images do not trigger a CV build.
+      - 'images/me.jpeg'
+      - 'images/b2.png'
+      - 'images/copernico.png'
+      - 'images/crocebianca.png'
+      - 'images/geblod.png'
+      - 'images/naiss.jpeg'
+      - 'images/nvidia.png'
+      - 'images/pnrr.jpg'
+      - 'images/scilifelab.png'
+      - 'images/shoreikan.png'
+      - 'images/su.png'
+      - 'images/swedenaifactory.png'
+      - 'images/synclab.jpg'
+      - 'images/unipv.png'
+      - 'images/usi.png'
+      - 'images/ver.png'
+      - 'images/weil.png'
+      - 'scripts/build_cv.sh'
+      - '.github/workflows/build_cv.yml'
+
+concurrency:
+  group: build-cv
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write           # commits the rebuilt PDF
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history: build_cv.sh dates the PDF from the last commit to
+          # cv-latex/, so the same source always gives the same bytes and an
+          # unchanged CV is not committed again.
+          fetch-depth: 0
+
+      - name: Build the PDF
+        run: bash scripts/build_cv.sh
+
+      - name: Upload PDF as an artifact
+        # Always available for download from the run page, even when the commit
+        # step finds nothing to do.
+        uses: actions/upload-artifact@v4
+        with:
+          name: Curriculum_Vitae
+          path: files/Curriculum_Vitae.pdf
+          if-no-files-found: error
+
+      - name: Commit the PDF if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add files/Curriculum_Vitae.pdf
+          if git diff --quiet --cached; then
+            echo "PDF is unchanged; nothing to commit."
+          else
+            git commit -m "Rebuild CV PDF from LaTeX source"
+            git push
+          fi
