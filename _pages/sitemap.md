@@ -1,6 +1,7 @@
 ---
 layout: archive
 title: "Sitemap"
+description: "All the pages on the website of Ivan Cucchi."
 permalink: /sitemap/
 author_profile: true
 ---

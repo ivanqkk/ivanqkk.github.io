@@ -22,12 +22,24 @@
     btn.setAttribute('aria-label', root.dataset.theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
   }
 
+  /* Browser UI colour: the <meta name="theme-color"> tags in head/custom.html
+     follow the system theme; set them to the page background of the theme
+     actually shown, which differs when the visitor picked one. */
+  function syncMeta() {
+    var bg = getComputedStyle(root).getPropertyValue('--bg').trim();
+    if (!bg) return;
+    [].forEach.call(document.querySelectorAll('meta[name="theme-color"]'), function (m) {
+      m.setAttribute('content', bg);
+    });
+  }
+
   function setTheme(theme, remember) {
     root.dataset.theme = theme;
     if (remember) {
       try { localStorage.setItem('theme', theme); } catch (e) {}
     }
     syncBtn();
+    syncMeta();
     document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: theme } }));
   }
 
@@ -62,6 +74,7 @@
 
   btn.addEventListener('click', toggleTheme);
   syncBtn();
+  syncMeta();
 
   /* Exposed for later scripts (e.g. a search palette action). */
   window.toggleTheme = toggleTheme;

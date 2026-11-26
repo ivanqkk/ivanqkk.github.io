@@ -13,6 +13,9 @@ layout: compress
 
   <body>
 
+    {%- comment -%} First focusable element: lets keyboard users jump past the menu.
+      Hidden until focused (.screen-reader-shortcut in include/_utilities). {%- endcomment %}
+    <a class="screen-reader-shortcut skip-link" href="#main">Skip to content</a>
     {% include masthead.html %}
 
     {{ content }}

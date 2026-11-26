@@ -1,6 +1,7 @@
 ---
 layout: archive
 title: "Curriculum Vitae"
+description: "Curriculum vitae of Ivan Cucchi: experience, education, theses, publications, talks, skills and certificates."
 permalink: /cv/
 author_profile: true
 scripts: [events]
