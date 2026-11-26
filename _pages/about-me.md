@@ -20,7 +20,7 @@ scripts: [timeline, cite, events]
 </div>
 
 <div class="home-intro home-intro--tight">
-  As part of the <a href="https://SwedenAIFactory.se/" target="_blank" rel="noopener noreferrer" class="inline-link">Sweden AI Factory</a>, I collaborate with <a href="https://www.naiss.se/" target="_blank" rel="noopener noreferrer" class="inline-link">NAISS</a> to empower researchers from both academia and industry to leverage national AI and high-performance computing (HPC) infrastructure, accelerating data-driven discovery in life science. I am also actively involved in training initiatives, contributing to the development of courses, seminars, and workshops aimed at strengthening AI competence across the life science community.
+  As part of the <a href="https://SwedenAIFactory.se/" target="_blank" rel="noopener noreferrer" class="inline-link">Sweden AI Factory</a>, I collaborate with <a href="https://www.naiss.se/" target="_blank" rel="noopener noreferrer" class="inline-link">NAISS</a> to empower researchers from both academia and industry to leverage national AI and high-performance computing (HPC) infrastructure, accelerating data-driven discovery in life science. I am also actively involved in <a href="https://learn.swedenaifactory.se/lessons/" target="_blank" rel="noopener noreferrer" class="inline-link">training initiatives</a>, contributing to the development of courses, seminars, and workshops aimed at strengthening AI competence across the life science community.
 </div>
 
 {% comment %}
