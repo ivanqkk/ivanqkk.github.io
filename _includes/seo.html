@@ -32,7 +32,7 @@
 {%- endcomment -%}
 {% assign seo_excerpt = page.excerpt | strip_html | strip %}
 {% if page.collection == "talks" and page.venue %}
-  {% capture seo_talk %}{{ page.type | default: "Talk" }} by {{ site.author.name }} at {{ page.venue }}{% if page.location %}, {{ page.location }}{% endif %}, {{ page.date | date: "%B %Y" }}.{% endcapture %}
+  {% capture seo_talk %}{{ page.type | default: "Talk" }} by {{ site.author.name }} at {{ page.short_title | default: page.title }}: {{ page.venue }}{% if page.location %}, {{ page.location }}{% endif %}, {{ page.date | date: "%B %Y" }}.{% endcapture %}
 {% endif %}
 {% assign seo_description = page.description | default: seo_excerpt | default: seo_talk | default: site.description %}
 {% assign seo_description = seo_description | markdownify | strip_html | strip_newlines | escape_once %}

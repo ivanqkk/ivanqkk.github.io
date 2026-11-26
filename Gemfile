@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Lasciamo che sia github-pages a gestire jekyll e i suoi plugin standard
+# github-pages pins Jekyll and the plugins to the versions GitHub Pages uses
 gem 'github-pages', group: :jekyll_plugins
 
 group :jekyll_plugins do
@@ -8,5 +8,5 @@ group :jekyll_plugins do
   gem 'webrick', '~> 1.8'
 end
 
-# Manteniamo questa gemma specifica se necessaria al tuo ambiente locale/container
+# Pinned for the local/Docker build (see Dockerfile)
 gem 'connection_pool', '2.5.0'

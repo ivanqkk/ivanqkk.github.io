@@ -13,6 +13,7 @@ description              : &description "Ivan Cucchi, Application Specialist in 
 url                      : "https://ivanqkk.github.io"
 baseurl                  : "" 
 repository               : "ivanqkk/ivanqkk.github.io"
+theme                    : null   # no gem theme: GitHub Pages would add Primer and its unused style.css
 
 # Site Author - Controls the automated sidebar links and metadata structures
 author:

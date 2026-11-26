@@ -3,11 +3,14 @@
   The card has id="press-<id>" so news items and the "Covered in" box on a
   publication page can link straight to it (/media/#press-<id>).
   With `publication`, it links to that paper (matched on its slug). The quote
-  sits beside the card on wide screens. Styles: layout/_press.scss.
+  sits beside the card on wide screens. `level` sets the title's heading
+  level (default 3, under a section h2; the Media page passes 2).
+  Styles: layout/_press.scss.
 {%- endcomment -%}
 {%- include base_path -%}
 {%- assign item = include.item -%}
 {%- assign kind = item.kind | downcase -%}
+{%- assign hl = include.level | default: 3 -%}
 {%- assign paper = nil -%}
 {%- if item.publication -%}
   {%- for p in site.publications -%}
@@ -18,7 +21,7 @@
 <article class="press" id="press-{{ item.id }}" style="view-transition-name: press-{{ item.id }}">
   <div class="press-main">
     <p class="press-meta"><span class="press-outlet">{{ item.outlet }}</span><span class="tag">{{ item.kind }}</span><time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: "%b %Y" }}</time></p>
-    <h3 class="press-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h3>
+    <h{{ hl }} class="press-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h{{ hl }}>
     {%- if item.author %}
     <p class="press-by">By {{ item.author }}</p>
     {%- endif %}

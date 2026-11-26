@@ -17,6 +17,6 @@ description: "Interviews and articles that feature the work of Ivan Cucchi."
 {% assign press = site.data.press | sort: "date" | reverse %}
 <div class="press-list">
 {%- for item in press %}
-{% include press-card.html item=item %}
+{% include press-card.html item=item level=2 %}
 {%- endfor %}
 </div>
