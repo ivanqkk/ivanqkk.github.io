@@ -50,25 +50,11 @@ author:
   linkedin         : "ivan-cucchi-298758193"
   twitter          : 
 
-# Publication Category - Used to organize layout structures
-publication_category:
-  books:
-    title: 'Books'
-  manuscripts:
-    title: 'Journal Articles'    
-  conferences:
-    title: 'Conference Papers'
-  theses:
-    title: 'Theses'
-
 # Site Settings
-teaser                   :  
 og_image                 : "og-image.png"   # 1200x630 social preview card in /images/
 
 # Author name variants to bold in rendered author lists (publication cards)
 author_aliases           : ["I. Cucchi", "Ivan Cucchi"]
-breadcrumbs              : false 
-words_per_minute         : 200
 future                   : true
 read_more                : "disabled" 
 
@@ -150,15 +136,8 @@ defaults:
       path: ""
       type: pages
     values:
-      layout: single
+      layout: archive
       author_profile: true
-  - scope:
-      path: ""
-      type: teaching
-    values:
-      layout: single
-      author_profile: true
-      share: false
   - scope:
       path: ""
       type: publications
@@ -186,16 +165,6 @@ timezone: Europe/Stockholm  # event times in _data/events.yml are shown in Stock
 # Core Template Plugins
 plugins:
   - jekyll-sitemap
-
-whitelist:
-  - jekyll-sitemap
-
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
 
 compress_html:
   clippings: all
